@@ -1,8 +1,12 @@
+html {
+border: 0px;
+}
+
 body {
-    background-color: lightblue;
-  }
+background-color: lightblue;
+}
 
 header {
-    background-color: #777777;
-    height: 100px;
-  }
+background-color: #777777;
+height: 100px;
+}
