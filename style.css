@@ -1,3 +1,8 @@
 body {
     background-color: lightblue;
   }
+
+header {
+    background-color: #777777;
+    height: 100px;
+  }
