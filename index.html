@@ -24,10 +24,46 @@
         </div> 
       </div>
     <!-- -->
-    <para>Warning! This webpage is for gamers only.</para>
+    <para>Below is a tarot fortune randomizer. Click the button at your own peril.</para>
     <br>
-    <para>Warning! This webpage is for gamers only.</para>
+    <div class="app">
+      <table>
+        <tr>
+          <td>Your card for the PAST is:</td>
+          <td id = "tarot1">N/A</td>
+        </tr>
+        <tr>
+            <td>Your card for the PRESENT is:</td>
+            <td id = "tarot2">N/A</td>
+        </tr>
+        <tr>
+            <td>Your card for the FUTURE is:</td>
+            <td id = "tarot3">N/A</td>
+        </tr>
+      </table>
+    </div>
+    <button id="button" class="superGay" onClick="tarot()">Generate Card</button>
     <!-- -->
-    <footer>Footer</footer>
+<script>
+var majorArcana = ["The Magician", "The Hight Priestess", "The Empress", "The Emperor", "The Hierophant", "The Lovers", "The Chariot", "Strength", "The Hermit", "Wheel of Fortune", "Justice", "The Hanged Man", "Death", "Temperance", "The Devil", "The Tower", "The Star", "The Moon", "The Sun", "Judgment", "The World", "The Fool"];
+var numbers = ["Ace of", "One of", "", "", "", "", "", "", "", "", "", ]
+//
+function tarot(){
+var x = Math.floor(Math.random() * Math.floor(majorArcana.length));
+var y = Math.floor(Math.random() * Math.floor(majorArcana.length));
+while (y === x){
+var y = Math.floor(Math.random() * Math.floor(majorArcana.length));
+}
+var z = Math.floor(Math.random() * Math.floor(majorArcana.length));
+while (z === x | z === y){
+var z = Math.floor(Math.random() * Math.floor(majorArcana.length));
+}
+document.getElementById("tarot1").innerHTML = majorArcana[x];
+document.getElementById("tarot2").innerHTML = majorArcana[y];
+document.getElementById("tarot3").innerHTML = majorArcana[z];
+};
+//
+</script>
+
 </body>
 </html>
