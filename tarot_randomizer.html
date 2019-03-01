@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Welcome</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>WEBSITE 2: The Sequel to Website 1</h1>
+    </header>
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="tarot_randomizer.html">Tarot Randomizer</a>
+        <a href="chord_progression_builder.html">Chord Progression Builder</a>
+      </div>
+    <!-- -->
+    <div class="app">
+      <table>
+        <tr>
+          <td>Your card for the PAST is:</td>
+          <td id = "tarot1">N/A</td>
+        </tr>
+        <tr>
+            <td>Your card for the PRESENT is:</td>
+            <td id = "tarot2">N/A</td>
+        </tr>
+        <tr>
+            <td>Your card for the FUTURE is:</td>
+            <td id = "tarot3">N/A</td>
+        </tr>
+      </table>
+    </div>
+    <button id="button" class="superGay" onClick="tarot()">Generate</button>
+    <!-- -->
+<script>
+var majorArcana = ["The Magician", "The High Priestess", "The Empress", "The Emperor", "The Hierophant", "The Lovers", "The Chariot", "Strength", "The Hermit", "Wheel of Fortune", "Justice", "The Hanged Man", "Death", "Temperance", "The Devil", "The Tower", "The Star", "The Moon", "The Sun", "Judgment", "The World", "The Fool"];
+var values = ["Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "King", "Queen", "Knight", "Page"];
+var suits = [" of Cups", " of Pentacles", " of Swords", " of Wands"]
+var minorArcana = [];
+for (i = 0; i < values.length - 1; i++){
+for (j = 0; j < suits.length - 1; j++){
+minorArcana.push(values[i] + suits[j]);
+}}
+var allArcana = [];
+for (i = 0; i < majorArcana.length - 1; i++){
+allArcana.push(majorArcana[i])};
+for (i = 0; i < minorArcana.length - 1; i++){
+allArcana.push(minorArcana[i])};
+//
+function tarot(){
+var x = Math.floor(Math.random() * Math.floor(allArcana.length));
+var y = Math.floor(Math.random() * Math.floor(allArcana.length));
+while (y === x){
+  var y = Math.floor(Math.random() * Math.floor(allArcana.length));
+}
+var z = Math.floor(Math.random() * Math.floor(allArcana.length));
+  while (z === x | z === y){
+var z = Math.floor(Math.random() * Math.floor(allArcana.length));
+}
+document.getElementById("tarot1").innerHTML = allArcana[x];
+document.getElementById("tarot2").innerHTML = allArcana[y];
+document.getElementById("tarot3").innerHTML = allArcana[z];
+};
+//
+</script>
+
+</body>
+</html>
