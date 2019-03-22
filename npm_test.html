@@ -1,36 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
+
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Welcome</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://code.jquery.com/ui/1.12.0-beta.1/jquery-ui.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.1.135/jspdf.min.js"></script>
-<script type="text/javascript" src="http://cdn.uriit.ru/jsPDF/libs/adler32cs.js/adler32cs.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2014-11-29/FileSaver.min.js
-"></script>
-<script type="text/javascript" src="libs/Blob.js/BlobBuilder.js"></script>
-<script type="text/javascript" src="http://cdn.immex1.com/js/jspdf/plugins/jspdf.plugin.addimage.js"></script>
-<script type="text/javascript" src="http://cdn.immex1.com/js/jspdf/plugins/jspdf.plugin.standard_fonts_metrics.js"></script>
-<script type="text/javascript" src="http://cdn.immex1.com/js/jspdf/plugins/jspdf.plugin.split_text_to_size.js"></script>
-<script type="text/javascript" src="http://cdn.immex1.com/js/jspdf/plugins/jspdf.plugin.from_html.js"></script>
-<script type="text/javascript" src="basic.js"></script>
+    <title>jsPDF</title>
+    <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8"/>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="jspdf.min.js"></script>
+
+    <script type="text/javascript">
+        function genPDF(){
+            var doc = new jsPDF();
+            var specialElementHandlers = {
+                '#hidediv' : function(element,render) {return true;}
+            };
+            doc.fromHTML($('#testdiv').get(0), 0, 0,{
+                'width':500,
+                'elementHandlers' : specialElementHandlers
+        });
+
+            doc.save('Test.pdf');
+        }
+    </script>
+
 </head>
+
+
+
+
+
+
+
+
+
+
+
+
+
 <body>
-<header>
-<h1>WEBSITE 2: The Sequel to Website 1</h1>
-</header>
-<div class="navbar">
-<a href="index.html">Home</a>
-<a href="tarot_randomizer.html">Tarot Randomizer</a>
-<a href="chord_progression_builder.html">Chord Progression Builder</a>
-<a href="npm_test.html">NPM Test</a>
+
+<div id="testdiv">
+    <div>TEST</div>
 </div>
-<div class="app">
-<button id="cmd">generate PDF</button>
-</div>
+
+<a href="javascript:genPDF()">Download PDF</a>
+
 </body>
+
+
+
+
+
+
+
 </html>
