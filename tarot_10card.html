@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Welcome</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<header>
+<h1>WEBSITE 2: The Sequel to Website 1</h1>
+</header>
+<div class="navbar">
+<a href="index.html">Home</a>
+<a href="tarot_randomizer.html">Tarot 3 Card</a>
+<a href="tarot_10card.html">Tarot 10 Card</a>
+<a href="npm_test.html">HTML to PDF Test</a>
+</div>
+<!-- -->
+<div class="app">
+<table>
+<tr>
+<td> 1:</td>
+<td id = "tarot1">N/A</td>
+</tr>
+<tr>
+<td> 2:</td>
+<td id = "tarot2">N/A</td>
+</tr>
+<tr>
+<td> 3:</td>
+<td id = "tarot3">N/A</td>
+</tr>
+<tr>
+<td> 4:</td>
+<td id = "tarot4">N/A</td>
+</tr>
+<tr>
+<td> 5:</td>
+<td id = "tarot5">N/A</td>
+</tr>
+<tr>
+<td> 6.</td>
+<td id = "tarot6">N/A</td>
+</tr>
+<tr>
+<td> 7.</td>
+<td id = "tarot7">N/A</td>
+</tr>
+<tr>
+<td> 8.</td>
+<td id = "tarot8">N/A</td>
+</tr>
+<tr>
+<td> 9.</td>
+<td id = "tarot9">N/A</td>
+</tr>
+<tr>
+<td>10.</td>
+<td id = "tarot10">N/A</td>
+</tr>
+</table>
+</div>
+<button id="button" class="superGay" onClick="tarot()">Generate</button>
+<!-- -->
+<script>
+var majorArcana = ["The Magician", "The High Priestess", "The Empress", "The Emperor", "The Hierophant", "The Lovers", "The Chariot", "Strength", "The Hermit", "Wheel of Fortune", "Justice", "The Hanged Man", "Death", "Temperance", "The Devil", "The Tower", "The Star", "The Moon", "The Sun", "Judgment", "The World", "The Fool"];
+var values = ["Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "King", "Queen", "Knight", "Page"];
+var suits = [" of Cups", " of Pentacles", " of Swords", " of Wands"]
+var minorArcana = [];
+for (i = 0; i < values.length - 1; i++){
+for (j = 0; j < suits.length - 1; j++){
+minorArcana.push(values[i] + suits[j]);
+}}
+var allArcana = [];
+for (i = 0; i < majorArcana.length - 1; i++){
+allArcana.push(majorArcana[i])};
+for (i = 0; i < minorArcana.length - 1; i++){
+allArcana.push(minorArcana[i])};
+//
+function tarot(){
+var q = Math.floor(Math.random() * Math.floor(allArcana.length));
+var r = Math.floor(Math.random() * Math.floor(allArcana.length));
+while (q === r){
+var r = Math.floor(Math.random() * Math.floor(allArcana.length));
+}
+var s = Math.floor(Math.random() * Math.floor(allArcana.length));
+while (s === q | s === r){
+var s = Math.floor(Math.random() * Math.floor(allArcana.length));
+}
+var t = Math.floor(Math.random() * Math.floor(allArcana.length));
+while (t === q | t === r | t === s){
+var t = Math.floor(Math.random() * Math.floor(allArcana.length));
+}
+var u = Math.floor(Math.random() * Math.floor(allArcana.length));
+while (u === q | u === r | u === s | u === t){
+var u = Math.floor(Math.random() * Math.floor(allArcana.length));
+}
+var v = Math.floor(Math.random() * Math.floor(allArcana.length));
+while (v === q | v === r | v === s | v === t | v === u){
+var v = Math.floor(Math.random() * Math.floor(allArcana.length));
+}
+var w = Math.floor(Math.random() * Math.floor(allArcana.length));
+while (w === q | w === r | w === s | w === t | w === u | w === v){
+var w = Math.floor(Math.random() * Math.floor(allArcana.length));
+}
+var x = Math.floor(Math.random() * Math.floor(allArcana.length));
+while (x === q | x === r | x === s | x === t | x === u | x === v | x === w){
+var x = Math.floor(Math.random() * Math.floor(allArcana.length));
+}
+var y = Math.floor(Math.random() * Math.floor(allArcana.length));
+while (y === q | y === r | y === s | y === t | y === u | y === v | y === w | y === x){
+var y = Math.floor(Math.random() * Math.floor(allArcana.length));
+}
+var z = Math.floor(Math.random() * Math.floor(allArcana.length));
+while (z === q | z === r | z === s | z === t | z === u | z === v | z === w | z === x | z === y){
+var z = Math.floor(Math.random() * Math.floor(allArcana.length));
+}
+document.getElementById("tarot1").innerHTML = allArcana[q];
+document.getElementById("tarot2").innerHTML = allArcana[r];
+document.getElementById("tarot3").innerHTML = allArcana[s];
+document.getElementById("tarot4").innerHTML = allArcana[t];
+document.getElementById("tarot5").innerHTML = allArcana[u];
+document.getElementById("tarot6").innerHTML = allArcana[v];
+document.getElementById("tarot7").innerHTML = allArcana[w];
+document.getElementById("tarot8").innerHTML = allArcana[x];
+document.getElementById("tarot9").innerHTML = allArcana[y];
+document.getElementById("tarot10").innerHTML = allArcana[z];
+};
+//
+</script>
+
+</body>
+</html>
