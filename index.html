@@ -134,10 +134,98 @@
                                 </tr>             
                             </tbody>
                         </table>
+                        <br>
+                        <p>SceneGen</p>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td><p><b>element</b></p></td>
+                                    <td><p id="element">@w@/</p></td>
+                                </tr>
+                                <tr>
+                                    <td><p><b>emotion</b></p></td>
+                                    <td><p id="emotion">@w@/</p></td>
+                                </tr>
+                                <tr>
+                                    <td><p><b>location1</b></p></td>
+                                    <td><p id="location1">@w@/</p></td>
+                                </tr>
+                                <tr>
+                                    <td><p><b>location2</b></p></td>
+                                    <td><p id="location2">@w@/</p></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button id="button" onClick="performAction()"></button>
+                        <button id="@w@/" onClick="owoAction()"></button>
                     </div>
                 </td>
             </tr>
         </tbody>
     </table>
 </body>
+<script>
+    var elements = ["Normal",
+            "Fire",
+            "Water",
+            "Wind",
+            "Earth",
+            "Ice",
+            "Lightning",
+            "Poison",
+            "Acid",
+            "Fairy",
+            "Dragon",
+            "Force",
+            "Light",
+            "Dark",
+            "Wood",
+            "Metal",
+            "Bug",
+            "Psychic",
+            "Fighting",
+            "Ghost"];
+    var emotions = ["Fear",
+            "Anger",
+            "Disgust",
+            "Sad",
+            "Happy",
+            "Surprise"];
+    var locations1 = ["Tundra",
+            "Tropical Rainforest",
+            "Savanna",
+            "Taiga",
+            "Temperate Forest",
+            "Temperate Grassland",
+            "Alpine Forest",
+            "Chaparral",
+            "Desert",
+            "Marine",
+            "Freshwater",
+            "Freshwater Wetlands",
+            "Coral",
+            "Estuary"];
+    var locations2 = ["Ruins",
+            "Tower",
+            "Wilderness",
+            "Village",
+            "Dungeon",
+            "Temple"];
+    function performAction(){
+        var a = Math.floor(Math.random() * Math.floor(elements.length));
+        var b = Math.floor(Math.random() * Math.floor(emotions.length));
+        var c = Math.floor(Math.random() * Math.floor(locations1.length));
+        var d = Math.floor(Math.random() * Math.floor(locations2.length));
+        document.getElementById("element").innerHTML = elements[a];
+        document.getElementById("emotion").innerHTML = emotions[b];
+        document.getElementById("location1").innerHTML = locations1[c];
+        document.getElementById("location2").innerHTML = locations2[d];
+    }
+    function owoAction(){
+        document.getElementById("element").innerHTML = "@w@/";
+        document.getElementById("emotion").innerHTML = "@w@/";
+        document.getElementById("location1").innerHTML = "@w@/";
+        document.getElementById("location2").innerHTML = "@w@/";
+    }
+</script>
 </html>
