@@ -158,6 +158,18 @@
                         </table>
                         <button id="button" class="superGay" onClick="performAction()">Do Thing.</button>
                         <button id="@w@/" class="superGay" onClick="owoAction()">@w@/</button>
+                        <br>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td><p><b>name</b></p></td>
+                                    <td><p id="myName">@w@/</p></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button id="nameButton" class="superGay" onclick="nameGen()">Do Thing.</button>
+                        <button id="@w@/2" class="superGay" onClick="owoAction2()">@w@/</button>
+                        <br>
                     </div>
                 </td>
             </tr>
@@ -211,22 +223,236 @@
             "Village",
             "Dungeon",
             "Temple"];
-    function performAction(){
-        var a = Math.floor(Math.random() * Math.floor(elements.length));
-        var b = Math.floor(Math.random() * Math.floor(emotions.length));
-        var c = Math.floor(Math.random() * Math.floor(locations1.length));
-        var d = Math.floor(Math.random() * Math.floor(locations2.length));
-        document.getElementById("element").innerHTML = elements[a];
-        document.getElementById("emotion").innerHTML = emotions[b];
-        document.getElementById("location1").innerHTML = locations1[c];
-        document.getElementById("location2").innerHTML = locations2[d];
-    }
-    function owoAction(){
-        document.getElementById("element").innerHTML = "@w@/";
-        document.getElementById("emotion").innerHTML = "@w@/";
-        document.getElementById("location1").innerHTML = "@w@/";
-        document.getElementById("location2").innerHTML = "@w@/";
-    }
-    
+    var vowelsBank = [
+            "a",
+            "e",
+            "i",
+            "o",
+            "u",
+            "a",
+            "e",
+            "i",
+            "o",
+            "u",
+            "a",
+            "e",
+            "i",
+            "o",
+            "u",
+            "a",
+            "e",
+            "i",
+            "o",
+            "u",
+            "a",
+            "e",
+            "i",
+            "o",
+            "u",
+            "a",
+            "e",
+            "i",
+            "o",
+            "u",
+            "a",
+            "e",
+            "i",
+            "o",
+            "u",
+            "a",
+            "e",
+            "i",
+            "o",
+            "u",
+            "a",
+            "e",
+            "i",
+            "o",
+            "u",
+            "ae",
+            "ai",
+            "ao",
+            "au",
+            "ia",
+            "ie",
+            "io",
+            "iu",
+            "oa",
+            "oe",
+            "oi",
+            "ou",
+            "ua",
+            "ue",
+            "ui",
+            "uo",
+            "ei",
+            "eo",
+            "eu",
+            "ea",
+            "ii",
+            "oo",
+            "uu",
+            "aa",
+            "ee",
+        ];
+        var consonantsBank = [
+        "q",
+            "w",
+            "r",
+            "t",
+            "y",
+            "p",
+            "s",
+            "d",
+            "f",
+            "g",
+            "h",
+            "j",
+            "k",
+            "l",
+            "z",
+            "x",
+            "c",
+            "v",
+            "b",
+            "n",
+            "m",
+            "q",
+            "w",
+            "r",
+            "t",
+            "y",
+            "p",
+            "s",
+            "d",
+            "f",
+            "g",
+            "h",
+            "j",
+            "k",
+            "l",
+            "z",
+            "x",
+            "c",
+            "v",
+            "b",
+            "n",
+            "m",
+            "q",
+            "w",
+            "r",
+            "t",
+            "y",
+            "p",
+            "s",
+            "d",
+            "f",
+            "g",
+            "h",
+            "j",
+            "k",
+            "l",
+            "z",
+            "x",
+            "c",
+            "v",
+            "b",
+            "n",
+            "m",
+            "q",
+            "w",
+            "r",
+            "t",
+            "y",
+            "p",
+            "s",
+            "d",
+            "f",
+            "g",
+            "h",
+            "j",
+            "k",
+            "l",
+            "z",
+            "x",
+            "c",
+            "v",
+            "b",
+            "n",
+            "m",
+            "bl",
+            "br",
+            "ch",
+            "ck",
+            "cl",
+            "cr",
+            "dr",
+            "fl",
+            "fr",
+            "gh",
+            "gl",
+            "gr",
+            "ng",
+            "ph",
+            "pl",
+            "pr",
+            "qu",
+            "sc",
+            "sh",
+            "sk",
+            "sl",
+            "sm",
+            "sn",
+            "sp",
+            "st",
+            "sw",
+            "th",
+            "tr",
+            "tw",
+            "wh",
+            "wr"
+        ];  
+        function performAction(){
+            var a = Math.floor(Math.random() * Math.floor(elements.length));
+            var b = Math.floor(Math.random() * Math.floor(emotions.length));
+            var c = Math.floor(Math.random() * Math.floor(locations1.length));
+            var d = Math.floor(Math.random() * Math.floor(locations2.length));
+            document.getElementById("element").innerHTML = elements[a];
+            document.getElementById("emotion").innerHTML = emotions[b];
+            document.getElementById("location1").innerHTML = locations1[c];
+            document.getElementById("location2").innerHTML = locations2[d];
+        }
+        function owoAction(){
+            document.getElementById("element").innerHTML = "@w@/";
+            document.getElementById("emotion").innerHTML = "@w@/";
+            document.getElementById("location1").innerHTML = "@w@/";
+            document.getElementById("location2").innerHTML = "@w@/";
+        }
+        function nameGen(){
+            var longness = (Math.floor(Math.random() * Math.floor(5))) + 2;
+            var a = Math.floor(Math.random() * Math.floor(vowelsBank.length));
+            var b = Math.floor(Math.random() * Math.floor(consonantsBank.length));
+            var c = Math.floor(Math.random() * Math.floor(vowelsBank.length));
+            var d = Math.floor(Math.random() * Math.floor(consonantsBank.length));
+            var e = Math.floor(Math.random() * Math.floor(vowelsBank.length));
+            var f = Math.floor(Math.random() * Math.floor(consonantsBank.length));
+            var g = Math.floor(Math.random() * Math.floor(vowelsBank.length));
+            var h = Math.floor(Math.random() * Math.floor(consonantsBank.length));
+            var z = Math.floor(Math.random() * Math.floor(consonantsBank.length));
+            var myString = "";
+            if (Math.random() >= 0.1) {myString += (consonantsBank[z]); longness -= 1;}
+            myString += (vowelsBank[a]);
+            if (longness >= 2) {myString += (consonantsBank[b]);}
+            if (longness >= 3) {myString += (vowelsBank[c]);}
+            if (longness >= 4) {myString += (consonantsBank[d]);}
+            if (longness >= 5) {myString += (vowelsBank[e]);}
+            if (longness >= 6) {myString += (consonantsBank[f]);}
+            if (longness >= 7) {myString += (vowelsBank[g]);}
+            if (longness >= 8) {myString += (consonantsBank[h]);}
+            document.getElementById("myName").innerHTML = myString;
+        }
+        function owoAction2(){
+            document.getElementById("myName").innerHTML = "@w@/";
+        }
 </script>
 </html>
