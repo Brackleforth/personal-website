@@ -24,6 +24,10 @@ background-color: #777;
 
 footer {
 background-color: #444;
+clear: both;
+position: relative;
+height: 200px;
+margin-top: -200px;
 }
 
 
