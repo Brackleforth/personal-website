@@ -23,9 +23,9 @@ background-color: #777;
 }
 
 footer {
-background-color: #444;
+background-color: #999;
 clear: both;
-position: relative;
+position: absolute;
 margin-top: -200px;
 }
 
