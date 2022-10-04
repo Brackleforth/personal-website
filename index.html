@@ -5,7 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Welcome</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Calibri">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {font-family: "Calibri", sans-serif}
+.mySlides {display: none}
+.scrolling-wrapper {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+
+  .cardScrollbox {
+    display: inline-block;
+  }
+}
+.mycenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-72LG7LHMTB"></script>
     <script>
@@ -14,39 +36,95 @@
         gtag('js', new Date());
         gtag('config', 'G-72LG7LHMTB');
     </script>
+
 </head>
-<body>
-    <header>
-        <h1>BRACKLEFORTH DOT COM</h1>
-        <h2>HIGH IQ INDIVIDUALS ONLY!!! DON'T MAKE ME TAP THE SIGN!!!</h2>
-    </header>
-    <div class="navbar">
-            <a href="index.html">Home</a>
-            <a href="progressiongenerator2.html">Progression Generator 2</a>
+<body style="background-color:lightblue">
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-black w3-card">
+    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">HOME</a>
+    <a href="#bandcamp" class="w3-bar-item w3-button w3-padding-large w3-hide-small">BANDCAMP</a>
+    <a href="#blog" class="w3-bar-item w3-button w3-padding-large w3-hide-small">BLOG</a>
+    <a href="#references" class="w3-bar-item w3-button w3-padding-large w3-hide-small">MUSIC THEORY REFERENCES</a>
+    <div class="w3-dropdown-hover w3-hide-small">
+      <button class="w3-padding-large w3-button" title="More">MUSIC THEORY TOOLS <i class="fa fa-caret-down"></i></button>     
+      <div class="w3-dropdown-content w3-bar-block w3-card-4">
+        <a href="progressiongenerator2.html" class="w3-bar-item w3-button">Progression Generator 2 Java Program</a>
+      </div>
     </div>
-    <div>
-    <marquee behavior="scroll" direction="left" style="color:black; align-content: center; vertical-align: middle; font-size: 12pt">NEWS UPDATE: hi</marquee>    
+<div class="w3-right">
+<!-- hitwebcounter Code START -->
+<a href="https://www.hitwebcounter.com" target="_blank">
+<img src="https://hitwebcounter.com/counter/counter.php?page=8046938&style=0038&nbdigits=9&type=page&initCount=0" title="Free Counter" Alt="web counter"   border="0" /></a>
+</div>
+  </div>
+</div>
+
+<!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
+<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
+  <a href="#bandcamp" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">BAND</a>
+  <a href="#tour" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">TOUR</a>
+  <a href="#contact" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">CONTACT</a>
+  <a href="#" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">MERCH</a>
+</div>
+
+<!-- Page content -->
+<div class="w3-content" style="max-width:2000px;margin-top:46px">
+
+
+  <!-- Title Card -->
+    <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px; background-color: #777;">
+    <div class="w3-container w3-text-black w3-padding-32 w3-hide-small">
+      <h1 class="w3-wide">BRACKLEFORTH DOT COM</h1>
+      <p>HIGH IQ INDIVIDUALS ONLY!!! DON'T MAKE ME TAP THE SIGN!!!</p>
+	<h3 style="color:white">@w@/</h3>
+
+
+           
     </div>
-    <table>
-        <tbody>
-            <tr> 
-                <td>
-                    <div>
-                        <p>@w@/</p>
-                        <p>https://brackleforth.bandcamp.com/</p>
-                        <p>@w@/</p>
-                        <iframe style="border: 0; width: 350px; height: 470px;" src="https://bandcamp.com/EmbeddedPlayer/album=132061523/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/" seamless><a href="https://brackleforth.bandcamp.com/album/r-l7ff-x-m2-n7">r=L7Ff&amp;x$m2=&amp;?n7 by Jonathan Neal</a></iframe>
+  </div>
+  
+  <!-- Bandcamp Section -->
+  <div class="w3-container w3-content w3-center w3-padding-64 w3-light-grey" style="max-width:800px"; id="bandcamp";>
+    <h2 class="w3-wide">BANDCAMP</h2>
+
+    <a href="https://brackleforth.bandcamp.com">https://brackleforth.bandcamp.com</a>
+
+    <div class="scrolling-wrapper w3-row w3-padding-32">
+      <div class="cardScrollbox w3-half">
+        <p>JULY - SEPTEMBER 2022</p>
+<iframe style="border: 0; width: 350px; height: 470px;" src="https://bandcamp.com/EmbeddedPlayer/album=132061523/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/" seamless><a href="https://brackleforth.bandcamp.com/album/r-l7ff-x-m2-n7">r=L7Ff&amp;x$m2=&amp;?n7 by Jonathan Neal</a></iframe>
+
+      </div>
+      <div class="cardScrollbox w3-half">
+        <p>APRIL - JUNE 2022</p>
                         <iframe style="border: 0; width: 350px; height: 470px;" src="https://bandcamp.com/EmbeddedPlayer/album=4205092648/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/" seamless><a href="https://brackleforth.bandcamp.com/album/s-jzmz-m-y5kv5fl">S=jzMz#M-y5kV5fL by Jonathan Neal</a></iframe>
-                        <iframe style="border: 0; width: 350px; height: 470px;" src="https://bandcamp.com/EmbeddedPlayer/album=229095760/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/" seamless><a href="https://brackleforth.bandcamp.com/album/yux-ln-9-dj9zpq5">Yux^LN?9&amp;Dj9ZpQ5 by Jonathan Neal</a></iframe>
+      </div>
+      <div class="cardScrollbox w3-half">
+        <p>JANUARY - MARCH 2022</p>
+<iframe style="border: 0; width: 350px; height: 470px;" src="https://bandcamp.com/EmbeddedPlayer/album=229095760/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/" seamless><a href="https://brackleforth.bandcamp.com/album/yux-ln-9-dj9zpq5">Yux^LN?9&amp;Dj9ZpQ5 by Jonathan Neal</a></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- Blog Section -->
+  <div class="w3-container w3-content w3-left-align w3-padding-64 w3-blue-grey" style="max-width:800px"; id="blog";>
+    <h2 class="w3-wide w3-center">BRACKLEFORTH DOT COM BLOG</h2>
+                    <br>
+<marquee behavior="scroll" direction="left" style="color:black; align-content: center; vertical-align: middle; font-size: 12pt">NEWS UPDATE: hi</marquee>  
+                    <br>
+	            <div class="w3-light-blue w3-padding-small">
+                    <p><b>OCTOBER 4, 2022</b></p>
+                    <p>I updated the site's appearance!!</p>
                     </div>
-                </td>
-                <td>
-                    <p><b>BRACKLEFORTH DOT COM BLOG</b></p>
-                    <p><b>/////////////////////////</b></p>
+		    <div class="w3-light-grey w3-padding-small">
                     <p><b>OCTOBER 2, 2022</b></p>
                     <p>I added the album for July thru September 2022 consisting of 13 tracks / 42:18 runtime.</p>
                     <p><b>SEPTEMBER 25, 2022</b></p>
                     <p>Third quarter album in ~1 week.</p>
+		    
                     <p><b>AUGUST 26, 2022</b></p>
                     <p>I tried hard. I tried really hard. They're almost here. I don't know what to do. If you're reading this, the safe combination is</p>
                     <p><b>JULY 04, 2022</b></p>
@@ -57,13 +135,26 @@
                     <p>It's too late now that you've read this sentence. I'm already in your walls. What is a blog for, anyways?</p>
                     <p><b>APRIL 03, 2022</b></p>
                     <p>Welcome to my website. I added the album for January thru March 2022 consisting of 13 tracks / 40:30 runtime. Albums from previous years are all on my bandcamp (link above). Again thank you for visiting my website!</p>
-                </td>
-                <td>
-                    <div>
-                        <div class="sidebarSubheader"><p> </p></div>
-                        <p><b>Mode Mixture Chord-by-Chord</b></p>
-                        <table>
+</div>
+    </div>
+  </div>
+
+  <!-- References Section -->
+  <div class="w3-container w3-content w3-left-align w3-padding-64 w3-light-grey" style="max-width:800px"; id="references";>
+    <h2 class="w3-wide w3-center">Mode Mixture Chord-by-Chord</h2>
+	            <div class="w3-grey w3-padding-small">
+<table style="width:100%">
                             <tbody>
+                                <tr>
+                                    <th><p><b>MODE</b></p></th>
+                                    <th><p><b>TONIC</b></p></th>
+                                    <th><p><b>SUPERTONIC</b></p></th>
+                                    <th><p><b>MEDIANT</b></p></th>
+                                    <th><p><b>SUBDOMINANT</b></p></th>
+                                    <th><p><b>DOMINANT</b></p></th>
+                                    <th><p><b>SUBMEDIANT</b></p></th>
+                                    <th><p><b>LEADING TONE</b></p></th>
+                                </tr>
                                 <tr>
                                     <td><p><b>Lydian</b></p></td>
                                     <td><p>Imaj7</p></td>
@@ -136,7 +227,8 @@
                                 </tr>             
                             </tbody>
                         </table>
-                        <P>any "I7" or "II7" or "IV7" or "V7" entry can be replaced with tritone substitution</P>
+                    </div>
+		        <p>any "I7" or "II7" or "IV7" or "V7" entry can be replaced with tritone substitution</p>
                         <p> </p>
                         <p>down = darker</p>
                         <P>up = brighter</P>
@@ -147,47 +239,11 @@
                         <p>relative major = C Minor to Eb Major = brighter</p>
                         <p>clockwise on circle of fifths = brighter</p>
                         <p>counterclockwise on circle of fifths = darker</p>
-                        <div class="sidebarSubheader"></div>
-                        <p><b>SceneGen</b></p>
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td><p><b>element</b></p></td>
-                                    <td><p id="element">@w@/</p></td>
-                                </tr>
-                                <tr>
-                                    <td><p><b>emotion</b></p></td>
-                                    <td><p id="emotion">@w@/</p></td>
-                                </tr>
-                                <tr>
-                                    <td><p><b>location1</b></p></td>
-                                    <td><p id="location1">@w@/</p></td>
-                                </tr>
-                                <tr>
-                                    <td><p><b>location2</b></p></td>
-                                    <td><p id="location2">@w@/</p></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <button id="button" class="superGay" onClick="performAction()">Do Thing.</button>
-                        <button id="@w@/" class="superGay" onClick="owoAction()">@w@/</button>
-                        <br>
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td><p><b>name</b></p></td>
-                                    <td><p id="myName">@w@/</p></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <button id="nameButton" class="superGay" onclick="nameGen()">Do Thing.</button>
-                        <button id="@w@/2" class="superGay" onClick="owoAction2()">@w@/</button>
-                        <br>
-                        <P> </P>
-                        <div>
-                            <div class="sidebarSubheader"></div>
-                            <p><b>Pitch Bend MIDI Event Values</b></p>
-                    <table>
+    <h2 class="w3-wide w3-center">Circle of Fifths</h2>
+<img src="Circle-of-Fifths-Big-600x600.jpg" alt="image" class="mycenter" style="width:400px;">
+    <h2 class="w3-wide w3-center">Pitch Bend MIDI Event Values</h2>
+<div class="w3-container w3-content w3-grey w3-padding-small  w3-text-alignleft" style="width:400px; margin:0 auto;">
+                    <table style="width:100%">
                         <tbody>
                             <tr>
                                 <td>2 semitones up</td>
@@ -227,295 +283,32 @@
                             </tr>
                         </tbody>
                     </table>
-                </tbody>
-            </table>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-<footer>
-    <p>contact me??</p>
+</div>
+
+    </div>
+
+
+
+
+<!-- End Page Content -->
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
+  <p class="w3-medium">Nothing down here, consider yourself pranked</p>
 </footer>
-</body>
+
 <script>
-    var elements = ["Normal",
-            "Fire",
-            "Water",
-            "Wind",
-            "Earth",
-            "Ice",
-            "Lightning",
-            "Poison",
-            "Acid",
-            "Fairy",
-            "Dragon",
-            "Force",
-            "Light",
-            "Dark",
-            "Wood",
-            "Metal",
-            "Bug",
-            "Psychic",
-            "Fighting",
-            "Ghost",
-            "Blood",
-            "Smoke"];
-    var emotions = ["Fear",
-            "Anger",
-            "Disgust",
-            "Sad",
-            "Happy",
-            "Surprise"];
-    var locations1 = ["Tundra",
-            "Tropical Rainforest",
-            "Savanna",
-            "Taiga",
-            "Temperate Forest",
-            "Temperate Grassland",
-            "Alpine Forest",
-            "Chaparral",
-            "Desert",
-            "Marine",
-            "Freshwater",
-            "Freshwater Wetlands",
-            "Coral",
-            "Estuary"];
-    var locations2 = ["Ruins",
-            "Tower",
-            "Wilderness",
-            "Village",
-            "Dungeon",
-            "Temple"];
-    var vowelsBank = [
-            "a",
-            "e",
-            "i",
-            "o",
-            "u",
-            "a",
-            "e",
-            "i",
-            "o",
-            "u",
-            "a",
-            "e",
-            "i",
-            "o",
-            "u",
-            "a",
-            "e",
-            "i",
-            "o",
-            "u",
-            "a",
-            "e",
-            "i",
-            "o",
-            "u",
-            "a",
-            "e",
-            "i",
-            "o",
-            "u",
-            "a",
-            "e",
-            "i",
-            "o",
-            "u",
-            "a",
-            "e",
-            "i",
-            "o",
-            "u",
-            "a",
-            "e",
-            "i",
-            "o",
-            "u",
-            "ae",
-            "ai",
-            "ao",
-            "au",
-            "ia",
-            "ie",
-            "io",
-            "iu",
-            "oa",
-            "oe",
-            "oi",
-            "ou",
-            "ua",
-            "ue",
-            "ui",
-            "uo",
-            "ei",
-            "eo",
-            "eu",
-            "ea",
-            "ii",
-            "oo",
-            "uu",
-            "aa",
-            "ee",
-        ];
-        var consonantsBank = [
-        "q",
-            "w",
-            "r",
-            "t",
-            "y",
-            "p",
-            "s",
-            "d",
-            "f",
-            "g",
-            "h",
-            "j",
-            "k",
-            "l",
-            "z",
-            "x",
-            "c",
-            "v",
-            "b",
-            "n",
-            "m",
-            "q",
-            "w",
-            "r",
-            "t",
-            "y",
-            "p",
-            "s",
-            "d",
-            "f",
-            "g",
-            "h",
-            "j",
-            "k",
-            "l",
-            "z",
-            "x",
-            "c",
-            "v",
-            "b",
-            "n",
-            "m",
-            "q",
-            "w",
-            "r",
-            "t",
-            "y",
-            "p",
-            "s",
-            "d",
-            "f",
-            "g",
-            "h",
-            "j",
-            "k",
-            "l",
-            "z",
-            "x",
-            "c",
-            "v",
-            "b",
-            "n",
-            "m",
-            "q",
-            "w",
-            "r",
-            "t",
-            "y",
-            "p",
-            "s",
-            "d",
-            "f",
-            "g",
-            "h",
-            "j",
-            "k",
-            "l",
-            "z",
-            "x",
-            "c",
-            "v",
-            "b",
-            "n",
-            "m",
-            "bl",
-            "br",
-            "ch",
-            "ck",
-            "cl",
-            "cr",
-            "dr",
-            "fl",
-            "fr",
-            "gh",
-            "gl",
-            "gr",
-            "ng",
-            "ph",
-            "pl",
-            "pr",
-            "qu",
-            "sc",
-            "sh",
-            "sk",
-            "sl",
-            "sm",
-            "sn",
-            "sp",
-            "st",
-            "sw",
-            "th",
-            "tr",
-            "tw",
-            "wh",
-            "wr"
-        ];  
-        function performAction(){
-            var a = Math.floor(Math.random() * Math.floor(elements.length));
-            var b = Math.floor(Math.random() * Math.floor(emotions.length));
-            var c = Math.floor(Math.random() * Math.floor(locations1.length));
-            var d = Math.floor(Math.random() * Math.floor(locations2.length));
-            document.getElementById("element").innerHTML = elements[a];
-            document.getElementById("emotion").innerHTML = emotions[b];
-            document.getElementById("location1").innerHTML = locations1[c];
-            document.getElementById("location2").innerHTML = locations2[d];
-        }
-        function owoAction(){
-            document.getElementById("element").innerHTML = "@w@/";
-            document.getElementById("emotion").innerHTML = "@w@/";
-            document.getElementById("location1").innerHTML = "@w@/";
-            document.getElementById("location2").innerHTML = "@w@/";
-        }
-        function nameGen(){
-            var longness = (Math.floor(Math.random() * Math.floor(5))) + 2;
-            var a = Math.floor(Math.random() * Math.floor(vowelsBank.length));
-            var b = Math.floor(Math.random() * Math.floor(consonantsBank.length));
-            var c = Math.floor(Math.random() * Math.floor(vowelsBank.length));
-            var d = Math.floor(Math.random() * Math.floor(consonantsBank.length));
-            var e = Math.floor(Math.random() * Math.floor(vowelsBank.length));
-            var f = Math.floor(Math.random() * Math.floor(consonantsBank.length));
-            var g = Math.floor(Math.random() * Math.floor(vowelsBank.length));
-            var h = Math.floor(Math.random() * Math.floor(consonantsBank.length));
-            var z = Math.floor(Math.random() * Math.floor(consonantsBank.length));
-            var myString = "";
-            if (Math.random() >= 0.1) {myString += (consonantsBank[z]); longness -= 1;}
-            myString += (vowelsBank[a]);
-            if (longness >= 2) {myString += (consonantsBank[b]);}
-            if (longness >= 3) {myString += (vowelsBank[c]);}
-            if (longness >= 4) {myString += (consonantsBank[d]);}
-            if (longness >= 5) {myString += (vowelsBank[e]);}
-            if (longness >= 6) {myString += (consonantsBank[f]);}
-            if (longness >= 7) {myString += (vowelsBank[g]);}
-            if (longness >= 8) {myString += (consonantsBank[h]);}
-            document.getElementById("myName").innerHTML = myString;
-        }
-        function owoAction2(){
-            document.getElementById("myName").innerHTML = "@w@/";
-        }
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
 </script>
-</html>
+
+</body>
+<html>   
