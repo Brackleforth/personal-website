@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Welcome</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-72LG7LHMTB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-72LG7LHMTB');
+    </script>
+</head>
+<body>
+    <header>
+        <h1>BRACKLEFORTH DOT COM</h1>
+        <h2>HIGH IQ INDIVIDUALS ONLY!!! DON'T MAKE ME TAP THE SIGN!!!</h2>
+    </header>
+    <div class="navbar">
+            <a href="index.html">Home</a>
+            <a href="progressiongenerator2.html">Progression Generator 2</a>
+    </div>
+    <div>
+    <marquee behavior="scroll" direction="left" style="color:black; align-content: center; vertical-align: middle; font-size: 12pt">NEWS UPDATE: hi</marquee>    
+    </div>
+    <table>
+        <tbody>
+            <tr> 
+                <td>
+                    <div>
+                        <p>@w@/</p>
+                        <p>https://brackleforth.bandcamp.com/</p>
+                        <p>@w@/</p>
+                        <iframe style="border: 0; width: 350px; height: 470px;" src="https://bandcamp.com/EmbeddedPlayer/album=132061523/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/" seamless><a href="https://brackleforth.bandcamp.com/album/r-l7ff-x-m2-n7">r=L7Ff&amp;x$m2=&amp;?n7 by Jonathan Neal</a></iframe>
+                        <iframe style="border: 0; width: 350px; height: 470px;" src="https://bandcamp.com/EmbeddedPlayer/album=4205092648/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/" seamless><a href="https://brackleforth.bandcamp.com/album/s-jzmz-m-y5kv5fl">S=jzMz#M-y5kV5fL by Jonathan Neal</a></iframe>
+                        <iframe style="border: 0; width: 350px; height: 470px;" src="https://bandcamp.com/EmbeddedPlayer/album=229095760/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/" seamless><a href="https://brackleforth.bandcamp.com/album/yux-ln-9-dj9zpq5">Yux^LN?9&amp;Dj9ZpQ5 by Jonathan Neal</a></iframe>
+                    </div>
+                </td>
+                <td>
+                    <p><b>BRACKLEFORTH DOT COM BLOG</b></p>
+                    <p><b>/////////////////////////</b></p>
+                    <p><b>OCTOBER 2, 2022</b></p>
+                    <p>I added the album for July thru September 2022 consisting of 13 tracks / 42:18 runtime.</p>
+                    <p><b>SEPTEMBER 25, 2022</b></p>
+                    <p>Third quarter album in ~1 week.</p>
+                    <p><b>AUGUST 26, 2022</b></p>
+                    <p>I tried hard. I tried really hard. They're almost here. I don't know what to do. If you're reading this, the safe combination is</p>
+                    <p><b>JULY 04, 2022</b></p>
+                    <p>I added the album for April thru June 2022 consisting of 13 tracks / 36:51 runtime.</p>
+                    <p><b>JUNE 21, 2022</b></p>
+                    <p>Second quarter album in ~2 weeks.</p>
+                    <p><b>APRIL 23, 2022</b></p>
+                    <p>It's too late now that you've read this sentence. I'm already in your walls. What is a blog for, anyways?</p>
+                    <p><b>APRIL 03, 2022</b></p>
+                    <p>Welcome to my website. I added the album for January thru March 2022 consisting of 13 tracks / 40:30 runtime. Albums from previous years are all on my bandcamp (link above). Again thank you for visiting my website!</p>
+                </td>
+                <td>
+                    <div>
+                        <div class="sidebarSubheader"><p> </p></div>
+                        <p><b>Mode Mixture Chord-by-Chord</b></p>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td><p><b>Lydian</b></p></td>
+                                    <td><p>Imaj7</p></td>
+                                    <td><p>II7</p></td>
+                                    <td><p>III-7</p></td>
+                                    <td><p>#IV-7(b5)</p></td>
+                                    <td><p>Vmaj7</p></td>
+                                    <td><p>VI-7</p></td>
+                                    <td><p>VII-7</p></td>
+                                </tr>
+                                <tr>
+                                    <td><p><b>Ionian</b></p></td>
+                                    <td><p>Imaj7</p></td>
+                                    <td><p>II-7</p></td>
+                                    <td><p>III-7</p></td>
+                                    <td><p>IVmaj7</p></td>
+                                    <td><p>V7</p></td>
+                                    <td><p>VI-7</p></td>
+                                    <td><p>VII-7(b5)</p></td>
+                                </tr>
+                                <tr>
+                                    <td><p><b>Mixolydian</b></p></td>
+                                    <td><p>I7</p></td>
+                                    <td><p>II-7</p></td>
+                                    <td><p>III-7(b5)</p></td>
+                                    <td><p>IVmaj7</p></td>
+                                    <td><p>V-7</p></td>
+                                    <td><p>VI-7</p></td>
+                                    <td><p>bVIImaj7</p></td>
+                                </tr>
+                                <tr>
+                                    <td><p><b>Dorian</b></p></td>
+                                    <td><p>I-7</p></td>
+                                    <td><p>II-7</p></td>
+                                    <td><p>bIIImaj7</p></td>
+                                    <td><p>IV7</p></td>
+                                    <td><p>V-7</p></td>
+                                    <td><p>VI-7(b5)</p></td>
+                                    <td><p>bVIImaj7</p></td>
+                                </tr>
+                                <tr>
+                                    <td><p><b>Aeolian</b></p></td>
+                                    <td><p>I-7</p></td>
+                                    <td><p>II-7(b5)</p></td>
+                                    <td><p>bIIImaj7</p></td>
+                                    <td><p>IV-7</p></td>
+                                    <td><p>V-7</p></td>
+                                    <td><p>bVImaj7</p></td>
+                                    <td><p>bVII7</p></td>
+                                </tr>
+                                <tr>
+                                    <td><p><b>Phrygian</b></p></td>
+                                    <td><p>I-7</p></td>
+                                    <td><p>bIImaj7</p></td>
+                                    <td><p>bIII7</p></td>
+                                    <td><p>IV-7</p></td>
+                                    <td><p>V-7(b5)</p></td>
+                                    <td><p>bVImaj7</p></td>
+                                    <td><p>bVII-7</p></td>
+                                </tr>
+                                <tr>
+                                    <td><p><b>Locrian</b></p></td>
+                                    <td><p>I-7(b5)</p></td>
+                                    <td><p>bIImaj7</p></td>
+                                    <td><p>bIII-7</p></td>
+                                    <td><p>IV-7</p></td>
+                                    <td><p>bVmaj7</p></td>
+                                    <td><p>bVI7</p></td>
+                                    <td><p>bVII-7</p></td>
+                                </tr>             
+                            </tbody>
+                        </table>
+                        <P>any "I7" or "II7" or "IV7" or "V7" entry can be replaced with tritone substitution</P>
+                        <p> </p>
+                        <p>down = darker</p>
+                        <P>up = brighter</P>
+                        <p> </p>
+                        <p>parallel minor = C Major to C Minor = darker</p>
+                        <p>relative minor = C Major to A Minor = darker</p>
+                        <p>parallel major = C Minor to C Major = brighter</p>
+                        <p>relative major = C Minor to Eb Major = brighter</p>
+                        <p>clockwise on circle of fifths = brighter</p>
+                        <p>counterclockwise on circle of fifths = darker</p>
+                        <div class="sidebarSubheader"></div>
+                        <p><b>SceneGen</b></p>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td><p><b>element</b></p></td>
+                                    <td><p id="element">@w@/</p></td>
+                                </tr>
+                                <tr>
+                                    <td><p><b>emotion</b></p></td>
+                                    <td><p id="emotion">@w@/</p></td>
+                                </tr>
+                                <tr>
+                                    <td><p><b>location1</b></p></td>
+                                    <td><p id="location1">@w@/</p></td>
+                                </tr>
+                                <tr>
+                                    <td><p><b>location2</b></p></td>
+                                    <td><p id="location2">@w@/</p></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button id="button" class="superGay" onClick="performAction()">Do Thing.</button>
+                        <button id="@w@/" class="superGay" onClick="owoAction()">@w@/</button>
+                        <br>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td><p><b>name</b></p></td>
+                                    <td><p id="myName">@w@/</p></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button id="nameButton" class="superGay" onclick="nameGen()">Do Thing.</button>
+                        <button id="@w@/2" class="superGay" onClick="owoAction2()">@w@/</button>
+                        <br>
+                        <P> </P>
+                        <div>
+                            <div class="sidebarSubheader"></div>
+                            <p><b>Pitch Bend MIDI Event Values</b></p>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>2 semitones up</td>
+                                <td>16383</td>
+                            </tr>
+                            <tr>
+                                <td>1 1/2 semitones up</td>
+                                <td>14336</td>
+                            </tr>
+                            <tr>
+                                <td>1 semitone up</td>
+                                <td>12288</td>
+                            </tr>
+                            <tr>
+                                <td>1/2 semitone up</td>
+                                <td>10240</td>
+                            </tr>
+                            <tr>
+                                <td>No change</td>
+                                <td>8192</td>
+                            </tr>
+                            <tr>
+                                <td>1/2 semitone down</td>
+                                <td>6144</td>
+                            </tr>
+                            <tr>
+                                <td>1 semitone down</td>
+                                <td>4096</td>
+                            </tr>
+                            <tr>
+                                <td>1 1/2 semitones down</td>
+                                <td>2048</td>
+                            </tr>
+                            <tr>
+                                <td>2 semitones down</td>
+                                <td>0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </tbody>
+            </table>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+<footer>
+    <p>contact me??</p>
+</footer>
+</body>
+<script>
+    var elements = ["Normal",
+            "Fire",
+            "Water",
+            "Wind",
+            "Earth",
+            "Ice",
+            "Lightning",
+            "Poison",
+            "Acid",
+            "Fairy",
+            "Dragon",
+            "Force",
+            "Light",
+            "Dark",
+            "Wood",
+            "Metal",
+            "Bug",
+            "Psychic",
+            "Fighting",
+            "Ghost",
+            "Blood",
+            "Smoke"];
+    var emotions = ["Fear",
+            "Anger",
+            "Disgust",
+            "Sad",
+            "Happy",
+            "Surprise"];
+    var locations1 = ["Tundra",
+            "Tropical Rainforest",
+            "Savanna",
+            "Taiga",
+            "Temperate Forest",
+            "Temperate Grassland",
+            "Alpine Forest",
+            "Chaparral",
+            "Desert",
+            "Marine",
+            "Freshwater",
+            "Freshwater Wetlands",
+            "Coral",
+            "Estuary"];
+    var locations2 = ["Ruins",
+            "Tower",
+            "Wilderness",
+            "Village",
+            "Dungeon",
+            "Temple"];
+    var vowelsBank = [
+            "a",
+            "e",
+            "i",
+            "o",
+            "u",
+            "a",
+            "e",
+            "i",
+            "o",
+            "u",
+            "a",
+            "e",
+            "i",
+            "o",
+            "u",
+            "a",
+            "e",
+            "i",
+            "o",
+            "u",
+            "a",
+            "e",
+            "i",
+            "o",
+            "u",
+            "a",
+            "e",
+            "i",
+            "o",
+            "u",
+            "a",
+            "e",
+            "i",
+            "o",
+            "u",
+            "a",
+            "e",
+            "i",
+            "o",
+            "u",
+            "a",
+            "e",
+            "i",
+            "o",
+            "u",
+            "ae",
+            "ai",
+            "ao",
+            "au",
+            "ia",
+            "ie",
+            "io",
+            "iu",
+            "oa",
+            "oe",
+            "oi",
+            "ou",
+            "ua",
+            "ue",
+            "ui",
+            "uo",
+            "ei",
+            "eo",
+            "eu",
+            "ea",
+            "ii",
+            "oo",
+            "uu",
+            "aa",
+            "ee",
+        ];
+        var consonantsBank = [
+        "q",
+            "w",
+            "r",
+            "t",
+            "y",
+            "p",
+            "s",
+            "d",
+            "f",
+            "g",
+            "h",
+            "j",
+            "k",
+            "l",
+            "z",
+            "x",
+            "c",
+            "v",
+            "b",
+            "n",
+            "m",
+            "q",
+            "w",
+            "r",
+            "t",
+            "y",
+            "p",
+            "s",
+            "d",
+            "f",
+            "g",
+            "h",
+            "j",
+            "k",
+            "l",
+            "z",
+            "x",
+            "c",
+            "v",
+            "b",
+            "n",
+            "m",
+            "q",
+            "w",
+            "r",
+            "t",
+            "y",
+            "p",
+            "s",
+            "d",
+            "f",
+            "g",
+            "h",
+            "j",
+            "k",
+            "l",
+            "z",
+            "x",
+            "c",
+            "v",
+            "b",
+            "n",
+            "m",
+            "q",
+            "w",
+            "r",
+            "t",
+            "y",
+            "p",
+            "s",
+            "d",
+            "f",
+            "g",
+            "h",
+            "j",
+            "k",
+            "l",
+            "z",
+            "x",
+            "c",
+            "v",
+            "b",
+            "n",
+            "m",
+            "bl",
+            "br",
+            "ch",
+            "ck",
+            "cl",
+            "cr",
+            "dr",
+            "fl",
+            "fr",
+            "gh",
+            "gl",
+            "gr",
+            "ng",
+            "ph",
+            "pl",
+            "pr",
+            "qu",
+            "sc",
+            "sh",
+            "sk",
+            "sl",
+            "sm",
+            "sn",
+            "sp",
+            "st",
+            "sw",
+            "th",
+            "tr",
+            "tw",
+            "wh",
+            "wr"
+        ];  
+        function performAction(){
+            var a = Math.floor(Math.random() * Math.floor(elements.length));
+            var b = Math.floor(Math.random() * Math.floor(emotions.length));
+            var c = Math.floor(Math.random() * Math.floor(locations1.length));
+            var d = Math.floor(Math.random() * Math.floor(locations2.length));
+            document.getElementById("element").innerHTML = elements[a];
+            document.getElementById("emotion").innerHTML = emotions[b];
+            document.getElementById("location1").innerHTML = locations1[c];
+            document.getElementById("location2").innerHTML = locations2[d];
+        }
+        function owoAction(){
+            document.getElementById("element").innerHTML = "@w@/";
+            document.getElementById("emotion").innerHTML = "@w@/";
+            document.getElementById("location1").innerHTML = "@w@/";
+            document.getElementById("location2").innerHTML = "@w@/";
+        }
+        function nameGen(){
+            var longness = (Math.floor(Math.random() * Math.floor(5))) + 2;
+            var a = Math.floor(Math.random() * Math.floor(vowelsBank.length));
+            var b = Math.floor(Math.random() * Math.floor(consonantsBank.length));
+            var c = Math.floor(Math.random() * Math.floor(vowelsBank.length));
+            var d = Math.floor(Math.random() * Math.floor(consonantsBank.length));
+            var e = Math.floor(Math.random() * Math.floor(vowelsBank.length));
+            var f = Math.floor(Math.random() * Math.floor(consonantsBank.length));
+            var g = Math.floor(Math.random() * Math.floor(vowelsBank.length));
+            var h = Math.floor(Math.random() * Math.floor(consonantsBank.length));
+            var z = Math.floor(Math.random() * Math.floor(consonantsBank.length));
+            var myString = "";
+            if (Math.random() >= 0.1) {myString += (consonantsBank[z]); longness -= 1;}
+            myString += (vowelsBank[a]);
+            if (longness >= 2) {myString += (consonantsBank[b]);}
+            if (longness >= 3) {myString += (vowelsBank[c]);}
+            if (longness >= 4) {myString += (consonantsBank[d]);}
+            if (longness >= 5) {myString += (vowelsBank[e]);}
+            if (longness >= 6) {myString += (consonantsBank[f]);}
+            if (longness >= 7) {myString += (vowelsBank[g]);}
+            if (longness >= 8) {myString += (consonantsBank[h]);}
+            document.getElementById("myName").innerHTML = myString;
+        }
+        function owoAction2(){
+            document.getElementById("myName").innerHTML = "@w@/";
+        }
+</script>
+</html>
