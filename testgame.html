@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catch Game</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      background: #222;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    canvas {
+      display: block;
+      background: #333;
+    }
+    .controls {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      gap: 20px;
+    }
+    .btn {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255, 255, 255, 0.15);
+      color: white;
+      font-size: 32px;
+      font-weight: bold;
+      touch-action: manipulation;
+    }
+    .btn:active {
+      background: rgba(255, 255, 255, 0.35);
+    }
+  </style>
+</head>
+<body>
+  <canvas id="gameCanvas"></canvas>
+  <div class="controls">
+    <button id="leftBtn" class="btn">◀</button>
+    <button id="rightBtn" class="btn">▶</button>
+  </div>
+  <script>
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
+
+    // Resize canvas to fit screen
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+
+    // Player
+    let player = { x: canvas.width / 2, y: canvas.height - 50, size: 50, speed: 7 };
+
+    // Falling square
+    let square = { x: Math.random() * canvas.width, y: 0, size: 30, speed: 4 };
+
+    let score = 0;
+    let keys = {};
+
+    document.addEventListener("keydown", e => keys[e.key] = true);
+    document.addEventListener("keyup", e => keys[e.key] = false);
+
+    // Touch/mouse buttons
+    const leftBtn = document.getElementById("leftBtn");
+    const rightBtn = document.getElementById("rightBtn");
+
+    let moveLeft = false;
+    let moveRight = false;
+
+    function bindButton(btn, flagVar) {
+      const startEvent = (e) => {
+        e.preventDefault();
+        if(flagVar === "left") moveLeft = true;
+        if(flagVar === "right") moveRight = true;
+      };
+      const endEvent = (e) => {
+        e.preventDefault();
+        if(flagVar === "left") moveLeft = false;
+        if(flagVar === "right") moveRight = false;
+      };
+
+      btn.addEventListener("mousedown", startEvent);
+      btn.addEventListener("mouseup", endEvent);
+      btn.addEventListener("mouseleave", endEvent);
+      btn.addEventListener("touchstart", startEvent);
+      btn.addEventListener("touchend", endEvent);
+      btn.addEventListener("touchcancel", endEvent);
+    }
+
+    bindButton(leftBtn, "left");
+    bindButton(rightBtn, "right");
+
+    function update() {
+      // Move player
+      if (keys["ArrowLeft"] || moveLeft) player.x -= player.speed;
+      if (keys["ArrowRight"] || moveRight) player.x += player.speed;
+
+      // Keep player in bounds
+      player.x = Math.max(0, Math.min(canvas.width - player.size, player.x));
+
+      // Move square
+      square.y += square.speed;
+      if (square.y > canvas.height) {
+        square.y = 0;
+        square.x = Math.random() * (canvas.width - square.size);
+      }
+
+      // Collision detection
+      if (square.x < player.x + player.size &&
+          square.x + square.size > player.x &&
+          square.y < player.y + player.size &&
+          square.y + square.size > player.y) {
+        score++;
+        square.y = 0;
+        square.x = Math.random() * (canvas.width - square.size);
+      }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Player
+      ctx.fillStyle = "#4CAF50";
+      ctx.fillRect(player.x, player.y, player.size, player.size);
+
+      // Square
+      ctx.fillStyle = "#FF5722";
+      ctx.fillRect(square.x, square.y, square.size, square.size);
+
+      // Score
+      ctx.fillStyle = "white";
+      ctx.font = "20px Arial";
+      ctx.fillText("Score: " + score, 20, 30);
+    }
+
+    function loop() {
+      update();
+      draw();
+      requestAnimationFrame(loop);
+    }
+
+    loop();
+  </script>
+</body>
+</html>
