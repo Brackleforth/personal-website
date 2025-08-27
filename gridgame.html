@@ -389,35 +389,33 @@
             'right-btn': [1, 0]
         };
 
-        Object.keys(buttons).forEach(btnId => {
-            const btn = document.getElementById(btnId);
-            // Touch events
-            btn.addEventListener('touchstart', (e) => {
-                e.preventDefault();
-                if (!isInputActive && !isPlayerDead) {
-                    isInputActive = true;
-                    const [dx, dy] = buttons[btnId];
-                    movePlayer(dx, dy);
-                }
-            });
-            btn.addEventListener('touchend', (e) => {
-                e.preventDefault();
-                isInputActive = false;
-            });
-            // Mouse events
-            btn.addEventListener('mousedown', (e) => {
-                e.preventDefault();
-                if (!isInputActive && !isPlayerDead) {
-                    isInputActive = true;
-                    const [dx, dy] = buttons[btnId];
-                    movePlayer(dx, dy);
-                }
-            });
-            btn.addEventListener('mouseup', (e) => {
-                e.preventDefault();
-                isInputActive = false;
-            });
-        });
+Object.keys(buttons).forEach(btnId => {
+    const btn = document.getElementById(btnId);
+    const [dx, dy] = buttons[btnId];
+
+    function pressHandler(e) {
+        e.preventDefault();
+        if (!isInputActive && !isPlayerDead && !movement_lock) {
+            isInputActive = true;
+            movePlayer(dx, dy);
+        }
+    }
+
+    function releaseHandler(e) {
+        e.preventDefault();
+        isInputActive = false;
+        movement_lock = false; // 🔹 Unlock like keyup
+    }
+
+    // Touch events
+    btn.addEventListener('touchstart', pressHandler);
+    btn.addEventListener('touchend', releaseHandler);
+
+    // Mouse events
+    btn.addEventListener('mousedown', pressHandler);
+    btn.addEventListener('mouseup', releaseHandler);
+});
+
 
         // Event listeners for toggle button
         const toggleBtn = document.getElementById('toggle-btn');
