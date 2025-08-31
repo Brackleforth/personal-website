@@ -1,232 +1,146 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grid-Based Browser Game</title>
+    <title>Grid-Based Browser Game - Static Levels with Enemies</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #000;
-            overflow: hidden;
-            position: relative;
-        }
-        canvas {
-            display: block;
-            background-color: #222;
-        }
-        .controls {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            display: grid;
-            grid-template-columns: repeat(3, 60px);
-            grid-template-rows: repeat(2, 60px);
-            gap: 5px;
-            z-index: 10;
-        }
-        .toggle-btn, .reset-btn {
-            position: absolute;
-            bottom: 10px;
-            left: 10px;
-            width: 100px;
-            height: 60px;
-            background-color: #555;
-            color: #fff;
-            border: 2px solid #fff;
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 18px;
-            touch-action: manipulation;
-            user-select: none;
-            cursor: pointer;
-            z-index: 10;
-        }
-        .reset-btn {
-            bottom: 80px; /* Positioned above toggle button */
-        }
-        .toggle-btn:active, .reset-btn:active {
-            background-color: #777;
-        }
-        .control-btn {
-            background-color: #555;
-            color: #fff;
-            border: 2px solid #fff;
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 24px;
-            touch-action: manipulation;
-            user-select: none;
-            cursor: pointer;
-        }
-        .control-btn:active {
-            background-color: #777;
-        }
-        .empty {
-            background: none;
-            border: none;
-        }
-        .hidden {
-            display: none;
-        }
+        body { margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #000; overflow: hidden; position: relative; }
+        canvas { display: block; background-color: #222; }
+        .controls { position: absolute; bottom: 10px; right: 10px; display: grid; grid-template-columns: repeat(3, 70px); grid-template-rows: repeat(2, 70px); gap: 5px; z-index: 10; }
+        .toggle-btn, .reset-btn { position: absolute; bottom: 10px; left: 10px; width: 100px; height: 60px; background-color: #555; color: #fff; border: 2px solid #fff; border-radius: 10px; display: flex; justify-content: center; align-items: center; font-size: 18px; touch-action: manipulation; user-select: none; cursor: pointer; z-index: 10; }
+        .reset-btn { bottom: 80px; }
+        .toggle-btn:active, .reset-btn:active { background-color: #777; }
+        .control-btn { background-color: rgba(85, 85, 85, 0.7); color: #fff; border: 2px solid #fff; border-radius: 10px; display: flex; justify-content: center; align-items: center; font-size: 28px; touch-action: manipulation; user-select: none; cursor: pointer; width: 70px; height: 70px; }
+        .control-btn:active { background-color: rgba(119, 119, 119, 0.7); }
+        .empty { background: none; border: none; }
     </style>
 </head>
 <body>
     <canvas id="gameCanvas"></canvas>
     <div class="controls">
-        <div class="control-btn empty"></div>
+        <div class="empty"></div>
         <div class="control-btn" id="up-btn">↑</div>
-        <div class="control-btn empty"></div>
+        <div class="empty"></div>
         <div class="control-btn" id="left-btn">←</div>
-        <div class="control-btn empty"></div>
-        <div class="control-btn" id="right-btn">→</div>
-        <div class="control-btn empty"></div>
         <div class="control-btn" id="down-btn">↓</div>
-        <div class="control-btn empty"></div>
+        <div class="control-btn" id="right-btn">→</div>
+        <div class="empty"></div>
     </div>
     <div class="toggle-btn" id="toggle-btn">Jump1</div>
-    <div class="reset-btn hidden" id="reset-btn">Reset</div>
+    <div class="reset-btn" id="reset-btn">Reset</div>
     <script>
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
 
         const virtualWidth = 1600;
-        const virtualHeight = 900; // 16:9 aspect ratio
+        const virtualHeight = 900;
         let scale = 1;
 
         const gridWidth = 16;
-        const gridHeight = 8; // Playable area (excludes status bar)
+        const gridHeight = 8;
         const cellWidth = virtualWidth / gridWidth;
         const cellHeight = (virtualHeight * (gridHeight / 9)) / gridHeight;
         const statusBarHeight = virtualHeight / 9;
 
-        const levelName = "Level 1";
+        let currentLevel = 1;
+        let levelName = "Level 1";
+        let hasWon = false;
 
-        // Track game state
         let isInputActive = false;
-        let movementMode = 'jump1'; // Default mode
+        let movementMode = 'jump1';
         let isPlayerDead = false;
-        let movement_lock = false; // Locks movement until all arrow keys are released
+        let movement_lock = false;
         let grid = [];
-        const keyState = {
-            ArrowUp: false,
-            ArrowDown: false,
-            ArrowLeft: false,
-            ArrowRight: false
-        };
+        let can_be_killed = 1; // Initialize can_be_killed to 1 (vulnerable)
+
+        let slipping = false;
+        let slipDir = { dx: 0, dy: 0 };
 
         function draw() {
             ctx.save();
             ctx.scale(scale, scale);
-
-            // Clear canvas
             ctx.clearRect(0, 0, virtualWidth, virtualHeight);
 
-            // Count claimed and total floor tiles
             const claimedTiles = grid.filter(cell => cell.state === 'claimed' || (cell.state === 'player' && !isPlayerDead)).length;
             const totalFloorTiles = grid.filter(cell => cell.state === 'floor' || cell.state === 'claimed' || (cell.state === 'player' && !isPlayerDead)).length;
 
-            // Draw status bar (off-white)
+            // Check for win condition
+            hasWon = grid.every(cell => cell.state !== 'floor');
+
             ctx.fillStyle = '#F5F5F5';
             ctx.fillRect(0, 0, virtualWidth, statusBarHeight);
-            ctx.fillStyle = '#666666'; // Gray text
+            ctx.fillStyle = '#666666';
             ctx.font = `${statusBarHeight * 0.5}px Arial`;
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
-            ctx.fillText(`${levelName} - ${movementMode}${isPlayerDead ? ' - Dead' : ''} - ${claimedTiles}/${totalFloorTiles}`, virtualWidth / 2, statusBarHeight / 2);
+            ctx.fillText(`${levelName} - ${movementMode}${isPlayerDead ? ' - Dead' : hasWon ? ' - Won' : ''} - ${claimedTiles}/${totalFloorTiles}`, virtualWidth / 2, statusBarHeight / 2);
 
-            // Draw grid cells
             grid.forEach(cell => {
-                if (cell.state === 'floor') {
-                    ctx.fillStyle = '#8B8B83'; // Stone-like gray with brown undertone
-                } else if (cell.state === 'claimed') {
-                    ctx.fillStyle = '#D3D3D3'; // Pale gray for claimed tiles
-                } else if (cell.state === 'wall') {
-                    ctx.fillStyle = '#5C5C5A'; // Darker, cooler stone gray
-                } else if (cell.state === 'pit') {
-                    ctx.fillStyle = '#000000'; // Black for bottomless pit
-                } else if (cell.state === 'player') {
-                    ctx.fillStyle = isPlayerDead ? '#FF0000' : '#00f'; // Red if dead, blue if alive
+                if (cell.state === 'floor') ctx.fillStyle = '#8B8B83';
+                else if (cell.state === 'claimed') ctx.fillStyle = '#D3D3D3';
+                else if (cell.state === 'wall') ctx.fillStyle = '#5C5C5A';
+                else if (cell.state === 'pit') ctx.fillStyle = '#000000';
+                else if (cell.state === 'player') ctx.fillStyle = isPlayerDead ? '#FF0000' : '#00f';
+                else if (cell.state === 'enemy-right' || cell.state === 'enemy-left') ctx.fillStyle = '#00FF00';
+                ctx.fillRect(cell.x * cellWidth, statusBarHeight + cell.y * cellHeight, cellWidth, cellHeight);
+
+                // Superimpose direction indicators for enemies
+                if (cell.state === 'enemy-right' || cell.state === 'enemy-left') {
+                    ctx.fillStyle = '#FFFFFF';
+                    ctx.font = `${cellHeight * 0.8}px Arial`;
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    const symbol = cell.state === 'enemy-right' ? '>' : '<';
+                    ctx.fillText(symbol, (cell.x + 0.5) * cellWidth, statusBarHeight + (cell.y + 0.5) * cellHeight);
                 }
-                ctx.fillRect(
-                    cell.x * cellWidth,
-                    statusBarHeight + cell.y * cellHeight,
-                    cellWidth,
-                    cellHeight
-                );
             });
 
             ctx.restore();
         }
 
-        function initializeGrid() {
+        function initializeGrid(level) {
+            const levels = {
+                1: [
+                    "################",
+                    "#..>....~~.....#",
+                    "#..####..####..#",
+                    "#..#..#..#..#..#",
+                    "#..####..####..#",
+                    "#....~~........#",
+                    "#......P.....<.#",
+                    "################"
+                ],
+                2: [
+                    "################",
+                    "#..#....~~...P.#",
+                    "#..#....~~...<.#",
+                    "#..###.####..#.#",
+                    "#....#.#..#..#.#",
+                    "#....#....#....#",
+                    "#.>..##.###....#",
+                    "################"
+                ]
+            };
+
             grid = [];
+            const staticLevel = levels[level] || levels[1]; // Default to Level 1
             for (let y = 0; y < gridHeight; y++) {
                 for (let x = 0; x < gridWidth; x++) {
+                    let char = staticLevel[y][x];
                     let state = 'floor';
-                    const rand = Math.random();
-                    if (rand < 0.15) {
-                        state = 'wall';
-                    } else if (rand < 0.25) {
-                        state = 'pit';
-                    }
-                    grid.push({ x, y, state });
+                    let isClaimed = false;
+                    if (char === '#') state = 'wall';
+                    else if (char === '.') state = 'floor';
+                    else if (char === 'P') state = 'player';
+                    else if (char === '~') state = 'pit';
+                    else if (char === '>') state = 'enemy-right';
+                    else if (char === '<') state = 'enemy-left';
+                    grid.push({ x, y, state, isClaimed });
                 }
             }
-            // Ensure player starts on a claimed tile
-            const playerStartX = Math.floor(gridWidth / 2);
-            const playerStartY = Math.floor(gridHeight / 2);
-            const playerIndex = playerStartY * gridWidth + playerStartX;
-            grid[playerIndex].state = 'claimed'; // Start tile is claimed
-            grid[playerIndex].state = 'player'; // Player placed on claimed tile
+            levelName = `Level ${level}`;
+            can_be_killed = 1; // Reset can_be_killed on level initialization
         }
 
         function resizeCanvas() {
@@ -250,225 +164,291 @@
             return grid.find(cell => cell.state === 'player');
         }
 
-        function movePlayer(dx, dy) {
-            if (isPlayerDead || movement_lock) {
-                isInputActive = false;
-                return;
-            }
-
+        function attemptMove(dx, dy, claimStart = true) {
             const player = findPlayer();
-            if (!player) {
-                isInputActive = false;
-                return;
+            if (!player) return false;
+            const newX = player.x + dx;
+            const newY = player.y + dy;
+            if (newX < 0 || newX >= gridWidth || newY < 0 || newY >= gridHeight) return false;
+            const target = grid.find(c => c.x === newX && c.y === newY);
+
+            if (target.state === 'wall') return false;
+
+            if (claimStart) {
+                player.state = 'claimed';
+                player.isClaimed = true;
             }
 
-            // Determine jump distance based on mode
-            const jumpDistance = movementMode === 'jump1' ? 1 : 2;
-            const newX = player.x + dx * jumpDistance;
-            const newY = player.y + dy * jumpDistance;
+            target.isClaimed = target.isClaimed || (target.state === 'claimed');
 
-            // Check if landing position is within bounds
-            if (newX < 0 || newX >= gridWidth || newY < 0 || newY >= gridHeight) {
-                isInputActive = false;
-                movement_lock = true; // Lock movement until keys released
-                return;
-            }
-
-            // Check landing position
-            const targetCell = grid.find(cell => cell.x === newX && cell.y === newY);
-            if (targetCell.state === 'wall') {
-                isInputActive = false;
-                movement_lock = true; // Lock movement until keys released
-                return;
-            }
-
-            // Check for pit
-            if (targetCell.state === 'pit') {
-                player.state = 'claimed'; // Previous tile stays claimed
-                targetCell.state = 'player';
+            if (target.state === 'pit') {
+                target.state = 'player';
                 isPlayerDead = true;
-                document.getElementById('reset-btn').classList.remove('hidden');
                 draw();
-                isInputActive = false;
-                movement_lock = true; // Lock movement until keys released
-                return;
+                return false;
+            } else if (target.state.startsWith('enemy') && can_be_killed) {
+                target.state = 'player';
+                isPlayerDead = true;
+                draw();
+                return false;
+            } else if (target.state === 'claimed') {
+                target.state = 'player';
+                draw();
+                return 'slip';
+            } else {
+                target.state = 'player';
+                draw();
+                return true;
             }
+        }
 
-            // Move player to new position and claim the tile
-            if (targetCell.state === 'floor') {
-                targetCell.state = 'claimed'; // Change floor to claimed
-            }
-            player.state = 'claimed'; // Previous tile is always claimed
-            targetCell.state = 'player';
+        function moveEnemies() {
+            const enemies = grid.filter(cell => cell.state === 'enemy-right' || cell.state === 'enemy-left');
+            const enemyUpdates = [];
+
+            // Collect updates to avoid modifying grid during iteration
+            enemies.forEach(enemy => {
+                const currentState = enemy.state;
+                const direction = currentState === 'enemy-right' ? 1 : -1;
+                let nextX = enemy.x + direction;
+                let nextY = enemy.y;
+                let newState = currentState;
+                let moveTo = null;
+
+                // Check if next cell is valid
+                if (nextX < 0 || nextX >= gridWidth || nextY < 0 || nextY >= gridHeight) {
+                    // Out of bounds: switch direction
+                    newState = currentState === 'enemy-right' ? 'enemy-left' : 'enemy-right';
+                } else {
+                    const nextCell = grid.find(c => c.x === nextX && c.y === nextY);
+                    if (nextCell.state === 'wall' || nextCell.state === 'pit' || nextCell.state === 'enemy-right' || nextCell.state === 'enemy-left') {
+                        // Blocked: switch direction
+                        newState = currentState === 'enemy-right' ? 'enemy-left' : 'enemy-right';
+                    } else {
+                        // Valid move
+                        moveTo = { x: nextX, y: nextY };
+                    }
+                }
+
+                // If switching direction, try moving in the new direction
+                if (newState !== currentState && !moveTo) {
+                    const newDirection = newState === 'enemy-right' ? 1 : -1;
+                    nextX = enemy.x + newDirection;
+                    nextY = enemy.y;
+                    if (nextX >= 0 && nextX < gridWidth && nextY >= 0 && nextY < gridHeight) {
+                        const newCell = grid.find(c => c.x === nextX && c.y === nextY);
+                        if (newCell.state !== 'wall' && newCell.state !== 'pit' && newCell.state !== 'enemy-right' && newCell.state !== 'enemy-left') {
+                            moveTo = { x: nextX, y: nextY };
+                        }
+                    }
+                }
+
+                enemyUpdates.push({ enemy, newState, moveTo });
+            });
+
+            // Apply updates
+            enemyUpdates.forEach(({ enemy, newState, moveTo }) => {
+                if (moveTo) {
+                    const targetCell = grid.find(c => c.x === moveTo.x && c.y === moveTo.y);
+                    if (targetCell.state === 'player') {
+                        isPlayerDead = true; // Player dies if enemy moves onto their tile
+                        enemy.state = enemy.isClaimed ? 'claimed' : 'floor';
+                        targetCell.isClaimed = targetCell.isClaimed || (targetCell.state === 'claimed');
+                        targetCell.state = 'player'; // Keep player state to show death
+                    } else {
+                        // Move the enemy
+                        enemy.state = enemy.isClaimed ? 'claimed' : 'floor';
+                        targetCell.isClaimed = targetCell.isClaimed || (targetCell.state === 'claimed');
+                        targetCell.state = newState;
+                    }
+                } else {
+                    enemy.state = newState;
+                }
+            });
 
             draw();
+        }
+
+        function slipStep() {
+            if (!slipping) return;
+            moveEnemies(); // Move enemies at the start of each slip step
+            const result = attemptMove(slipDir.dx, slipDir.dy);
+            if (result === 'slip') {
+                setTimeout(slipStep, 100);
+            } else {
+                slipping = false;
+                movement_lock = false;
+                can_be_killed = 1; // Reset can_be_killed after slipping ends
+            }
+        }
+
+        function movePlayer(dx, dy) {
+            if (isPlayerDead || movement_lock || hasWon || !can_be_killed) { 
+                isInputActive = false; 
+                return; 
+            }
+
+            movement_lock = true;
+            can_be_killed = 0; // Set can_be_killed to 0 when player attempts to move
+
+            const jumpDistance = movementMode === 'jump1' ? 1 : 2;
+            const player = findPlayer();
+            const oldX = player.x;
+            const oldY = player.y;
+            const newX = oldX + dx * jumpDistance;
+            const newY = oldY + dy * jumpDistance;
+
+            let validMove = true;
+            if (newX < 0 || newX >= gridWidth || newY < 0 || newY >= gridHeight) validMove = false;
+            else {
+                const intendedTarget = grid.find(c => c.x === newX && c.y === newY);
+                if (intendedTarget.state === 'wall') validMove = false;
+            }
+
+            const playerOldCell = player;
+            let playerTargetCell;
+            let claimStart = validMove;
+            if (!validMove) {
+                playerTargetCell = playerOldCell;
+                movement_lock = false;
+                isInputActive = false;
+                can_be_killed = 1; // Reset can_be_killed if move is invalid
+                moveEnemies(); // Move enemies even on invalid move
+                draw();
+                return;
+            } else {
+                playerTargetCell = grid.find(c => c.x === newX && c.y === newY);
+            }
+
+            // Clear old player position
+            if (claimStart) {
+                playerOldCell.state = 'claimed';
+                playerOldCell.isClaimed = true;
+            }
+
+            // Place player
+            playerTargetCell.isClaimed = playerTargetCell.isClaimed || (playerTargetCell.state === 'claimed');
+            let result;
+            if (playerTargetCell.state === 'pit') {
+                playerTargetCell.state = 'player';
+                isPlayerDead = true;
+                result = false;
+            } else if (playerTargetCell.state.startsWith('enemy') && can_be_killed) {
+                playerTargetCell.state = 'player';
+                isPlayerDead = true;
+                result = false;
+            } else if (playerTargetCell.state === 'claimed') {
+                playerTargetCell.state = 'player';
+                result = 'slip';
+            } else {
+                playerTargetCell.state = 'player';
+                result = true;
+            }
+
+            draw();
+            moveEnemies(); // Move enemies after player moves
+            can_be_killed = 1; // Reset can_be_killed after enemies move
+
+            if (result === 'slip') {
+                slipping = true;
+                slipDir = { dx, dy };
+                setTimeout(slipStep, 100);
+            } else {
+                movement_lock = false;
+            }
             isInputActive = false;
-            movement_lock = true; // Lock movement until keys released
         }
 
         function toggleMovementMode() {
-            if (isPlayerDead) {
-                isInputActive = false;
-                return;
-            }
+            if (isPlayerDead || slipping || hasWon || !can_be_killed) return;
             movementMode = movementMode === 'jump1' ? 'jump2' : 'jump1';
             document.getElementById('toggle-btn').textContent = movementMode === 'jump1' ? 'Jump1' : 'Jump2';
             draw();
-            isInputActive = false;
         }
 
         function resetLevel() {
             isPlayerDead = false;
+            hasWon = false;
             movementMode = 'jump1';
             document.getElementById('toggle-btn').textContent = 'Jump1';
-            document.getElementById('reset-btn').classList.add('hidden');
-            initializeGrid();
+            initializeGrid(currentLevel); // Reset to current level
             draw();
-            isInputActive = false;
-            movement_lock = false; // Reset movement lock
+            movement_lock = false;
+            slipping = false;
+            can_be_killed = 1; // Reset can_be_killed
         }
 
-        // Event listeners for keyboard
+        function resetGame() {
+            currentLevel = 1;
+            resetLevel();
+        }
+
+        function changeLevel(direction) {
+            isPlayerDead = false;
+            hasWon = false;
+            movementMode = 'jump1';
+            document.getElementById('toggle-btn').textContent = 'Jump1';
+            currentLevel = direction === 'next' ? (currentLevel === 1 ? 2 : 1) : (currentLevel === 2 ? 1 : 1);
+            initializeGrid(currentLevel);
+            draw();
+            movement_lock = false;
+            slipping = false;
+            can_be_killed = 1; // Reset can_be_killed
+        }
+
+        // Input events
         window.addEventListener('resize', resizeCanvas);
         window.addEventListener('keydown', (e) => {
-            if (isInputActive) return;
+            if (isInputActive || slipping || !can_be_killed) return;
             isInputActive = true;
-            switch (e.key) {
-                case 'ArrowUp':
-                    if (!isPlayerDead && !movement_lock) {
-                        keyState.ArrowUp = true;
-                        movePlayer(0, -1);
-                    }
+            switch (e.key.toLowerCase()) {
+                case 'arrowup': if (!isPlayerDead && !movement_lock && !hasWon) movePlayer(0, -1); break;
+                case 'arrowdown': if (!isPlayerDead && !movement_lock && !hasWon) movePlayer(0, 1); break;
+                case 'arrowleft': if (!isPlayerDead && !movement_lock && !hasWon) movePlayer(-1, 0); break;
+                case 'arrowright': if (!isPlayerDead && !movement_lock && !hasWon) movePlayer(1, 0); break;
+                case ' ': 
+                    if (hasWon) changeLevel('next');
+                    else if (isPlayerDead) resetLevel();
+                    else toggleMovementMode();
                     break;
-                case 'ArrowDown':
-                    if (!isPlayerDead && !movement_lock) {
-                        keyState.ArrowDown = true;
-                        movePlayer(0, 1);
-                    }
-                    break;
-                case 'ArrowLeft':
-                    if (!isPlayerDead && !movement_lock) {
-                        keyState.ArrowLeft = true;
-                        movePlayer(-1, 0);
-                    }
-                    break;
-                case 'ArrowRight':
-                    if (!isPlayerDead && !movement_lock) {
-                        keyState.ArrowRight = true;
-                        movePlayer(1, 0);
-                    }
-                    break;
-                case ' ':
-                    if (isPlayerDead) {
-                        resetLevel();
-                    } else {
-                        toggleMovementMode();
-                    }
-                    break;
+                case 'q': changeLevel('previous'); break;
+                case 'w': changeLevel('next'); break;
             }
         });
-
         window.addEventListener('keyup', (e) => {
-            if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
-                keyState[e.key] = false;
-                // Only unlock movement if all arrow keys are released
-                if (!keyState.ArrowUp && !keyState.ArrowDown && !keyState.ArrowLeft && !keyState.ArrowRight) {
-                    movement_lock = false;
-                }
+            if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.key)) {
+                movement_lock = false;
             }
-            if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' '].includes(e.key)) {
-                isInputActive = false;
-            }
+            isInputActive = false;
         });
 
-        // Event listeners for on-screen buttons (touch and mouse)
-        const buttons = {
-            'up-btn': [0, -1],
-            'down-btn': [0, 1],
-            'left-btn': [-1, 0],
-            'right-btn': [1, 0]
-        };
+        // On-screen buttons
+        const buttons = { 'up-btn': [0, -1], 'down-btn': [0, 1], 'left-btn': [-1, 0], 'right-btn': [1, 0] };
+        Object.keys(buttons).forEach(id => {
+            const btn = document.getElementById(id);
+            const [dx, dy] = buttons[id];
+            function press(e) { e.preventDefault(); if (!isInputActive && !isPlayerDead && !movement_lock && !slipping && !hasWon && can_be_killed) { isInputActive = true; movePlayer(dx, dy); } }
+            function release(e) { e.preventDefault(); isInputActive = false; movement_lock = false; }
+            btn.addEventListener('mousedown', press); btn.addEventListener('mouseup', release);
+            btn.addEventListener('touchstart', press); btn.addEventListener('touchend', release);
+        });
 
-Object.keys(buttons).forEach(btnId => {
-    const btn = document.getElementById(btnId);
-    const [dx, dy] = buttons[btnId];
-
-    function pressHandler(e) {
-        e.preventDefault();
-        if (!isInputActive && !isPlayerDead && !movement_lock) {
-            isInputActive = true;
-            movePlayer(dx, dy);
-        }
-    }
-
-    function releaseHandler(e) {
-        e.preventDefault();
-        isInputActive = false;
-        movement_lock = false; // 🔹 Unlock like keyup
-    }
-
-    // Touch events
-    btn.addEventListener('touchstart', pressHandler);
-    btn.addEventListener('touchend', releaseHandler);
-
-    // Mouse events
-    btn.addEventListener('mousedown', pressHandler);
-    btn.addEventListener('mouseup', releaseHandler);
-});
-
-
-        // Event listeners for toggle button
+        // Toggle button
         const toggleBtn = document.getElementById('toggle-btn');
-        toggleBtn.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            if (!isInputActive && !isPlayerDead) {
-                isInputActive = true;
-                toggleMovementMode();
-            }
-        });
-        toggleBtn.addEventListener('touchend', (e) => {
-            e.preventDefault();
-            isInputActive = false;
-        });
-        toggleBtn.addEventListener('mousedown', (e) => {
-            e.preventDefault();
-            if (!isInputActive && !isPlayerDead) {
-                isInputActive = true;
-                toggleMovementMode();
-            }
-        });
-        toggleBtn.addEventListener('mouseup', (e) => {
-            e.preventDefault();
-            isInputActive = false;
-        });
+        toggleBtn.addEventListener('mousedown', e => { e.preventDefault(); if (!isInputActive && !isPlayerDead && !slipping && !hasWon && can_be_killed) { isInputActive = true; toggleMovementMode(); } });
+        toggleBtn.addEventListener('mouseup', e => { e.preventDefault(); isInputActive = false; });
+        toggleBtn.addEventListener('touchstart', e => { e.preventDefault(); if (!isPlayerDead && !slipping && !hasWon && can_be_killed) { isInputActive = true; toggleMovementMode(); } });
+        toggleBtn.addEventListener('touchend', e => { e.preventDefault(); isInputActive = false; });
 
-        // Event listeners for reset button
+        // Reset button
         const resetBtn = document.getElementById('reset-btn');
-        resetBtn.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            if (!isInputActive) {
-                isInputActive = true;
-                resetLevel();
-            }
-        });
-        resetBtn.addEventListener('touchend', (e) => {
-            e.preventDefault();
-            isInputActive = false;
-        });
-        resetBtn.addEventListener('mousedown', (e) => {
-            e.preventDefault();
-            if (!isInputActive) {
-                isInputActive = true;
-                resetLevel();
-            }
-        });
-        resetBtn.addEventListener('mouseup', (e) => {
-            e.preventDefault();
-            isInputActive = false;
-        });
+        function resetPress(e) { e.preventDefault(); if (!isInputActive) { isInputActive = true; resetGame(); } }
+        function resetRelease(e) { e.preventDefault(); isInputActive = false; }
+        resetBtn.addEventListener('mousedown', resetPress); resetBtn.addEventListener('mouseup', resetRelease);
+        resetBtn.addEventListener('touchstart', resetPress); resetBtn.addEventListener('touchend', resetRelease);
 
-        // Initial setup
-        initializeGrid();
+        // Init
+        initializeGrid(currentLevel);
         resizeCanvas();
     </script>
 </body>
