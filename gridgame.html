@@ -52,66 +52,180 @@
     let isPlayerDead = false;
     let movement_lock = false;
     let grid = [];
-    let can_be_killed = 1; // Initialize can_be_killed to 1 (vulnerable)
-    let moveCount = 0; // Track number of player moves
+    let can_be_killed = 1;
+    let moveCount = 0;
 
     let slipping = false;
     let slipDir = { dx: 0, dy: 0 };
 
     let totalFloorTiles = 0;
+    let particles = [];
+
+function createParticles(x, y) {
+    const particleCount = 12;
+    const tileLeft = x * cellWidth;
+    const tileRight = (x + 1) * cellWidth;
+    const tileTop = statusBarHeight + y * cellHeight;
+    const tileBottom = statusBarHeight + (y + 1) * cellHeight;
+    const inset = 0.1;
+
+    const spawnPoints = [
+        { px: tileLeft + inset * cellWidth, py: tileTop + inset * cellHeight, vx: -50, vy: -50 },
+        { px: tileRight - inset * cellWidth, py: tileTop + inset * cellHeight, vx: 50, vy: -50 },
+        { px: tileLeft + inset * cellWidth, py: tileBottom - inset * cellHeight, vx: -50, vy: 50 },
+        { px: tileRight - inset * cellWidth, py: tileBottom - inset * cellHeight, vx: 50, vy: 50 },
+        { px: tileLeft + cellWidth / 2, py: tileTop + inset * cellHeight, vx: 0, vy: -75 },
+        { px: tileRight - inset * cellWidth, py: tileTop + cellHeight / 2, vx: 75, vy: 0 },
+        { px: tileLeft + cellWidth / 2, py: tileBottom - inset * cellHeight, vx: 0, vy: 75 },
+        { px: tileLeft + inset * cellWidth, py: tileTop + cellHeight / 2, vx: -75, vy: 0 },
+        { px: tileLeft + inset * cellWidth, py: tileTop + cellHeight / 3, vx: -60, vy: -30 },
+        { px: tileRight - inset * cellWidth, py: tileTop + 2 * cellHeight / 3, vx: 60, vy: 30 },
+        { px: tileLeft + cellWidth / 3, py: tileTop + inset * cellHeight, vx: -30, vy: -60 },
+        { px: tileRight - cellWidth / 3, py: tileBottom - inset * cellHeight, vx: 30, vy: 60 }
+    ];
+
+    for (let i = 0; i < particleCount; i++) {
+        const sp = spawnPoints[i % spawnPoints.length];
+        particles.push({
+            x: sp.px,
+            y: sp.py,
+            vx: sp.vx + (Math.random() - 0.5) * 20,
+            vy: sp.vy + (Math.random() - 0.5) * 20,
+            size: 20,
+            moveTime: 0.5,
+            isStatic: false,
+            rotation: Math.random() * 360,         // random initial rotation in degrees
+            rotationSpeed: (Math.random() - 0.5) * 180 // optional: rotation speed in degrees/sec
+        });
+    }
+
+    for (let i = 0; i < (particleCount * 2); i++) {
+        const sp = spawnPoints[i % spawnPoints.length];
+        particles.push({
+            x: sp.px,
+            y: sp.py,
+            vx: sp.vx + (Math.random() - 0.5) * 200,
+            vy: sp.vy + (Math.random() - 0.5) * 200,
+            size: 10,
+            moveTime: 0.25,
+            isStatic: false,
+            rotation: Math.random() * 360,         
+            rotationSpeed: (Math.random() - 0.5) * 360 
+        });
+    }
+}
+
+
+    function updateParticles(deltaTime) {
+        particles.forEach(p => {
+            if (!p.isStatic) {
+                p.x += p.vx * deltaTime;
+                p.y += p.vy * deltaTime;
+                p.moveTime -= deltaTime;
+
+                const gridX = Math.floor(p.x / cellWidth);
+                const gridY = Math.floor((p.y - statusBarHeight) / cellHeight);
+
+                if (gridX >= 0 && gridX < gridWidth && gridY >= 0 && gridY < gridHeight) {
+                    const cell = grid.find(c => c.x === gridX && c.y === gridY);
+                    if (cell && (cell.state === 'wall' || cell.state === 'pit')) {
+                        p.isStatic = true;
+                    }
+                } else {
+                    p.isStatic = true;
+                }
+
+                if (p.moveTime <= 0) {
+                    p.isStatic = true;
+                }
+            }
+        });
+    }
 
     function draw() {
-    ctx.save();
-    ctx.scale(scale, scale);
-    ctx.clearRect(0, 0, virtualWidth, virtualHeight);
+        ctx.save();
+        ctx.scale(scale, scale);
+        ctx.clearRect(0, 0, virtualWidth, virtualHeight);
 
-    const claimedTiles = grid.filter(cell => cell.isClaimed || cell.state === 'player').length;
+        const claimedTiles = grid.filter(cell => cell.isClaimed || cell.state === 'player').length;
 
-    // Check for win condition (for cases like enemy movements or slipping)
-    hasWon = grid.every(cell => cell.state === 'wall' || cell.state === 'pit' || cell.isClaimed || cell.state === 'player');
+        hasWon = grid.every(cell => cell.state === 'wall' || cell.state === 'pit' || cell.isClaimed || cell.state === 'player');
 
-    ctx.fillStyle = '#F5F5F5';
-    ctx.fillRect(0, 0, virtualWidth, statusBarHeight);
-    ctx.fillStyle = '#666666';
-    ctx.font = `${statusBarHeight * 0.5}px Arial`;
-    ctx.textBaseline = 'middle';
+        ctx.fillStyle = '#F5F5F5';
+        ctx.fillRect(0, 0, virtualWidth, statusBarHeight);
+        ctx.fillStyle = '#666666';
+        ctx.font = `${statusBarHeight * 0.5}px Arial`;
+        ctx.textBaseline = 'middle';
 
-    // Draw level name on the left
-    ctx.textAlign = 'left';
-    ctx.fillText(levelName, 10, statusBarHeight / 2);
+        ctx.textAlign = 'left';
+        ctx.fillText(levelName, 10, statusBarHeight / 2);
 
-    // Draw movement mode, status, moves, and tile counters on the right
-    ctx.textAlign = 'right';
-    ctx.fillText(`${movementMode}${isPlayerDead ? ' - Dead' : hasWon ? ' - Won' : ''} - Moves: ${moveCount} - Claimed: ${claimedTiles}/${totalFloorTiles}`, virtualWidth - 10, statusBarHeight / 2);
+        ctx.textAlign = 'right';
+        ctx.fillText(`${movementMode}${isPlayerDead ? ' - Dead' : hasWon ? ' - Won' : ''} - Moves: ${moveCount} - Claimed: ${claimedTiles}/${totalFloorTiles}`, virtualWidth - 10, statusBarHeight / 2);
 
-    grid.forEach(cell => {
-        if (cell.state === 'floor') ctx.fillStyle = '#8B8B83';
-        else if (cell.state === 'claimed') ctx.fillStyle = '#D3D3D3';
-        else if (cell.state === 'wall') ctx.fillStyle = '#5C5C5A';
-        else if (cell.state === 'pit') ctx.fillStyle = '#000000';
-        else if (cell.state === 'player') ctx.fillStyle = isPlayerDead ? '#FF0000' : hasWon ? '#00FF00' : '#00f';
-        else if (cell.state === 'enemy-right' || cell.state === 'enemy-left' || cell.state === 'enemy-up' || cell.state === 'enemy-down') ctx.fillStyle = '#00FF00';
-        ctx.fillRect(cell.x * cellWidth, statusBarHeight + cell.y * cellHeight, cellWidth, cellHeight);
+        grid.forEach(cell => {
+            if (cell.state === 'floor') ctx.fillStyle = '#8B8B83';
+            else if (cell.state === 'claimed') ctx.fillStyle = '#D3D3D3';
+            else if (cell.state === 'wall') ctx.fillStyle = '#5C5C5A';
+            else if (cell.state === 'pit') ctx.fillStyle = '#000000';
+            else if (cell.state === 'player') ctx.fillStyle = isPlayerDead ? '#FF0000' : hasWon ? '#00FF00' : '#00f';
+            else if (cell.state === 'enemy-right' || cell.state === 'enemy-left' || cell.state === 'enemy-up' || cell.state === 'enemy-down') ctx.fillStyle = '#00FF00';
+            ctx.fillRect(cell.x * cellWidth, statusBarHeight + cell.y * cellHeight, cellWidth, cellHeight);
 
-        // Superimpose direction indicators for enemies
-        if (cell.state === 'enemy-right' || cell.state === 'enemy-left' || cell.state === 'enemy-up' || cell.state === 'enemy-down') {
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = `${cellHeight * 0.8}px Arial`;
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            let symbol;
-            switch (cell.state) {
-                case 'enemy-right': symbol = '>'; break;
-                case 'enemy-left': symbol = '<'; break;
-                case 'enemy-up': symbol = '^'; break;
-                case 'enemy-down': symbol = 'v'; break;
+            if (cell.state === 'enemy-right' || cell.state === 'enemy-left' || cell.state === 'enemy-up' || cell.state === 'enemy-down') {
+                ctx.fillStyle = '#FFFFFF';
+                ctx.font = `${cellHeight * 0.8}px Arial`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                let symbol;
+                switch (cell.state) {
+                    case 'enemy-right': symbol = '>'; break;
+                    case 'enemy-left': symbol = '<'; break;
+                    case 'enemy-up': symbol = '^'; break;
+                    case 'enemy-down': symbol = 'v'; break;
+                }
+                ctx.fillText(symbol, (cell.x + 0.5) * cellWidth, statusBarHeight + (cell.y + 0.5) * cellHeight);
             }
-            ctx.fillText(symbol, (cell.x + 0.5) * cellWidth, statusBarHeight + (cell.y + 0.5) * cellHeight);
-        }
-    });
 
-    ctx.restore();
-}
+            if (cell.state === 'player') {
+                ctx.fillStyle = '#FFFFFF';
+                ctx.font = `${cellHeight * 0.8}px "Segoe UI Emoji", Arial`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                const centerX = (cell.x + 0.5) * cellWidth;
+                const centerY = statusBarHeight + (cell.y + 0.5) * cellHeight;
+                if (isPlayerDead) {
+                    ctx.save();
+                    ctx.translate(centerX, centerY);
+                    ctx.rotate(Math.PI);
+                    ctx.fillText('🧙‍♀️', 0, 0);
+                    ctx.restore();
+                } else {
+                    ctx.fillText('🧙‍♀️', centerX, centerY);
+                }
+            }
+        });
+
+        particles.forEach(p => {
+            ctx.fillStyle = p.isStatic ? 'rgba(255, 0, 0, 0.8)' : `rgba(255, 0, 0, ${1 - p.moveTime / 0.5})`;
+            ctx.fillRect(p.x - p.size / 2, p.y - p.size / 2, p.size, p.size);
+        });
+
+        ctx.restore();
+    }
+
+    let lastTime = 0;
+    function animate(timestamp) {
+        if (lastTime === 0) lastTime = timestamp;
+        const deltaTime = (timestamp - lastTime) / 1000;
+        lastTime = timestamp;
+
+        updateParticles(deltaTime);
+        draw();
+
+        requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
 
     function initializeGrid(level) {
         const levels = {
@@ -144,7 +258,7 @@
         };
 
         grid = [];
-        const staticLevel = levels[level] || levels[1]; // Default to Level 1
+        const staticLevel = levels[level] || levels[1];
         for (let y = 0; y < gridHeight; y++) {
             for (let x = 0; x < gridWidth; x++) {
                 let char = staticLevel.layout[y][x];
@@ -163,8 +277,9 @@
         }
         totalFloorTiles = grid.filter(cell => cell.state !== 'wall' && cell.state !== 'pit').length;
         levelName = `Level ${level} - ${staticLevel.name}`;
-        can_be_killed = 1; // Reset can_be_killed on level initialization
-        moveCount = 0; // Reset move count
+        can_be_killed = 1;
+        moveCount = 0;
+        particles = [];
     }
 
     function resizeCanvas() {
@@ -199,18 +314,19 @@
         if (target.state === 'wall') return false;
 
         if (claimStart) {
-            player.isClaimed = true; // Mark permanently
+            player.isClaimed = true;
             player.state = 'claimed';
         }
 
         if (target.state === 'pit') {
             target.state = 'player';
             isPlayerDead = true;
+            createParticles(newX, newY);
             draw();
             return false;
         } else if (target.state.startsWith('enemy')) {
-            return 'enemy';  // Defer placement for enemy targets
-        } else if (target.isClaimed) { // Use isClaimed flag
+            return 'enemy';
+        } else if (target.isClaimed) {
             target.state = 'player';
             draw();
             return 'slip';
@@ -222,179 +338,165 @@
     }
 
     function moveEnemies() {
-    const enemies = grid.filter(cell => cell.state === 'enemy-right' || cell.state === 'enemy-left' || cell.state === 'enemy-up' || cell.state === 'enemy-down');
-    const enemyUpdates = [];
-    const swaps = new Map(); // Track swaps (enemy A to B's position, B to A's)
+        const enemies = grid.filter(cell => cell.state === 'enemy-right' || cell.state === 'enemy-left' || cell.state === 'enemy-up' || cell.state === 'enemy-down');
+        const enemyUpdates = [];
+        const swaps = new Map();
 
-    // Step 1: Plan moves and detect swaps
-    enemies.forEach(enemy => {
-        const currentState = enemy.state;
-        let dx = 0, dy = 0;
-        let newState = currentState;
-        let moveTo = null;
+        enemies.forEach(enemy => {
+            const currentState = enemy.state;
+            let dx = 0, dy = 0;
+            let newState = currentState;
+            let moveTo = null;
 
-        // Set movement direction
-        if (currentState === 'enemy-right') dx = 1;
-        else if (currentState === 'enemy-left') dx = -1;
-        else if (currentState === 'enemy-up') dy = -1;
-        else if (currentState === 'enemy-down') dy = 1;
+            if (currentState === 'enemy-right') dx = 1;
+            else if (currentState === 'enemy-left') dx = -1;
+            else if (currentState === 'enemy-up') dy = -1;
+            else if (currentState === 'enemy-down') dy = 1;
 
-        let nextX = enemy.x + dx;
-        let nextY = enemy.y + dy;
+            let nextX = enemy.x + dx;
+            let nextY = enemy.y + dy;
 
-        // Check if move is valid
-        if (nextX >= 0 && nextX < gridWidth && nextY >= 0 && nextY < gridHeight) {
-            const nextCell = grid.find(c => c.x === nextX && c.y === nextY);
-            if (nextCell.state !== 'wall' && nextCell.state !== 'pit') {
-                // Check for potential swap
-                const targetEnemy = enemies.find(e => e.x === nextX && e.y === nextY);
-                if (targetEnemy) {
-                    let targetDx = 0, targetDy = 0;
-                    if (targetEnemy.state === 'enemy-right') targetDx = 1;
-                    else if (targetEnemy.state === 'enemy-left') targetDx = -1;
-                    else if (targetEnemy.state === 'enemy-up') targetDy = -1;
-                    else if (targetEnemy.state === 'enemy-down') targetDy = 1;
-                    if (targetEnemy.x + targetDx === enemy.x && targetEnemy.y + targetDy === enemy.y) {
-                        // Swap detected
-                        const key = `${Math.min(enemy.x, nextX)},${Math.min(enemy.y, nextY)}-${Math.max(enemy.x, nextX)},${Math.max(enemy.y, nextY)}`;
-                        if (!swaps.has(key)) {
-                            swaps.set(key, [
-                                { enemy, target: { x: nextX, y: nextY }, newState: enemy.state },
-                                { enemy: targetEnemy, target: { x: enemy.x, y: enemy.y }, newState: targetEnemy.state }
-                            ]);
+            if (nextX >= 0 && nextX < gridWidth && nextY >= 0 && nextY < gridHeight) {
+                const nextCell = grid.find(c => c.x === nextX && c.y === nextY);
+                if (nextCell.state !== 'wall' && nextCell.state !== 'pit') {
+                    const targetEnemy = enemies.find(e => e.x === nextX && e.y === nextY);
+                    if (targetEnemy) {
+                        let targetDx = 0, targetDy = 0;
+                        if (targetEnemy.state === 'enemy-right') targetDx = 1;
+                        else if (targetEnemy.state === 'enemy-left') targetDx = -1;
+                        else if (targetEnemy.state === 'enemy-up') targetDy = -1;
+                        else if (targetEnemy.state === 'enemy-down') targetDy = 1;
+                        if (targetEnemy.x + targetDx === enemy.x && targetEnemy.y + targetDy === enemy.y) {
+                            const key = `${Math.min(enemy.x, nextX)},${Math.min(enemy.y, nextY)}-${Math.max(enemy.x, nextX)},${Math.max(enemy.y, nextY)}`;
+                            if (!swaps.has(key)) {
+                                swaps.set(key, [
+                                    { enemy, target: { x: nextX, y: nextY }, newState: enemy.state },
+                                    { enemy: targetEnemy, target: { x: enemy.x, y: enemy.y }, newState: targetEnemy.state }
+                                ]);
+                            }
+                        } else {
+                            if (currentState === 'enemy-right') newState = 'enemy-left';
+                            else if (currentState === 'enemy-left') newState = 'enemy-right';
+                            else if (currentState === 'enemy-up') newState = 'enemy-down';
+                            else if (currentState === 'enemy-down') newState = 'enemy-up';
                         }
                     } else {
-                        // Non-swap enemy collision: reverse direction
-                        if (currentState === 'enemy-right') newState = 'enemy-left';
-                        else if (currentState === 'enemy-left') newState = 'enemy-right';
-                        else if (currentState === 'enemy-up') newState = 'enemy-down';
-                        else if (currentState === 'enemy-down') newState = 'enemy-up';
+                        moveTo = { x: nextX, y: nextY };
                     }
                 } else {
-                    moveTo = { x: nextX, y: nextY };
+                    if (currentState === 'enemy-right') newState = 'enemy-left';
+                    else if (currentState === 'enemy-left') newState = 'enemy-right';
+                    else if (currentState === 'enemy-up') newState = 'enemy-down';
+                    else if (currentState === 'enemy-down') newState = 'enemy-up';
                 }
             } else {
-                // Wall or pit: reverse direction
                 if (currentState === 'enemy-right') newState = 'enemy-left';
                 else if (currentState === 'enemy-left') newState = 'enemy-right';
                 else if (currentState === 'enemy-up') newState = 'enemy-down';
                 else if (currentState === 'enemy-down') newState = 'enemy-up';
             }
-        } else {
-            // Boundary: reverse direction
-            if (currentState === 'enemy-right') newState = 'enemy-left';
-            else if (currentState === 'enemy-left') newState = 'enemy-right';
-            else if (currentState === 'enemy-up') newState = 'enemy-down';
-            else if (currentState === 'enemy-down') newState = 'enemy-up';
-        }
 
-        enemyUpdates.push({ enemy, newState, moveTo });
-    });
+            enemyUpdates.push({ enemy, newState, moveTo });
+        });
 
-    // Step 2: Detect landing conflicts for non-swap moves
-    const landingPositions = new Map();
-    enemyUpdates.forEach((update, index) => {
-        if (swaps.has(`${update.enemy.x},${update.enemy.y}-${update.moveTo?.x},${update.moveTo?.y}`)) {
-            return; // Skip swap moves
-        }
-        if (update.moveTo) {
-            const key = `${update.moveTo.x},${update.moveTo.y}`;
-            if (!landingPositions.has(key)) landingPositions.set(key, []);
-            landingPositions.get(key).push({ update, index });
-        }
-    });
+        const landingPositions = new Map();
+        enemyUpdates.forEach((update, index) => {
+            if (swaps.has(`${update.enemy.x},${update.enemy.y}-${update.moveTo?.x},${update.moveTo?.y}`)) {
+                return;
+            }
+            if (update.moveTo) {
+                const key = `${update.moveTo.x},${update.moveTo.y}`;
+                if (!landingPositions.has(key)) landingPositions.set(key, []);
+                landingPositions.get(key).push({ update, index });
+            }
+        });
 
-    // Step 3: Reverse enemies in non-swap landing conflicts
-    landingPositions.forEach((targeters, key) => {
-        if (targeters.length > 1) {
-            targeters.forEach(({ update }) => {
-                const currentState = update.enemy.state;
-                if (currentState === 'enemy-right') update.newState = 'enemy-left';
-                else if (currentState === 'enemy-left') update.newState = 'enemy-right';
-                else if (currentState === 'enemy-up') update.newState = 'enemy-down';
-                else if (currentState === 'enemy-down') update.newState = 'enemy-up';
-                update.moveTo = null;
-            });
-        }
-    });
+        landingPositions.forEach((targeters, key) => {
+            if (targeters.length > 1) {
+                targeters.forEach(({ update }) => {
+                    const currentState = update.enemy.state;
+                    if (currentState === 'enemy-right') update.newState = 'enemy-left';
+                    else if (currentState === 'enemy-left') update.newState = 'enemy-right';
+                    else if (currentState === 'enemy-up') update.newState = 'enemy-down';
+                    else if (currentState === 'enemy-down') update.newState = 'enemy-up';
+                    update.moveTo = null;
+                });
+            }
+        });
 
-    // Step 4: Recheck moves for reversed enemies
-    enemyUpdates.forEach((update, index) => {
-        if (!update.moveTo && update.newState !== update.enemy.state && !swaps.has(`${update.enemy.x},${update.enemy.y}-*`)) {
-            let dx = 0, dy = 0;
-            if (update.newState === 'enemy-right') dx = 1;
-            else if (update.newState === 'enemy-left') dx = -1;
-            else if (update.newState === 'enemy-up') dy = -1;
-            else if (update.newState === 'enemy-down') dy = 1;
+        enemyUpdates.forEach((update, index) => {
+            if (!update.moveTo && update.newState !== update.enemy.state && !swaps.has(`${update.enemy.x},${update.enemy.y}-*`)) {
+                let dx = 0, dy = 0;
+                if (update.newState === 'enemy-right') dx = 1;
+                else if (update.newState === 'enemy-left') dx = -1;
+                else if (update.newState === 'enemy-up') dy = -1;
+                else if (update.newState === 'enemy-down') dy = 1;
 
-            const nextX = update.enemy.x + dx;
-            const nextY = update.enemy.y + dy;
-            if (nextX >= 0 && nextX < gridWidth && nextY >= 0 && nextY < gridHeight) {
-                const newCell = grid.find(c => c.x === nextX && c.y === nextY);
-                const key = `${nextX},${nextY}`;
-                const otherTargeters = landingPositions.get(key)?.filter(t => t.index !== index) || [];
-                if (newCell.state !== 'wall' && newCell.state !== 'pit' && otherTargeters.length === 0 && !swaps.has(`*-${nextX},${nextY}`)) {
-                    update.moveTo = { x: nextX, y: nextY };
-                    landingPositions.set(key, [{ update, index }]);
+                const nextX = update.enemy.x + dx;
+                const nextY = update.enemy.y + dy;
+                if (nextX >= 0 && nextX < gridWidth && nextY >= 0 && nextY < gridHeight) {
+                    const newCell = grid.find(c => c.x === nextX && c.y === nextY);
+                    const key = `${nextX},${nextY}`;
+                    const otherTargeters = landingPositions.get(key)?.filter(t => t.index !== index) || [];
+                    if (newCell.state !== 'wall' && newCell.state !== 'pit' && otherTargeters.length === 0 && !swaps.has(`*-${nextX},${nextY}`)) {
+                        update.moveTo = { x: nextX, y: nextY };
+                        landingPositions.set(key, [{ update, index }]);
+                    }
                 }
             }
-        }
-    });
-
-    // Step 5: Apply moves (swaps first, then regular moves)
-    swaps.forEach(swap => {
-        // Store current states and clear original positions
-        const swapUpdates = swap.map(({ enemy, target, newState }) => ({
-            enemy,
-            target,
-            newState,
-            isClaimed: enemy.isClaimed
-        }));
-        // Clear original positions
-        swapUpdates.forEach(({ enemy, isClaimed }) => {
-            enemy.state = isClaimed ? 'claimed' : 'floor';
         });
-        // Apply new positions
-        swapUpdates.forEach(({ enemy, target, newState }) => {
-            const targetCell = grid.find(c => c.x === target.x && c.y === target.y);
-            if (targetCell.state === 'player') {
-                isPlayerDead = true;
-                enemy.state = enemy.isClaimed ? 'claimed' : 'floor';
-                targetCell.state = 'player';
+
+        swaps.forEach(swap => {
+            const swapUpdates = swap.map(({ enemy, target, newState }) => ({
+                enemy,
+                target,
+                newState,
+                isClaimed: enemy.isClaimed
+            }));
+            swapUpdates.forEach(({ enemy, isClaimed }) => {
+                enemy.state = isClaimed ? 'claimed' : 'floor';
+            });
+            swapUpdates.forEach(({ enemy, target, newState }) => {
+                const targetCell = grid.find(c => c.x === target.x && c.y === target.y);
+                if (targetCell.state === 'player') {
+                    isPlayerDead = true;
+                    createParticles(target.x, target.y);
+                    enemy.state = enemy.isClaimed ? 'claimed' : 'floor';
+                    targetCell.state = 'player';
+                } else {
+                    targetCell.state = newState;
+                }
+            });
+        });
+
+        enemyUpdates.forEach(({ enemy, newState, moveTo }) => {
+            const swapKey = [...swaps.keys()].find(key => key.includes(`${enemy.x},${enemy.y}`));
+            if (swapKey) return;
+
+            if (moveTo) {
+                const targetCell = grid.find(c => c.x === moveTo.x && c.y === moveTo.y);
+                if (targetCell.state === 'player') {
+                    isPlayerDead = true;
+                    createParticles(moveTo.x, moveTo.y);
+                    enemy.state = enemy.isClaimed ? 'claimed' : 'floor';
+                    targetCell.state = 'player';
+                } else {
+                    enemy.state = enemy.isClaimed ? 'claimed' : 'floor';
+                    targetCell.state = newState;
+                }
             } else {
-                targetCell.state = newState;
+                enemy.state = newState;
             }
         });
-    });
 
-    // Apply non-swap moves
-    enemyUpdates.forEach(({ enemy, newState, moveTo }) => {
-        const swapKey = [...swaps.keys()].find(key => key.includes(`${enemy.x},${enemy.y}`));
-        if (swapKey) return;
-
-        if (moveTo) {
-            const targetCell = grid.find(c => c.x === moveTo.x && c.y === moveTo.y);
-            if (targetCell.state === 'player') {
-                isPlayerDead = true;
-                enemy.state = enemy.isClaimed ? 'claimed' : 'floor';
-                targetCell.state = 'player';
-            } else {
-                enemy.state = enemy.isClaimed ? 'claimed' : 'floor';
-                targetCell.state = newState;
-            }
-        } else {
-            enemy.state = newState;
-        }
-    });
-
-    draw();
-}
+        draw();
+    }
 
     function slipStep() {
         if (!slipping) return;
 
         const player = findPlayer();
-        if (!player) return;  // Safety check
+        if (!player) return;
 
         if (isPlayerDead) {
             slipping = false;
@@ -417,12 +519,13 @@
             if (target.state.startsWith('enemy')) {
                 target.state = 'player';
                 isPlayerDead = true;
+                createParticles(player.x, player.y);
                 result = false;
             } else {
                 target.state = 'player';
                 result = target.isClaimed ? 'slip' : true;
             }
-            draw();  // Update visuals after deferred placement
+            draw();
         } else {
             if (result === false && !isPlayerDead) {
                 slipping = false;
@@ -443,104 +546,101 @@
     }
 
     function movePlayer(dx, dy) {
-    if (isPlayerDead || movement_lock || hasWon || !can_be_killed) { 
-        isInputActive = false; 
-        return; 
-    }
-
-    moveCount++; // Increment move count for any key-press
-
-    movement_lock = true;
-    can_be_killed = 0;
-
-    const jumpDistance = movementMode === 'jump1' ? 1 : 2;
-    const player = findPlayer();
-    const oldX = player.x;
-    const oldY = player.y;
-    const newX = oldX + dx * jumpDistance;
-    const newY = oldY + dy * jumpDistance;
-
-    let validMove = true;
-    if (newX < 0 || newX >= gridWidth || newY < 0 || newY >= gridHeight) validMove = false;
-    else {
-        const intendedTarget = grid.find(c => c.x === newX && c.y === newY);
-        if (intendedTarget.state === 'wall') validMove = false;
-    }
-
-    const playerOldCell = player;
-    let playerTargetCell;
-    let claimStart = validMove;
-    if (!validMove) {
-        playerTargetCell = playerOldCell;
-        movement_lock = false;
-        isInputActive = false;
-        can_be_killed = 1;
-        moveEnemies();
-        draw();
-        return;
-    } else {
-        playerTargetCell = grid.find(c => c.x === newX && c.y === newY);
-    }
-
-    if (claimStart) {
-        playerOldCell.isClaimed = true;
-        playerOldCell.state = 'claimed';
-    }
-
-    let result;
-    let enemyThere = playerTargetCell.state.startsWith('enemy');
-
-    if (playerTargetCell.state === 'pit') {
-        playerTargetCell.state = 'player';
-        isPlayerDead = true;
-        result = false;
-    } else if (!enemyThere) {
-        playerTargetCell.state = 'player';
-        if (playerTargetCell.isClaimed) {
-            result = 'slip';
-        } else {
-            result = true;
+        if (isPlayerDead || movement_lock || hasWon || !can_be_killed) {
+            isInputActive = false;
+            return;
         }
-    }
-    // Defer placement and death if enemyThere (handled after moveEnemies)
 
-    // Check win condition after claiming a tile
-    hasWon = grid.every(cell => cell.state === 'wall' || cell.state === 'pit' || cell.isClaimed);
+        moveCount++;
 
-    draw();
-    moveEnemies();
-    can_be_killed = 1;
+        movement_lock = true;
+        can_be_killed = 0;
 
-    if (enemyThere) {
-        if (playerTargetCell.state.startsWith('enemy')) {
-            // Enemy didn't move away
+        const jumpDistance = movementMode === 'jump1' ? 1 : 2;
+        const player = findPlayer();
+        const oldX = player.x;
+        const oldY = player.y;
+        const newX = oldX + dx * jumpDistance;
+        const newY = oldY + dy * jumpDistance;
+
+        let validMove = true;
+        if (newX < 0 || newX >= gridWidth || newY < 0 || newY >= gridHeight) validMove = false;
+        else {
+            const intendedTarget = grid.find(c => c.x === newX && c.y === newY);
+            if (intendedTarget.state === 'wall') validMove = false;
+        }
+
+        const playerOldCell = player;
+        let playerTargetCell;
+        let claimStart = validMove;
+        if (!validMove) {
+            playerTargetCell = playerOldCell;
+            movement_lock = false;
+            isInputActive = false;
+            can_be_killed = 1;
+            moveEnemies();
+            draw();
+            return;
+        } else {
+            playerTargetCell = grid.find(c => c.x === newX && c.y === newY);
+        }
+
+        if (claimStart) {
+            playerOldCell.isClaimed = true;
+            playerOldCell.state = 'claimed';
+        }
+
+        let result;
+        let enemyThere = playerTargetCell.state.startsWith('enemy');
+
+        if (playerTargetCell.state === 'pit') {
             playerTargetCell.state = 'player';
             isPlayerDead = true;
+            createParticles(newX, newY);
             result = false;
-            draw();  // Update visuals after deferred placement
-        } else {
-            // Enemy moved away successfully
+        } else if (!enemyThere) {
             playerTargetCell.state = 'player';
             if (playerTargetCell.isClaimed) {
                 result = 'slip';
             } else {
                 result = true;
             }
-            draw();  // Update visuals after deferred placement
         }
-        // Recheck win condition after enemy movement
-        hasWon = grid.every(cell => cell.state === 'wall' || cell.state === 'pit' || cell.isClaimed);
-    }
 
-    if (result === 'slip') {
-        slipping = true;
-        slipDir = { dx, dy };
-        setTimeout(slipStep, 100);
-    } else {
-        movement_lock = false;
+        hasWon = grid.every(cell => cell.state === 'wall' || cell.state === 'pit' || cell.isClaimed);
+
+        draw();
+        moveEnemies();
+        can_be_killed = 1;
+
+        if (enemyThere) {
+            if (playerTargetCell.state.startsWith('enemy')) {
+                playerTargetCell.state = 'player';
+                isPlayerDead = true;
+                createParticles(newX, newY);
+                result = false;
+                draw();
+            } else {
+                playerTargetCell.state = 'player';
+                if (playerTargetCell.isClaimed) {
+                    result = 'slip';
+                } else {
+                    result = true;
+                }
+                draw();
+            }
+            hasWon = grid.every(cell => cell.state === 'wall' || cell.state === 'pit' || cell.isClaimed);
+        }
+
+        if (result === 'slip') {
+            slipping = true;
+            slipDir = { dx, dy };
+            setTimeout(slipStep, 100);
+        } else {
+            movement_lock = false;
+        }
+        isInputActive = false;
     }
-    isInputActive = false;
-}
 
     function toggleMovementMode() {
         if (isPlayerDead || slipping || hasWon || !can_be_killed) return;
@@ -555,16 +655,12 @@
         movementMode = 'jump1';
         document.getElementById('toggle-btn').textContent = 'Jump1';
         initializeGrid(currentLevel);
-        moveCount = 0; // Reset move count
+        moveCount = 0;
+        particles = [];
         draw();
         movement_lock = false;
         slipping = false;
         can_be_killed = 1;
-    }
-
-    function resetGame() {
-        currentLevel = 1;
-        resetLevel();
     }
 
     function changeLevel(direction) {
@@ -574,14 +670,14 @@
         document.getElementById('toggle-btn').textContent = 'Jump1';
         currentLevel = direction === 'next' ? (currentLevel === 1 ? 2 : 1) : (currentLevel === 2 ? 1 : 1);
         initializeGrid(currentLevel);
-        moveCount = 0; // Reset move count
+        moveCount = 0;
+        particles = [];
         draw();
         movement_lock = false;
         slipping = false;
         can_be_killed = 1;
     }
 
-    // Input events
     window.addEventListener('resize', resizeCanvas);
     window.addEventListener('keydown', (e) => {
         if (isInputActive || slipping || !can_be_killed) return;
@@ -607,7 +703,6 @@
         isInputActive = false;
     });
 
-    // On-screen buttons
     const buttons = { 'up-btn': [0, -1], 'down-btn': [0, 1], 'left-btn': [-1, 0], 'right-btn': [1, 0] };
     Object.keys(buttons).forEach(id => {
         const btn = document.getElementById(id);
@@ -618,21 +713,18 @@
         btn.addEventListener('touchstart', press); btn.addEventListener('touchend', release);
     });
 
-    // Toggle button
     const toggleBtn = document.getElementById('toggle-btn');
     toggleBtn.addEventListener('mousedown', e => { e.preventDefault(); if (!isInputActive && !isPlayerDead && !slipping && !hasWon && can_be_killed) { isInputActive = true; toggleMovementMode(); } });
     toggleBtn.addEventListener('mouseup', e => { e.preventDefault(); isInputActive = false; });
     toggleBtn.addEventListener('touchstart', e => { e.preventDefault(); if (!isPlayerDead && !slipping && !hasWon && can_be_killed) { isInputActive = true; toggleMovementMode(); } });
     toggleBtn.addEventListener('touchend', e => { e.preventDefault(); isInputActive = false; });
 
-    // Reset button
     const resetBtn = document.getElementById('reset-btn');
     function resetPress(e) { e.preventDefault(); if (!isInputActive) { isInputActive = true; resetLevel(); } }
     function resetRelease(e) { e.preventDefault(); isInputActive = false; }
     resetBtn.addEventListener('mousedown', resetPress); resetBtn.addEventListener('mouseup', resetRelease);
     resetBtn.addEventListener('touchstart', resetPress); resetBtn.addEventListener('touchend', resetRelease);
 
-    // Init
     initializeGrid(currentLevel);
     resizeCanvas();
 </script>
