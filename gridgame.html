@@ -1,14 +1,13 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grid-Based Browser Game - Static Levels with Enemies</title>
+    <title>SWSS 2: Recrudescence</title>
     <style>
         html { height: 100%; }
         body { margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; background-color: #000; overflow: hidden; position: relative; }
-        canvas { display: block; background-color: #222; }
+        canvas { display: none; background-color: #222; }
         .controls {
             position: absolute;
             bottom: calc(10px + env(safe-area-inset-bottom));
@@ -18,13 +17,14 @@
             grid-template-rows: repeat(2, minmax(40px, 8vw));
             gap: 5px;
             z-index: 10;
+            display: none;
         }
         .toggle-btn, .reset-btn {
             position: absolute;
             bottom: calc(10px + env(safe-area-inset-bottom));
             left: calc(10px + env(safe-area-inset-left));
-            width: minmax(80px, 12vw);
-            height: 6vh;
+            width: minmax(100px, 15vw);
+            height: 8vh;
             background-color: #555;
             color: #fff;
             border: 2px solid #fff;
@@ -32,13 +32,14 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: clamp(14px, 2vw, 16px);
+            font-size: clamp(16px, 2.5vw, 18px);
             touch-action: manipulation;
             user-select: none;
             cursor: pointer;
             z-index: 10;
+            display: none;
         }
-        .reset-btn { bottom: calc(80px + env(safe-area-inset-bottom)); }
+        .reset-btn { bottom: calc(100px + env(safe-area-inset-bottom)); }
         .toggle-btn:active, .reset-btn:active { background-color: #777; }
         .control-btn {
             background-color: rgba(85, 85, 85, 0.7);
@@ -57,6 +58,54 @@
         }
         .control-btn:active { background-color: rgba(119, 119, 119, 0.7); }
         .empty { background: none; border: none; }
+        .title-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            z-index: 20;
+        }
+        .title-text {
+            color: #fff;
+            font-size: clamp(24px, 6vw, 48px);
+            font-family: Arial, sans-serif;
+            margin-top: 5vh;
+            text-align: center;
+        }
+        .level-select {
+            color: #fff;
+            font-size: clamp(18px, 4vw, 32px);
+            font-family: Arial, sans-serif;
+            margin: 5vh 0;
+            text-align: center;
+        }
+        .title-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        .title-btn {
+            background-color: #555;
+            color: #fff;
+            border: 2px solid #fff;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-size: clamp(14px, 2.5vw, 18px);
+            touch-action: manipulation;
+            user-select: none;
+            cursor: pointer;
+            min-width: 80px;
+            text-align: center;
+        }
+        .title-btn:active {
+            background-color: #777;
+        }
         @media (max-width: 600px) {
             .controls {
                 grid-template-columns: repeat(3, minmax(30px, 10vw));
@@ -66,14 +115,25 @@
                 bottom: calc(5px + env(safe-area-inset-bottom));
             }
             .toggle-btn, .reset-btn {
-                width: minmax(60px, 15vw);
-                height: 5vh;
-                font-size: clamp(12px, 2.5vw, 14px);
+                width: minmax(80px, 18vw);
+                height: 6vh;
+                font-size: clamp(14px, 3vw, 16px);
                 left: calc(5px + env(safe-area-inset-left));
             }
-            .reset-btn { bottom: calc(60px + env(safe-area-inset-bottom)); }
+            .reset-btn { bottom: calc(80px + env(safe-area-inset-bottom)); }
             .control-btn {
                 font-size: clamp(16px, 3.5vw, 20px);
+            }
+            .title-text {
+                font-size: clamp(20px, 5vw, 36px);
+            }
+            .level-select {
+                font-size: clamp(16px, 3.5vw, 24px);
+            }
+            .title-btn {
+                font-size: clamp(12px, 2vw, 16px);
+                padding: 8px 15px;
+                min-width: 60px;
             }
         }
         @media (orientation: landscape) and (max-height: 500px) {
@@ -83,15 +143,37 @@
                 gap: 2px;
             }
             .toggle-btn, .reset-btn {
-                width: minmax(50px, 10vw);
-                height: 4vh;
-                font-size: clamp(10px, 2vw, 12px);
+                width: minmax(70px, 14vw);
+                height: 6vh;
+                font-size: clamp(12px, 2.5vw, 14px);
             }
-            .reset-btn { bottom: calc(50px + env(safe-area-inset-bottom)); }
+            .reset-btn { bottom: calc(70px + env(safe-area-inset-bottom)); }
+            .title-text {
+                font-size: clamp(18px, 4vw, 32px);
+                margin-top: 3vh;
+            }
+            .level-select {
+                font-size: clamp(14px, 3vw, 20px);
+                margin: 3vh 0;
+            }
+            .title-btn {
+                font-size: clamp(10px, 1.8vw, 14px);
+                padding: 6px 12px;
+                min-width: 50px;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="title-screen">
+        <div class="title-text">SWSS 2: Recrudescence</div>
+        <div class="level-select" id="level-select">Level 1 - Temple</div>
+        <div class="title-buttons">
+            <div class="title-btn" id="prev-level-btn">Previous</div>
+            <div class="title-btn" id="play-btn">Play</div>
+            <div class="title-btn" id="next-level-btn">Next</div>
+        </div>
+    </div>
     <canvas id="gameCanvas"></canvas>
     <div class="controls">
         <div class="empty"></div>
@@ -103,10 +185,16 @@
         <div class="empty"></div>
     </div>
     <div class="toggle-btn" id="toggle-btn">Jump1</div>
-    <div class="reset-btn" id="reset-btn">Reset</div>
+    <div class="reset-btn" id="reset-btn">Menu</div>
 <script>
     const canvas = document.getElementById('gameCanvas');
     const ctx = canvas.getContext('2d');
+    const titleScreen = document.querySelector('.title-screen');
+    const levelSelectDisplay = document.getElementById('level-select');
+    const playBtn = document.getElementById('play-btn');
+    const nextLevelBtn = document.getElementById('next-level-btn');
+    const prevLevelBtn = document.getElementById('prev-level-btn');
+    const resetBtn = document.getElementById('reset-btn');
 
     const virtualWidth = 1600;
     const virtualHeight = 900;
@@ -118,6 +206,7 @@
     const cellHeight = (virtualHeight * (gridHeight / 9)) / gridHeight;
     const statusBarHeight = virtualHeight / 9;
 
+    let selectedLevel = 1;
     let currentLevel = 1;
     let levelName = "Level 1 - Temple";
     let hasWon = false;
@@ -135,6 +224,33 @@
 
     let totalFloorTiles = 0;
     let particles = [];
+
+    const levels = {
+        1: { name: "Temple", layout: [
+            "################",
+            "#..>....~~.....#",
+            "#..####..####..#",
+            "#..#..#..#..#..#",
+            "#..####..####..#",
+            "#....~~........#",
+            "#......P.....<.#",
+            "################"
+        ]},
+        2: { name: "Cave", layout: [
+            "################",
+            "#..#....~~...P.#",
+            "#..#....~~...<.#",
+            "#..###.####..#.#",
+            "#....#.#..#..#v#",
+            "#....#....#....#",
+            "#.>..##.###....#",
+            "################"
+        ]}
+    };
+
+    function updateLevelSelectDisplay() {
+        levelSelectDisplay.textContent = `Level ${selectedLevel} - ${levels[selectedLevel].name}`;
+    }
 
     function createParticles(x, y) {
         const particleCount = 12;
@@ -286,6 +402,9 @@
         });
 
         ctx.restore();
+
+        // Update reset button text
+        resetBtn.textContent = isPlayerDead ? 'Reset' : 'Menu';
     }
 
     let lastTime = 0;
@@ -299,38 +418,8 @@
 
         requestAnimationFrame(animate);
     }
-    requestAnimationFrame(animate);
 
     function initializeGrid(level) {
-        const levels = {
-            1: {
-                layout: [
-                    "################",
-                    "#..>....~~.....#",
-                    "#..####..####..#",
-                    "#..#..#..#..#..#",
-                    "#..####..####..#",
-                    "#....~~........#",
-                    "#......P.....<.#",
-                    "################"
-                ],
-                name: "Temple"
-            },
-            2: {
-                layout: [
-                    "################",
-                    "#..#....~~...P.#",
-                    "#..#....~~...<.#",
-                    "#..###.####..#.#",
-                    "#....#.#..#..#v#",
-                    "#....#....#....#",
-                    "#.>..##.###....#",
-                    "################"
-                ],
-                name: "Cave"
-            }
-        };
-
         grid = [];
         const staticLevel = levels[level] || levels[1];
         for (let y = 0; y < gridHeight; y++) {
@@ -351,6 +440,7 @@
         }
         totalFloorTiles = grid.filter(cell => cell.state !== 'wall' && cell.state !== 'pit').length;
         levelName = `Level ${level} - ${staticLevel.name}`;
+        currentLevel = level;
         can_be_killed = 1;
         moveCount = 0;
         particles = [];
@@ -376,6 +466,36 @@
 
         scale = canvas.width / virtualWidth;
         draw();
+    }
+
+    function showTitleScreen() {
+        isPlayerDead = false;
+        hasWon = false;
+        movementMode = 'jump1';
+        movement_lock = false;
+        slipping = false;
+        can_be_killed = 1;
+        particles = [];
+        moveCount = 0;
+        document.getElementById('toggle-btn').textContent = 'Jump1';
+        titleScreen.style.display = 'flex';
+        canvas.style.display = 'none';
+        document.querySelector('.controls').style.display = 'none';
+        document.querySelector('.toggle-btn').style.display = 'none';
+        document.querySelector('.reset-btn').style.display = 'none';
+        updateLevelSelectDisplay();
+    }
+
+    function showGame() {
+        titleScreen.style.display = 'none';
+        canvas.style.display = 'block';
+        document.querySelector('.controls').style.display = 'grid';
+        document.querySelector('.toggle-btn').style.display = 'flex';
+        document.querySelector('.reset-btn').style.display = 'flex';
+        initializeGrid(selectedLevel);
+        resetBtn.textContent = 'Menu';
+        resizeCanvas();
+        requestAnimationFrame(animate);
     }
 
     function findPlayer() {
@@ -501,51 +621,6 @@
                     update.moveTo = null;
                 });
             }
-        });
-
-        enemyUpdates.forEach((update, index) => {
-            if (!update.moveTo && update.newState !== update.enemy.state && !swaps.has(`${update.enemy.x},${update.enemy.y}-*`)) {
-                let dx = 0, dy = 0;
-                if (update.newState === 'enemy-right') dx = 1;
-                else if (update.newState === 'enemy-left') dx = -1;
-                else if (update.newState === 'enemy-up') dy = -1;
-                else if (update.newState === 'enemy-down') dy = 1;
-
-                const nextX = update.enemy.x + dx;
-                const nextY = update.enemy.y + dy;
-                if (nextX >= 0 && nextX < gridWidth && nextY >= 0 && nextY < gridHeight) {
-                    const newCell = grid.find(c => c.x === nextX && c.y === nextY);
-                    const key = `${nextX},${nextY}`;
-                    const otherTargeters = landingPositions.get(key)?.filter(t => t.index !== index) || [];
-                    if (newCell.state !== 'wall' && newCell.state !== 'pit' && otherTargeters.length === 0 && !swaps.has(`*-${nextX},${nextY}`)) {
-                        update.moveTo = { x: nextX, y: nextY };
-                        landingPositions.set(key, [{ update, index }]);
-                    }
-                }
-            }
-        });
-
-        swaps.forEach(swap => {
-            const swapUpdates = swap.map(({ enemy, target, newState }) => ({
-                enemy,
-                target,
-                newState,
-                isClaimed: enemy.isClaimed
-            }));
-            swapUpdates.forEach(({ enemy, isClaimed }) => {
-                enemy.state = isClaimed ? 'claimed' : 'floor';
-            });
-            swapUpdates.forEach(({ enemy, target, newState }) => {
-                const targetCell = grid.find(c => c.x === target.x && c.y === target.y);
-                if (targetCell.state === 'player') {
-                    isPlayerDead = true;
-                    createParticles(target.x, target.y);
-                    enemy.state = enemy.isClaimed ? 'claimed' : 'floor';
-                    targetCell.state = 'player';
-                } else {
-                    targetCell.state = newState;
-                }
-            });
         });
 
         enemyUpdates.forEach(({ enemy, newState, moveTo }) => {
@@ -747,7 +822,8 @@
         hasWon = false;
         movementMode = 'jump1';
         document.getElementById('toggle-btn').textContent = 'Jump1';
-        currentLevel = direction === 'next' ? (currentLevel === 1 ? 2 : 1) : (currentLevel === 2 ? 1 : 1);
+        selectedLevel = direction === 'next' ? (selectedLevel === 1 ? 2 : 1) : (selectedLevel === 2 ? 1 : 2);
+        currentLevel = selectedLevel;
         initializeGrid(currentLevel);
         moveCount = 0;
         particles = [];
@@ -755,12 +831,13 @@
         movement_lock = false;
         slipping = false;
         can_be_killed = 1;
+        showTitleScreen();
     }
 
     window.addEventListener('resize', resizeCanvas);
     window.addEventListener('orientationchange', resizeCanvas);
     window.addEventListener('keydown', (e) => {
-        if (isInputActive || slipping || !can_be_killed) return;
+        if (isInputActive || slipping || !can_be_killed || titleScreen.style.display !== 'none') return;
         isInputActive = true;
         switch (e.key.toLowerCase()) {
             case 'arrowup': if (!isPlayerDead && !movement_lock && !hasWon) movePlayer(0, -1); break;
@@ -774,7 +851,11 @@
                 break;
             case 'q': changeLevel('previous'); break;
             case 'w': changeLevel('next'); break;
+            case 'escape':
+                showTitleScreen();
+                break;
         }
+        isInputActive = false;
     });
     window.addEventListener('keyup', (e) => {
         if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.key)) {
@@ -835,13 +916,21 @@
         isInputActive = false;
     });
 
-    const resetBtn = document.getElementById('reset-btn');
+    function resetOrMenu() {
+        if (isPlayerDead) {
+            resetLevel();
+        } else {
+            showTitleScreen();
+        }
+    }
+
     function resetPress(e) {
         e.preventDefault();
         e.stopPropagation();
         if (!isInputActive) {
             isInputActive = true;
-            resetLevel();
+            resetOrMenu();
+            isInputActive = false;
         }
     }
     function resetRelease(e) {
@@ -854,19 +943,51 @@
     resetBtn.addEventListener('touchstart', resetPress);
     resetBtn.addEventListener('touchend', resetRelease);
 
+    // Title screen button events
+    playBtn.addEventListener('click', e => {
+        e.preventDefault();
+        showGame();
+    });
+    playBtn.addEventListener('touchstart', e => {
+        e.preventDefault();
+        showGame();
+    });
+
+    nextLevelBtn.addEventListener('click', e => {
+        e.preventDefault();
+        selectedLevel = selectedLevel === 1 ? 2 : 1;
+        updateLevelSelectDisplay();
+    });
+    nextLevelBtn.addEventListener('touchstart', e => {
+        e.preventDefault();
+        selectedLevel = selectedLevel === 1 ? 2 : 1;
+        updateLevelSelectDisplay();
+    });
+
+    prevLevelBtn.addEventListener('click', e => {
+        e.preventDefault();
+        selectedLevel = selectedLevel === 2 ? 1 : 2;
+        updateLevelSelectDisplay();
+    });
+    prevLevelBtn.addEventListener('touchstart', e => {
+        e.preventDefault();
+        selectedLevel = selectedLevel === 2 ? 1 : 2;
+        updateLevelSelectDisplay();
+    });
+
     // Add touch event for level transition on win state
     document.body.addEventListener('touchstart', e => {
         e.preventDefault();
-        if (hasWon && !isInputActive) {
+        if (hasWon && !isInputActive && titleScreen.style.display === 'none') {
             isInputActive = true;
             changeLevel('next');
             isInputActive = false;
         }
     });
 
-    initializeGrid(currentLevel);
-    resizeCanvas();
+    // Initialize title screen
+    updateLevelSelectDisplay();
+    showTitleScreen();
 </script>
 </body>
 </html>
-```
