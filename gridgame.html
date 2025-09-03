@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -786,26 +787,86 @@
     Object.keys(buttons).forEach(id => {
         const btn = document.getElementById(id);
         const [dx, dy] = buttons[id];
-        function press(e) { e.preventDefault(); if (!isInputActive && !isPlayerDead && !movement_lock && !slipping && !hasWon && can_be_killed) { isInputActive = true; movePlayer(dx, dy); } }
-        function release(e) { e.preventDefault(); isInputActive = false; movement_lock = false; }
-        btn.addEventListener('mousedown', press); btn.addEventListener('mouseup', release);
-        btn.addEventListener('touchstart', press); btn.addEventListener('touchend', release);
+        function press(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (!isInputActive && !isPlayerDead && !movement_lock && !slipping && !hasWon && can_be_killed) {
+                isInputActive = true;
+                movePlayer(dx, dy);
+            }
+        }
+        function release(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            isInputActive = false;
+            movement_lock = false;
+        }
+        btn.addEventListener('mousedown', press);
+        btn.addEventListener('mouseup', release);
+        btn.addEventListener('touchstart', press);
+        btn.addEventListener('touchend', release);
     });
 
     const toggleBtn = document.getElementById('toggle-btn');
-    toggleBtn.addEventListener('mousedown', e => { e.preventDefault(); if (!isInputActive && !isPlayerDead && !slipping && !hasWon && can_be_killed) { isInputActive = true; toggleMovementMode(); } });
-    toggleBtn.addEventListener('mouseup', e => { e.preventDefault(); isInputActive = false; });
-    toggleBtn.addEventListener('touchstart', e => { e.preventDefault(); if (!isPlayerDead && !slipping && !hasWon && can_be_killed) { isInputActive = true; toggleMovementMode(); } });
-    toggleBtn.addEventListener('touchend', e => { e.preventDefault(); isInputActive = false; });
+    toggleBtn.addEventListener('mousedown', e => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (!isInputActive && !isPlayerDead && !slipping && !hasWon && can_be_killed) {
+            isInputActive = true;
+            toggleMovementMode();
+        }
+    });
+    toggleBtn.addEventListener('mouseup', e => {
+        e.preventDefault();
+        e.stopPropagation();
+        isInputActive = false;
+    });
+    toggleBtn.addEventListener('touchstart', e => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (!isPlayerDead && !slipping && !hasWon && can_be_killed) {
+            isInputActive = true;
+            toggleMovementMode();
+        }
+    });
+    toggleBtn.addEventListener('touchend', e => {
+        e.preventDefault();
+        e.stopPropagation();
+        isInputActive = false;
+    });
 
     const resetBtn = document.getElementById('reset-btn');
-    function resetPress(e) { e.preventDefault(); if (!isInputActive) { isInputActive = true; resetLevel(); } }
-    function resetRelease(e) { e.preventDefault(); isInputActive = false; }
-    resetBtn.addEventListener('mousedown', resetPress); resetBtn.addEventListener('mouseup', resetRelease);
-    resetBtn.addEventListener('touchstart', resetPress); resetBtn.addEventListener('touchend', resetRelease);
+    function resetPress(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (!isInputActive) {
+            isInputActive = true;
+            resetLevel();
+        }
+    }
+    function resetRelease(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        isInputActive = false;
+    }
+    resetBtn.addEventListener('mousedown', resetPress);
+    resetBtn.addEventListener('mouseup', resetRelease);
+    resetBtn.addEventListener('touchstart', resetPress);
+    resetBtn.addEventListener('touchend', resetRelease);
+
+    // Add touch event for level transition on win state
+    document.body.addEventListener('touchstart', e => {
+        e.preventDefault();
+        if (hasWon && !isInputActive) {
+            isInputActive = true;
+            changeLevel('next');
+            isInputActive = false;
+        }
+    });
 
     initializeGrid(currentLevel);
     resizeCanvas();
 </script>
 </body>
 </html>
+```
