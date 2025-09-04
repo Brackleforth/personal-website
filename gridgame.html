@@ -2,11 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>SWSS 2: Recrudescence</title>
     <style>
         html { height: 100%; }
-        body { margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; background-color: #000; overflow: hidden; position: relative; }
+        body { 
+            margin: 0; 
+            padding: 0; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            background-color: #000; 
+            overflow: hidden; 
+            position: relative; 
+            min-height: 100vh; 
+            box-sizing: border-box;
+        }
         canvas { display: none; background-color: #222; }
         .controls {
             position: absolute;
@@ -74,6 +85,8 @@
             z-index: 20;
             box-sizing: border-box;
             overflow: hidden;
+            padding-top: env(safe-area-inset-top);
+            padding-bottom: env(safe-area-inset-bottom);
         }
         .title-text {
             color: #fff;
@@ -488,6 +501,8 @@
         document.querySelector('.toggle-btn').style.display = 'none';
         document.querySelector('.reset-btn').style.display = 'none';
         updateLevelSelectDisplay();
+        // Force a resize to ensure title screen displays correctly
+        resizeCanvas();
     }
 
     function showGame() {
@@ -884,7 +899,10 @@
     }
 
     window.addEventListener('resize', resizeCanvas);
-    window.addEventListener('orientationchange', resizeCanvas);
+    window.addEventListener('orientationchange', () => {
+        // Delay resize to ensure Safari updates viewport
+        setTimeout(resizeCanvas, 100);
+    });
     window.addEventListener('keydown', (e) => {
         if (isInputActive || slipping || !can_be_killed || titleScreen.style.display !== 'none') return;
         isInputActive = true;
@@ -1034,9 +1052,13 @@
         }
     });
 
-    // Initialize title screen
+    // Initialize title screen and force resize on load
     updateLevelSelectDisplay();
     showTitleScreen();
+    // Force resize after a short delay to handle Safari viewport quirks
+    window.addEventListener('load', () => {
+        setTimeout(resizeCanvas, 100);
+    });
 </script>
 </body>
 </html>
