@@ -62,14 +62,18 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
+            max-width: 100%;
+            max-height: 100%;
             background-color: #000;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
             z-index: 20;
+            box-sizing: border-box;
+            overflow: hidden;
         }
         .title-text {
             color: #fff;
@@ -621,6 +625,51 @@
                     update.moveTo = null;
                 });
             }
+        });
+
+        enemyUpdates.forEach((update, index) => {
+            if (!update.moveTo && update.newState !== update.enemy.state && !swaps.has(`${update.enemy.x},${update.enemy.y}-*`)) {
+                let dx = 0, dy = 0;
+                if (update.newState === 'enemy-right') dx = 1;
+                else if (update.newState === 'enemy-left') dx = -1;
+                else if (update.newState === 'enemy-up') dy = -1;
+                else if (update.newState === 'enemy-down') dy = 1;
+
+                const nextX = update.enemy.x + dx;
+                const nextY = update.enemy.y + dy;
+                if (nextX >= 0 && nextX < gridWidth && nextY >= 0 && nextY < gridHeight) {
+                    const newCell = grid.find(c => c.x === nextX && c.y === nextY);
+                    const key = `${nextX},${nextY}`;
+                    const otherTargeters = landingPositions.get(key)?.filter(t => t.index !== index) || [];
+                    if (newCell.state !== 'wall' && newCell.state !== 'pit' && otherTargeters.length === 0 && !swaps.has(`*-${nextX},${nextY}`)) {
+                        update.moveTo = { x: nextX, y: nextY };
+                        landingPositions.set(key, [{ update, index }]);
+                    }
+                }
+            }
+        });
+
+        swaps.forEach(swap => {
+            const swapUpdates = swap.map(({ enemy, target, newState }) => ({
+                enemy,
+                target,
+                newState,
+                isClaimed: enemy.isClaimed
+            }));
+            swapUpdates.forEach(({ enemy, isClaimed }) => {
+                enemy.state = isClaimed ? 'claimed' : 'floor';
+            });
+            swapUpdates.forEach(({ enemy, target, newState }) => {
+                const targetCell = grid.find(c => c.x === target.x && c.y === target.y);
+                if (targetCell.state === 'player') {
+                    isPlayerDead = true;
+                    createParticles(target.x, target.y);
+                    enemy.state = isClaimed ? 'claimed' : 'floor';
+                    targetCell.state = 'player';
+                } else {
+                    targetCell.state = newState;
+                }
+            });
         });
 
         enemyUpdates.forEach(({ enemy, newState, moveTo }) => {
