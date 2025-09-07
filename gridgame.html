@@ -2,27 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SWSS 2: Recrudescence</title>
     <style>
         html { height: 100%; }
-        body { 
-            margin: 0; 
-            padding: 0; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            background-color: #000; 
-            overflow: hidden; 
-            position: relative; 
-            min-height: 100vh; 
-            box-sizing: border-box;
-        }
+        body { margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; background-color: #000; overflow: hidden; position: relative; }
         canvas { display: none; background-color: #222; }
         .controls {
             position: absolute;
-            bottom: calc(5px + env(safe-area-inset-bottom));
-            right: calc(5px + env(safe-area-inset-right));
+            bottom: calc(10px + env(safe-area-inset-bottom));
+            right: calc(10px + env(safe-area-inset-right));
             display: grid;
             grid-template-columns: repeat(3, minmax(40px, 8vw));
             grid-template-rows: repeat(2, minmax(40px, 8vw));
@@ -32,8 +21,8 @@
         }
         .toggle-btn, .reset-btn {
             position: absolute;
-            bottom: calc(5px + env(safe-area-inset-bottom));
-            left: calc(5px + env(safe-area-inset-left));
+            bottom: calc(10px + env(safe-area-inset-bottom));
+            left: calc(10px + env(safe-area-inset-left));
             width: minmax(100px, 15vw);
             height: 8vh;
             background-color: #555;
@@ -50,7 +39,7 @@
             z-index: 10;
             display: none;
         }
-        .reset-btn { bottom: calc(80px + env(safe-area-inset-bottom)); }
+        .reset-btn { bottom: calc(100px + env(safe-area-inset-bottom)); }
         .toggle-btn:active, .reset-btn:active { background-color: #777; }
         .control-btn {
             background-color: rgba(85, 85, 85, 0.7);
@@ -73,20 +62,14 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100vh;
-            max-width: 100%;
-            max-height: 100%;
+            width: 100%;
+            height: 100%;
             background-color: #000;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
             z-index: 20;
-            box-sizing: border-box;
-            overflow: hidden;
-            padding-top: env(safe-area-inset-top);
-            padding-bottom: env(safe-area-inset-bottom);
         }
         .title-text {
             color: #fff;
@@ -137,7 +120,7 @@
                 font-size: clamp(14px, 3vw, 16px);
                 left: calc(5px + env(safe-area-inset-left));
             }
-            .reset-btn { bottom: calc(70px + env(safe-area-inset-bottom)); }
+            .reset-btn { bottom: calc(80px + env(safe-area-inset-bottom)); }
             .control-btn {
                 font-size: clamp(16px, 3.5vw, 20px);
             }
@@ -158,17 +141,13 @@
                 grid-template-columns: repeat(3, minmax(25px, 7vw));
                 grid-template-rows: repeat(2, minmax(25px, 7vw));
                 gap: 2px;
-                bottom: calc(5px + env(safe-area-inset-bottom));
-                right: calc(5px + env(safe-area-inset-right));
             }
             .toggle-btn, .reset-btn {
                 width: minmax(70px, 14vw);
                 height: 6vh;
                 font-size: clamp(12px, 2.5vw, 14px);
-                bottom: calc(5px + env(safe-area-inset-bottom));
-                left: calc(5px + env(safe-area-inset-left));
             }
-            .reset-btn { bottom: calc(60px + env(safe-area-inset-bottom)); }
+            .reset-btn { bottom: calc(70px + env(safe-area-inset-bottom)); }
             .title-text {
                 font-size: clamp(18px, 4vw, 32px);
                 margin-top: 3vh;
@@ -505,7 +484,6 @@
         document.querySelector('.toggle-btn').style.display = 'none';
         document.querySelector('.reset-btn').style.display = 'none';
         updateLevelSelectDisplay();
-        resizeCanvas();
     }
 
     function showGame() {
@@ -902,9 +880,7 @@
     }
 
     window.addEventListener('resize', resizeCanvas);
-    window.addEventListener('orientationchange', () => {
-        setTimeout(resizeCanvas, 100);
-    });
+    window.addEventListener('orientationchange', resizeCanvas);
     window.addEventListener('keydown', (e) => {
         if (isInputActive || slipping || !can_be_killed || titleScreen.style.display !== 'none') return;
         isInputActive = true;
@@ -1054,12 +1030,9 @@
         }
     });
 
-    // Initialize title screen and force resize on load
+    // Initialize title screen
     updateLevelSelectDisplay();
     showTitleScreen();
-    window.addEventListener('load', () => {
-        setTimeout(resizeCanvas, 100);
-    });
 </script>
 </body>
 </html>
