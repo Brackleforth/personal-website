@@ -106,6 +106,17 @@
         .title-btn:active {
             background-color: #777;
         }
+        .cutscene-btn {
+            position: absolute;
+            bottom: calc(20vh + env(safe-area-inset-bottom));
+            left: 50%;
+            transform: translateX(-50%);
+            display: none;
+            z-index: 15;
+            min-width: 100px;
+            padding: 12px 24px;
+            font-size: clamp(16px, 3vw, 20px);
+        }
         @media (max-width: 600px) {
             .controls {
                 grid-template-columns: repeat(3, minmax(30px, 10vw));
@@ -135,6 +146,12 @@
                 padding: 8px 15px;
                 min-width: 60px;
             }
+            .cutscene-btn {
+                bottom: calc(15vh + env(safe-area-inset-bottom));
+                padding: 10px 20px;
+                font-size: clamp(14px, 3.5vw, 18px);
+                min-width: 80px;
+            }
         }
         @media (orientation: landscape) and (max-height: 500px) {
             .controls {
@@ -161,6 +178,12 @@
                 padding: 6px 12px;
                 min-width: 50px;
             }
+            .cutscene-btn {
+                bottom: calc(10vh + env(safe-area-inset-bottom));
+                padding: 8px 16px;
+                font-size: clamp(12px, 2.5vw, 16px);
+                min-width: 70px;
+            }
         }
     </style>
 </head>
@@ -186,6 +209,7 @@
     </div>
     <div class="toggle-btn" id="toggle-btn">Jump1</div>
     <div class="reset-btn" id="reset-btn">Menu</div>
+    <div class="title-btn cutscene-btn" id="cutscene-next-btn">Next</div>
 <script>
     const canvas = document.getElementById('gameCanvas');
     const ctx = canvas.getContext('2d');
@@ -195,6 +219,7 @@
     const nextLevelBtn = document.getElementById('next-level-btn');
     const prevLevelBtn = document.getElementById('prev-level-btn');
     const resetBtn = document.getElementById('reset-btn');
+    const cutsceneNextBtn = document.getElementById('cutscene-next-btn');
 
     const virtualWidth = 1600;
     const virtualHeight = 900;
@@ -225,8 +250,15 @@
     let totalFloorTiles = 0;
     let particles = [];
 
+    let isCutscene = false;
+    let fullText = '';
+    let currentText = '';
+    let currentTextIndex = 0;
+    let typingSpeed = 50; // ms per letter
+    let lastTypeTime = 0;
+
     const levels = {
-        1: { name: "Temple", layout: [
+        1: { type: "level", name: "Temple", layout: [
             "################",
             "#..>....~~.....#",
             "#..####..####..#",
@@ -236,7 +268,7 @@
             "#......P.....<.#",
             "################"
         ]},
-        2: { name: "Cave", layout: [
+        2: { type: "level", name: "Cave", layout: [
             "################",
             "#..#....~~...P.#",
             "#..#....~~...<.#",
@@ -245,11 +277,41 @@
             "#....#....#....#",
             "#.>..##.###....#",
             "################"
+        ]},
+        2.5: { type: "cutscene", text: [
+            "Lorem ipsum dolor sit amet,",
+            "consectetur adipiscing elit.",
+            "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        ]},
+        3: { type: "level", name: "Forest", layout: [
+            "################",
+            "#...P..........#",
+            "#..#.#.....#...#",
+            "#..###.....#...#",
+            "#..#....S......#",
+            "#..#..A....#...#",
+            "#..#....~~.....#",
+            "################"
+        ]},
+        4: { type: "level", name: "Trial", layout: [
+            "################",
+            "#....3....2....#",
+            "#..####..####..#",
+            "#..#..#..#..#..#",
+            "#..####..1....P#",
+            "#....0....~~...#",
+            "#......#..#....#",
+            "################"
         ]}
     };
 
     function updateLevelSelectDisplay() {
-        levelSelectDisplay.textContent = `Level ${selectedLevel} - ${levels[selectedLevel].name}`;
+        const level = levels[selectedLevel];
+        if (level.type === 'cutscene') {
+            levelSelectDisplay.textContent = "Cutscene";
+        } else {
+            levelSelectDisplay.textContent = `Level ${selectedLevel} - ${level.name}`;
+        }
     }
 
     function createParticles(x, y) {
@@ -332,15 +394,8 @@
         });
     }
 
-    function draw() {
-        ctx.save();
-        ctx.scale(scale, scale);
-        ctx.clearRect(0, 0, virtualWidth, virtualHeight);
-
-        const claimedTiles = grid.filter(cell => cell.isClaimed || cell.state === 'player').length;
-
-        hasWon = grid.every(cell => cell.state === 'wall' || cell.state === 'pit' || cell.isClaimed || cell.state === 'player');
-
+    function drawCutsceneText() {
+        // Draw status bar like the game
         ctx.fillStyle = '#F5F5F5';
         ctx.fillRect(0, 0, virtualWidth, statusBarHeight);
         ctx.fillStyle = '#666666';
@@ -348,53 +403,163 @@
         ctx.textBaseline = 'middle';
 
         ctx.textAlign = 'left';
-        ctx.fillText(levelName, 10, statusBarHeight / 2);
+        ctx.fillText('Cutscene', 10, statusBarHeight / 2);
 
         ctx.textAlign = 'right';
-        ctx.fillText(`${movementMode}${isPlayerDead ? ' - Dead' : hasWon ? ' - Won' : ''} - Moves: ${moveCount} - Claimed: ${claimedTiles}/${totalFloorTiles}`, virtualWidth - 10, statusBarHeight / 2);
+        ctx.fillText('Press Next to continue', virtualWidth - 10, statusBarHeight / 2);
 
-        grid.forEach(cell => {
-            if (cell.state === 'floor') ctx.fillStyle = '#8B8B83';
-            else if (cell.state === 'claimed') ctx.fillStyle = '#D3D3D3';
-            else if (cell.state === 'wall') ctx.fillStyle = '#5C5C5A';
-            else if (cell.state === 'pit') ctx.fillStyle = '#000000';
-            else if (cell.state === 'player') ctx.fillStyle = isPlayerDead ? '#FF0000' : hasWon ? '#00FF00' : '#00f';
-            else if (cell.state === 'enemy-right' || cell.state === 'enemy-left' || cell.state === 'enemy-up' || cell.state === 'enemy-down') ctx.fillStyle = '#00FF00';
-            ctx.fillRect(cell.x * cellWidth, statusBarHeight + cell.y * cellHeight, cellWidth, cellHeight);
+        // Draw background
+        ctx.fillStyle = '#333';
+        const bgPadding = 50;
+        const bgWidth = virtualWidth - 2 * bgPadding;
+        const bgHeight = virtualHeight - statusBarHeight - 100;
+        const bgX = bgPadding;
+        const bgY = statusBarHeight + 50;
+        ctx.fillRect(bgX, bgY, bgWidth, bgHeight);
 
-            if (cell.state === 'enemy-right' || cell.state === 'enemy-left' || cell.state === 'enemy-up' || cell.state === 'enemy-down') {
-                ctx.fillStyle = '#FFFFFF';
-                ctx.font = `${cellHeight * 0.8}px Arial`;
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'middle';
-                let symbol;
-                switch (cell.state) {
-                    case 'enemy-right': symbol = '>'; break;
-                    case 'enemy-left': symbol = '<'; break;
-                    case 'enemy-up': symbol = '^'; break;
-                    case 'enemy-down': symbol = 'v'; break;
-                }
-                ctx.fillText(symbol, (cell.x + 0.5) * cellWidth, statusBarHeight + (cell.y + 0.5) * cellHeight);
-            }
+        // Draw border around text area
+        ctx.strokeStyle = '#666';
+        ctx.lineWidth = 4;
+        ctx.strokeRect(bgX, bgY, bgWidth, bgHeight);
 
-            if (cell.state === 'player') {
-                ctx.fillStyle = '#FFFFFF';
-                ctx.font = `${cellHeight * 0.8}px "Segoe UI Emoji", Arial`;
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'middle';
-                const centerX = (cell.x + 0.5) * cellWidth;
-                const centerY = statusBarHeight + (cell.y + 0.5) * cellHeight;
-                if (isPlayerDead) {
-                    ctx.save();
-                    ctx.translate(centerX, centerY);
-                    ctx.rotate(Math.PI);
-                    ctx.fillText('🧙‍♀️', 0, 0);
-                    ctx.restore();
-                } else {
-                    ctx.fillText('🧙‍♀️', centerX, centerY);
-                }
+        // Draw text with responsive sizing
+        ctx.fillStyle = '#fff';
+        ctx.textAlign = 'left';
+        
+        // Calculate responsive font size
+        const maxFontSize = Math.min(virtualWidth, virtualHeight) * 0.035; // About 3.5% of smaller dimension
+        const minFontSize = Math.min(virtualWidth, virtualHeight) * 0.02;
+        const fontSize = Math.max(minFontSize, Math.min(maxFontSize, statusBarHeight * 0.8));
+        
+        ctx.font = `${fontSize}px Arial, sans-serif`;
+        
+        const lines = currentText.split('\n');
+        const lineHeight = fontSize * 1.4;
+        const maxTextWidth = bgWidth - 40; // Leave some padding
+        const startY = bgY + 30;
+        const maxLines = Math.floor(bgHeight / lineHeight) - 1;
+        
+        // Word wrap if needed
+        const wrappedLines = [];
+        lines.forEach(line => {
+            if (ctx.measureText(line).width <= maxTextWidth) {
+                wrappedLines.push(line);
+            } else {
+                // Simple word wrap
+                const words = line.split(' ');
+                let currentLine = '';
+                words.forEach(word => {
+                    const testLine = currentLine ? currentLine + ' ' + word : word;
+                    if (ctx.measureText(testLine).width <= maxTextWidth) {
+                        currentLine = testLine;
+                    } else {
+                        if (currentLine) wrappedLines.push(currentLine);
+                        currentLine = word;
+                    }
+                });
+                if (currentLine) wrappedLines.push(currentLine);
             }
         });
+        
+        // Draw only lines that fit
+        for (let i = 0; i < Math.min(wrappedLines.length, maxLines); i++) {
+            const y = startY + i * lineHeight;
+            if (y < bgY + bgHeight - 20) {
+                ctx.fillText(wrappedLines[i], bgX + 20, y);
+            }
+        }
+        
+        // Draw "..." if more text to come
+        if (currentTextIndex < fullText.length) {
+            ctx.fillStyle = '#888';
+            ctx.font = `${fontSize * 0.8}px Arial, sans-serif`;
+            ctx.fillText('...', bgX + 20, startY + maxLines * lineHeight + 10);
+        }
+    }
+
+    function draw() {
+        ctx.save();
+        ctx.scale(scale, scale);
+        ctx.clearRect(0, 0, virtualWidth, virtualHeight);
+
+        if (isCutscene) {
+            drawCutsceneText();
+        } else {
+            const claimedTiles = grid.filter(cell => cell.isClaimed || cell.state === 'player').length;
+
+            hasWon = grid.every(cell => cell.state === 'wall' || cell.state === 'pit' || cell.isClaimed || cell.state === 'player');
+
+            ctx.fillStyle = '#F5F5F5';
+            ctx.fillRect(0, 0, virtualWidth, statusBarHeight);
+            ctx.fillStyle = '#666666';
+            ctx.font = `${statusBarHeight * 0.5}px Arial`;
+            ctx.textBaseline = 'middle';
+
+            ctx.textAlign = 'left';
+            ctx.fillText(levelName, 10, statusBarHeight / 2);
+
+            ctx.textAlign = 'right';
+            ctx.fillText(`${movementMode}${isPlayerDead ? ' - Dead' : hasWon ? ' - Won' : ''} - Moves: ${moveCount} - Claimed: ${claimedTiles}/${totalFloorTiles}`, virtualWidth - 10, statusBarHeight / 2);
+
+            grid.forEach(cell => {
+                if (cell.state === 'floor') ctx.fillStyle = '#8B8B83';
+                else if (cell.state === 'claimed') ctx.fillStyle = '#D3D3D3';
+                else if (cell.state === 'wall') ctx.fillStyle = '#5C5C5A';
+                else if (cell.state === 'pit') ctx.fillStyle = '#000000';
+                else if (cell.state === 'timer-3') ctx.fillStyle = '#6B6B6B';
+                else if (cell.state === 'timer-2') ctx.fillStyle = '#6B6B6B';
+                else if (cell.state === 'timer-1') ctx.fillStyle = '#8B8B83';
+                else if (cell.state === 'timer-0') ctx.fillStyle = '#000000';
+                else if (cell.state === 'player') ctx.fillStyle = isPlayerDead ? '#FF0000' : hasWon ? '#00FF00' : '#00f';
+                else if (cell.state.startsWith('enemy-') || cell.state.startsWith('killer-enemy-')) ctx.fillStyle = '#00FF00';
+                ctx.fillRect(cell.x * cellWidth, statusBarHeight + cell.y * cellHeight, cellWidth, cellHeight);
+
+                if (cell.state.startsWith('timer-')) {
+                    const num = cell.state.split('-')[1];
+                    let color = num === '1' ? '#FF0000' : '#DDDDDD';
+                    ctx.fillStyle = color;
+                    ctx.font = `${cellHeight * 0.8}px Arial`;
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText(num, (cell.x + 0.5) * cellWidth, statusBarHeight + (cell.y + 0.5) * cellHeight);
+                } else if (cell.state.startsWith('enemy-') || cell.state.startsWith('killer-enemy-')) {
+                    ctx.fillStyle = '#FFFFFF';
+                    ctx.font = `${cellHeight * 0.8}px Arial`;
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    let symbol;
+                    switch (cell.state) {
+                        case 'enemy-right': symbol = '>'; break;
+                        case 'enemy-left': symbol = '<'; break;
+                        case 'enemy-up': symbol = '^'; break;
+                        case 'enemy-down': symbol = 'v'; break;
+                        case 'killer-enemy-right': symbol = '>>'; break;
+                        case 'killer-enemy-left': symbol = '<<'; break;
+                        case 'killer-enemy-up': symbol = '^^'; break;
+                        case 'killer-enemy-down': symbol = 'vv'; break;
+                    }
+                    ctx.fillText(symbol, (cell.x + 0.5) * cellWidth, statusBarHeight + (cell.y + 0.5) * cellHeight);
+                }
+
+                if (cell.state === 'player') {
+                    ctx.fillStyle = '#FFFFFF';
+                    ctx.font = `${cellHeight * 0.8}px "Segoe UI Emoji", Arial`;
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    const centerX = (cell.x + 0.5) * cellWidth;
+                    const centerY = statusBarHeight + (cell.y + 0.5) * cellHeight;
+                    if (isPlayerDead) {
+                        ctx.save();
+                        ctx.translate(centerX, centerY);
+                        ctx.rotate(Math.PI);
+                        ctx.fillText('🧙‍♀️', 0, 0);
+                        ctx.restore();
+                    } else {
+                        ctx.fillText('🧙‍♀️', centerX, centerY);
+                    }
+                }
+            });
+        }
 
         particles.forEach(p => {
             ctx.fillStyle = p.isStatic ? 'rgba(255, 0, 0, 0.8)' : `rgba(255, 0, 0, ${1 - p.moveTime / 0.5})`;
@@ -413,15 +578,41 @@
         const deltaTime = (timestamp - lastTime) / 1000;
         lastTime = timestamp;
 
+        if (isCutscene) {
+            const now = timestamp;
+            if (now - lastTypeTime > typingSpeed && currentTextIndex < fullText.length) {
+                currentText += fullText[currentTextIndex];
+                currentTextIndex++;
+                lastTypeTime = now;
+            }
+            if (currentTextIndex >= fullText.length) {
+                cutsceneNextBtn.style.display = 'block';
+            }
+        }
+
         updateParticles(deltaTime);
         draw();
 
         requestAnimationFrame(animate);
     }
 
+    function cycleTimers() {
+        grid.forEach(cell => {
+            if (cell.state === 'timer-3') {
+                cell.state = 'timer-2';
+            } else if (cell.state === 'timer-2') {
+                cell.state = 'timer-1';
+            } else if (cell.state === 'timer-1') {
+                cell.state = 'timer-0';
+            } else if (cell.state === 'timer-0') {
+                cell.state = 'timer-3';
+            }
+        });
+    }
+
     function initializeGrid(level) {
         grid = [];
-        const staticLevel = levels[level] || levels[1];
+        const staticLevel = levels[level];
         for (let y = 0; y < gridHeight; y++) {
             for (let x = 0; x < gridWidth; x++) {
                 let char = staticLevel.layout[y][x];
@@ -435,15 +626,84 @@
                 else if (char === '<') state = 'enemy-left';
                 else if (char === '^') state = 'enemy-up';
                 else if (char === 'v') state = 'enemy-down';
+                else if (char === 'D') state = 'killer-enemy-right';
+                else if (char === 'A') state = 'killer-enemy-left';
+                else if (char === 'W') state = 'killer-enemy-up';
+                else if (char === 'S') state = 'killer-enemy-down';
+                else if (char === '3') state = 'timer-3';
+                else if (char === '2') state = 'timer-2';
+                else if (char === '1') state = 'timer-1';
+                else if (char === '0') state = 'timer-0';
                 grid.push({ x, y, state, isClaimed });
             }
         }
-        totalFloorTiles = grid.filter(cell => cell.state !== 'wall' && cell.state !== 'pit').length;
+        totalFloorTiles = grid.filter(cell => cell.state !== 'wall' && cell.state !== 'pit' && !cell.state.startsWith('timer-')).length;
         levelName = `Level ${level} - ${staticLevel.name}`;
         currentLevel = level;
         can_be_killed = 1;
         moveCount = 0;
         particles = [];
+    }
+
+    function startCutscene() {
+        isCutscene = true;
+        const scene = levels[selectedLevel];
+        fullText = scene.text.join('\n');
+        currentText = '';
+        currentTextIndex = 0;
+        lastTypeTime = 0;
+        cutsceneNextBtn.style.display = 'none';
+        particles = [];
+        levelName = "Cutscene";
+    }
+
+    function proceedToNext() {
+        isPlayerDead = false;
+        hasWon = false;
+        movementMode = 'jump1';
+        document.getElementById('toggle-btn').textContent = 'Jump1';
+        particles = [];
+        moveCount = 0;
+        movement_lock = false;
+        slipping = false;
+        can_be_killed = 1;
+
+        if (currentLevel === 2) {
+            // After level 2, go to cutscene
+            selectedLevel = 2.5;
+            currentLevel = 2.5;
+            document.querySelector('.controls').style.display = 'none';
+            document.querySelector('.toggle-btn').style.display = 'none';
+            document.querySelector('.reset-btn').style.display = 'none';
+            startCutscene();
+        } else if (currentLevel === 2.5) {
+            // After cutscene, go to level 3
+            selectedLevel = 3;
+            currentLevel = 3;
+            document.querySelector('.controls').style.display = 'grid';
+            document.querySelector('.toggle-btn').style.display = 'flex';
+            document.querySelector('.reset-btn').style.display = 'flex';
+            initializeGrid(3);
+            resetBtn.textContent = 'Menu';
+            isCutscene = false;
+        } else {
+            // Normal level progression or loop to 1
+            if (selectedLevel === 4) {
+                selectedLevel = 1;
+            } else {
+                selectedLevel++;
+            }
+            currentLevel = selectedLevel;
+            document.querySelector('.controls').style.display = 'grid';
+            document.querySelector('.toggle-btn').style.display = 'flex';
+            document.querySelector('.reset-btn').style.display = 'flex';
+            initializeGrid(selectedLevel);
+            resetBtn.textContent = 'Menu';
+            isCutscene = false;
+        }
+        cutsceneNextBtn.style.display = 'none';
+        resizeCanvas();
+        requestAnimationFrame(animate);
     }
 
     function setBodyHeight() {
@@ -477,23 +737,34 @@
         can_be_killed = 1;
         particles = [];
         moveCount = 0;
+        isCutscene = false;
         document.getElementById('toggle-btn').textContent = 'Jump1';
         titleScreen.style.display = 'flex';
         canvas.style.display = 'none';
         document.querySelector('.controls').style.display = 'none';
         document.querySelector('.toggle-btn').style.display = 'none';
         document.querySelector('.reset-btn').style.display = 'none';
+        cutsceneNextBtn.style.display = 'none';
         updateLevelSelectDisplay();
     }
 
-    function showGame() {
+    function showScene() {
         titleScreen.style.display = 'none';
         canvas.style.display = 'block';
-        document.querySelector('.controls').style.display = 'grid';
-        document.querySelector('.toggle-btn').style.display = 'flex';
-        document.querySelector('.reset-btn').style.display = 'flex';
-        initializeGrid(selectedLevel);
-        resetBtn.textContent = 'Menu';
+        const scene = levels[selectedLevel];
+        if (scene.type === 'level') {
+            document.querySelector('.controls').style.display = 'grid';
+            document.querySelector('.toggle-btn').style.display = 'flex';
+            document.querySelector('.reset-btn').style.display = 'flex';
+            initializeGrid(selectedLevel);
+            resetBtn.textContent = 'Menu';
+            isCutscene = false;
+        } else if (scene.type === 'cutscene') {
+            document.querySelector('.controls').style.display = 'none';
+            document.querySelector('.toggle-btn').style.display = 'none';
+            document.querySelector('.reset-btn').style.display = 'none';
+            startCutscene();
+        }
         resizeCanvas();
         requestAnimationFrame(animate);
     }
@@ -517,13 +788,13 @@
             player.state = 'claimed';
         }
 
-        if (target.state === 'pit') {
+        if (target.state === 'pit' || target.state === 'timer-0') {
             target.state = 'player';
             isPlayerDead = true;
             createParticles(newX, newY);
             draw();
             return false;
-        } else if (target.state.startsWith('enemy')) {
+        } else if (target.state.startsWith('enemy-') || target.state.startsWith('killer-enemy-')) {
             return 'enemy';
         } else if (target.isClaimed) {
             target.state = 'player';
@@ -537,7 +808,10 @@
     }
 
     function moveEnemies() {
-        const enemies = grid.filter(cell => cell.state === 'enemy-right' || cell.state === 'enemy-left' || cell.state === 'enemy-up' || cell.state === 'enemy-down');
+        const enemies = grid.filter(cell => 
+            cell.state === 'enemy-right' || cell.state === 'enemy-left' || cell.state === 'enemy-up' || cell.state === 'enemy-down' ||
+            cell.state === 'killer-enemy-right' || cell.state === 'killer-enemy-left' || cell.state === 'killer-enemy-up' || cell.state === 'killer-enemy-down'
+        );
         const enemyUpdates = [];
         const swaps = new Map();
 
@@ -547,24 +821,24 @@
             let newState = currentState;
             let moveTo = null;
 
-            if (currentState === 'enemy-right') dx = 1;
-            else if (currentState === 'enemy-left') dx = -1;
-            else if (currentState === 'enemy-up') dy = -1;
-            else if (currentState === 'enemy-down') dy = 1;
+            if (currentState === 'enemy-right' || currentState === 'killer-enemy-right') dx = 1;
+            else if (currentState === 'enemy-left' || currentState === 'killer-enemy-left') dx = -1;
+            else if (currentState === 'enemy-up' || currentState === 'killer-enemy-up') dy = -1;
+            else if (currentState === 'enemy-down' || currentState === 'killer-enemy-down') dy = 1;
 
             let nextX = enemy.x + dx;
             let nextY = enemy.y + dy;
 
             if (nextX >= 0 && nextX < gridWidth && nextY >= 0 && nextY < gridHeight) {
                 const nextCell = grid.find(c => c.x === nextX && c.y === nextY);
-                if (nextCell.state !== 'wall' && nextCell.state !== 'pit') {
+                if (nextCell && nextCell.state !== 'wall' && nextCell.state !== 'pit' && nextCell.state !== 'timer-0') {
                     const targetEnemy = enemies.find(e => e.x === nextX && e.y === nextY);
                     if (targetEnemy) {
                         let targetDx = 0, targetDy = 0;
-                        if (targetEnemy.state === 'enemy-right') targetDx = 1;
-                        else if (targetEnemy.state === 'enemy-left') targetDx = -1;
-                        else if (targetEnemy.state === 'enemy-up') targetDy = -1;
-                        else if (targetEnemy.state === 'enemy-down') targetDy = 1;
+                        if (targetEnemy.state === 'enemy-right' || targetEnemy.state === 'killer-enemy-right') targetDx = 1;
+                        else if (targetEnemy.state === 'enemy-left' || targetEnemy.state === 'killer-enemy-left') targetDx = -1;
+                        else if (targetEnemy.state === 'enemy-up' || targetEnemy.state === 'killer-enemy-up') targetDy = -1;
+                        else if (targetEnemy.state === 'enemy-down' || targetEnemy.state === 'killer-enemy-down') targetDy = 1;
                         if (targetEnemy.x + targetDx === enemy.x && targetEnemy.y + targetDy === enemy.y) {
                             const key = `${Math.min(enemy.x, nextX)},${Math.min(enemy.y, nextY)}-${Math.max(enemy.x, nextX)},${Math.max(enemy.y, nextY)}`;
                             if (!swaps.has(key)) {
@@ -574,25 +848,25 @@
                                 ]);
                             }
                         } else {
-                            if (currentState === 'enemy-right') newState = 'enemy-left';
-                            else if (currentState === 'enemy-left') newState = 'enemy-right';
-                            else if (currentState === 'enemy-up') newState = 'enemy-down';
-                            else if (currentState === 'enemy-down') newState = 'enemy-up';
+                            if (currentState.endsWith('-right')) newState = currentState.replace('right', 'left');
+                            else if (currentState.endsWith('-left')) newState = currentState.replace('left', 'right');
+                            else if (currentState.endsWith('-up')) newState = currentState.replace('up', 'down');
+                            else if (currentState.endsWith('-down')) newState = currentState.replace('down', 'up');
                         }
                     } else {
                         moveTo = { x: nextX, y: nextY };
                     }
                 } else {
-                    if (currentState === 'enemy-right') newState = 'enemy-left';
-                    else if (currentState === 'enemy-left') newState = 'enemy-right';
-                    else if (currentState === 'enemy-up') newState = 'enemy-down';
-                    else if (currentState === 'enemy-down') newState = 'enemy-up';
+                    if (currentState.endsWith('-right')) newState = currentState.replace('right', 'left');
+                    else if (currentState.endsWith('-left')) newState = currentState.replace('left', 'right');
+                    else if (currentState.endsWith('-up')) newState = currentState.replace('up', 'down');
+                    else if (currentState.endsWith('-down')) newState = currentState.replace('down', 'up');
                 }
             } else {
-                if (currentState === 'enemy-right') newState = 'enemy-left';
-                else if (currentState === 'enemy-left') newState = 'enemy-right';
-                else if (currentState === 'enemy-up') newState = 'enemy-down';
-                else if (currentState === 'enemy-down') newState = 'enemy-up';
+                if (currentState.endsWith('-right')) newState = currentState.replace('right', 'left');
+                else if (currentState.endsWith('-left')) newState = currentState.replace('left', 'right');
+                else if (currentState.endsWith('-up')) newState = currentState.replace('up', 'down');
+                else if (currentState.endsWith('-down')) newState = currentState.replace('down', 'up');
             }
 
             enemyUpdates.push({ enemy, newState, moveTo });
@@ -614,10 +888,10 @@
             if (targeters.length > 1) {
                 targeters.forEach(({ update }) => {
                     const currentState = update.enemy.state;
-                    if (currentState === 'enemy-right') update.newState = 'enemy-left';
-                    else if (currentState === 'enemy-left') update.newState = 'enemy-right';
-                    else if (currentState === 'enemy-up') update.newState = 'enemy-down';
-                    else if (currentState === 'enemy-down') update.newState = 'enemy-up';
+                    if (currentState.endsWith('-right')) update.newState = currentState.replace('right', 'left');
+                    else if (currentState.endsWith('-left')) update.newState = currentState.replace('left', 'right');
+                    else if (currentState.endsWith('-up')) update.newState = currentState.replace('up', 'down');
+                    else if (currentState.endsWith('-down')) update.newState = currentState.replace('down', 'up');
                     update.moveTo = null;
                 });
             }
@@ -626,10 +900,10 @@
         enemyUpdates.forEach((update, index) => {
             if (!update.moveTo && update.newState !== update.enemy.state && !swaps.has(`${update.enemy.x},${update.enemy.y}-*`)) {
                 let dx = 0, dy = 0;
-                if (update.newState === 'enemy-right') dx = 1;
-                else if (update.newState === 'enemy-left') dx = -1;
-                else if (update.newState === 'enemy-up') dy = -1;
-                else if (update.newState === 'enemy-down') dy = 1;
+                if (update.newState.endsWith('-right')) dx = 1;
+                else if (update.newState.endsWith('-left')) dx = -1;
+                else if (update.newState.endsWith('-up')) dy = -1;
+                else if (update.newState.endsWith('-down')) dy = 1;
 
                 const nextX = update.enemy.x + dx;
                 const nextY = update.enemy.y + dy;
@@ -637,7 +911,7 @@
                     const newCell = grid.find(c => c.x === nextX && c.y === nextY);
                     const key = `${nextX},${nextY}`;
                     const otherTargeters = landingPositions.get(key)?.filter(t => t.index !== index) || [];
-                    if (newCell.state !== 'wall' && newCell.state !== 'pit' && otherTargeters.length === 0 && !swaps.has(`*-${nextX},${nextY}`)) {
+                    if (newCell && newCell.state !== 'wall' && newCell.state !== 'pit' && newCell.state !== 'timer-0' && otherTargeters.length === 0 && !swaps.has(`*-${nextX},${nextY}`)) {
                         update.moveTo = { x: nextX, y: nextY };
                         landingPositions.set(key, [{ update, index }]);
                     }
@@ -677,8 +951,8 @@
                 if (targetCell.state === 'player') {
                     isPlayerDead = true;
                     createParticles(moveTo.x, moveTo.y);
-                    enemy.state = enemy.isClaimed ? 'claimed' : 'floor';
                     targetCell.state = 'player';
+                    enemy.state = enemy.isClaimed ? 'claimed' : 'floor';
                 } else {
                     enemy.state = enemy.isClaimed ? 'claimed' : 'floor';
                     targetCell.state = newState;
@@ -715,7 +989,7 @@
 
         if (result === 'enemy') {
             moveEnemies();
-            if (target.state.startsWith('enemy')) {
+            if (target.state.startsWith('enemy-') || target.state.startsWith('killer-enemy-')) {
                 target.state = 'player';
                 isPlayerDead = true;
                 createParticles(player.x, player.y);
@@ -751,6 +1025,7 @@
         }
 
         moveCount++;
+        cycleTimers();
 
         movement_lock = true;
         can_be_killed = 0;
@@ -771,7 +1046,6 @@
 
         const playerOldCell = player;
         let playerTargetCell;
-        let claimStart = validMove;
         if (!validMove) {
             playerTargetCell = playerOldCell;
             movement_lock = false;
@@ -784,52 +1058,99 @@
             playerTargetCell = grid.find(c => c.x === newX && c.y === newY);
         }
 
-        if (claimStart) {
-            playerOldCell.isClaimed = true;
-            playerOldCell.state = 'claimed';
-        }
+        const isPit = playerTargetCell.state === 'pit' || playerTargetCell.state === 'timer-0';
+        let enemyThere = playerTargetCell.state.startsWith('enemy-') || playerTargetCell.state.startsWith('killer-enemy-');
+        let isKiller = playerTargetCell.state.startsWith('killer-enemy-');
+        let isFacingPlayer = false;
+        let isFacingAway = false;
+        let isBlocked = false;
+        let willAttackPlayer = false;
 
-        let result;
-        let enemyThere = playerTargetCell.state.startsWith('enemy');
-
-        if (playerTargetCell.state === 'pit') {
-            playerTargetCell.state = 'player';
-            isPlayerDead = true;
-            createParticles(newX, newY);
-            result = false;
-        } else if (!enemyThere) {
-            playerTargetCell.state = 'player';
-            if (playerTargetCell.isClaimed) {
-                result = 'slip';
+        if (isKiller && enemyThere) {
+            let facing_dx = 0, facing_dy = 0;
+            switch (playerTargetCell.state) {
+                case 'killer-enemy-right': facing_dx = 1; break;
+                case 'killer-enemy-left': facing_dx = -1; break;
+                case 'killer-enemy-up': facing_dy = -1; break;
+                case 'killer-enemy-down': facing_dy = 1; break;
+            }
+            const toPlayer_dx = oldX - newX;
+            const toPlayer_dy = oldY - newY;
+            const sign_to_dx = Math.sign(toPlayer_dx);
+            const sign_to_dy = Math.sign(toPlayer_dy);
+            isFacingPlayer = facing_dx === sign_to_dx && facing_dy === sign_to_dy;
+            isFacingAway = facing_dx === -sign_to_dx && facing_dy === -sign_to_dy;
+            const enemyNextX = newX + facing_dx;
+            const enemyNextY = newY + facing_dy;
+            willAttackPlayer = enemyNextX === oldX && enemyNextY === oldY;
+            const forwardX = newX + facing_dx;
+            const forwardY = newY + facing_dy;
+            if (forwardX < 0 || forwardX >= gridWidth || forwardY < 0 || forwardY >= gridHeight) {
+                isBlocked = true;
             } else {
-                result = true;
+                const forwardCell = grid.find(c => c.x === forwardX && c.y === forwardY);
+                isBlocked = forwardCell.state === 'wall' || forwardCell.state === 'pit';
             }
         }
 
-        hasWon = grid.every(cell => cell.state === 'wall' || cell.state === 'pit' || cell.isClaimed);
+        let result;
+        if (isKiller && isFacingPlayer && willAttackPlayer && jumpDistance === 1) {
+            moveEnemies();
+            isPlayerDead = true;
+            createParticles(oldX, oldY);
+            playerOldCell.state = 'player';
+            draw();
+            can_be_killed = 1;
+            movement_lock = false;
+            isInputActive = false;
+            return;
+        } else if (isKiller && isFacingAway && isBlocked && jumpDistance === 1) {
+            moveEnemies();
+            isPlayerDead = true;
+            createParticles(oldX, oldY);
+            playerOldCell.state = 'player';
+            draw();
+            can_be_killed = 1;
+            movement_lock = false;
+            isInputActive = false;
+            return;
+        } else {
+            playerOldCell.isClaimed = true;
+            playerOldCell.state = 'claimed';
 
-        draw();
-        moveEnemies();
-        can_be_killed = 1;
-
-        if (enemyThere) {
-            if (playerTargetCell.state.startsWith('enemy')) {
+            if (isPit) {
                 playerTargetCell.state = 'player';
                 isPlayerDead = true;
                 createParticles(newX, newY);
                 result = false;
-                draw();
+            } else if (!enemyThere) {
+                playerTargetCell.state = 'player';
+                result = playerTargetCell.isClaimed ? 'slip' : true;
+            }
+        }
+
+        draw();
+
+        if (!(isKiller && isFacingPlayer && willAttackPlayer)) {
+            moveEnemies();
+        }
+
+        can_be_killed = 1;
+
+        if (enemyThere) {
+            if (playerTargetCell.state.startsWith('enemy-') || playerTargetCell.state.startsWith('killer-enemy-')) {
+                playerTargetCell.state = 'player';
+                isPlayerDead = true;
+                createParticles(newX, newY);
+                result = false;
             } else {
                 playerTargetCell.state = 'player';
-                if (playerTargetCell.isClaimed) {
-                    result = 'slip';
-                } else {
-                    result = true;
-                }
-                draw();
+                result = playerTargetCell.isClaimed ? 'slip' : true;
             }
-            hasWon = grid.every(cell => cell.state === 'wall' || cell.state === 'pit' || cell.isClaimed);
+            draw();
         }
+
+        hasWon = grid.every(cell => cell.state === 'wall' || cell.state === 'pit' || cell.isClaimed || cell.state === 'player');
 
         if (result === 'slip') {
             slipping = true;
@@ -867,12 +1188,16 @@
         hasWon = false;
         movementMode = 'jump1';
         document.getElementById('toggle-btn').textContent = 'Jump1';
-        selectedLevel = direction === 'next' ? (selectedLevel === 1 ? 2 : 1) : (selectedLevel === 2 ? 1 : 2);
+        if (direction === 'next') {
+            if (selectedLevel === 4) selectedLevel = 1;
+            else selectedLevel++;
+        } else {
+            if (selectedLevel === 1) selectedLevel = 4;
+            else selectedLevel--;
+        }
         currentLevel = selectedLevel;
-        initializeGrid(currentLevel);
-        moveCount = 0;
         particles = [];
-        draw();
+        moveCount = 0;
         movement_lock = false;
         slipping = false;
         can_be_killed = 1;
@@ -890,8 +1215,9 @@
             case 'arrowleft': if (!isPlayerDead && !movement_lock && !hasWon) movePlayer(-1, 0); break;
             case 'arrowright': if (!isPlayerDead && !movement_lock && !hasWon) movePlayer(1, 0); break;
             case ' ': 
-                if (hasWon) changeLevel('next');
-                else if (isPlayerDead) resetLevel();
+                if (hasWon) {
+                    proceedToNext();
+                } else if (isPlayerDead) resetLevel();
                 else toggleMovementMode();
                 break;
             case 'q': changeLevel('previous'); break;
@@ -991,32 +1317,36 @@
     // Title screen button events
     playBtn.addEventListener('click', e => {
         e.preventDefault();
-        showGame();
+        showScene();
     });
     playBtn.addEventListener('touchstart', e => {
         e.preventDefault();
-        showGame();
+        showScene();
     });
 
     nextLevelBtn.addEventListener('click', e => {
         e.preventDefault();
-        selectedLevel = selectedLevel === 1 ? 2 : 1;
+        if (selectedLevel === 4) selectedLevel = 1;
+        else selectedLevel++;
         updateLevelSelectDisplay();
     });
     nextLevelBtn.addEventListener('touchstart', e => {
         e.preventDefault();
-        selectedLevel = selectedLevel === 1 ? 2 : 1;
+        if (selectedLevel === 4) selectedLevel = 1;
+        else selectedLevel++;
         updateLevelSelectDisplay();
     });
 
     prevLevelBtn.addEventListener('click', e => {
         e.preventDefault();
-        selectedLevel = selectedLevel === 2 ? 1 : 2;
+        if (selectedLevel === 1) selectedLevel = 4;
+        else selectedLevel--;
         updateLevelSelectDisplay();
     });
     prevLevelBtn.addEventListener('touchstart', e => {
         e.preventDefault();
-        selectedLevel = selectedLevel === 2 ? 1 : 2;
+        if (selectedLevel === 1) selectedLevel = 4;
+        else selectedLevel--;
         updateLevelSelectDisplay();
     });
 
@@ -1025,9 +1355,18 @@
         e.preventDefault();
         if (hasWon && !isInputActive && titleScreen.style.display === 'none') {
             isInputActive = true;
-            changeLevel('next');
+            proceedToNext();
             isInputActive = false;
         }
+    });
+
+    cutsceneNextBtn.addEventListener('click', e => {
+        e.preventDefault();
+        proceedToNext();
+    });
+    cutsceneNextBtn.addEventListener('touchstart', e => {
+        e.preventDefault();
+        proceedToNext();
     });
 
     // Initialize title screen
