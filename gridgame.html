@@ -231,6 +231,9 @@
     const cellHeight = (virtualHeight * (gridHeight / 9)) / gridHeight;
     const statusBarHeight = virtualHeight / 9;
 
+    const speakerImage = new Image();
+    speakerImage.src = 'download.jpg'; // Replace with your .png file path   
+
     let selectedLevel = 1;
     let currentLevel = 1;
     let levelName = "Level 1 - Temple";
@@ -258,9 +261,15 @@
     let lastTypeTime = 0;
 
     const levels = {
-        1: { type: "level", name: "Temple", layout: [
+        1: { type: "cutscene", name: "Enter: Kuyuti Kawa II :sparkles:", text: [
+            "Tra-la-la...! Tra-la-la-la...!",
+            "Ugyuuu... I never did master the splorty.",
+            "But I won't give up! Here I go!",
+            "Uh... Uuuwa-wa-wa-wa-wa-wa...!!"
+        ]},
+        2: { type: "level", name: "Level 1 - Temple", layout: [
             "################",
-            "#..>....~~.....#",
+            "#..>....~~......",
             "#..####..####..#",
             "#..#..#..#..#..#",
             "#..####..####..#",
@@ -268,7 +277,7 @@
             "#......P.....<.#",
             "################"
         ]},
-        2: { type: "level", name: "Cave", layout: [
+        3: { type: "level", name: "Level 2 - Cave", layout: [
             "################",
             "#..#....~~...P.#",
             "#..#....~~...<.#",
@@ -278,12 +287,14 @@
             "#.>..##.###....#",
             "################"
         ]},
-        2.5: { type: "cutscene", text: [
-            "Lorem ipsum dolor sit amet,",
-            "consectetur adipiscing elit.",
-            "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        4: { type: "cutscene", name: "Punished Kuyuti", text: [
+            "I'll never trust those green squares that move around!!",
+            "Uh-uh. That’s cute or whatever.",
+            "Uu... Ugyuuu... I can't let them thwarty my splorty...",
+            "And on God I don’t chase the splorty. I live (ikiteiru) within the splorty nation.",
+            "...PERIODT!"
         ]},
-        3: { type: "level", name: "Forest", layout: [
+        5: { type: "level", name: "Level 3 - Forest", layout: [
             "################",
             "#...P..........#",
             "#..#.#.....#...#",
@@ -293,7 +304,7 @@
             "#..#....~~.....#",
             "################"
         ]},
-        4: { type: "level", name: "Trial", layout: [
+        6: { type: "level", name: "Level 4 - Trial", layout: [
             "################",
             "#....3....2....#",
             "#..####..####..#",
@@ -302,15 +313,24 @@
             "#....0....~~...#",
             "#......#..#....#",
             "################"
-        ]}
+        ]},
+        7: { type: "cutscene", name: "Intrinsic Kuyuti Mindset", text: [
+            "I was in the middle of a nap, like, rude.",
+            "Is you serious?",
+            "Imma need you to stop acting brand new.",
+            "Let me say that... (pause for emphasis...) one-mo'-'gain.",
+            "I'll splorty 'til the evening. My quest... is to claim the tiles. Iku zo!",
+        ]},
     };
+
+    const maxLevel = Object.keys(levels).length;
 
     function updateLevelSelectDisplay() {
         const level = levels[selectedLevel];
         if (level.type === 'cutscene') {
-            levelSelectDisplay.textContent = "Cutscene";
+            levelSelectDisplay.textContent = `${level.name}`;
         } else {
-            levelSelectDisplay.textContent = `Level ${selectedLevel} - ${level.name}`;
+            levelSelectDisplay.textContent = `${level.name}`;
         }
     }
 
@@ -395,87 +415,116 @@
     }
 
     function drawCutsceneText() {
-        // Draw status bar like the game
-        ctx.fillStyle = '#F5F5F5';
-        ctx.fillRect(0, 0, virtualWidth, statusBarHeight);
-        ctx.fillStyle = '#666666';
-        ctx.font = `${statusBarHeight * 0.5}px Arial`;
-        ctx.textBaseline = 'middle';
+    // Draw status bar like the game
+    ctx.fillStyle = '#F5F5F5';
+    ctx.fillRect(0, 0, virtualWidth, statusBarHeight);
+    ctx.fillStyle = '#666666';
+    ctx.font = `${statusBarHeight * 0.5}px Arial`;
+    ctx.textBaseline = 'middle';
 
-        ctx.textAlign = 'left';
-        ctx.fillText('Cutscene', 10, statusBarHeight / 2);
+    ctx.textAlign = 'left';
+    ctx.fillText(levels[currentLevel].name || 'Cutscene', 10, statusBarHeight / 2);
 
-        ctx.textAlign = 'right';
-        ctx.fillText('Press Next to continue', virtualWidth - 10, statusBarHeight / 2);
+    ctx.textAlign = 'right';
+    ctx.fillText('Press Next to continue', virtualWidth - 10, statusBarHeight / 2);
 
-        // Draw background
-        ctx.fillStyle = '#333';
-        const bgPadding = 50;
-        const bgWidth = virtualWidth - 2 * bgPadding;
-        const bgHeight = virtualHeight - statusBarHeight - 100;
-        const bgX = bgPadding;
-        const bgY = statusBarHeight + 50;
-        ctx.fillRect(bgX, bgY, bgWidth, bgHeight);
+    // Define imageHeight
+    const imageHeight = (virtualHeight - statusBarHeight) / 2 - 50; // ~400px
 
-        // Draw border around text area
+    // Draw speaker image with proportional scaling
+    if (speakerImage.complete && speakerImage.naturalWidth && speakerImage.naturalHeight) {
+        const aspectRatio = speakerImage.naturalWidth / speakerImage.naturalHeight;
+        let destWidth = imageHeight * aspectRatio; // Proportional width based on imageHeight
+        let destHeight = imageHeight;
+        let destX = 50; // Default x position
+
+        // If destWidth exceeds available width, scale down
+        const maxWidth = virtualWidth - 100; // 1500px
+        if (destWidth > maxWidth) {
+            destWidth = maxWidth;
+            destHeight = maxWidth / aspectRatio; // Adjust height to maintain aspect ratio
+        }
+
+        // Center the image horizontally
+        destX = (virtualWidth - destWidth) / 2; // Center within virtualWidth
+
+        ctx.drawImage(speakerImage, destX, statusBarHeight, destWidth, destHeight);
+    } else {
+        // Fallback to placeholder if image not loaded
+        ctx.fillStyle = '#555';
+        ctx.fillRect(50, statusBarHeight, virtualWidth - 100, imageHeight);
         ctx.strokeStyle = '#666';
         ctx.lineWidth = 4;
-        ctx.strokeRect(bgX, bgY, bgWidth, bgHeight);
+        ctx.strokeRect(50, statusBarHeight, virtualWidth - 100, imageHeight);
+    }
 
-        // Draw text with responsive sizing
-        ctx.fillStyle = '#fff';
-        ctx.textAlign = 'left';
-        
-        // Calculate responsive font size
-        const maxFontSize = Math.min(virtualWidth, virtualHeight) * 0.035; // About 3.5% of smaller dimension
-        const minFontSize = Math.min(virtualWidth, virtualHeight) * 0.02;
-        const fontSize = Math.max(minFontSize, Math.min(maxFontSize, statusBarHeight * 0.8));
-        
-        ctx.font = `${fontSize}px Arial, sans-serif`;
-        
-        const lines = currentText.split('\n');
-        const lineHeight = fontSize * 1.4;
-        const maxTextWidth = bgWidth - 40; // Leave some padding
-        const startY = bgY + 30;
-        const maxLines = Math.floor(bgHeight / lineHeight) - 1;
-        
-        // Word wrap if needed
-        const wrappedLines = [];
-        lines.forEach(line => {
-            if (ctx.measureText(line).width <= maxTextWidth) {
-                wrappedLines.push(line);
-            } else {
-                // Simple word wrap
-                const words = line.split(' ');
-                let currentLine = '';
-                words.forEach(word => {
-                    const testLine = currentLine ? currentLine + ' ' + word : word;
-                    if (ctx.measureText(testLine).width <= maxTextWidth) {
-                        currentLine = testLine;
-                    } else {
-                        if (currentLine) wrappedLines.push(currentLine);
-                        currentLine = word;
-                    }
-                });
-                if (currentLine) wrappedLines.push(currentLine);
-            }
-        });
-        
-        // Draw only lines that fit
-        for (let i = 0; i < Math.min(wrappedLines.length, maxLines); i++) {
-            const y = startY + i * lineHeight;
-            if (y < bgY + bgHeight - 20) {
-                ctx.fillText(wrappedLines[i], bgX + 20, y);
-            }
+    // Draw textbox background (half the remaining space, centered)
+    ctx.fillStyle = '#333';
+    const bgPadding = 50;
+    const bgWidth = virtualWidth - 2 * bgPadding;
+    const bgHeight = (virtualHeight - statusBarHeight) / 2; // ~400px
+    const bgX = bgPadding;
+    const bgY = statusBarHeight + imageHeight; // Start at the midpoint
+    ctx.fillRect(bgX, bgY, bgWidth, bgHeight);
+
+    // Draw border around textbox
+    ctx.strokeStyle = '#666';
+    ctx.lineWidth = 4;
+    ctx.strokeRect(bgX, bgY, bgWidth, bgHeight);
+
+    // Draw text with responsive sizing
+    ctx.fillStyle = '#fff';
+    ctx.textAlign = 'left';
+    
+    // Calculate responsive font size
+    const maxFontSize = Math.min(virtualWidth, virtualHeight) * 0.05; // 45px
+    const minFontSize = Math.min(virtualWidth, virtualHeight) * 0.03; // 27px
+    const fontSize = Math.max(minFontSize, Math.min(maxFontSize, statusBarHeight * 1.0)); // 45px
+    
+    ctx.font = `${fontSize}px Arial, sans-serif`;
+    
+    const lines = currentText.split('\n');
+    const lineHeight = fontSize * 1.2;
+    const maxTextWidth = bgWidth - 40;
+    const startY = bgY + 40;
+    const maxLines = Math.floor(bgHeight / lineHeight) - 1;
+    
+    // Word wrap if needed
+    const wrappedLines = [];
+    lines.forEach(line => {
+        if (ctx.measureText(line).width <= maxTextWidth) {
+            wrappedLines.push(line);
+        } else {
+            const words = line.split(' ');
+            let currentLine = '';
+            words.forEach(word => {
+                const testLine = currentLine ? currentLine + ' ' + word : word;
+                if (ctx.measureText(testLine).width <= maxTextWidth) {
+                    currentLine = testLine;
+                } else {
+                    if (currentLine) wrappedLines.push(currentLine);
+                    currentLine = word;
+                }
+            });
+            if (currentLine) wrappedLines.push(currentLine);
         }
-        
-        // Draw "..." if more text to come
-        if (currentTextIndex < fullText.length) {
-            ctx.fillStyle = '#888';
-            ctx.font = `${fontSize * 0.8}px Arial, sans-serif`;
-            ctx.fillText('...', bgX + 20, startY + maxLines * lineHeight + 10);
+    });
+    
+    // Draw only lines that fit
+    for (let i = 0; i < Math.min(wrappedLines.length, maxLines); i++) {
+        const y = startY + i * lineHeight;
+        if (y < bgY + bgHeight - 20) {
+            ctx.fillText(wrappedLines[i], bgX + 20, y);
         }
     }
+    
+    // Draw "..." if more text to come
+    if (currentTextIndex < fullText.length) {
+        ctx.fillStyle = '#888';
+        ctx.font = `${fontSize * 0.8}px Arial, sans-serif`;
+        ctx.fillText('...', bgX + 20, startY + maxLines * lineHeight + 10);
+    }
+}
 
     function draw() {
         ctx.save();
@@ -487,7 +536,13 @@
         } else {
             const claimedTiles = grid.filter(cell => cell.isClaimed || cell.state === 'player').length;
 
-            hasWon = grid.every(cell => cell.state === 'wall' || cell.state === 'pit' || cell.isClaimed || cell.state === 'player');
+            hasWon = grid.every(cell => 
+                cell.state === 'wall' || 
+                cell.state === 'pit' || 
+                cell.isClaimed || 
+                cell.state === 'player' || 
+                cell.state.startsWith('timer-')
+            );
 
             ctx.fillStyle = '#F5F5F5';
             ctx.fillRect(0, 0, virtualWidth, statusBarHeight);
@@ -598,14 +653,19 @@
 
     function cycleTimers() {
         grid.forEach(cell => {
-            if (cell.state === 'timer-3') {
-                cell.state = 'timer-2';
-            } else if (cell.state === 'timer-2') {
-                cell.state = 'timer-1';
-            } else if (cell.state === 'timer-1') {
-                cell.state = 'timer-0';
-            } else if (cell.state === 'timer-0') {
-                cell.state = 'timer-3';
+            let timerState = cell.state.startsWith('timer-') ? cell.state : (cell.underlyingState && cell.underlyingState.startsWith('timer-') ? cell.underlyingState : null);
+            if (timerState) {
+                let newTimerState;
+                if (timerState === 'timer-3') newTimerState = 'timer-2';
+                else if (timerState === 'timer-2') newTimerState = 'timer-1';
+                else if (timerState === 'timer-1') newTimerState = 'timer-0';
+                else if (timerState === 'timer-0') newTimerState = 'timer-3';
+                
+                if (cell.state.startsWith('timer-')) {
+                    cell.state = newTimerState;
+                } else if (cell.state === 'player') {
+                    cell.underlyingState = newTimerState;
+                }
             }
         });
     }
@@ -618,6 +678,7 @@
                 let char = staticLevel.layout[y][x];
                 let state = 'floor';
                 let isClaimed = false;
+                let underlyingState = null;
                 if (char === '#') state = 'wall';
                 else if (char === '.') state = 'floor';
                 else if (char === 'P') state = 'player';
@@ -634,11 +695,11 @@
                 else if (char === '2') state = 'timer-2';
                 else if (char === '1') state = 'timer-1';
                 else if (char === '0') state = 'timer-0';
-                grid.push({ x, y, state, isClaimed });
+                grid.push({ x, y, state, isClaimed, underlyingState });
             }
         }
         totalFloorTiles = grid.filter(cell => cell.state !== 'wall' && cell.state !== 'pit' && !cell.state.startsWith('timer-')).length;
-        levelName = `Level ${level} - ${staticLevel.name}`;
+        levelName = `${staticLevel.name}`;
         currentLevel = level;
         can_be_killed = 1;
         moveCount = 0;
@@ -668,39 +729,24 @@
         slipping = false;
         can_be_killed = 1;
 
-        if (currentLevel === 2) {
-            // After level 2, go to cutscene
-            selectedLevel = 2.5;
-            currentLevel = 2.5;
+        selectedLevel++;
+        if (selectedLevel > maxLevel) selectedLevel = 1;
+        currentLevel = selectedLevel;
+
+        const scene = levels[currentLevel];
+        if (scene.type === 'cutscene') {
             document.querySelector('.controls').style.display = 'none';
             document.querySelector('.toggle-btn').style.display = 'none';
             document.querySelector('.reset-btn').style.display = 'none';
             startCutscene();
-        } else if (currentLevel === 2.5) {
-            // After cutscene, go to level 3
-            selectedLevel = 3;
-            currentLevel = 3;
-            document.querySelector('.controls').style.display = 'grid';
-            document.querySelector('.toggle-btn').style.display = 'flex';
-            document.querySelector('.reset-btn').style.display = 'flex';
-            initializeGrid(3);
-            resetBtn.textContent = 'Menu';
-            isCutscene = false;
         } else {
-            // Normal level progression or loop to 1
-            if (selectedLevel === 4) {
-                selectedLevel = 1;
-            } else {
-                selectedLevel++;
-            }
-            currentLevel = selectedLevel;
             document.querySelector('.controls').style.display = 'grid';
             document.querySelector('.toggle-btn').style.display = 'flex';
             document.querySelector('.reset-btn').style.display = 'flex';
-            initializeGrid(selectedLevel);
+            initializeGrid(currentLevel);
             resetBtn.textContent = 'Menu';
-            isCutscene = false;
         }
+        isCutscene = scene.type === 'cutscene';
         cutsceneNextBtn.style.display = 'none';
         resizeCanvas();
         requestAnimationFrame(animate);
@@ -784,8 +830,13 @@
         if (target.state === 'wall') return false;
 
         if (claimStart) {
-            player.isClaimed = true;
-            player.state = 'claimed';
+            if (player.underlyingState && player.underlyingState.startsWith('timer-')) {
+                player.state = player.underlyingState;
+                player.underlyingState = null;
+            } else {
+                player.isClaimed = true;
+                player.state = 'claimed';
+            }
         }
 
         if (target.state === 'pit' || target.state === 'timer-0') {
@@ -797,10 +848,16 @@
         } else if (target.state.startsWith('enemy-') || target.state.startsWith('killer-enemy-')) {
             return 'enemy';
         } else if (target.isClaimed) {
+            if (target.state.startsWith('timer-')) {
+                target.underlyingState = target.state;
+            }
             target.state = 'player';
             draw();
             return 'slip';
         } else {
+            if (target.state.startsWith('timer-')) {
+                target.underlyingState = target.state;
+            }
             target.state = 'player';
             draw();
             return true;
@@ -898,7 +955,7 @@
         });
 
         enemyUpdates.forEach((update, index) => {
-            if (!update.moveTo && update.newState !== update.enemy.state && !swaps.has(`${update.enemy.x},${update.enemy.y}-*`)) {
+            if (!update.moveTo && update.newState !== update.enemy.state && !swaps.has(`*-${update.enemy.x},${update.enemy.y}`)) {
                 let dx = 0, dy = 0;
                 if (update.newState.endsWith('-right')) dx = 1;
                 else if (update.newState.endsWith('-left')) dx = -1;
@@ -995,6 +1052,9 @@
                 createParticles(player.x, player.y);
                 result = false;
             } else {
+                if (target.state.startsWith('timer-')) {
+                    target.underlyingState = target.state;
+                }
                 target.state = 'player';
                 result = target.isClaimed ? 'slip' : true;
             }
@@ -1027,11 +1087,20 @@
         moveCount++;
         cycleTimers();
 
-        movement_lock = true;
-        can_be_killed = 0;
+        const player = findPlayer();
+        if (player.underlyingState === 'timer-0') {
+            isPlayerDead = true;
+            createParticles(player.x, player.y);
+            player.state = 'timer-0';
+            player.underlyingState = null;
+            draw();
+            can_be_killed = 1;
+            movement_lock = false;
+            isInputActive = false;
+            return;
+        }
 
         const jumpDistance = movementMode === 'jump1' ? 1 : 2;
-        const player = findPlayer();
         const oldX = player.x;
         const oldY = player.y;
         const newX = oldX + dx * jumpDistance;
@@ -1115,8 +1184,13 @@
             isInputActive = false;
             return;
         } else {
-            playerOldCell.isClaimed = true;
-            playerOldCell.state = 'claimed';
+            if (playerOldCell.underlyingState && playerOldCell.underlyingState.startsWith('timer-')) {
+                playerOldCell.state = playerOldCell.underlyingState;
+                playerOldCell.underlyingState = null;
+            } else {
+                playerOldCell.isClaimed = true;
+                playerOldCell.state = 'claimed';
+            }
 
             if (isPit) {
                 playerTargetCell.state = 'player';
@@ -1124,6 +1198,9 @@
                 createParticles(newX, newY);
                 result = false;
             } else if (!enemyThere) {
+                if (playerTargetCell.state.startsWith('timer-')) {
+                    playerTargetCell.underlyingState = playerTargetCell.state;
+                }
                 playerTargetCell.state = 'player';
                 result = playerTargetCell.isClaimed ? 'slip' : true;
             }
@@ -1144,6 +1221,9 @@
                 createParticles(newX, newY);
                 result = false;
             } else {
+                if (playerTargetCell.state.startsWith('timer-')) {
+                    playerTargetCell.underlyingState = playerTargetCell.state;
+                }
                 playerTargetCell.state = 'player';
                 result = playerTargetCell.isClaimed ? 'slip' : true;
             }
@@ -1189,11 +1269,9 @@
         movementMode = 'jump1';
         document.getElementById('toggle-btn').textContent = 'Jump1';
         if (direction === 'next') {
-            if (selectedLevel === 4) selectedLevel = 1;
-            else selectedLevel++;
+            selectedLevel = selectedLevel === maxLevel ? 1 : selectedLevel + 1;
         } else {
-            if (selectedLevel === 1) selectedLevel = 4;
-            else selectedLevel--;
+            selectedLevel = selectedLevel === 1 ? maxLevel : selectedLevel - 1;
         }
         currentLevel = selectedLevel;
         particles = [];
@@ -1224,6 +1302,17 @@
             case 'w': changeLevel('next'); break;
             case 'escape':
                 showTitleScreen();
+                break;
+            case '0':
+                if (!isPlayerDead && !hasWon) {
+                    grid.forEach(cell => {
+                        if (cell.state === 'floor') {
+                            cell.state = 'claimed';
+                            cell.isClaimed = true;
+                        }
+                    });
+                    draw();
+                }
                 break;
         }
         isInputActive = false;
@@ -1326,28 +1415,20 @@
 
     nextLevelBtn.addEventListener('click', e => {
         e.preventDefault();
-        if (selectedLevel === 4) selectedLevel = 1;
-        else selectedLevel++;
-        updateLevelSelectDisplay();
+        changeLevel('next');
     });
     nextLevelBtn.addEventListener('touchstart', e => {
         e.preventDefault();
-        if (selectedLevel === 4) selectedLevel = 1;
-        else selectedLevel++;
-        updateLevelSelectDisplay();
+        changeLevel('next');
     });
 
     prevLevelBtn.addEventListener('click', e => {
         e.preventDefault();
-        if (selectedLevel === 1) selectedLevel = 4;
-        else selectedLevel--;
-        updateLevelSelectDisplay();
+        changeLevel('previous');
     });
     prevLevelBtn.addEventListener('touchstart', e => {
         e.preventDefault();
-        if (selectedLevel === 1) selectedLevel = 4;
-        else selectedLevel--;
-        updateLevelSelectDisplay();
+        changeLevel('previous');
     });
 
     // Add touch event for level transition on win state
