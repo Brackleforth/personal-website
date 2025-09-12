@@ -201,11 +201,10 @@
     <div class="controls">
         <div class="empty"></div>
         <div class="control-btn" id="up-btn">↑</div>
-        <div class="empty"></div>
+        <div class="control-btn" id="undo-btn">↶</div>
         <div class="control-btn" id="left-btn">←</div>
         <div class="control-btn" id="down-btn">↓</div>
         <div class="control-btn" id="right-btn">→</div>
-        <div class="empty"></div>
     </div>
     <div class="toggle-btn" id="toggle-btn">Jump1</div>
     <div class="reset-btn" id="reset-btn">Menu</div>
@@ -252,6 +251,7 @@
 
     let totalFloorTiles = 0;
     let particles = [];
+    let gameStateHistory = []; // For undo feature
 
     let isCutscene = false;
     let fullText = '';
@@ -415,116 +415,99 @@
     }
 
     function drawCutsceneText() {
-    // Draw status bar like the game
-    ctx.fillStyle = '#F5F5F5';
-    ctx.fillRect(0, 0, virtualWidth, statusBarHeight);
-    ctx.fillStyle = '#666666';
-    ctx.font = `${statusBarHeight * 0.5}px Arial`;
-    ctx.textBaseline = 'middle';
+        ctx.fillStyle = '#F5F5F5';
+        ctx.fillRect(0, 0, virtualWidth, statusBarHeight);
+        ctx.fillStyle = '#666666';
+        ctx.font = `${statusBarHeight * 0.5}px Arial`;
+        ctx.textBaseline = 'middle';
 
-    ctx.textAlign = 'left';
-    ctx.fillText(levels[currentLevel].name || 'Cutscene', 10, statusBarHeight / 2);
+        ctx.textAlign = 'left';
+        ctx.fillText(levels[currentLevel].name || 'Cutscene', 10, statusBarHeight / 2);
 
-    ctx.textAlign = 'right';
-    ctx.fillText('Press Next to continue', virtualWidth - 10, statusBarHeight / 2);
+        ctx.textAlign = 'right';
+        ctx.fillText('Press Next to continue', virtualWidth - 10, statusBarHeight / 2);
 
-    // Define imageHeight
-    const imageHeight = (virtualHeight - statusBarHeight) / 2 - 50; // ~400px
+        const imageHeight = (virtualHeight - statusBarHeight) / 2 - 50;
+        if (speakerImage.complete && speakerImage.naturalWidth && speakerImage.naturalHeight) {
+            const aspectRatio = speakerImage.naturalWidth / speakerImage.naturalHeight;
+            let destWidth = imageHeight * aspectRatio;
+            let destHeight = imageHeight;
+            let destX = 50;
 
-    // Draw speaker image with proportional scaling
-    if (speakerImage.complete && speakerImage.naturalWidth && speakerImage.naturalHeight) {
-        const aspectRatio = speakerImage.naturalWidth / speakerImage.naturalHeight;
-        let destWidth = imageHeight * aspectRatio; // Proportional width based on imageHeight
-        let destHeight = imageHeight;
-        let destX = 50; // Default x position
+            const maxWidth = virtualWidth - 100;
+            if (destWidth > maxWidth) {
+                destWidth = maxWidth;
+                destHeight = maxWidth / aspectRatio;
+            }
 
-        // If destWidth exceeds available width, scale down
-        const maxWidth = virtualWidth - 100; // 1500px
-        if (destWidth > maxWidth) {
-            destWidth = maxWidth;
-            destHeight = maxWidth / aspectRatio; // Adjust height to maintain aspect ratio
+            destX = (virtualWidth - destWidth) / 2;
+            ctx.drawImage(speakerImage, destX, statusBarHeight, destWidth, destHeight);
+        } else {
+            ctx.fillStyle = '#555';
+            ctx.fillRect(50, statusBarHeight, virtualWidth - 100, imageHeight);
+            ctx.strokeStyle = '#666';
+            ctx.lineWidth = 4;
+            ctx.strokeRect(50, statusBarHeight, virtualWidth - 100, imageHeight);
         }
 
-        // Center the image horizontally
-        destX = (virtualWidth - destWidth) / 2; // Center within virtualWidth
+        ctx.fillStyle = '#333';
+        const bgPadding = 50;
+        const bgWidth = virtualWidth - 2 * bgPadding;
+        const bgHeight = (virtualHeight - statusBarHeight) / 2;
+        const bgX = bgPadding;
+        const bgY = statusBarHeight + imageHeight;
+        ctx.fillRect(bgX, bgY, bgWidth, bgHeight);
 
-        ctx.drawImage(speakerImage, destX, statusBarHeight, destWidth, destHeight);
-    } else {
-        // Fallback to placeholder if image not loaded
-        ctx.fillStyle = '#555';
-        ctx.fillRect(50, statusBarHeight, virtualWidth - 100, imageHeight);
         ctx.strokeStyle = '#666';
         ctx.lineWidth = 4;
-        ctx.strokeRect(50, statusBarHeight, virtualWidth - 100, imageHeight);
-    }
+        ctx.strokeRect(bgX, bgY, bgWidth, bgHeight);
 
-    // Draw textbox background (half the remaining space, centered)
-    ctx.fillStyle = '#333';
-    const bgPadding = 50;
-    const bgWidth = virtualWidth - 2 * bgPadding;
-    const bgHeight = (virtualHeight - statusBarHeight) / 2; // ~400px
-    const bgX = bgPadding;
-    const bgY = statusBarHeight + imageHeight; // Start at the midpoint
-    ctx.fillRect(bgX, bgY, bgWidth, bgHeight);
+        ctx.fillStyle = '#fff';
+        ctx.textAlign = 'left';
+        const maxFontSize = Math.min(virtualWidth, virtualHeight) * 0.05;
+        const minFontSize = Math.min(virtualWidth, virtualHeight) * 0.03;
+        const fontSize = Math.max(minFontSize, Math.min(maxFontSize, statusBarHeight * 1.0));
+        ctx.font = `${fontSize}px Arial, sans-serif`;
 
-    // Draw border around textbox
-    ctx.strokeStyle = '#666';
-    ctx.lineWidth = 4;
-    ctx.strokeRect(bgX, bgY, bgWidth, bgHeight);
+        const lines = currentText.split('\n');
+        const lineHeight = fontSize * 1.2;
+        const maxTextWidth = bgWidth - 40;
+        const startY = bgY + 40;
+        const maxLines = Math.floor(bgHeight / lineHeight) - 1;
 
-    // Draw text with responsive sizing
-    ctx.fillStyle = '#fff';
-    ctx.textAlign = 'left';
-    
-    // Calculate responsive font size
-    const maxFontSize = Math.min(virtualWidth, virtualHeight) * 0.05; // 45px
-    const minFontSize = Math.min(virtualWidth, virtualHeight) * 0.03; // 27px
-    const fontSize = Math.max(minFontSize, Math.min(maxFontSize, statusBarHeight * 1.0)); // 45px
-    
-    ctx.font = `${fontSize}px Arial, sans-serif`;
-    
-    const lines = currentText.split('\n');
-    const lineHeight = fontSize * 1.2;
-    const maxTextWidth = bgWidth - 40;
-    const startY = bgY + 40;
-    const maxLines = Math.floor(bgHeight / lineHeight) - 1;
-    
-    // Word wrap if needed
-    const wrappedLines = [];
-    lines.forEach(line => {
-        if (ctx.measureText(line).width <= maxTextWidth) {
-            wrappedLines.push(line);
-        } else {
-            const words = line.split(' ');
-            let currentLine = '';
-            words.forEach(word => {
-                const testLine = currentLine ? currentLine + ' ' + word : word;
-                if (ctx.measureText(testLine).width <= maxTextWidth) {
-                    currentLine = testLine;
-                } else {
-                    if (currentLine) wrappedLines.push(currentLine);
-                    currentLine = word;
-                }
-            });
-            if (currentLine) wrappedLines.push(currentLine);
+        const wrappedLines = [];
+        lines.forEach(line => {
+            if (ctx.measureText(line).width <= maxTextWidth) {
+                wrappedLines.push(line);
+            } else {
+                const words = line.split(' ');
+                let currentLine = '';
+                words.forEach(word => {
+                    const testLine = currentLine ? currentLine + ' ' + word : word;
+                    if (ctx.measureText(testLine).width <= maxTextWidth) {
+                        currentLine = testLine;
+                    } else {
+                        if (currentLine) wrappedLines.push(currentLine);
+                        currentLine = word;
+                    }
+                });
+                if (currentLine) wrappedLines.push(currentLine);
+            }
+        });
+
+        for (let i = 0; i < Math.min(wrappedLines.length, maxLines); i++) {
+            const y = startY + i * lineHeight;
+            if (y < bgY + bgHeight - 20) {
+                ctx.fillText(wrappedLines[i], bgX + 20, y);
+            }
         }
-    });
-    
-    // Draw only lines that fit
-    for (let i = 0; i < Math.min(wrappedLines.length, maxLines); i++) {
-        const y = startY + i * lineHeight;
-        if (y < bgY + bgHeight - 20) {
-            ctx.fillText(wrappedLines[i], bgX + 20, y);
+
+        if (currentTextIndex < fullText.length) {
+            ctx.fillStyle = '#888';
+            ctx.font = `${fontSize * 0.8}px Arial, sans-serif`;
+            ctx.fillText('...', bgX + 20, startY + maxLines * lineHeight + 10);
         }
     }
-    
-    // Draw "..." if more text to come
-    if (currentTextIndex < fullText.length) {
-        ctx.fillStyle = '#888';
-        ctx.font = `${fontSize * 0.8}px Arial, sans-serif`;
-        ctx.fillText('...', bgX + 20, startY + maxLines * lineHeight + 10);
-    }
-}
 
     function draw() {
         ctx.save();
@@ -546,15 +529,24 @@
 
             ctx.fillStyle = '#F5F5F5';
             ctx.fillRect(0, 0, virtualWidth, statusBarHeight);
-            ctx.fillStyle = '#666666';
             ctx.font = `${statusBarHeight * 0.5}px Arial`;
             ctx.textBaseline = 'middle';
 
             ctx.textAlign = 'left';
+            ctx.fillStyle = '#666666';
             ctx.fillText(levelName, 10, statusBarHeight / 2);
 
             ctx.textAlign = 'right';
-            ctx.fillText(`${movementMode}${isPlayerDead ? ' - Dead' : hasWon ? ' - Won' : ''} - Moves: ${moveCount} - Claimed: ${claimedTiles}/${totalFloorTiles}`, virtualWidth - 10, statusBarHeight / 2);
+            if (hasWon) {
+                ctx.fillStyle = '#00FF00';
+                ctx.fillText('You Won! Press Space or Tap to Continue', virtualWidth - 10, statusBarHeight / 2);
+            } else if (isPlayerDead) {
+                ctx.fillStyle = '#FF0000';
+                ctx.fillText('Game Over - Press Reset', virtualWidth - 10, statusBarHeight / 2);
+            } else {
+                ctx.fillStyle = '#666666';
+                ctx.fillText(`${movementMode} - Moves: ${moveCount} - Claimed: ${claimedTiles}/${totalFloorTiles}`, virtualWidth - 10, statusBarHeight / 2);
+            }
 
             grid.forEach(cell => {
                 if (cell.state === 'floor') ctx.fillStyle = '#8B8B83';
@@ -623,7 +615,6 @@
 
         ctx.restore();
 
-        // Update reset button text
         resetBtn.textContent = isPlayerDead ? 'Reset' : 'Menu';
     }
 
@@ -704,6 +695,7 @@
         can_be_killed = 1;
         moveCount = 0;
         particles = [];
+        gameStateHistory = [];
     }
 
     function startCutscene() {
@@ -716,6 +708,7 @@
         cutsceneNextBtn.style.display = 'none';
         particles = [];
         levelName = "Cutscene";
+        gameStateHistory = [];
     }
 
     function proceedToNext() {
@@ -728,6 +721,7 @@
         movement_lock = false;
         slipping = false;
         can_be_killed = 1;
+        gameStateHistory = [];
 
         selectedLevel++;
         if (selectedLevel > maxLevel) selectedLevel = 1;
@@ -784,6 +778,7 @@
         particles = [];
         moveCount = 0;
         isCutscene = false;
+        gameStateHistory = [];
         document.getElementById('toggle-btn').textContent = 'Jump1';
         titleScreen.style.display = 'flex';
         canvas.style.display = 'none';
@@ -817,6 +812,38 @@
 
     function findPlayer() {
         return grid.find(cell => cell.state === 'player');
+    }
+
+    function saveGameState() {
+        gameStateHistory.push({
+            grid: grid.map(cell => ({ ...cell })),
+            moveCount,
+            isPlayerDead,
+            hasWon,
+            movementMode,
+            slipping,
+            slipDir: { ...slipDir },
+            particles: [...particles]
+        });
+        if (gameStateHistory.length > 10) gameStateHistory.shift(); // Limit to 10 states
+    }
+
+    function undoMove() {
+        if (gameStateHistory.length === 0 || isCutscene || isPlayerDead || hasWon) return;
+        const lastState = gameStateHistory.pop();
+        grid = lastState.grid.map(cell => ({ ...cell }));
+        moveCount = lastState.moveCount;
+        isPlayerDead = lastState.isPlayerDead;
+        hasWon = lastState.hasWon;
+        movementMode = lastState.movementMode;
+        slipping = lastState.slipping;
+        slipDir = { ...lastState.slipDir };
+        particles = [...lastState.particles];
+        can_be_killed = 1;
+        movement_lock = false;
+        isInputActive = false;
+        document.getElementById('toggle-btn').textContent = movementMode;
+        draw();
     }
 
     function attemptMove(dx, dy, claimStart = true) {
@@ -1084,22 +1111,11 @@
             return;
         }
 
+        saveGameState();
         moveCount++;
         cycleTimers();
 
         const player = findPlayer();
-        if (player.underlyingState === 'timer-0') {
-            isPlayerDead = true;
-            createParticles(player.x, player.y);
-            player.state = 'timer-0';
-            player.underlyingState = null;
-            draw();
-            can_be_killed = 1;
-            movement_lock = false;
-            isInputActive = false;
-            return;
-        }
-
         const jumpDistance = movementMode === 'jump1' ? 1 : 2;
         const oldX = player.x;
         const oldY = player.y;
@@ -1115,8 +1131,21 @@
 
         const playerOldCell = player;
         let playerTargetCell;
+        let result;
+
         if (!validMove) {
             playerTargetCell = playerOldCell;
+            if (player.underlyingState === 'timer-0') {
+                isPlayerDead = true;
+                createParticles(player.x, player.y);
+                playerOldCell.state = 'player';
+                playerOldCell.underlyingState = 'timer-0';
+                draw();
+                can_be_killed = 1;
+                movement_lock = false;
+                isInputActive = false;
+                return;
+            }
             movement_lock = false;
             isInputActive = false;
             can_be_killed = 1;
@@ -1162,7 +1191,6 @@
             }
         }
 
-        let result;
         if (isKiller && isFacingPlayer && willAttackPlayer && jumpDistance === 1) {
             moveEnemies();
             isPlayerDead = true;
@@ -1184,53 +1212,50 @@
             isInputActive = false;
             return;
         } else {
-            if (playerOldCell.underlyingState && playerOldCell.underlyingState.startsWith('timer-')) {
-                playerOldCell.state = playerOldCell.underlyingState;
-                playerOldCell.underlyingState = null;
-            } else {
-                playerOldCell.isClaimed = true;
-                playerOldCell.state = 'claimed';
-            }
+            result = attemptMove(dx * jumpDistance, dy * jumpDistance);
 
-            if (isPit) {
-                playerTargetCell.state = 'player';
-                isPlayerDead = true;
-                createParticles(newX, newY);
-                result = false;
-            } else if (!enemyThere) {
-                if (playerTargetCell.state.startsWith('timer-')) {
-                    playerTargetCell.underlyingState = playerTargetCell.state;
+            if (result === 'enemy') {
+                moveEnemies();
+                if (playerTargetCell.state.startsWith('enemy-') || playerTargetCell.state.startsWith('killer-enemy-')) {
+                    playerTargetCell.state = 'player';
+                    isPlayerDead = true;
+                    createParticles(newX, newY);
+                    result = false;
+                } else {
+                    if (playerTargetCell.state.startsWith('timer-')) {
+                        playerTargetCell.underlyingState = playerTargetCell.state;
+                    }
+                    playerTargetCell.state = 'player';
+                    result = playerTargetCell.isClaimed ? 'slip' : true;
                 }
-                playerTargetCell.state = 'player';
-                result = playerTargetCell.isClaimed ? 'slip' : true;
+                draw();
+            } else {
+                if (result === false && !isPlayerDead) {
+                    if (player.underlyingState === 'timer-0') {
+                        isPlayerDead = true;
+                        createParticles(player.x, player.y);
+                        playerOldCell.state = 'player';
+                        playerOldCell.underlyingState = 'timer-0';
+                        draw();
+                        can_be_killed = 1;
+                        movement_lock = false;
+                        isInputActive = false;
+                        return;
+                    }
+                }
+                moveEnemies();
             }
-        }
-
-        draw();
-
-        if (!(isKiller && isFacingPlayer && willAttackPlayer)) {
-            moveEnemies();
         }
 
         can_be_killed = 1;
 
-        if (enemyThere) {
-            if (playerTargetCell.state.startsWith('enemy-') || playerTargetCell.state.startsWith('killer-enemy-')) {
-                playerTargetCell.state = 'player';
-                isPlayerDead = true;
-                createParticles(newX, newY);
-                result = false;
-            } else {
-                if (playerTargetCell.state.startsWith('timer-')) {
-                    playerTargetCell.underlyingState = playerTargetCell.state;
-                }
-                playerTargetCell.state = 'player';
-                result = playerTargetCell.isClaimed ? 'slip' : true;
-            }
-            draw();
-        }
-
-        hasWon = grid.every(cell => cell.state === 'wall' || cell.state === 'pit' || cell.isClaimed || cell.state === 'player');
+        hasWon = grid.every(cell => 
+            cell.state === 'wall' || 
+            cell.state === 'pit' || 
+            cell.isClaimed || 
+            cell.state === 'player' || 
+            cell.state.startsWith('timer-')
+        );
 
         if (result === 'slip') {
             slipping = true;
@@ -1257,6 +1282,7 @@
         initializeGrid(currentLevel);
         moveCount = 0;
         particles = [];
+        gameStateHistory = [];
         draw();
         movement_lock = false;
         slipping = false;
@@ -1279,6 +1305,7 @@
         movement_lock = false;
         slipping = false;
         can_be_killed = 1;
+        gameStateHistory = [];
         showTitleScreen();
     }
 
@@ -1298,6 +1325,7 @@
                 } else if (isPlayerDead) resetLevel();
                 else toggleMovementMode();
                 break;
+            case 'z': undoMove(); break;
             case 'q': changeLevel('previous'); break;
             case 'w': changeLevel('next'); break;
             case 'escape':
@@ -1324,16 +1352,21 @@
         isInputActive = false;
     });
 
-    const buttons = { 'up-btn': [0, -1], 'down-btn': [0, 1], 'left-btn': [-1, 0], 'right-btn': [1, 0] };
+    const buttons = { 'up-btn': [0, -1], 'down-btn': [0, 1], 'left-btn': [-1, 0], 'right-btn': [1, 0], 'undo-btn': 'undo' };
     Object.keys(buttons).forEach(id => {
         const btn = document.getElementById(id);
-        const [dx, dy] = buttons[id];
+        const action = buttons[id];
         function press(e) {
             e.preventDefault();
             e.stopPropagation();
             if (!isInputActive && !isPlayerDead && !movement_lock && !slipping && !hasWon && can_be_killed) {
                 isInputActive = true;
-                movePlayer(dx, dy);
+                if (action === 'undo') {
+                    undoMove();
+                } else {
+                    const [dx, dy] = action;
+                    movePlayer(dx, dy);
+                }
             }
         }
         function release(e) {
@@ -1403,7 +1436,6 @@
     resetBtn.addEventListener('touchstart', resetPress);
     resetBtn.addEventListener('touchend', resetRelease);
 
-    // Title screen button events
     playBtn.addEventListener('click', e => {
         e.preventDefault();
         showScene();
@@ -1431,7 +1463,6 @@
         changeLevel('previous');
     });
 
-    // Add touch event for level transition on win state
     document.body.addEventListener('touchstart', e => {
         e.preventDefault();
         if (hasWon && !isInputActive && titleScreen.style.display === 'none') {
@@ -1450,7 +1481,6 @@
         proceedToNext();
     });
 
-    // Initialize title screen
     updateLevelSelectDisplay();
     showTitleScreen();
 </script>
