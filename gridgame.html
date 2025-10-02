@@ -1,192 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SWSS 2: Recrudescence</title>
-    <style>
-        html { height: 100%; }
-        body { margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; background-color: #000; overflow: hidden; position: relative; }
-        canvas { display: none; background-color: #222; }
-        .controls {
-            position: absolute;
-            bottom: calc(10px + env(safe-area-inset-bottom));
-            right: calc(10px + env(safe-area-inset-right));
-            display: grid;
-            grid-template-columns: repeat(3, minmax(40px, 8vw));
-            grid-template-rows: repeat(2, minmax(40px, 8vw));
-            gap: 5px;
-            z-index: 10;
-            display: none;
-        }
-        .toggle-btn, .reset-btn {
-            position: absolute;
-            bottom: calc(10px + env(safe-area-inset-bottom));
-            left: calc(10px + env(safe-area-inset-left));
-            width: minmax(100px, 15vw);
-            height: 8vh;
-            background-color: #555;
-            color: #fff;
-            border: 2px solid #fff;
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: clamp(16px, 2.5vw, 18px);
-            touch-action: manipulation;
-            user-select: none;
-            cursor: pointer;
-            z-index: 10;
-            display: none;
-        }
-        .reset-btn { bottom: calc(100px + env(safe-area-inset-bottom)); }
-        .toggle-btn:active, .reset-btn:active { background-color: #777; }
-        .control-btn {
-            background-color: rgba(85, 85, 85, 0.7);
-            color: #fff;
-            border: 2px solid #fff;
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: clamp(20px, 3vw, 24px);
-            touch-action: manipulation;
-            user-select: none;
-            cursor: pointer;
-            width: 100%;
-            height: 100%;
-        }
-        .control-btn:active { background-color: rgba(119, 119, 119, 0.7); }
-        .empty { background: none; border: none; }
-        .title-screen {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #000;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            z-index: 20;
-        }
-        .title-text {
-            color: #fff;
-            font-size: clamp(24px, 6vw, 48px);
-            font-family: Arial, sans-serif;
-            margin-top: 5vh;
-            text-align: center;
-        }
-        .level-select {
-            color: #fff;
-            font-size: clamp(18px, 4vw, 32px);
-            font-family: Arial, sans-serif;
-            margin: 5vh 0;
-            text-align: center;
-        }
-        .title-buttons {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-        }
-        .title-btn {
-            background-color: #555;
-            color: #fff;
-            border: 2px solid #fff;
-            border-radius: 10px;
-            padding: 10px 20px;
-            font-size: clamp(14px, 2.5vw, 18px);
-            touch-action: manipulation;
-            user-select: none;
-            cursor: pointer;
-            min-width: 80px;
-            text-align: center;
-        }
-        .title-btn:active {
-            background-color: #777;
-        }
-        .cutscene-btn {
-            position: absolute;
-            bottom: calc(20vh + env(safe-area-inset-bottom));
-            left: 50%;
-            transform: translateX(-50%);
-            display: none;
-            z-index: 15;
-            min-width: 100px;
-            padding: 12px 24px;
-            font-size: clamp(16px, 3vw, 20px);
-        }
-        @media (max-width: 600px) {
-            .controls {
-                grid-template-columns: repeat(3, minmax(30px, 10vw));
-                grid-template-rows: repeat(2, minmax(30px, 10vw));
-                gap: 3px;
-                right: calc(5px + env(safe-area-inset-right));
-                bottom: calc(5px + env(safe-area-inset-bottom));
-            }
-            .toggle-btn, .reset-btn {
-                width: minmax(80px, 18vw);
-                height: 6vh;
-                font-size: clamp(14px, 3vw, 16px);
-                left: calc(5px + env(safe-area-inset-left));
-            }
-            .reset-btn { bottom: calc(80px + env(safe-area-inset-bottom)); }
-            .control-btn {
-                font-size: clamp(16px, 3.5vw, 20px);
-            }
-            .title-text {
-                font-size: clamp(20px, 5vw, 36px);
-            }
-            .level-select {
-                font-size: clamp(16px, 3.5vw, 24px);
-            }
-            .title-btn {
-                font-size: clamp(12px, 2vw, 16px);
-                padding: 8px 15px;
-                min-width: 60px;
-            }
-            .cutscene-btn {
-                bottom: calc(15vh + env(safe-area-inset-bottom));
-                padding: 10px 20px;
-                font-size: clamp(14px, 3.5vw, 18px);
-                min-width: 80px;
-            }
-        }
-        @media (orientation: landscape) and (max-height: 500px) {
-            .controls {
-                grid-template-columns: repeat(3, minmax(25px, 7vw));
-                grid-template-rows: repeat(2, minmax(25px, 7vw));
-                gap: 2px;
-            }
-            .toggle-btn, .reset-btn {
-                width: minmax(70px, 14vw);
-                height: 6vh;
-                font-size: clamp(12px, 2.5vw, 14px);
-            }
-            .reset-btn { bottom: calc(70px + env(safe-area-inset-bottom)); }
-            .title-text {
-                font-size: clamp(18px, 4vw, 32px);
-                margin-top: 3vh;
-            }
-            .level-select {
-                font-size: clamp(14px, 3vw, 20px);
-                margin: 3vh 0;
-            }
-            .title-btn {
-                font-size: clamp(10px, 1.8vw, 14px);
-                padding: 6px 12px;
-                min-width: 50px;
-            }
-            .cutscene-btn {
-                bottom: calc(10vh + env(safe-area-inset-bottom));
-                padding: 8px 16px;
-                font-size: clamp(12px, 2.5vw, 16px);
-                min-width: 70px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="SWSS2_assets/swss2_styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Press+Start+2P&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
     <div class="title-screen">
         <div class="title-text">SWSS 2: Recrudescence</div>
@@ -196,6 +22,8 @@
             <div class="title-btn" id="play-btn">Play</div>
             <div class="title-btn" id="next-level-btn">Next</div>
         </div>
+        <div class="level-indicator" id="level-indicator"></div>
+        <div class="level-number" id="level-number"></div>
     </div>
     <canvas id="gameCanvas"></canvas>
     <div class="controls">
@@ -209,1280 +37,2279 @@
     <div class="toggle-btn" id="toggle-btn">Jump1</div>
     <div class="reset-btn" id="reset-btn">Menu</div>
     <div class="title-btn cutscene-btn" id="cutscene-next-btn">Next</div>
-<script>
-    const canvas = document.getElementById('gameCanvas');
-    const ctx = canvas.getContext('2d');
-    const titleScreen = document.querySelector('.title-screen');
-    const levelSelectDisplay = document.getElementById('level-select');
-    const playBtn = document.getElementById('play-btn');
-    const nextLevelBtn = document.getElementById('next-level-btn');
-    const prevLevelBtn = document.getElementById('prev-level-btn');
-    const resetBtn = document.getElementById('reset-btn');
-    const cutsceneNextBtn = document.getElementById('cutscene-next-btn');
+    <script type="module">
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        ctx.imageSmoothingEnabled = false;
+        const titleScreen = document.querySelector('.title-screen');
+        const levelSelectDisplay = document.getElementById('level-select');
+        const levelIndicator = document.getElementById('level-indicator');
+        const levelNumber = document.getElementById('level-number');
+        const playBtn = document.getElementById('play-btn');
+        const nextLevelBtn = document.getElementById('next-level-btn');
+        const prevLevelBtn = document.getElementById('prev-level-btn');
+        const resetBtn = document.getElementById('reset-btn');
+        const cutsceneNextBtn = document.getElementById('cutscene-next-btn');
+        const virtualWidth = 1600;
+        const virtualHeight = 900;
+        let scale = 1;
+        let gridWidth = 18; // Now dynamic
+        let gridHeight = 8; // Now dynamic
+        let cellWidth;
+        let cellHeight;
+        const statusBarHeight = virtualHeight / 9;
+        const speakerImage = new Image();
+        const speakerLeftImage = new Image();
+        const speakerRightImage = new Image();
+        const backgroundImage = new Image();
+        let currentMusic = null;
+        let currentMusicSrc = '';
+        let lastPlayerMove = { dx: 0, dy: 0 };
+        let selectedLevel = 1;
+        let currentLevel = 1;
+        let currentPhase = 0;
+        let levelName = "Level 1 - Temple";
+        let hasWon = false;
+        let isInputActive = false;
+        let movementMode = 'jump1';
+        let empowered = false;
+        let isPlayerDead = false;
+        let movement_lock = false;
+        let grid = [];
+        let defeatedEnemies = [];
+        let can_be_killed = 1;
+        let moveCount = 0;
+        let slipping = false;
+        let slipDir = { dx: 0, dy: 0 };
+        let totalFloorTiles = 0;
+        let totalGoals = 0;
+        let allFloorsClaimedOnWin = false;
+        let particles = [];
+        let bgParticles = [];
+        let fires = [];
+        let lastBgParticleSpawn = 0;
+        let gameStateHistory = [];
+        let isCutscene = false;
+        let fullText = '';
+        let currentText = '';
+        let currentTextIndex = 0;
+        let typingSpeed = 22;
+        let lastTypeTime = 0;
+        let currentDialogueIndex = 0;
+        let isMultiStage = false;
+        let cachedWrappedLines = [];
+        let isCutsceneIdle = false;
+        let animationId = null;
+        let lastBackgroundSrc = null;
+        let lastSpeakerSrc = null;
+        let lastSpeakerLeftSrc = null;
+        let lastSpeakerRightSrc = null;
 
-    const virtualWidth = 1600;
-    const virtualHeight = 900;
-    let scale = 1;
+        import { createParticles } from './SWSS2_assets/functions/Particles.js';
+        import cutscene1 from './SWSS2_assets/cutscenes/cutscene1.js';
+        import cutscene2 from './SWSS2_assets/cutscenes/cutscene2.js';
+        import cutscene3 from './SWSS2_assets/cutscenes/cutscene3.js';
+        import level1_1 from './SWSS2_assets/levels/level1_1.js';
+        import level1_2 from './SWSS2_assets/levels/level1_2.js';
+        import level1_3 from './SWSS2_assets/levels/level1_3.js';
+        import level1_4 from './SWSS2_assets/levels/level1_4.js';
+        import level1_5 from './SWSS2_assets/levels/level1_5.js';
+        import level2_1 from './SWSS2_assets/levels/level2_1.js';
+        import level2_2 from './SWSS2_assets/levels/level2_2.js';
+        import level2_3 from './SWSS2_assets/levels/level2_3.js';
+        import level2_4 from './SWSS2_assets/levels/level2_4.js';
+        import level2_5 from './SWSS2_assets/levels/level2_5.js'
 
-    const gridWidth = 16;
-    const gridHeight = 8;
-    const cellWidth = virtualWidth / gridWidth;
-    const cellHeight = (virtualHeight * (gridHeight / 9)) / gridHeight;
-    const statusBarHeight = virtualHeight / 9;
+        const levels = {
+            1: cutscene1,
+            2: level1_1,
+            3: level1_2,
+            4: level1_3,
+            5: level1_4,
+            6: level1_5,
+            7: cutscene2,
+            8: level2_1,
+            9: level2_2,
+            10: level2_3,
+            11: level2_4,
+            12: level2_5,
+            13: cutscene3,
+        };
 
-    const speakerImage = new Image();
-    speakerImage.src = 'download.jpg'; // Replace with your .png file path   
+        const maxLevel = Object.keys(levels).length;
 
-    let selectedLevel = 1;
-    let currentLevel = 1;
-    let levelName = "Level 1 - Temple";
-    let hasWon = false;
-
-    let isInputActive = false;
-    let movementMode = 'jump1';
-    let isPlayerDead = false;
-    let movement_lock = false;
-    let grid = [];
-    let can_be_killed = 1;
-    let moveCount = 0;
-
-    let slipping = false;
-    let slipDir = { dx: 0, dy: 0 };
-
-    let totalFloorTiles = 0;
-    let particles = [];
-    let gameStateHistory = []; // For undo feature
-
-    let isCutscene = false;
-    let fullText = '';
-    let currentText = '';
-    let currentTextIndex = 0;
-    let typingSpeed = 50; // ms per letter
-    let lastTypeTime = 0;
-
-    const levels = {
-        1: { type: "cutscene", name: "Enter: Kuyuti Kawa II :sparkles:", text: [
-            "Tra-la-la...! Tra-la-la-la...!",
-            "Ugyuuu... I never did master the splorty.",
-            "But I won't give up! Here I go!",
-            "Uh... Uuuwa-wa-wa-wa-wa-wa...!!"
-        ]},
-        2: { type: "level", name: "Level 1 - Temple", layout: [
-            "################",
-            "#..>....~~......",
-            "#..####..####..#",
-            "#..#..#..#..#..#",
-            "#..####..####..#",
-            "#....~~........#",
-            "#......P.....<.#",
-            "################"
-        ]},
-        3: { type: "level", name: "Level 2 - Cave", layout: [
-            "################",
-            "#..#....~~...P.#",
-            "#..#....~~...<.#",
-            "#..###.####..#.#",
-            "#....#.#..#..#v#",
-            "#....#....#....#",
-            "#.>..##.###....#",
-            "################"
-        ]},
-        4: { type: "cutscene", name: "Punished Kuyuti", text: [
-            "I'll never trust those green squares that move around!!",
-            "Uh-uh. That’s cute or whatever.",
-            "Uu... Ugyuuu... I can't let them thwarty my splorty...",
-            "And on God I don’t chase the splorty. I live (ikiteiru) within the splorty nation.",
-            "...PERIODT!"
-        ]},
-        5: { type: "level", name: "Level 3 - Forest", layout: [
-            "################",
-            "#...P..........#",
-            "#..#.#.....#...#",
-            "#..###.....#...#",
-            "#..#....S......#",
-            "#..#..A....#...#",
-            "#..#....~~.....#",
-            "################"
-        ]},
-        6: { type: "level", name: "Level 4 - Trial", layout: [
-            "################",
-            "#....3....2....#",
-            "#..####..####..#",
-            "#..#..#..#..#..#",
-            "#..####..1....P#",
-            "#....0....~~...#",
-            "#......#..#....#",
-            "################"
-        ]},
-        7: { type: "cutscene", name: "Intrinsic Kuyuti Mindset", text: [
-            "I was in the middle of a nap, like, rude.",
-            "Is you serious?",
-            "Imma need you to stop acting brand new.",
-            "Let me say that... (pause for emphasis...) one-mo'-'gain.",
-            "I'll splorty 'til the evening. My quest... is to claim the tiles. Iku zo!",
-        ]},
-    };
-
-    const maxLevel = Object.keys(levels).length;
-
-    function updateLevelSelectDisplay() {
-        const level = levels[selectedLevel];
-        if (level.type === 'cutscene') {
-            levelSelectDisplay.textContent = `${level.name}`;
-        } else {
-            levelSelectDisplay.textContent = `${level.name}`;
+        function updateGridDimensions(level) {
+            const staticLevel = levels[level];
+            if (staticLevel.type === 'level') {
+                gridWidth = staticLevel.gridWidth || 18; // Fallback to default
+                gridHeight = staticLevel.gridHeight || 8;
+                cellWidth = virtualWidth / gridWidth;
+                cellHeight = (virtualHeight * (gridHeight / 9)) / gridHeight;
+            }
         }
-    }
 
-    function createParticles(x, y) {
-        const particleCount = 12;
-        const tileLeft = x * cellWidth;
-        const tileRight = (x + 1) * cellWidth;
-        const tileTop = statusBarHeight + y * cellHeight;
-        const tileBottom = statusBarHeight + (y + 1) * cellHeight;
-        const inset = 0.1;
+        function getFillColor(state) {
+            if (state === 'floor') return '#8B8B83';
+            if (state === 'claimed') return '#A9A9A9';
+            if (state === 'wall') return '#5C5C5A';
+            if (state === 'tree') return '#008000';
+            if (state === 'pit') return 'transparent';
+            if (state === 'brick') return '#A52A2A';
+            if (state === 'timer-3' || state === 'timer-2') return '#6B6B6B';
+            if (state === 'timer-1') return '#8B8B83';
+            if (state === 'timer-0') return 'transparent';
+            if (state.startsWith('enemy-') || state.startsWith('killer-enemy-') || state.startsWith('fairy-')) return '#00FF00';
+            if (state === 'ghost-enemy') return '#ADD8E6';
+            if (state === 'teleport-blue') return '#4682B4';
+            if (state === 'teleport-red') return '#FF4040';
+            if (state === 'teleport-green') return '#228B22';
+            if (state === 'teleport-yellow') return '#FFD700';
+            if (state === 'cake') return '#FFB6C1';
+            if (state === 'strawberry') return '#FF69B4';
+            if (state === 'sphere') return '#FFD700';
+            if (state === 'player') return isPlayerDead ? '#FF0000' : hasWon ? '#00FF00' : empowered ? '#FFC0CB' : movementMode === 'jump2' ? '#FFFF00' : '#00f';
+            return '#FFFFFF';
+        }
 
-        const spawnPoints = [
-            { px: tileLeft + inset * cellWidth, py: tileTop + inset * cellHeight, vx: -50, vy: -50 },
-            { px: tileRight - inset * cellWidth, py: tileTop + inset * cellHeight, vx: 50, vy: -50 },
-            { px: tileLeft + inset * cellWidth, py: tileBottom - inset * cellHeight, vx: -50, vy: 50 },
-            { px: tileRight - inset * cellWidth, py: tileBottom - inset * cellHeight, vx: 50, vy: 50 },
-            { px: tileLeft + cellWidth / 2, py: tileTop + inset * cellHeight, vx: 0, vy: -75 },
-            { px: tileRight - inset * cellWidth, py: tileTop + cellHeight / 2, vx: 75, vy: 0 },
-            { px: tileLeft + cellWidth / 2, py: tileBottom - inset * cellHeight, vx: 0, vy: 75 },
-            { px: tileLeft + inset * cellWidth, py: tileTop + cellHeight / 2, vx: -75, vy: 0 },
-            { px: tileLeft + inset * cellWidth, py: tileTop + cellHeight / 3, vx: -60, vy: -30 },
-            { px: tileRight - inset * cellWidth, py: tileTop + 2 * cellHeight / 3, vx: 60, vy: 30 },
-            { px: tileLeft + cellWidth / 3, py: tileTop + inset * cellHeight, vx: -30, vy: -60 },
-            { px: tileRight - cellWidth / 3, py: tileBottom - inset * cellHeight, vx: 30, vy: 60 }
-        ];
+        function playMusic(musicSrc) {
+            if (currentMusicSrc !== musicSrc) {
+                if (currentMusic) {
+                    currentMusic.pause();
+                    currentMusic = null;
+                }
+                currentMusicSrc = musicSrc;
+                if (musicSrc) {
+                    currentMusic = new Audio(musicSrc);
+                    currentMusic.loop = true;
+                    currentMusic.play().catch(e => console.error('Music playback failed:', e));
+                }
+            }
+        }
 
-        for (let i = 0; i < particleCount; i++) {
-            const sp = spawnPoints[i % spawnPoints.length];
-            particles.push({
-                x: sp.px,
-                y: sp.py,
-                vx: sp.vx + (Math.random() - 0.5) * 20,
-                vy: sp.vy + (Math.random() - 0.5) * 20,
-                size: 20,
-                moveTime: 0.5,
-                isStatic: false,
-                rotation: Math.random() * 360,
-                rotationSpeed: (Math.random() - 0.5) * 180
+        function updateLevelSelectDisplay() {
+            const level = levels[selectedLevel];
+            if (level.type === 'cutscene') {
+                levelSelectDisplay.textContent = `${level.name}`;
+            } else {
+                levelSelectDisplay.textContent = `${level.name}`;
+            }
+        }
+
+        function updateLevelIndicator() {
+            levelIndicator.innerHTML = '';
+            for (let i = 1; i <= maxLevel; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'level-dot';
+                if (i === selectedLevel) {
+                    dot.classList.add('active');
+                }
+                levelIndicator.appendChild(dot);
+            }
+            levelNumber.textContent = selectedLevel;
+        }
+
+        function createClaimParticles(gridX, gridY) {
+            const numParticles = 3; // Few subtle particles
+            const centerX = (gridX + 0.5) * cellWidth;
+            const centerY = statusBarHeight + (gridY + 0.5) * cellHeight;
+            for (let i = 0; i < numParticles; i++) {
+                const vx = (Math.random() - 0.5) * 40; // Only left/right, slight
+                const vy = 0;
+                particles.push({
+                    x: centerX,
+                    y: centerY,
+                    vx: vx,
+                    vy: vy,
+                    size: Math.min(cellWidth, cellHeight), // Same size as tile
+                    rotation: 0,
+                    rotationSpeed: 0, // No rotation
+                    moveTime: 0.8, // Disappear after ~0.8s
+                    initialLife: 0.8,
+                    isStatic: false,
+                    type: 'claim',
+                    color: 'rgba(255, 255, 255, 0.15)' // Increased opacity
+                });
+            }
+        }
+
+        function createMovementSparks(gridX, gridY, dx, dy) {
+            const numSparks = 16; // Burst of sparks
+            const centerX = (gridX + 0.5) * cellWidth;
+            const centerY = statusBarHeight + (gridY + 0.5) * cellHeight;
+            const speed = 800; // Fast shooting
+            for (let i = 0; i < numSparks; i++) {
+                const angle = Math.atan2(dy, dx) + (Math.random() - 0.5) * Math.PI / 8; // Tighter spread
+                const vx = Math.cos(angle) * speed;
+                const vy = Math.sin(angle) * speed;
+                particles.push({
+                    x: centerX,
+                    y: centerY,
+                    vx: vx,
+                    vy: vy,
+                    size: 8 + Math.random() * 4, // Small sparks
+                    rotation: Math.random() * 360,
+                    rotationSpeed: (Math.random() - 0.5) * 720, // Spin
+                    moveTime: 0.2, // Quicker deletion
+                    initialLife: 0.2,
+                    isStatic: false,
+                    type: 'spark',
+                    color: `rgba(255, 255, 0, 1)` // Yellow, varying opacity
+                });
+            }
+        }
+
+        function spawnBgParticle() {
+            const size = 50 + Math.random() * 250;
+            const y = Math.random() * virtualHeight;
+            const vx = -100 - Math.random() * 100;
+            const opacity = 0.0125 + Math.random() * 0.025;
+            const rotation = Math.random() * 360;
+            const rotationSpeed = 0;
+            const offScreenOffset = size / 2 + Math.random() * 50;
+            const color = Math.random() < 0.5 ? `rgba(0, 0, 255, ${opacity})` : `rgba(0, 0, 0, ${opacity})`;
+            bgParticles.push({
+                x: virtualWidth + offScreenOffset,
+                y: y,
+                size: size,
+                vx: vx,
+                opacity: opacity,
+                rotation: rotation,
+                rotationSpeed: rotationSpeed,
+                color: color
             });
         }
 
-        for (let i = 0; i < (particleCount * 2); i++) {
-            const sp = spawnPoints[i % spawnPoints.length];
-            particles.push({
-                x: sp.px,
-                y: sp.py,
-                vx: sp.vx + (Math.random() - 0.5) * 200,
-                vy: sp.vy + (Math.random() - 0.5) * 200,
-                size: 10,
-                moveTime: 0.25,
-                isStatic: false,
-                rotation: Math.random() * 360,
-                rotationSpeed: (Math.random() - 0.5) * 360
-            });
-        }
-    }
+        function updateParticles(deltaTime) {
+            particles.forEach(p => {
+                if (!p.isStatic) {
+                    p.x += p.vx * deltaTime;
+                    p.y += p.vy * deltaTime;
+                    p.rotation += p.rotationSpeed * deltaTime;
+                    p.moveTime -= deltaTime;
 
-    function updateParticles(deltaTime) {
-        particles.forEach(p => {
-            if (!p.isStatic) {
-                p.x += p.vx * deltaTime;
-                p.y += p.vy * deltaTime;
-                p.moveTime -= deltaTime;
+                    const gridX = Math.floor(p.x / cellWidth);
+                    const gridY = Math.floor((p.y - statusBarHeight) / cellHeight);
 
-                const gridX = Math.floor(p.x / cellWidth);
-                const gridY = Math.floor((p.y - statusBarHeight) / cellHeight);
+                    // Skip wall sticking for sparks
+                    if (p.type !== 'spark') {
+                        if (gridX >= 0 && gridX < gridWidth && gridY >= 0 && gridY < gridHeight) {
+                            const cell = grid.find(c => c.x === gridX && c.y === gridY);
+                            if (cell && (cell.state === 'wall' || cell.state === 'pit' || cell.state === 'brick' || cell.state === 'tree')) {
+                                p.isStatic = true;
+                            }
+                        } else {
+                            p.isStatic = true;
+                        }
+                    }
 
-                if (gridX >= 0 && gridX < gridWidth && gridY >= 0 && gridY < gridHeight) {
-                    const cell = grid.find(c => c.x === gridX && c.y === gridY);
-                    if (cell && (cell.state === 'wall' || cell.state === 'pit')) {
+                    if (p.moveTime <= 0) {
                         p.isStatic = true;
                     }
+                }
+            });
+
+            particles = particles.filter(p => p.moveTime > 0 || p.isStatic);
+
+            bgParticles = bgParticles.filter(p => p.x + p.size / 2 > 0);
+            bgParticles.forEach(p => {
+                p.x += p.vx * deltaTime;
+                p.rotation += p.rotationSpeed * deltaTime;
+            });
+        }
+
+        function getWrappedLines(text, fontSize, maxTextWidth) {
+            const prevFont = ctx.font;
+            ctx.font = `${fontSize}px MyPC98Font, monospace`;
+            const lines = text.split('\n');
+            const wrappedLines = [];
+            lines.forEach(line => {
+                if (ctx.measureText(line).width <= maxTextWidth) {
+                    wrappedLines.push(line);
                 } else {
-                    p.isStatic = true;
+                    const words = line.split(' ');
+                    let currentLine = '';
+                    words.forEach(word => {
+                        const testLine = currentLine ? currentLine + ' ' + word : word;
+                        if (ctx.measureText(testLine).width <= maxTextWidth) {
+                            currentLine = testLine;
+                        } else {
+                            if (currentLine) wrappedLines.push(currentLine);
+                            currentLine = word;
+                        }
+                    });
+                    if (currentLine) wrappedLines.push(currentLine);
                 }
+            });
+            ctx.font = prevFont;
+            return wrappedLines;
+        }
 
-                if (p.moveTime <= 0) {
-                    p.isStatic = true;
+        function addNextChar(fontSize, maxTextWidth) {
+            const char = fullText[currentTextIndex];
+            const isStartOfWord = currentText === '' || currentText.endsWith(' ') || currentText.endsWith('\n');
+            if (isStartOfWord) {
+                let end = fullText.indexOf(' ', currentTextIndex);
+                if (end === -1) end = fullText.length;
+                const word = fullText.substring(currentTextIndex, end);
+                ctx.font = `${fontSize}px MyPC98Font, monospace`;
+                const tempLines = getWrappedLines(currentText, fontSize, maxTextWidth);
+                const lastLine = tempLines[tempLines.length - 1] || '';
+                const space = (lastLine && !lastLine.endsWith(' ')) ? ' ' : '';
+                const testWidth = ctx.measureText(lastLine + space + word).width;
+                if (testWidth > maxTextWidth) {
+                    currentText += '\n';
                 }
             }
-        });
-    }
-
-    function drawCutsceneText() {
-        ctx.fillStyle = '#F5F5F5';
-        ctx.fillRect(0, 0, virtualWidth, statusBarHeight);
-        ctx.fillStyle = '#666666';
-        ctx.font = `${statusBarHeight * 0.5}px Arial`;
-        ctx.textBaseline = 'middle';
-
-        ctx.textAlign = 'left';
-        ctx.fillText(levels[currentLevel].name || 'Cutscene', 10, statusBarHeight / 2);
-
-        ctx.textAlign = 'right';
-        ctx.fillText('Press Next to continue', virtualWidth - 10, statusBarHeight / 2);
-
-        const imageHeight = (virtualHeight - statusBarHeight) / 2 - 50;
-        if (speakerImage.complete && speakerImage.naturalWidth && speakerImage.naturalHeight) {
-            const aspectRatio = speakerImage.naturalWidth / speakerImage.naturalHeight;
-            let destWidth = imageHeight * aspectRatio;
-            let destHeight = imageHeight;
-            let destX = 50;
-
-            const maxWidth = virtualWidth - 100;
-            if (destWidth > maxWidth) {
-                destWidth = maxWidth;
-                destHeight = maxWidth / aspectRatio;
-            }
-
-            destX = (virtualWidth - destWidth) / 2;
-            ctx.drawImage(speakerImage, destX, statusBarHeight, destWidth, destHeight);
-        } else {
-            ctx.fillStyle = '#555';
-            ctx.fillRect(50, statusBarHeight, virtualWidth - 100, imageHeight);
-            ctx.strokeStyle = '#666';
-            ctx.lineWidth = 4;
-            ctx.strokeRect(50, statusBarHeight, virtualWidth - 100, imageHeight);
+            currentText += char;
+            currentTextIndex++;
         }
 
-        ctx.fillStyle = '#333';
-        const bgPadding = 50;
-        const bgWidth = virtualWidth - 2 * bgPadding;
-        const bgHeight = (virtualHeight - statusBarHeight) / 2;
-        const bgX = bgPadding;
-        const bgY = statusBarHeight + imageHeight;
-        ctx.fillRect(bgX, bgY, bgWidth, bgHeight);
-
-        ctx.strokeStyle = '#666';
-        ctx.lineWidth = 4;
-        ctx.strokeRect(bgX, bgY, bgWidth, bgHeight);
-
-        ctx.fillStyle = '#fff';
-        ctx.textAlign = 'left';
-        const maxFontSize = Math.min(virtualWidth, virtualHeight) * 0.05;
-        const minFontSize = Math.min(virtualWidth, virtualHeight) * 0.03;
-        const fontSize = Math.max(minFontSize, Math.min(maxFontSize, statusBarHeight * 1.0));
-        ctx.font = `${fontSize}px Arial, sans-serif`;
-
-        const lines = currentText.split('\n');
-        const lineHeight = fontSize * 1.2;
-        const maxTextWidth = bgWidth - 40;
-        const startY = bgY + 40;
-        const maxLines = Math.floor(bgHeight / lineHeight) - 1;
-
-        const wrappedLines = [];
-        lines.forEach(line => {
-            if (ctx.measureText(line).width <= maxTextWidth) {
-                wrappedLines.push(line);
-            } else {
-                const words = line.split(' ');
-                let currentLine = '';
-                words.forEach(word => {
-                    const testLine = currentLine ? currentLine + ' ' + word : word;
-                    if (ctx.measureText(testLine).width <= maxTextWidth) {
-                        currentLine = testLine;
-                    } else {
-                        if (currentLine) wrappedLines.push(currentLine);
-                        currentLine = word;
-                    }
-                });
-                if (currentLine) wrappedLines.push(currentLine);
-            }
-        });
-
-        for (let i = 0; i < Math.min(wrappedLines.length, maxLines); i++) {
-            const y = startY + i * lineHeight;
-            if (y < bgY + bgHeight - 20) {
-                ctx.fillText(wrappedLines[i], bgX + 20, y);
-            }
+        // Track last-loaded sources so we only reload if they change
+        // Preload helper to make sure the browser has the image before drawing
+        function preloadImage(img, src) {
+            return new Promise((resolve, reject) => {
+                if (img.src === src && img.complete && img.naturalWidth !== 0) {
+                    resolve();
+                    return;
+                }
+                img.onload = () => resolve();
+                img.onerror = () => {
+                    console.warn(`Failed to load image: ${src}`);
+                    resolve(); // Resolve even on error to avoid blocking
+                };
+                img.src = src;
+            });
         }
 
-        if (currentTextIndex < fullText.length) {
-            ctx.fillStyle = '#888';
-            ctx.font = `${fontSize * 0.8}px Arial, sans-serif`;
-            ctx.fillText('...', bgX + 20, startY + maxLines * lineHeight + 10);
-        }
-    }
-
-    function draw() {
-        ctx.save();
-        ctx.scale(scale, scale);
-        ctx.clearRect(0, 0, virtualWidth, virtualHeight);
-
-        if (isCutscene) {
-            drawCutsceneText();
-        } else {
-            const claimedTiles = grid.filter(cell => cell.isClaimed || cell.state === 'player').length;
-
-            hasWon = grid.every(cell => 
-                cell.state === 'wall' || 
-                cell.state === 'pit' || 
-                cell.isClaimed || 
-                cell.state === 'player' || 
-                cell.state.startsWith('timer-')
-            );
+        function drawCutsceneText() {
+            const scene = levels[currentLevel];
+            const dlg = scene.dialogues[currentDialogueIndex];
 
             ctx.fillStyle = '#F5F5F5';
             ctx.fillRect(0, 0, virtualWidth, statusBarHeight);
-            ctx.font = `${statusBarHeight * 0.5}px Arial`;
+            ctx.fillStyle = '#666666';
+            ctx.font = `${statusBarHeight * 0.5}px MyPC98Font`;
             ctx.textBaseline = 'middle';
 
             ctx.textAlign = 'left';
-            ctx.fillStyle = '#666666';
-            ctx.fillText(levelName, 10, statusBarHeight / 2);
+            ctx.fillText(scene.name || 'Cutscene', 10, statusBarHeight / 2);
 
             ctx.textAlign = 'right';
-            if (hasWon) {
-                ctx.fillStyle = '#00FF00';
-                ctx.fillText('You Won! Press Space or Tap to Continue', virtualWidth - 10, statusBarHeight / 2);
-            } else if (isPlayerDead) {
-                ctx.fillStyle = '#FF0000';
-                ctx.fillText('Game Over - Press Reset', virtualWidth - 10, statusBarHeight / 2);
-            } else {
-                ctx.fillStyle = '#666666';
-                ctx.fillText(`${movementMode} - Moves: ${moveCount} - Claimed: ${claimedTiles}/${totalFloorTiles}`, virtualWidth - 10, statusBarHeight / 2);
+            ctx.fillText('Press Next to continue', virtualWidth - 10, statusBarHeight / 2);
+
+            const imageHeight = (virtualHeight - statusBarHeight) / 2 + 145;
+            const imageX = 50;
+            const imageW = virtualWidth - 100;
+            const imageY = statusBarHeight;
+
+            let imageDrawn = false;
+
+            // --- Background ---
+            if (dlg.background && backgroundImage.complete && backgroundImage.naturalWidth !== 0) {
+                ctx.drawImage(backgroundImage, imageX, imageY, imageW, imageHeight);
+                imageDrawn = true;
             }
 
-            grid.forEach(cell => {
-                if (cell.state === 'floor') ctx.fillStyle = '#8B8B83';
-                else if (cell.state === 'claimed') ctx.fillStyle = '#D3D3D3';
-                else if (cell.state === 'wall') ctx.fillStyle = '#5C5C5A';
-                else if (cell.state === 'pit') ctx.fillStyle = '#000000';
-                else if (cell.state === 'timer-3') ctx.fillStyle = '#6B6B6B';
-                else if (cell.state === 'timer-2') ctx.fillStyle = '#6B6B6B';
-                else if (cell.state === 'timer-1') ctx.fillStyle = '#8B8B83';
-                else if (cell.state === 'timer-0') ctx.fillStyle = '#000000';
-                else if (cell.state === 'player') ctx.fillStyle = isPlayerDead ? '#FF0000' : hasWon ? '#00FF00' : '#00f';
-                else if (cell.state.startsWith('enemy-') || cell.state.startsWith('killer-enemy-')) ctx.fillStyle = '#00FF00';
-                ctx.fillRect(cell.x * cellWidth, statusBarHeight + cell.y * cellHeight, cellWidth, cellHeight);
+            // --- Speakers ---
+            const hasLeftSpeaker = dlg['speakerleft'];
+            const hasRightSpeaker = dlg['speakerright'];
+            const hasSingleSpeaker = dlg.speaker && !hasLeftSpeaker && !hasRightSpeaker;
 
-                if (cell.state.startsWith('timer-')) {
-                    const num = cell.state.split('-')[1];
-                    let color = num === '1' ? '#FF0000' : '#DDDDDD';
-                    ctx.fillStyle = color;
-                    ctx.font = `${cellHeight * 0.8}px Arial`;
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'middle';
-                    ctx.fillText(num, (cell.x + 0.5) * cellWidth, statusBarHeight + (cell.y + 0.5) * cellHeight);
-                } else if (cell.state.startsWith('enemy-') || cell.state.startsWith('killer-enemy-')) {
-                    ctx.fillStyle = '#FFFFFF';
-                    ctx.font = `${cellHeight * 0.8}px Arial`;
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'middle';
-                    let symbol;
-                    switch (cell.state) {
-                        case 'enemy-right': symbol = '>'; break;
-                        case 'enemy-left': symbol = '<'; break;
-                        case 'enemy-up': symbol = '^'; break;
-                        case 'enemy-down': symbol = 'v'; break;
-                        case 'killer-enemy-right': symbol = '>>'; break;
-                        case 'killer-enemy-left': symbol = '<<'; break;
-                        case 'killer-enemy-up': symbol = '^^'; break;
-                        case 'killer-enemy-down': symbol = 'vv'; break;
-                    }
-                    ctx.fillText(symbol, (cell.x + 0.5) * cellWidth, statusBarHeight + (cell.y + 0.5) * cellHeight);
+            // Left Speaker
+            if (hasLeftSpeaker && speakerLeftImage.complete && speakerLeftImage.naturalWidth !== 0) {
+                const aspectRatio = speakerLeftImage.naturalWidth / speakerLeftImage.naturalHeight;
+                let destWidth = imageHeight * aspectRatio;
+                let destHeight = imageHeight;
+                const maxWidth = (virtualWidth / 2) - 100;
+                if (destWidth > maxWidth) {
+                    destWidth = maxWidth;
+                    destHeight = maxWidth / aspectRatio;
+                }
+                const destX = 150;
+                const destY = statusBarHeight + (imageHeight - destHeight) / 2;
+                ctx.drawImage(speakerLeftImage, destX, destY, destWidth, destHeight);
+                imageDrawn = true;
+            }
+
+            // Right Speaker
+            if (hasRightSpeaker && speakerRightImage.complete && speakerRightImage.naturalWidth !== 0) {
+                const aspectRatio = speakerRightImage.naturalWidth / speakerRightImage.naturalHeight;
+                let destWidth = imageHeight * aspectRatio;
+                let destHeight = imageHeight;
+                const maxWidth = (virtualWidth / 2) - 100;
+                if (destWidth > maxWidth) {
+                    destWidth = maxWidth;
+                    destHeight = maxWidth / aspectRatio;
+                }
+                const destX = virtualWidth - 150 - destWidth;
+                const destY = statusBarHeight + (imageHeight - destHeight) / 2;
+                ctx.drawImage(speakerRightImage, destX, destY, destWidth, destHeight);
+                imageDrawn = true;
+            }
+
+            // Single Speaker (backward compatible)
+            if (hasSingleSpeaker && speakerImage.complete && speakerImage.naturalWidth !== 0) {
+                const aspectRatio = speakerImage.naturalWidth / speakerImage.naturalHeight;
+                let destWidth = imageHeight * aspectRatio;
+                let destHeight = imageHeight;
+                const maxWidth = virtualWidth - 100;
+                if (destWidth > maxWidth) {
+                    destWidth = maxWidth;
+                    destHeight = maxWidth / aspectRatio;
+                }
+                const destX = (virtualWidth - destWidth) / 2;
+                const destY = statusBarHeight + (imageHeight - destHeight) / 2;
+                ctx.drawImage(speakerImage, destX, destY, destWidth, destHeight);
+                imageDrawn = true;
+            }
+
+            if (!imageDrawn) {
+                ctx.fillStyle = '#555';
+                ctx.fillRect(imageX, imageY, imageW, imageHeight);
+            }
+
+            // --- Dialogue box ---
+            ctx.fillStyle = '#333';
+            const bgPadding = 50;
+            const bgWidth = virtualWidth - 2 * bgPadding;
+            const maxFontSize = Math.min(virtualWidth, virtualHeight) * 0.05;
+            const minFontSize = Math.min(virtualWidth, virtualHeight) * 0.03;
+            const fontSize = Math.max(minFontSize, Math.min(maxFontSize, statusBarHeight * 1.5));
+            const lineHeight = fontSize * 1.2;
+            const maxLines = 4;
+            const textBlockHeight = maxLines * lineHeight;
+            const verticalPadding = bgPadding;
+            const bgHeight = textBlockHeight + 2 * verticalPadding;
+            const bgX = bgPadding;
+            const bgY = 645;
+            ctx.fillRect(bgX, bgY, bgWidth, bgHeight);
+
+            ctx.strokeStyle = '#666';
+            ctx.lineWidth = 4;
+            ctx.strokeRect(bgX, bgY, bgWidth, bgHeight);
+
+            // --- Speaker Name ---
+            if (dlg.name) {
+                ctx.fillStyle = '#fff';
+                ctx.textAlign = 'left';
+                ctx.font = `${fontSize * 1}px MyPC98Font, monospace`;
+                const nameX = bgX + 20;
+                const nameY = bgY - 15;
+                ctx.fillText(dlg.name, nameX, nameY);
+            }
+
+            ctx.fillStyle = '#fff';
+            ctx.textAlign = 'left';
+            ctx.font = `${fontSize}px MyPC98Font, monospace`;
+
+            const maxTextWidth = bgWidth - 20;
+            const startY = bgY + verticalPadding;
+
+            let wrappedLines = getWrappedLines(currentText, fontSize, maxTextWidth);
+            if (currentTextIndex >= fullText.length) {
+                cachedWrappedLines = wrappedLines; // Cache only when text is fully displayed
+            }
+
+            ctx.save();
+            ctx.rect(bgX + 20, startY - lineHeight / 2, maxTextWidth + 10, lineHeight * (maxLines + 1));
+            ctx.clip();
+
+            for (let i = 0; i < Math.min(wrappedLines.length, maxLines); i++) {
+                const y = startY + i * lineHeight;
+                if (y < bgY + bgHeight - verticalPadding) {
+                    ctx.fillText(wrappedLines[i], bgX + 20, y);
+                }
+            }
+
+            ctx.restore();
+
+            if (currentTextIndex < fullText.length) {
+                ctx.fillStyle = '#888';
+                ctx.font = `${fontSize * 0.8}px MyPC98Font, monospace`;
+                ctx.fillText('...', bgX + 20, startY + maxLines * lineHeight + 10);
+            }
+        }
+
+        function draw() {
+            ctx.save();
+            ctx.scale(scale, scale);
+            ctx.clearRect(0, 0, virtualWidth, virtualHeight);
+
+            ctx.fillStyle = '#000000';
+            ctx.fillRect(0, 0, virtualWidth, virtualHeight);
+
+            bgParticles.forEach(p => {
+                ctx.save();
+                ctx.translate(p.x, p.y);
+                ctx.rotate(p.rotation * Math.PI / 180);
+                ctx.fillStyle = p.color;
+                ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+                ctx.restore();
+            });
+
+            if (titleScreen.style.display !== 'none') {
+                ctx.restore();
+                return;
+            }
+
+            if (isCutscene) {
+                drawCutsceneText();
+            } else {
+                const claimedTiles = grid.filter(cell => cell.isClaimed || cell.state === 'player').length;
+                const coveredGoals = grid.filter(cell => cell.isGoal && cell.state === 'brick').length;
+
+                let claimCondition = grid.every(cell =>
+                    cell.state === 'wall' ||
+                    cell.state === 'tree' ||
+                    cell.state === 'pit' ||
+                    (cell.isClaimed && (cell.underlyingState === 'floor' || cell.underlyingState === null)) ||
+                    cell.state === 'player' ||
+                    cell.state.startsWith('timer-') ||
+                    cell.state.startsWith('teleport-') ||
+                    cell.state === 'sphere'
+                ) && (claimedTiles >= totalFloorTiles);
+
+                let goalCondition = totalGoals > 0 && grid.every(cell => !cell.isGoal || cell.state === 'brick');
+
+                hasWon = (!isPlayerDead) && (totalGoals === 0 ? claimCondition : goalCondition);
+
+                if (hasWon && !allFloorsClaimedOnWin) {
+                    // Handle enemies first
+                    grid.forEach(cell => {
+                        if (cell.state.startsWith('enemy-') || cell.state.startsWith('killer-enemy-') || cell.state.startsWith('fairy-') || cell.state === 'ghost-enemy') {
+                            defeatedEnemies.push({
+                                x: cell.x,
+                                y: cell.y,
+                                state: cell.state,
+                                progress: 0,
+                                duration: 12.0
+                            });
+                            cell.state = 'floor';
+                        }
+                    });
+                    // Then claim all floors
+                    grid.forEach(cell => {
+                        if (cell.state === 'floor') {
+                            cell.state = 'claimed';
+                            cell.isClaimed = true;
+                            createClaimParticles(cell.x, cell.y);
+                        }
+                    });
+                    allFloorsClaimedOnWin = true;
                 }
 
-                if (cell.state === 'player') {
+                ctx.fillStyle = '#F5F5F5';
+                ctx.fillRect(0, 0, virtualWidth, statusBarHeight);
+                ctx.font = `${statusBarHeight * 0.5}px MyPC98Font`;
+                ctx.textBaseline = 'middle';
+
+                ctx.textAlign = 'left';
+                ctx.fillStyle = '#666666';
+                ctx.fillText(levelName, 10, statusBarHeight / 2);
+
+                ctx.textAlign = 'right';
+                if (hasWon) {
+                    ctx.fillStyle = '#00FF00';
+                    ctx.fillText('You Won! Press Space or Tap', virtualWidth - 10, statusBarHeight / 2);
+                } else if (isPlayerDead) {
+                    ctx.fillStyle = '#FF0000';
+                    ctx.fillText('Game Over - Press Reset', virtualWidth - 10, statusBarHeight / 2);
+                } else {
+                    ctx.fillStyle = '#666666';
+                    if (!isMultiStage) {
+                        if (totalGoals > 0) {
+                            ctx.fillText(`${movementMode} - Moves: ${moveCount} - Covered: ${coveredGoals}/${totalGoals}`, virtualWidth - 10, statusBarHeight / 2);
+                        } else {
+                            ctx.fillText(`${movementMode} - Moves: ${moveCount} - Claimed: ${claimedTiles}/${totalFloorTiles}`, virtualWidth - 10, statusBarHeight / 2);
+                        }
+                    } else {
+                        ctx.fillText(`${movementMode} - Moves: ${moveCount}`, virtualWidth - 10, statusBarHeight / 2);
+                    }
+                }
+
+                // Draw grid backgrounds
+                grid.forEach(cell => {
+                    let fillState = cell.underlyingState || cell.state;
+                    if (fillState !== 'pit' && fillState !== 'timer-0') {
+                        ctx.fillStyle = getFillColor(fillState);
+                        if (cell.isGoal && cell.state === 'brick') {
+                            ctx.fillStyle = '#00FF00';
+                        }
+                        const x = Math.round(cell.x * cellWidth);
+                        const y = Math.round(statusBarHeight + cell.y * cellHeight);
+                        ctx.fillRect(x, y, Math.round(cellWidth) + 1, Math.round(cellHeight) + 1);
+                    }
+
+                    // Draw circular mark for goals
+                    if (cell.isGoal) {
+                        const centerX = (cell.x + 0.5) * cellWidth;
+                        const centerY = statusBarHeight + (cell.y + 0.5) * cellHeight;
+                        const radius = Math.min(cellWidth, cellHeight) * 0.3;
+                        ctx.beginPath();
+                        ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+                        ctx.fillStyle = '#000000';
+                        ctx.fill();
+                    }
+                });
+
+                // Draw particles beneath glyphs
+                particles.forEach(p => {
+                    ctx.save();
+                    ctx.translate(p.x, p.y);
+                    ctx.rotate(p.rotation * Math.PI / 180);
+                    // Fade based on remaining time for all particles
+                    const lifeRatio = p.initialLife ? (p.moveTime / p.initialLife) : (p.moveTime / 0.5);
+                    let fadeColor = p.color;
+                    if (typeof p.color === 'string' && p.color.includes('rgba')) {
+                        // For pre-defined rgba, fade alpha
+                        const parts = p.color.match(/rgba?\s*\(\s*(\d+),\s*(\d+),\s*(\d+)(?:\s*,\s*([\d.]+))?\s*\)/i);
+                        if (parts) {
+                            const a = parseFloat(parts[4] || 1) * (p.moveTime > 0 ? lifeRatio : 0);
+                            fadeColor = `rgba(${parts[1]}, ${parts[2]}, ${parts[3]}, ${a})`;
+                        }
+                    }
+                    ctx.fillStyle = fadeColor || (p.isStatic ? 'rgba(255, 0, 0, 0.8)' : `rgba(255, 0, 0, ${lifeRatio})`);
+                    ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+                    ctx.restore();
+                });
+
+                // Draw glyphs and dynamic elements
+                grid.forEach(cell => {
+                    let glyphState = cell.underlyingState || cell.state;
+
+                    if (glyphState.startsWith('timer-')) {
+                        const num = glyphState.split('-')[1];
+                        let color = num === '1' ? '#FF0000' : '#DDDDDD';
+                        ctx.fillStyle = color;
+                        ctx.font = `${cellHeight * 0.8}px MyPC98Font`;
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+                        ctx.fillText(num, (cell.x + 0.5) * cellWidth, statusBarHeight + (cell.y + 0.5) * cellHeight);
+                    } else if (glyphState.startsWith('teleport-')) {
+                        ctx.fillStyle = '#FFFFFF';
+                        ctx.font = `${cellHeight * 0.8}px "Segoe UI Emoji", Arial`;
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+                        ctx.fillText('🌀', (cell.x + 0.5) * cellWidth, statusBarHeight + (cell.y + 0.5) * cellHeight);
+                    }
+
+                    if (cell.state === 'brick') {
+                        ctx.fillStyle = '#FFFFFF';
+                        ctx.font = `${cellHeight * 0.8}px "Segoe UI Emoji", Arial`;
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+                        ctx.fillText('🧱', (cell.x + 0.5) * cellWidth, statusBarHeight + (cell.y + 0.5) * cellHeight);
+                    } else if (cell.state === 'tree') {
+                        ctx.fillStyle = '#FFFFFF';
+                        ctx.font = `${cellHeight * 0.8}px "Segoe UI Emoji", Arial`;
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+                        ctx.fillText('🌳', (cell.x + 0.5) * cellWidth, statusBarHeight + (cell.y + 0.5) * cellHeight);
+                    } else if (cell.state.startsWith('enemy-') || cell.state.startsWith('killer-enemy-')) {
+                        ctx.save();
+                        ctx.font = `${cellHeight * 0.85}px "Segoe UI Emoji", Arial`;
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+                        const centerX = (cell.x + 0.5) * cellWidth;
+                        const centerY = statusBarHeight + (cell.y + 0.5) * cellHeight;
+                        ctx.translate(centerX, centerY);
+
+                        let rotation = 0;
+                        let flipX = 1;
+                        let flipY = 1;
+                        if (cell.state.endsWith('-right')) {
+                            flipX = -1;
+                            rotation = 0;
+                        } else if (cell.state.endsWith('-left')) {
+                            flipX = 1;
+                            rotation = 0;
+                        } else if (cell.state.endsWith('-up')) {
+                            flipX = -1;
+                            rotation = Math.PI / 2;
+                        } else if (cell.state.endsWith('-down')) {
+                            flipY = 1;
+                            rotation = -Math.PI / 2;
+                        }
+                        ctx.scale(flipX, flipY);
+                        ctx.rotate(rotation);
+
+                        if (cell.state.startsWith('killer-enemy-')) {
+                            ctx.filter = 'hue-rotate(-30deg) saturate(2.5) brightness(0.9)';
+                        }
+
+                        ctx.fillStyle = '#FFFFFF';
+                        ctx.fillText('🐉', 0, 0);
+                        ctx.restore();
+                    } else if (cell.state.startsWith('fairy-')) {
+                        ctx.save();
+                        ctx.font = `${cellHeight * 0.85}px "Segoe UI Emoji", Arial`;
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+                        const centerX = (cell.x + 0.5) * cellWidth;
+                        const centerY = statusBarHeight + (cell.y + 0.5) * cellHeight;
+                        ctx.translate(centerX, centerY);
+
+                        let rotation = 0;
+                        let flipX = 1;
+                        let flipY = 1;
+                        if (cell.state.endsWith('-right')) {
+                            flipX = -1;
+                            rotation = 0;
+                        } else if (cell.state.endsWith('-left')) {
+                            flipX = 1;
+                            rotation = 0;
+                        } else if (cell.state.endsWith('-up')) {
+                            flipX = -1;
+                            rotation = Math.PI / 2;
+                        } else if (cell.state.endsWith('-down')) {
+                            flipY = 1;
+                            rotation = -Math.PI / 2;
+                        }
+                        ctx.scale(flipX, flipY);
+                        ctx.rotate(rotation);
+
+                        ctx.filter = 'hue-rotate(180deg) saturate(1.5) brightness(0.8)';
+
+                        ctx.fillStyle = '#FFFFFF';
+                        ctx.fillText('🧚', 0, 0);
+                        ctx.restore();
+                    } else if (cell.state === 'ghost-enemy') {
+                        ctx.fillStyle = '#FFFFFF';
+                        ctx.font = `${cellHeight * 0.8}px "Segoe UI Emoji", Arial`;
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+                        ctx.fillText('👻', (cell.x + 0.5) * cellWidth, statusBarHeight + (cell.y + 0.5) * cellHeight);
+                    } else if (cell.state === 'cake') {
+                        ctx.fillStyle = '#FFFFFF';
+                        ctx.font = `${cellHeight * 0.8}px "Segoe UI Emoji", Arial`;
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+                        ctx.fillText('🍰', (cell.x + 0.5) * cellWidth, statusBarHeight + (cell.y + 0.5) * cellHeight);
+                    } else if (cell.state === 'strawberry') {
+                        ctx.fillStyle = '#FFFFFF';
+                        ctx.font = `${cellHeight * 0.8}px "Segoe UI Emoji", Arial`;
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+                        ctx.fillText('🍓', (cell.x + 0.5) * cellWidth, statusBarHeight + (cell.y + 0.5) * cellHeight);
+                    } else if (cell.state === 'sphere') {
+                        ctx.fillStyle = '#FFFFFF';
+                        ctx.font = `${cellHeight * 0.8}px "Segoe UI Emoji", Arial`;
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+                        ctx.fillText('🔮', (cell.x + 0.5) * cellWidth, statusBarHeight + (cell.y + 0.5) * cellHeight);
+                    } else if (cell.state === 'player') {
+                        ctx.fillStyle = '#FFFFFF';
+                        ctx.font = `${cellHeight * 0.8}px "Segoe UI Emoji", Arial`;
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+                        const centerX = (cell.x + 0.5) * cellWidth;
+                        const centerY = statusBarHeight + (cell.y + 0.5) * cellHeight;
+                        if (isPlayerDead) {
+                            ctx.save();
+                            ctx.translate(centerX, centerY);
+                            ctx.rotate(Math.PI);
+                            ctx.fillText('🧙‍♀️', 0, 0);
+                            ctx.restore();
+                        } else {
+                            ctx.fillText('🧙‍♀️', centerX, centerY);
+                        }
+                    }
+                });
+
+                // Draw fires
+                fires.forEach(f => {
+                    const centerX = (f.x + 0.5) * cellWidth;
+                    const centerY = statusBarHeight + (f.y + 0.5) * cellHeight;
                     ctx.fillStyle = '#FFFFFF';
                     ctx.font = `${cellHeight * 0.8}px "Segoe UI Emoji", Arial`;
                     ctx.textAlign = 'center';
                     ctx.textBaseline = 'middle';
-                    const centerX = (cell.x + 0.5) * cellWidth;
-                    const centerY = statusBarHeight + (cell.y + 0.5) * cellHeight;
-                    if (isPlayerDead) {
-                        ctx.save();
-                        ctx.translate(centerX, centerY);
-                        ctx.rotate(Math.PI);
-                        ctx.fillText('🧙‍♀️', 0, 0);
-                        ctx.restore();
+                    ctx.fillText('🔥', centerX, centerY);
+                });
+
+                // Draw defeated enemies
+                defeatedEnemies.forEach(de => {
+                    const centerX = (de.x + 0.5) * cellWidth;
+                    const animY = de.y + 0.5 + de.progress * 10; // Move down 10 cells worth
+                    const centerY = statusBarHeight + animY * cellHeight;
+                    const time = de.progress * de.duration;
+                    const intermittentFlip = Math.sin(time * 6 * Math.PI) > 0 ? 1 : -1; // Flip at 2x speed
+
+                    ctx.save();
+                    ctx.font = `${cellHeight * 0.85}px "Segoe UI Emoji", Arial`;
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.translate(centerX, centerY);
+
+                    let baseFilter = '';
+                    let emoji = '🐉';
+                    let flipX = 1;
+                    let flipY = 1;
+                    let rotation = 0;
+
+                    if (de.state.startsWith('killer-enemy-')) {
+                        baseFilter = 'hue-rotate(-30deg) saturate(2.5) brightness(0.9)';
+                    } else if (de.state.startsWith('fairy-')) {
+                        baseFilter = 'hue-rotate(180deg) saturate(1.5) brightness(0.8)';
+                        emoji = '🧚';
+                    } else if (de.state === 'ghost-enemy') {
+                        emoji = '👻';
+                        flipX = 1;
+                        rotation = 0;
                     } else {
-                        ctx.fillText('🧙‍♀️', centerX, centerY);
+                        // Default enemy
+                        emoji = '🐉';
+                    }
+
+                    // Direction transforms
+                    if (de.state !== 'ghost-enemy') {
+                        if (de.state.endsWith('-right')) {
+                            flipX = -1;
+                            rotation = 0;
+                        } else if (de.state.endsWith('-left')) {
+                            flipX = 1;
+                            rotation = 0;
+                        } else if (de.state.endsWith('-up')) {
+                            flipX = -1;
+                            rotation = Math.PI / 2;
+                        } else if (de.state.endsWith('-down')) {
+                            flipY = 1;
+                            rotation = -Math.PI / 2;
+                        }
+                    }
+
+                    // Apply transforms
+                    const totalFlipX = flipX * intermittentFlip;
+                    ctx.scale(totalFlipX, flipY);
+                    ctx.rotate(rotation);
+                    ctx.rotate(Math.PI); // Upside down
+
+                    // Filter - red immediately
+                    let filterStr = baseFilter;
+                    filterStr += (baseFilter ? ' ' : '') + 'sepia(10) hue-rotate(0deg) saturate(5) brightness(0.8)';
+                    ctx.filter = filterStr;
+
+                    ctx.fillStyle = '#FFFFFF';
+                    ctx.fillText(emoji, 0, 0);
+                    ctx.restore();
+                });
+            }
+
+            ctx.restore();
+        }
+
+        function resumeAnimation() {
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+            }
+            isCutsceneIdle = false;
+            animationId = requestAnimationFrame(animate);
+        }
+
+        let lastTime = 0;
+        function animate(timestamp) {
+            if (lastTime === 0) lastTime = timestamp;
+            const deltaTime = (timestamp - lastTime) / 1000;
+            lastTime = timestamp;
+
+            if ((titleScreen.style.display !== 'none' || !isCutscene) && (timestamp - lastBgParticleSpawn > 167)) {
+                spawnBgParticle();
+                spawnBgParticle();
+                spawnBgParticle();
+                lastBgParticleSpawn = timestamp;
+            }
+
+            // Update defeated enemies
+            defeatedEnemies.forEach(enemy => {
+                enemy.progress += deltaTime / enemy.duration;
+            });
+            defeatedEnemies = defeatedEnemies.filter(enemy => enemy.progress < 1);
+
+            if (isCutscene) {
+                const now = timestamp;
+                if (now - lastTypeTime > typingSpeed && currentTextIndex < fullText.length) {
+                    const maxFontSize = Math.min(virtualWidth, virtualHeight) * 0.05;
+                    const minFontSize = Math.min(virtualWidth, virtualHeight) * 0.03;
+                    const fontSize = Math.max(minFontSize, Math.min(maxFontSize, statusBarHeight * 1.5));
+                    const bgPadding = 50;
+                    const bgWidth = virtualWidth - 2 * bgPadding;
+                    const maxTextWidth = bgWidth - 40;
+                    addNextChar(fontSize, maxTextWidth);
+                    lastTypeTime = now;
+                    cutsceneNextBtn.style.display = 'none';
+                    isCutsceneIdle = false; // Ensure animation continues during typing
+                }
+                if (currentTextIndex >= fullText.length) {
+                    cutsceneNextBtn.style.display = 'block';
+                    isCutsceneIdle = true; // Only idle when text is fully displayed
+                }
+            }
+
+            updateParticles(deltaTime);
+            draw();
+
+            animationId = requestAnimationFrame(animate);
+        }
+
+        function cycleTimers() {
+            grid.forEach(cell => {
+                let timerState = cell.state.startsWith('timer-') ? cell.state : (cell.underlyingState && cell.underlyingState.startsWith('timer-') ? cell.underlyingState : null);
+                if (timerState) {
+                    let newTimerState;
+                    if (timerState === 'timer-3') newTimerState = 'timer-2';
+                    else if (timerState === 'timer-2') newTimerState = 'timer-1';
+                    else if (timerState === 'timer-1') newTimerState = 'timer-0';
+                    else if (timerState === 'timer-0') newTimerState = 'timer-3';
+
+                    if (cell.state.startsWith('timer-')) {
+                        cell.state = newTimerState;
+                    } else if (cell.state === 'player' || cell.state.startsWith('enemy-') || cell.state.startsWith('killer-enemy-') || cell.state.startsWith('fairy-') || cell.state === 'ghost-enemy') {
+                        cell.underlyingState = newTimerState;
                     }
                 }
             });
         }
 
-        particles.forEach(p => {
-            ctx.fillStyle = p.isStatic ? 'rgba(255, 0, 0, 0.8)' : `rgba(255, 0, 0, ${1 - p.moveTime / 0.5})`;
-            ctx.fillRect(p.x - p.size / 2, p.y - p.size / 2, p.size, p.size);
-        });
+        function initializeGrid(level) {
+            updateGridDimensions(level);
+            grid = [];
+            defeatedEnemies = [];
+            fires = [];
+            const staticLevel = levels[level];
+            const layout = staticLevel.layouts ? staticLevel.layouts[currentPhase] : staticLevel.layout;
+            isMultiStage = !!staticLevel.layouts;
+            allFloorsClaimedOnWin = false;
 
-        ctx.restore();
-
-        resetBtn.textContent = isPlayerDead ? 'Reset' : 'Menu';
-    }
-
-    let lastTime = 0;
-    function animate(timestamp) {
-        if (lastTime === 0) lastTime = timestamp;
-        const deltaTime = (timestamp - lastTime) / 1000;
-        lastTime = timestamp;
-
-        if (isCutscene) {
-            const now = timestamp;
-            if (now - lastTypeTime > typingSpeed && currentTextIndex < fullText.length) {
-                currentText += fullText[currentTextIndex];
-                currentTextIndex++;
-                lastTypeTime = now;
+            // Validate layout dimensions
+            if (layout.length !== gridHeight || layout.some(row => row.length !== gridWidth)) {
+                console.error(`Level ${level} layout dimensions do not match gridWidth (${gridWidth}) and gridHeight (${gridHeight})`);
+                return;
             }
-            if (currentTextIndex >= fullText.length) {
-                cutsceneNextBtn.style.display = 'block';
-            }
-        }
 
-        updateParticles(deltaTime);
-        draw();
-
-        requestAnimationFrame(animate);
-    }
-
-    function cycleTimers() {
-        grid.forEach(cell => {
-            let timerState = cell.state.startsWith('timer-') ? cell.state : (cell.underlyingState && cell.underlyingState.startsWith('timer-') ? cell.underlyingState : null);
-            if (timerState) {
-                let newTimerState;
-                if (timerState === 'timer-3') newTimerState = 'timer-2';
-                else if (timerState === 'timer-2') newTimerState = 'timer-1';
-                else if (timerState === 'timer-1') newTimerState = 'timer-0';
-                else if (timerState === 'timer-0') newTimerState = 'timer-3';
-                
-                if (cell.state.startsWith('timer-')) {
-                    cell.state = newTimerState;
-                } else if (cell.state === 'player') {
-                    cell.underlyingState = newTimerState;
+            for (let y = 0; y < gridHeight; y++) {
+                for (let x = 0; x < gridWidth; x++) {
+                    let char = layout[y][x];
+                    let state = 'floor';
+                    let isClaimed = false;
+                    let underlyingState = null;
+                    let isGoal = false;
+                    let moveCounter = null;
+                    if (char === '#') state = 'wall';
+                    else if (char === '.') state = 'floor';
+                    else if (char === 'P') state = 'player';
+                    else if (char === '~') state = 'pit';
+                    else if (char === '>') state = 'enemy-right';
+                    else if (char === '<') state = 'enemy-left';
+                    else if (char === '^') state = 'enemy-up';
+                    else if (char === 'v') state = 'enemy-down';
+                    else if (char === 'D') state = 'killer-enemy-right';
+                    else if (char === 'A') state = 'killer-enemy-left';
+                    else if (char === 'W') state = 'killer-enemy-up';
+                    else if (char === 'S') state = 'killer-enemy-down';
+                    else if (char === 'G') state = 'ghost-enemy';
+                    else if (char === 'B') state = 'brick';
+                    else if (char === 't') state = 'tree';
+                    else if (char === 'f') { state = 'fairy-right'; moveCounter = 0; underlyingState = 'pit'; }
+                    else if (char === 'o') { state = 'floor'; isGoal = true; }
+                    else if (char === '3') state = 'timer-3';
+                    else if (char === '2') state = 'timer-2';
+                    else if (char === '1') state = 'timer-1';
+                    else if (char === '0') state = 'timer-0';
+                    else if (char === 'T') state = 'teleport-blue';
+                    else if (char === 'R') state = 'teleport-red';
+                    else if (char === 'E') state = 'teleport-green';
+                    else if (char === 'Y') state = 'teleport-yellow';
+                    else if (char === 'C') state = 'cake';
+                    else if (char === 'U') state = 'strawberry';
+                    else if (char === 'Q') state = 'sphere';
+                    if ((state.startsWith('enemy-') || state.startsWith('killer-enemy-') || state.startsWith('fairy-') || state === 'ghost-enemy') && (char === '3' || char === '2' || char === '1' || char === '0')) {
+                        underlyingState = `timer-${char}`;
+                    }
+                    grid.push({ x, y, state, isClaimed, underlyingState, isGoal, moveCounter });
                 }
             }
-        });
-    }
+            totalFloorTiles = grid.filter(cell => cell.state !== 'wall' && cell.state !== 'tree' && cell.state !== 'pit' && !cell.state.startsWith('timer-') && cell.state !== 'sphere' && cell.state !== 'brick').length + 2 * grid.filter(cell => cell.state === 'brick').length;
+            totalGoals = grid.filter(cell => cell.isGoal).length;
+            levelName = `${staticLevel.name}`;
+            currentLevel = level;
+            can_be_killed = 1;
+            moveCount = 0;
+            empowered = false;
+            movementMode = 'jump1';
+            document.getElementById('toggle-btn').textContent = 'Jump1';
+            particles = [];
+            bgParticles = [];
+            gameStateHistory = [];
+            lastPlayerMove = { dx: 0, dy: 0 };
+            playMusic(staticLevel.music);
+        }
 
-    function initializeGrid(level) {
-        grid = [];
-        const staticLevel = levels[level];
-        for (let y = 0; y < gridHeight; y++) {
-            for (let x = 0; x < gridWidth; x++) {
-                let char = staticLevel.layout[y][x];
-                let state = 'floor';
-                let isClaimed = false;
-                let underlyingState = null;
-                if (char === '#') state = 'wall';
-                else if (char === '.') state = 'floor';
-                else if (char === 'P') state = 'player';
-                else if (char === '~') state = 'pit';
-                else if (char === '>') state = 'enemy-right';
-                else if (char === '<') state = 'enemy-left';
-                else if (char === '^') state = 'enemy-up';
-                else if (char === 'v') state = 'enemy-down';
-                else if (char === 'D') state = 'killer-enemy-right';
-                else if (char === 'A') state = 'killer-enemy-left';
-                else if (char === 'W') state = 'killer-enemy-up';
-                else if (char === 'S') state = 'killer-enemy-down';
-                else if (char === '3') state = 'timer-3';
-                else if (char === '2') state = 'timer-2';
-                else if (char === '1') state = 'timer-1';
-                else if (char === '0') state = 'timer-0';
-                grid.push({ x, y, state, isClaimed, underlyingState });
+        async function loadDialogue() {
+            const scene = levels[selectedLevel];
+            const dlg = scene.dialogues[currentDialogueIndex];
+            fullText = dlg.text.join('\n');
+            const loadPromises = [];
+            if (dlg.speaker && lastSpeakerSrc !== dlg.speaker) {
+                lastSpeakerSrc = dlg.speaker;
+                loadPromises.push(preloadImage(speakerImage, dlg.speaker));
             }
-        }
-        totalFloorTiles = grid.filter(cell => cell.state !== 'wall' && cell.state !== 'pit' && !cell.state.startsWith('timer-')).length;
-        levelName = `${staticLevel.name}`;
-        currentLevel = level;
-        can_be_killed = 1;
-        moveCount = 0;
-        particles = [];
-        gameStateHistory = [];
-    }
-
-    function startCutscene() {
-        isCutscene = true;
-        const scene = levels[selectedLevel];
-        fullText = scene.text.join('\n');
-        currentText = '';
-        currentTextIndex = 0;
-        lastTypeTime = 0;
-        cutsceneNextBtn.style.display = 'none';
-        particles = [];
-        levelName = "Cutscene";
-        gameStateHistory = [];
-    }
-
-    function proceedToNext() {
-        isPlayerDead = false;
-        hasWon = false;
-        movementMode = 'jump1';
-        document.getElementById('toggle-btn').textContent = 'Jump1';
-        particles = [];
-        moveCount = 0;
-        movement_lock = false;
-        slipping = false;
-        can_be_killed = 1;
-        gameStateHistory = [];
-
-        selectedLevel++;
-        if (selectedLevel > maxLevel) selectedLevel = 1;
-        currentLevel = selectedLevel;
-
-        const scene = levels[currentLevel];
-        if (scene.type === 'cutscene') {
-            document.querySelector('.controls').style.display = 'none';
-            document.querySelector('.toggle-btn').style.display = 'none';
-            document.querySelector('.reset-btn').style.display = 'none';
-            startCutscene();
-        } else {
-            document.querySelector('.controls').style.display = 'grid';
-            document.querySelector('.toggle-btn').style.display = 'flex';
-            document.querySelector('.reset-btn').style.display = 'flex';
-            initializeGrid(currentLevel);
-            resetBtn.textContent = 'Menu';
-        }
-        isCutscene = scene.type === 'cutscene';
-        cutsceneNextBtn.style.display = 'none';
-        resizeCanvas();
-        requestAnimationFrame(animate);
-    }
-
-    function setBodyHeight() {
-        document.body.style.height = `${window.innerHeight}px`;
-    }
-
-    function resizeCanvas() {
-        setBodyHeight();
-        const aspect = virtualWidth / virtualHeight;
-        let width = window.innerWidth;
-        let height = window.innerHeight;
-
-        if (width / height > aspect) {
-            canvas.height = height;
-            canvas.width = height * aspect;
-        } else {
-            canvas.width = width;
-            canvas.height = width / aspect;
+            if (dlg['speakerleft'] && lastSpeakerLeftSrc !== dlg['speakerleft']) {
+                lastSpeakerLeftSrc = dlg['speakerleft'];
+                loadPromises.push(preloadImage(speakerLeftImage, dlg['speakerleft']));
+            }
+            if (dlg['speakerright'] && lastSpeakerRightSrc !== dlg['speakerright']) {
+                lastSpeakerRightSrc = dlg['speakerright'];
+                loadPromises.push(preloadImage(speakerRightImage, dlg['speakerright']));
+            }
+            if (dlg.background && lastBackgroundSrc !== dlg.background) {
+                lastBackgroundSrc = dlg.background;
+                loadPromises.push(preloadImage(backgroundImage, dlg.background));
+            }
+            await Promise.all(loadPromises);
+            currentText = '';
+            currentTextIndex = 0;
+            lastTypeTime = 0;
+            cachedWrappedLines = [];
+            isCutsceneIdle = false;
+            cutsceneNextBtn.style.display = 'none';
+            // Force redraw and ensure animation loop is active
+            draw();
+            resumeAnimation();
         }
 
-        scale = canvas.width / virtualWidth;
-        draw();
-    }
-
-    function showTitleScreen() {
-        isPlayerDead = false;
-        hasWon = false;
-        movementMode = 'jump1';
-        movement_lock = false;
-        slipping = false;
-        can_be_killed = 1;
-        particles = [];
-        moveCount = 0;
-        isCutscene = false;
-        gameStateHistory = [];
-        document.getElementById('toggle-btn').textContent = 'Jump1';
-        titleScreen.style.display = 'flex';
-        canvas.style.display = 'none';
-        document.querySelector('.controls').style.display = 'none';
-        document.querySelector('.toggle-btn').style.display = 'none';
-        document.querySelector('.reset-btn').style.display = 'none';
-        cutsceneNextBtn.style.display = 'none';
-        updateLevelSelectDisplay();
-    }
-
-    function showScene() {
-        titleScreen.style.display = 'none';
-        canvas.style.display = 'block';
-        const scene = levels[selectedLevel];
-        if (scene.type === 'level') {
-            document.querySelector('.controls').style.display = 'grid';
-            document.querySelector('.toggle-btn').style.display = 'flex';
-            document.querySelector('.reset-btn').style.display = 'flex';
-            initializeGrid(selectedLevel);
-            resetBtn.textContent = 'Menu';
-            isCutscene = false;
-        } else if (scene.type === 'cutscene') {
-            document.querySelector('.controls').style.display = 'none';
-            document.querySelector('.toggle-btn').style.display = 'none';
-            document.querySelector('.reset-btn').style.display = 'none';
-            startCutscene();
+        async function startCutscene() {
+            isCutscene = true;
+            currentDialogueIndex = 0;
+            clearCutsceneResources(); // Clear resources at start of cutscene
+            await loadDialogue();
+            cutsceneNextBtn.style.display = 'none';
+            particles = [];
+            bgParticles = [];
+            defeatedEnemies = [];
+            fires = [];
+            levelName = "Cutscene";
+            gameStateHistory = [];
+            playMusic(levels[currentLevel].music);
+            draw(); // Ensure initial draw after loading
         }
-        resizeCanvas();
-        requestAnimationFrame(animate);
-    }
 
-    function findPlayer() {
-        return grid.find(cell => cell.state === 'player');
-    }
-
-    function saveGameState() {
-        gameStateHistory.push({
-            grid: grid.map(cell => ({ ...cell })),
-            moveCount,
-            isPlayerDead,
-            hasWon,
-            movementMode,
-            slipping,
-            slipDir: { ...slipDir },
-            particles: [...particles]
-        });
-        if (gameStateHistory.length > 10) gameStateHistory.shift(); // Limit to 10 states
-    }
-
-    function undoMove() {
-        if (gameStateHistory.length === 0 || isCutscene || isPlayerDead || hasWon) return;
-        const lastState = gameStateHistory.pop();
-        grid = lastState.grid.map(cell => ({ ...cell }));
-        moveCount = lastState.moveCount;
-        isPlayerDead = lastState.isPlayerDead;
-        hasWon = lastState.hasWon;
-        movementMode = lastState.movementMode;
-        slipping = lastState.slipping;
-        slipDir = { ...lastState.slipDir };
-        particles = [...lastState.particles];
-        can_be_killed = 1;
-        movement_lock = false;
-        isInputActive = false;
-        document.getElementById('toggle-btn').textContent = movementMode;
-        draw();
-    }
-
-    function attemptMove(dx, dy, claimStart = true) {
-        const player = findPlayer();
-        if (!player) return false;
-        const newX = player.x + dx;
-        const newY = player.y + dy;
-        if (newX < 0 || newX >= gridWidth || newY < 0 || newY >= gridHeight) return false;
-        const target = grid.find(c => c.x === newX && c.y === newY);
-
-        if (target.state === 'wall') return false;
-
-        if (claimStart) {
-            if (player.underlyingState && player.underlyingState.startsWith('timer-')) {
-                player.state = player.underlyingState;
-                player.underlyingState = null;
+        async function advanceCutscene() {
+            const maxFontSize = Math.min(virtualWidth, virtualHeight) * 0.05;
+            const minFontSize = Math.min(virtualWidth, virtualHeight) * 0.03;
+            const fontSize = Math.max(minFontSize, Math.min(maxFontSize, statusBarHeight * 1.5));
+            const bgPadding = 50;
+            const bgWidth = virtualWidth - 2 * bgPadding;
+            const maxTextWidth = bgWidth - 40;
+            if (currentTextIndex < fullText.length) {
+                cachedWrappedLines = [];
+                while (currentTextIndex < fullText.length) {
+                    addNextChar(fontSize, maxTextWidth);
+                }
+                draw();
+                cutsceneNextBtn.style.display = 'block';
+                isCutsceneIdle = true; // Set idle after fast-forwarding text
             } else {
-                player.isClaimed = true;
-                player.state = 'claimed';
+                currentDialogueIndex++;
+                if (currentDialogueIndex < levels[selectedLevel].dialogues.length) {
+                    cachedWrappedLines = [];
+                    currentText = '';
+                    await loadDialogue();
+                } else {
+                    await proceedToNext();
+                }
             }
         }
 
-        if (target.state === 'pit' || target.state === 'timer-0') {
-            target.state = 'player';
-            isPlayerDead = true;
-            createParticles(newX, newY);
-            draw();
-            return false;
-        } else if (target.state.startsWith('enemy-') || target.state.startsWith('killer-enemy-')) {
-            return 'enemy';
-        } else if (target.isClaimed) {
-            if (target.state.startsWith('timer-')) {
-                target.underlyingState = target.state;
+        async function proceedToNext() {
+            const prevLevel = selectedLevel; // Store previous level
+            defeatedEnemies = [];
+            isPlayerDead = false;
+            hasWon = false;
+            movementMode = 'jump1';
+            empowered = false;
+            currentPhase = 0;
+            document.getElementById('toggle-btn').textContent = 'Jump1';
+            particles = [];
+            bgParticles = [];
+            fires = [];
+            moveCount = 0;
+            movement_lock = false;
+            slipping = false;
+            can_be_killed = 1;
+            gameStateHistory = [];
+            lastPlayerMove = { dx: 0, dy: 0 };
+            allFloorsClaimedOnWin = false;
+            isInputActive = false; // Reset input state to prevent residual keypresses
+            let isTransitioning = false;
+
+            selectedLevel++;
+            if (selectedLevel > maxLevel) selectedLevel = 1;
+            currentLevel = selectedLevel;
+
+            // Clear cutscene resources if previous level was a cutscene
+            if (levels[prevLevel].type === 'cutscene') {
+                clearCutsceneResources();
             }
-            target.state = 'player';
-            draw();
-            return 'slip';
-        } else {
-            if (target.state.startsWith('timer-')) {
-                target.underlyingState = target.state;
+
+            const scene = levels[currentLevel];
+            updateGridDimensions(currentLevel);
+            if (scene.type === 'cutscene') {
+                document.querySelector('.controls').style.display = 'none';
+                document.querySelector('.toggle-btn').style.display = 'none';
+                document.querySelector('.reset-btn').style.display = 'none';
+                await startCutscene();
+            } else {
+                document.querySelector('.controls').style.display = 'grid';
+                document.querySelector('.toggle-btn').style.display = 'flex';
+                document.querySelector('.reset-btn').style.display = 'flex';
+                initializeGrid(currentLevel);
+                resetBtn.textContent = 'Menu';
             }
-            target.state = 'player';
-            draw();
-            return true;
+            isCutscene = scene.type === 'cutscene';
+            cutsceneNextBtn.style.display = 'none';
+            resizeCanvas();
+            requestAnimationFrame(animate);
         }
-    }
 
-    function moveEnemies() {
-        const enemies = grid.filter(cell => 
-            cell.state === 'enemy-right' || cell.state === 'enemy-left' || cell.state === 'enemy-up' || cell.state === 'enemy-down' ||
-            cell.state === 'killer-enemy-right' || cell.state === 'killer-enemy-left' || cell.state === 'killer-enemy-up' || cell.state === 'killer-enemy-down'
-        );
-        const enemyUpdates = [];
-        const swaps = new Map();
+        function setBodyHeight() {
+            document.body.style.height = `${window.innerHeight}px`;
+        }
 
-        enemies.forEach(enemy => {
-            const currentState = enemy.state;
-            let dx = 0, dy = 0;
-            let newState = currentState;
-            let moveTo = null;
+        function resizeCanvas() {
+            setBodyHeight();
+            const aspect = virtualWidth / virtualHeight;
+            let width = window.innerWidth;
+            let height = window.innerHeight;
+            const dpr = window.devicePixelRatio || 1;
 
-            if (currentState === 'enemy-right' || currentState === 'killer-enemy-right') dx = 1;
-            else if (currentState === 'enemy-left' || currentState === 'killer-enemy-left') dx = -1;
-            else if (currentState === 'enemy-up' || currentState === 'killer-enemy-up') dy = -1;
-            else if (currentState === 'enemy-down' || currentState === 'killer-enemy-down') dy = 1;
+            if (width / height > aspect) {
+                canvas.width = height * aspect * dpr;
+                canvas.height = height * dpr;
+            } else {
+                canvas.width = width * dpr;
+                canvas.height = width / aspect * dpr;
+            }
 
-            let nextX = enemy.x + dx;
-            let nextY = enemy.y + dy;
+            canvas.style.width = `${canvas.width / dpr}px`;
+            canvas.style.height = `${canvas.height / dpr}px`;
+            scale = canvas.width / virtualWidth / dpr;
+            ctx.scale(dpr, dpr);
+            draw();
+        }
 
-            if (nextX >= 0 && nextX < gridWidth && nextY >= 0 && nextY < gridHeight) {
-                const nextCell = grid.find(c => c.x === nextX && c.y === nextY);
-                if (nextCell && nextCell.state !== 'wall' && nextCell.state !== 'pit' && nextCell.state !== 'timer-0') {
-                    const targetEnemy = enemies.find(e => e.x === nextX && e.y === nextY);
-                    if (targetEnemy) {
-                        let targetDx = 0, targetDy = 0;
-                        if (targetEnemy.state === 'enemy-right' || targetEnemy.state === 'killer-enemy-right') targetDx = 1;
-                        else if (targetEnemy.state === 'enemy-left' || targetEnemy.state === 'killer-enemy-left') targetDx = -1;
-                        else if (targetEnemy.state === 'enemy-up' || targetEnemy.state === 'killer-enemy-up') targetDy = -1;
-                        else if (targetEnemy.state === 'enemy-down' || targetEnemy.state === 'killer-enemy-down') targetDy = 1;
-                        if (targetEnemy.x + targetDx === enemy.x && targetEnemy.y + targetDy === enemy.y) {
-                            const key = `${Math.min(enemy.x, nextX)},${Math.min(enemy.y, nextY)}-${Math.max(enemy.x, nextX)},${Math.max(enemy.y, nextY)}`;
-                            if (!swaps.has(key)) {
-                                swaps.set(key, [
-                                    { enemy, target: { x: nextX, y: nextY }, newState: enemy.state },
-                                    { enemy: targetEnemy, target: { x: enemy.x, y: enemy.y }, newState: targetEnemy.state }
-                                ]);
+        function showTitleScreen() {
+            defeatedEnemies = [];
+            isPlayerDead = false;
+            hasWon = false;
+            movementMode = 'jump1';
+            empowered = false;
+            currentPhase = 0;
+            movement_lock = false;
+            slipping = false;
+            can_be_killed = 1;
+            particles = [];
+            bgParticles = [];
+            fires = [];
+            moveCount = 0;
+            isCutscene = false;
+            gameStateHistory = [];
+            lastPlayerMove = { dx: 0, dy: 0 };
+            allFloorsClaimedOnWin = false;
+            document.getElementById('toggle-btn').textContent = 'Jump1';
+            titleScreen.style.display = 'flex';
+            canvas.style.display = 'block';
+            document.querySelector('.controls').style.display = 'none';
+            document.querySelector('.toggle-btn').style.display = 'none';
+            document.querySelector('.reset-btn').style.display = 'none';
+            cutsceneNextBtn.style.display = 'none';
+            updateLevelSelectDisplay();
+            updateLevelIndicator();
+            if (currentMusic) {
+                currentMusic.pause();
+                currentMusic = null;
+                currentMusicSrc = '';
+            }
+            for (let i = 0; i < 10; i++) {
+                spawnBgParticle();
+            }
+            resizeCanvas();
+            requestAnimationFrame(animate);
+        }
+
+        function showScene() {
+            defeatedEnemies = [];
+            titleScreen.style.display = 'none';
+            canvas.style.display = 'block';
+            const scene = levels[selectedLevel];
+            updateGridDimensions(selectedLevel);
+            if (scene.type === 'level') {
+                document.querySelector('.controls').style.display = 'grid';
+                document.querySelector('.toggle-btn').style.display = 'flex';
+                document.querySelector('.reset-btn').style.display = 'flex';
+                currentPhase = 0;
+                initializeGrid(selectedLevel);
+                resetBtn.textContent = 'Menu';
+                isCutscene = false;
+            } else if (scene.type === 'cutscene') {
+                document.querySelector('.controls').style.display = 'none';
+                document.querySelector('.toggle-btn').style.display = 'none';
+                document.querySelector('.reset-btn').style.display = 'none';
+                startCutscene();
+            }
+            resizeCanvas();
+            requestAnimationFrame(animate);
+        }
+
+        function findPlayer() {
+            return grid.find(cell => cell.state === 'player');
+        }
+
+        function saveGameState() {
+            gameStateHistory.push({
+                grid: grid.map(cell => ({ ...cell })),
+                moveCount,
+                isPlayerDead,
+                hasWon,
+                movementMode,
+                empowered,
+                slipping,
+                slipDir: { ...slipDir },
+                particles: [...particles],
+                lastPlayerMove: { ...lastPlayerMove },
+                currentPhase,
+                allFloorsClaimedOnWin,
+                defeatedEnemies: [...defeatedEnemies]
+            });
+            if (gameStateHistory.length > 10) gameStateHistory.shift();
+        }
+
+        function undoMove() {
+            if (gameStateHistory.length === 0 || isCutscene || isPlayerDead || hasWon) return;
+            const lastState = gameStateHistory.pop();
+            grid = lastState.grid.map(cell => ({ ...cell }));
+            moveCount = lastState.moveCount;
+            isPlayerDead = lastState.isPlayerDead;
+            hasWon = lastState.hasWon;
+            movementMode = lastState.movementMode;
+            empowered = lastState.empowered;
+            slipping = lastState.slipping;
+            slipDir = { ...lastState.slipDir };
+            particles = [...lastState.particles];
+            defeatedEnemies = [...lastState.defeatedEnemies];
+            lastPlayerMove = { ...lastState.lastPlayerMove };
+            currentPhase = lastState.currentPhase;
+            allFloorsClaimedOnWin = lastState.allFloorsClaimedOnWin;
+            fires = [];
+            can_be_killed = 1;
+            movement_lock = false;
+            isInputActive = false;
+            document.getElementById('toggle-btn').textContent = empowered && movementMode === 'empowered_slide' ? 'Slide' : movementMode === 'jump2' ? 'Jump2' : 'Jump1';
+            draw();
+        }
+
+        function attemptMove(full_dx, full_dy, claimStart = true) {
+            const player = findPlayer();
+            if (!player) return false;
+            const newX = player.x + full_dx;
+            const newY = player.y + full_dy;
+            if (newX < 0 || newX >= gridWidth || newY < 0 || newY >= gridHeight) return false;
+            const target = grid.find(c => c.x === newX && c.y === newY);
+
+            if (target.state === 'wall' || target.state === 'tree') return false;
+
+            const dx_sign = Math.sign(full_dx);
+            const dy_sign = Math.sign(full_dy);
+
+            if (target.state === 'brick') {
+                const brickNewX = newX + dx_sign * (movementMode === 'jump2' || movementMode === 'empowered_slide' ? 2 : 1);
+                const brickNewY = newY + dy_sign * (movementMode === 'jump2' || movementMode === 'empowered_slide' ? 2 : 1);
+                if (brickNewX < 0 || brickNewX >= gridWidth || brickNewY < 0 || brickNewY >= gridHeight) return false;
+                const brickTarget = grid.find(c => c.x === brickNewX && c.y === brickNewY);
+                if (brickTarget.state === 'wall' ||
+                    brickTarget.state === 'tree' ||
+                    brickTarget.state === 'brick' ||
+                    brickTarget.state.startsWith('enemy-') ||
+                    brickTarget.state.startsWith('killer-enemy-') ||
+                    brickTarget.state.startsWith('fairy-') ||
+                    brickTarget.state === 'ghost-enemy') {
+                    return false;
+                }
+                if (brickTarget.state === 'pit' || brickTarget.state === 'timer-0') {
+                    brickTarget.state = 'floor';
+                } else {
+                    brickTarget.state = 'brick';
+                }
+                if (claimStart) {
+                    if (player.underlyingState && (player.underlyingState.startsWith('timer-') || player.underlyingState.startsWith('teleport-'))) {
+                        player.state = player.underlyingState;
+                        player.underlyingState = null;
+                    } else {
+                        player.isClaimed = true;
+                        player.state = 'claimed';
+                        createClaimParticles(player.x, player.y); // Add claim particles
+                    }
+                }
+                target.state = 'player';
+                draw();
+                return true;
+            }
+
+            if (target.state.startsWith('teleport-')) {
+                const teleportType = target.state;
+                const otherTeleport = grid.find(c => c.state === teleportType && (c.x !== newX || c.y !== newY));
+                if (!otherTeleport) return false;
+
+                if (otherTeleport.state === 'player') {
+                    isPlayerDead = true;
+                    createParticles(otherTeleport.x, otherTeleport.y);
+                    isInputActive = false;
+                    movement_lock = false;
+                    slipping = false;
+                    can_be_killed = 1;
+                    return false;
+                }
+
+                if (claimStart) {
+                    if (player.underlyingState && (player.underlyingState.startsWith('timer-') || player.underlyingState.startsWith('teleport-'))) {
+                        player.state = player.underlyingState;
+                        player.underlyingState = null;
+                    } else {
+                        player.isClaimed = true;
+                        player.state = 'claimed';
+                        createClaimParticles(player.x, player.y); // Add claim particles
+                    }
+                }
+
+                otherTeleport.underlyingState = otherTeleport.state;
+                otherTeleport.state = 'player';
+                slipping = false;
+                draw();
+                return true;
+            }
+
+            if (target.state === 'sphere') {
+                if (slipping && empowered) {
+                    currentPhase++;
+                    if (currentPhase >= levels[currentLevel].layouts.length) {
+                        proceedToNext();
+                    } else {
+                        empowered = false;
+                        movementMode = 'jump1';
+                        document.getElementById('toggle-btn').textContent = 'Jump1';
+                        initializeGrid(currentLevel);
+                    }
+                    return false;
+                } else {
+                    return false;
+                }
+            }
+
+            if (target.state === 'strawberry') {
+                empowered = true;
+                movementMode = 'jump1';
+                document.getElementById('toggle-btn').textContent = 'Jump1';
+                if (claimStart) {
+                    if (player.underlyingState && (player.underlyingState.startsWith('timer-') || player.underlyingState.startsWith('teleport-'))) {
+                        player.state = player.underlyingState;
+                        player.underlyingState = null;
+                    } else {
+                        player.isClaimed = true;
+                        player.state = 'claimed';
+                        createClaimParticles(player.x, player.y); // Add claim particles
+                    }
+                }
+                target.state = 'player';
+                draw();
+                return true;
+            }
+
+            if (claimStart) {
+                if (player.underlyingState && (player.underlyingState.startsWith('timer-') || player.underlyingState.startsWith('teleport-'))) {
+                    player.state = player.underlyingState;
+                    player.underlyingState = null;
+                } else {
+                    player.isClaimed = true;
+                    player.state = 'claimed';
+                    createClaimParticles(player.x, player.y); // Add claim particles
+                }
+            }
+
+            if (target.state === 'pit' || target.state === 'timer-0') {
+                target.state = 'player';
+                isPlayerDead = true;
+                createParticles(newX, newY);
+                isInputActive = false;
+                movement_lock = false;
+                slipping = false;
+                can_be_killed = 1;
+                draw();
+                return false;
+            } else if (target.state.startsWith('enemy-') || target.state.startsWith('killer-enemy-') || target.state.startsWith('fairy-') || target.state === 'ghost-enemy') {
+                return 'enemy';
+            } else if (target.isClaimed) {
+                if (target.state.startsWith('timer-') || target.state.startsWith('teleport-')) {
+                    target.underlyingState = target.state;
+                }
+                target.state = 'player';
+                draw();
+                return 'slip';
+            } else {
+                const originalState = target.state;
+                if (target.state === 'cake') {
+                    grid.forEach(cell => {
+                        if (cell !== target && (cell.state === 'floor' || cell.state === 'strawberry' || cell.state.startsWith('enemy-') || cell.state.startsWith('killer-enemy-') || cell.state.startsWith('fairy-') || cell.state === 'ghost-enemy')) {
+                            const cellOriginalState = cell.state;
+                            const isEnemy = cellOriginalState.startsWith('enemy-') || cellOriginalState.startsWith('killer-enemy-') || cellOriginalState.startsWith('fairy-') || cellOriginalState === 'ghost-enemy';
+                            cell.state = 'claimed';
+                            cell.isClaimed = true;
+                            createClaimParticles(cell.x, cell.y); // Particles for mass claim
+                            if (isEnemy) {
+                                defeatedEnemies.push({
+                                    x: cell.x,
+                                    y: cell.y,
+                                    state: cellOriginalState,
+                                    progress: 0,
+                                    duration: 12.0
+                                });
                             }
-                        } else {
+                        }
+                    });
+
+                    grid.forEach(cell => {
+                        if (cell.isGoal) {
+                            cell.state = 'brick';
+                        }
+                    });
+                    allFloorsClaimedOnWin = true;
+                }
+                if (target.state.startsWith('timer-') || target.state.startsWith('teleport-')) {
+                    target.underlyingState = target.state;
+                }
+                target.state = 'player';
+                let result = true;
+                if (movementMode === 'empowered_slide' && !target.isClaimed) {
+                    result = 'slip';
+                }
+                draw();
+                return result;
+            }
+        }
+
+        function moveEnemies() {
+            fires = [];
+            function isEnemy(state) {
+                return (
+                    state === 'enemy-right' || state === 'enemy-left' || state === 'enemy-up' || state === 'enemy-down' ||
+                    state === 'killer-enemy-right' || state === 'killer-enemy-left' || state === 'killer-enemy-up' || state === 'killer-enemy-down' ||
+                    state === 'fairy-right' || state === 'fairy-left' || state === 'fairy-up' || state === 'fairy-down' ||
+                    state === 'ghost-enemy'
+                );
+            }
+
+            let activeEnemies = grid.filter(cell => isEnemy(cell.state));
+            let pass = 0;
+            const maxPasses = 20;
+
+            while (activeEnemies.length > 0 && pass < maxPasses) {
+                const originalEnemyCells = new Set(activeEnemies);
+
+                const enemies = activeEnemies;
+                const enemyUpdates = [];
+                const swaps = new Map();
+                const landingPositions = new Map();
+
+                enemies.forEach(enemy => {
+                    const currentState = enemy.state;
+                    let dx = 0, dy = 0;
+                    let newState = currentState;
+                    let moveTo = null;
+                    let canMove = false;
+
+                    if (currentState === 'ghost-enemy') {
+                        dx = -lastPlayerMove.dx;
+                        dy = -lastPlayerMove.dy;
+                        if (dx === 0 && dy === 0) {
+                            enemyUpdates.push({ enemy, newState, moveTo, canMove });
+                            return;
+                        }
+                    } else {
+                        if (currentState === 'enemy-right' || currentState === 'killer-enemy-right' || currentState === 'fairy-right') dx = 1;
+                        else if (currentState === 'enemy-left' || currentState === 'killer-enemy-left' || currentState === 'fairy-left') dx = -1;
+                        else if (currentState === 'enemy-up' || currentState === 'killer-enemy-up' || currentState === 'fairy-up') dy = -1;
+                        else if (currentState === 'enemy-down' || currentState === 'killer-enemy-down' || currentState === 'fairy-down') dy = 1;
+                    }
+
+                    let nextX = enemy.x + dx;
+                    let nextY = enemy.y + dy;
+
+                    if (nextX >= 0 && nextX < gridWidth && nextY >= 0 && nextY < gridHeight) {
+                        const nextCell = grid.find(c => c.x === nextX && c.y === nextY);
+                        if (nextCell && nextCell.state.startsWith('teleport-')) {
+                            const teleportType = nextCell.state;
+                            const otherTeleport = grid.find(c => c.state === teleportType && (c.x !== nextX || c.y !== nextY));
+                            if (otherTeleport && !isEnemy(otherTeleport.state)) {
+                                if (otherTeleport.state === 'player') {
+                                    isPlayerDead = true;
+                                    isInputActive = false;
+                                    movement_lock = false;
+                                    slipping = false;
+                                    can_be_killed = 1;
+                                    createParticles(otherTeleport.x, otherTeleport.y);
+                                    enemyUpdates.push({ enemy, newState, moveTo: null, canMove: false });
+                                    return;
+                                }
+                                nextX = otherTeleport.x;
+                                nextY = otherTeleport.y;
+                                moveTo = { x: nextX, y: nextY };
+                                canMove = true;
+                            } else {
+                                if (currentState !== 'ghost-enemy') {
+                                    if (currentState.endsWith('-right')) newState = currentState.replace('right', 'left');
+                                    else if (currentState.endsWith('-left')) newState = currentState.replace('left', 'right');
+                                    else if (currentState.endsWith('-up')) newState = currentState.replace('up', 'down');
+                                    else if (currentState.endsWith('-down')) newState = currentState.replace('down', 'up');
+                                }
+                            }
+                        } else if (nextCell && !['wall', 'tree', 'brick', 'sphere'].includes(nextCell.state) && (currentState.startsWith('fairy-') || !['pit', 'timer-0'].includes(nextCell.state))) {
+                            const targetEnemy = enemies.find(e => e.x === nextX && e.y === nextY);
+                            if (targetEnemy) {
+                                let targetDx = 0, targetDy = 0;
+                                if (targetEnemy.state === 'enemy-right' || targetEnemy.state === 'killer-enemy-right' || targetEnemy.state === 'fairy-right') targetDx = 1;
+                                else if (targetEnemy.state === 'enemy-left' || targetEnemy.state === 'killer-enemy-left' || targetEnemy.state === 'fairy-left') targetDx = -1;
+                                else if (targetEnemy.state === 'enemy-up' || targetEnemy.state === 'killer-enemy-up' || targetEnemy.state === 'fairy-up') targetDy = -1;
+                                else if (targetEnemy.state === 'enemy-down' || targetEnemy.state === 'killer-enemy-down' || targetEnemy.state === 'fairy-down') targetDy = 1;
+                                else if (targetEnemy.state === 'ghost-enemy') {
+                                    targetDx = -lastPlayerMove.dx;
+                                    targetDy = -lastPlayerMove.dy;
+                                }
+                                if (targetEnemy.x + targetDx === enemy.x && targetEnemy.y + targetDy === enemy.y) {
+                                    const key = `${Math.min(enemy.x, nextX)},${Math.min(enemy.y, nextY)}-${Math.max(enemy.x, nextX)},${Math.max(enemy.y, nextY)}`;
+                                    if (!swaps.has(key)) {
+                                        swaps.set(key, [
+                                            { enemy, target: { x: nextX, y: nextY }, newState: enemy.state },
+                                            { enemy: targetEnemy, target: { x: enemy.x, y: enemy.y }, newState: targetEnemy.state }
+                                        ]);
+                                    }
+                                }
+                            } else {
+                                canMove = true;
+                                moveTo = { x: nextX, y: nextY };
+                            }
+                        } else if (currentState !== 'ghost-enemy') {
                             if (currentState.endsWith('-right')) newState = currentState.replace('right', 'left');
                             else if (currentState.endsWith('-left')) newState = currentState.replace('left', 'right');
                             else if (currentState.endsWith('-up')) newState = currentState.replace('up', 'down');
                             else if (currentState.endsWith('-down')) newState = currentState.replace('down', 'up');
                         }
-                    } else {
-                        moveTo = { x: nextX, y: nextY };
+                    } else if (currentState !== 'ghost-enemy') {
+                        if (currentState.endsWith('-right')) newState = currentState.replace('right', 'left');
+                        else if (currentState.endsWith('-left')) newState = currentState.replace('left', 'right');
+                        else if (currentState.endsWith('-up')) newState = currentState.replace('up', 'down');
+                        else if (currentState.endsWith('-down')) newState = currentState.replace('down', 'up');
                     }
-                } else {
-                    if (currentState.endsWith('-right')) newState = currentState.replace('right', 'left');
-                    else if (currentState.endsWith('-left')) newState = currentState.replace('left', 'right');
-                    else if (currentState.endsWith('-up')) newState = currentState.replace('up', 'down');
-                    else if (currentState.endsWith('-down')) newState = currentState.replace('down', 'up');
-                }
-            } else {
-                if (currentState.endsWith('-right')) newState = currentState.replace('right', 'left');
-                else if (currentState.endsWith('-left')) newState = currentState.replace('left', 'right');
-                else if (currentState.endsWith('-up')) newState = currentState.replace('up', 'down');
-                else if (currentState.endsWith('-down')) newState = currentState.replace('down', 'up');
-            }
 
-            enemyUpdates.push({ enemy, newState, moveTo });
-        });
+                    if (newState !== currentState && currentState !== 'ghost-enemy') {
+                        dx = 0;
+                        dy = 0;
+                        if (newState.endsWith('-right')) dx = 1;
+                        else if (newState.endsWith('-left')) dx = -1;
+                        else if (newState.endsWith('-up')) dy = -1;
+                        else if (newState.endsWith('-down')) dy = 1;
 
-        const landingPositions = new Map();
-        enemyUpdates.forEach((update, index) => {
-            if (swaps.has(`${update.enemy.x},${update.enemy.y}-${update.moveTo?.x},${update.moveTo?.y}`)) {
-                return;
-            }
-            if (update.moveTo) {
-                const key = `${update.moveTo.x},${update.moveTo.y}`;
-                if (!landingPositions.has(key)) landingPositions.set(key, []);
-                landingPositions.get(key).push({ update, index });
-            }
-        });
+                        nextX = enemy.x + dx;
+                        nextY = enemy.y + dy;
+                        if (nextX >= 0 && nextX < gridWidth && nextY >= 0 && nextY < gridHeight) {
+                            const nextCell = grid.find(c => c.x === nextX && c.y === nextY);
+                            if (nextCell && nextCell.state.startsWith('teleport-')) {
+                                const teleportType = nextCell.state;
+                                const otherTeleport = grid.find(c => c.state === teleportType && (c.x !== nextX || c.y !== nextY));
+                                if (otherTeleport && !isEnemy(otherTeleport.state)) {
+                                    if (otherTeleport.state === 'player') {
+                                        isPlayerDead = true;
+                                        isInputActive = false;
+                                        movement_lock = false;
+                                        slipping = false;
+                                        can_be_killed = 1;
+                                        createParticles(otherTeleport.x, otherTeleport.y);
+                                        enemyUpdates.push({ enemy, newState, moveTo: null, canMove: false });
+                                        return;
+                                    }
+                                    nextX = otherTeleport.x;
+                                    nextY = otherTeleport.y;
+                                    moveTo = { x: nextX, y: nextY };
+                                    canMove = true;
+                                }
+                            } else if (nextCell && !['wall', 'tree', 'brick', 'sphere'].includes(nextCell.state) && (newState.startsWith('fairy-') || !['pit', 'timer-0'].includes(nextCell.state))) {
+                                const targetEnemy = enemies.find(e => e.x === nextX && e.y === nextY);
+                                if (!targetEnemy) {
+                                    canMove = true;
+                                    moveTo = { x: nextX, y: nextY };
+                                }
+                            }
+                        }
+                    }
 
-        landingPositions.forEach((targeters, key) => {
-            if (targeters.length > 1) {
-                targeters.forEach(({ update }) => {
-                    const currentState = update.enemy.state;
-                    if (currentState.endsWith('-right')) update.newState = currentState.replace('right', 'left');
-                    else if (currentState.endsWith('-left')) update.newState = currentState.replace('left', 'right');
-                    else if (currentState.endsWith('-up')) update.newState = currentState.replace('up', 'down');
-                    else if (currentState.endsWith('-down')) update.newState = currentState.replace('down', 'up');
-                    update.moveTo = null;
+                    enemyUpdates.push({ enemy, newState, moveTo, canMove });
                 });
-            }
-        });
 
-        enemyUpdates.forEach((update, index) => {
-            if (!update.moveTo && update.newState !== update.enemy.state && !swaps.has(`*-${update.enemy.x},${update.enemy.y}`)) {
-                let dx = 0, dy = 0;
-                if (update.newState.endsWith('-right')) dx = 1;
-                else if (update.newState.endsWith('-left')) dx = -1;
-                else if (update.newState.endsWith('-up')) dy = -1;
-                else if (update.newState.endsWith('-down')) dy = 1;
-
-                const nextX = update.enemy.x + dx;
-                const nextY = update.enemy.y + dy;
-                if (nextX >= 0 && nextX < gridWidth && nextY >= 0 && nextY < gridHeight) {
-                    const newCell = grid.find(c => c.x === nextX && c.y === nextY);
-                    const key = `${nextX},${nextY}`;
-                    const otherTargeters = landingPositions.get(key)?.filter(t => t.index !== index) || [];
-                    if (newCell && newCell.state !== 'wall' && newCell.state !== 'pit' && newCell.state !== 'timer-0' && otherTargeters.length === 0 && !swaps.has(`*-${nextX},${nextY}`)) {
-                        update.moveTo = { x: nextX, y: nextY };
-                        landingPositions.set(key, [{ update, index }]);
+                enemyUpdates.forEach(p => {
+                    if (!p.isStatic) {
+                        if (p.canMove && p.moveTo) {
+                            const gridX = Math.floor(p.x / cellWidth);
+                            const gridY = Math.floor((p.y - statusBarHeight) / cellHeight);
+                            const cell = grid.find(c => c.x === gridX && c.y === gridY);
+                            if (cell && (cell.state === 'wall' || cell.state === 'pit' || cell.state === 'brick' || cell.state === 'tree')) {
+                                p.isStatic = true;
+                            }
+                        }
                     }
-                }
+                });
+
+                swaps.forEach(swap => {
+                    const swapUpdates = swap.map(({ enemy, target, newState }) => ({
+                        enemy,
+                        target,
+                        newState,
+                        isClaimed: enemy.isClaimed,
+                        underlyingState: enemy.underlyingState
+                    }));
+                    swapUpdates.forEach(({ enemy, isClaimed, underlyingState }) => {
+                        enemy.state = underlyingState || (isClaimed ? 'claimed' : 'floor');
+                        enemy.underlyingState = null;
+                    });
+                    swapUpdates.forEach(({ enemy, target, newState }) => {
+                        const targetCell = grid.find(c => c.x === target.x && c.y === target.y);
+                        if (targetCell.state === 'player') {
+                            isPlayerDead = true;
+                            isInputActive = false;
+                            movement_lock = false;
+                            slipping = false;
+                            can_be_killed = 1;
+                            createParticles(target.x, target.y);
+                            enemy.state = underlyingState || (isClaimed ? 'claimed' : 'floor');
+                            enemy.underlyingState = null;
+                            targetCell.state = 'player';
+                        } else {
+                            const oldCounter = enemy.moveCounter || 0;
+                            targetCell.moveCounter = oldCounter + 1;
+                            if (targetCell.state.startsWith('timer-') || targetCell.state.startsWith('teleport-')) {
+                                targetCell.underlyingState = targetCell.state;
+                            }
+                            if (targetCell.state === 'pit' && newState.startsWith('fairy-')) {
+                                targetCell.underlyingState = 'pit';
+                            }
+                            targetCell.state = newState;
+                            if (targetCell.moveCounter % 3 === 0 && targetCell.state.startsWith('fairy-')) {
+                                for (let fy = target.y + 1; fy < gridHeight; fy++) {
+                                    fires.push({ x: target.x, y: fy });
+                                }
+                            }
+                        }
+                    });
+                });
+
+                enemyUpdates.forEach(({ enemy, newState, moveTo, canMove }) => {
+                    const swapKey = [...swaps.keys()].find(key => key.includes(`${enemy.x},${enemy.y}`));
+                    if (swapKey) return;
+
+                    if (canMove && moveTo) {
+                        const targetCell = grid.find(c => c.x === moveTo.x && c.y === moveTo.y);
+                        if (targetCell.state === 'player') {
+                            isPlayerDead = true;
+                            isInputActive = false;
+                            movement_lock = false;
+                            slipping = false;
+                            can_be_killed = 1;
+                            createParticles(moveTo.x, moveTo.y);
+                            targetCell.state = 'player';
+                            enemy.state = enemy.underlyingState || (enemy.isClaimed ? 'claimed' : 'floor');
+                            enemy.underlyingState = null;
+                        } else {
+                            const oldCounter = enemy.moveCounter || 0;
+                            targetCell.moveCounter = oldCounter + 1;
+                            enemy.state = enemy.underlyingState || (enemy.isClaimed ? 'claimed' : 'floor');
+                            enemy.underlyingState = null;
+                            if (targetCell.state.startsWith('timer-') || targetCell.state.startsWith('teleport-')) {
+                                targetCell.underlyingState = targetCell.state;
+                            }
+                            if (targetCell.state === 'pit' && newState.startsWith('fairy-')) {
+                                targetCell.underlyingState = 'pit';
+                            }
+                            targetCell.state = newState;
+                            if (targetCell.moveCounter % 3 === 0 && targetCell.state.startsWith('fairy-')) {
+                                for (let fy = moveTo.y + 1; fy < gridHeight; fy++) {
+                                    fires.push({ x: moveTo.x, y: fy });
+                                }
+                            }
+                        }
+                    } else {
+                        enemy.state = newState;
+                    }
+                });
+
+                activeEnemies = grid.filter(cell => originalEnemyCells.has(cell) && isEnemy(cell.state));
+                pass++;
             }
-        });
 
-        swaps.forEach(swap => {
-            const swapUpdates = swap.map(({ enemy, target, newState }) => ({
-                enemy,
-                target,
-                newState,
-                isClaimed: enemy.isClaimed
-            }));
-            swapUpdates.forEach(({ enemy, isClaimed }) => {
-                enemy.state = isClaimed ? 'claimed' : 'floor';
-            });
-            swapUpdates.forEach(({ enemy, target, newState }) => {
-                const targetCell = grid.find(c => c.x === target.x && c.y === target.y);
-                if (targetCell.state === 'player') {
-                    isPlayerDead = true;
-                    createParticles(target.x, target.y);
-                    enemy.state = isClaimed ? 'claimed' : 'floor';
-                    targetCell.state = 'player';
-                } else {
-                    targetCell.state = newState;
-                }
-            });
-        });
-
-        enemyUpdates.forEach(({ enemy, newState, moveTo }) => {
-            const swapKey = [...swaps.keys()].find(key => key.includes(`${enemy.x},${enemy.y}`));
-            if (swapKey) return;
-
-            if (moveTo) {
-                const targetCell = grid.find(c => c.x === moveTo.x && c.y === moveTo.y);
-                if (targetCell.state === 'player') {
-                    isPlayerDead = true;
-                    createParticles(moveTo.x, moveTo.y);
-                    targetCell.state = 'player';
-                    enemy.state = enemy.isClaimed ? 'claimed' : 'floor';
-                } else {
-                    enemy.state = enemy.isClaimed ? 'claimed' : 'floor';
-                    targetCell.state = newState;
-                }
-            } else {
-                enemy.state = newState;
+            // Check for fire on player after all moves
+            const playerCell = findPlayer();
+            if (!isPlayerDead && playerCell && fires.some(f => f.x === playerCell.x && f.y === playerCell.y)) {
+                isPlayerDead = true;
+                isInputActive = false;
+                movement_lock = false;
+                slipping = false;
+                can_be_killed = 1;
+                createParticles(playerCell.x, playerCell.y);
             }
-        });
 
-        draw();
-    }
-
-    function slipStep() {
-        if (!slipping) return;
-
-        const player = findPlayer();
-        if (!player) return;
-
-        if (isPlayerDead) {
-            slipping = false;
-            movement_lock = false;
-            can_be_killed = 1;
             draw();
-            return;
         }
 
-        const dx = slipDir.dx;
-        const dy = slipDir.dy;
-        const newX = player.x + dx;
-        const newY = player.y + dy;
-        const target = grid.find(c => c.x === newX && c.y === newY);
+        function slipStep() {
+            if (!slipping) return;
 
-        let result = attemptMove(dx, dy);
+            const player = findPlayer();
+            if (!player) return;
 
-        if (result === 'enemy') {
-            moveEnemies();
-            if (target.state.startsWith('enemy-') || target.state.startsWith('killer-enemy-')) {
-                target.state = 'player';
-                isPlayerDead = true;
-                createParticles(player.x, player.y);
-                result = false;
-            } else {
-                if (target.state.startsWith('timer-')) {
-                    target.underlyingState = target.state;
-                }
-                target.state = 'player';
-                result = target.isClaimed ? 'slip' : true;
-            }
-            draw();
-        } else {
-            if (result === false && !isPlayerDead) {
+            if (isPlayerDead) {
                 slipping = false;
                 movement_lock = false;
-                can_be_killed = 1;
-                return;
-            }
-            moveEnemies();
-        }
-
-        if (result === 'slip' && !isPlayerDead) {
-            setTimeout(slipStep, 100);
-        } else {
-            slipping = false;
-            movement_lock = false;
-            can_be_killed = 1;
-        }
-    }
-
-    function movePlayer(dx, dy) {
-        if (isPlayerDead || movement_lock || hasWon || !can_be_killed) {
-            isInputActive = false;
-            return;
-        }
-
-        saveGameState();
-        moveCount++;
-        cycleTimers();
-
-        const player = findPlayer();
-        const jumpDistance = movementMode === 'jump1' ? 1 : 2;
-        const oldX = player.x;
-        const oldY = player.y;
-        const newX = oldX + dx * jumpDistance;
-        const newY = oldY + dy * jumpDistance;
-
-        let validMove = true;
-        if (newX < 0 || newX >= gridWidth || newY < 0 || newY >= gridHeight) validMove = false;
-        else {
-            const intendedTarget = grid.find(c => c.x === newX && c.y === newY);
-            if (intendedTarget.state === 'wall') validMove = false;
-        }
-
-        const playerOldCell = player;
-        let playerTargetCell;
-        let result;
-
-        if (!validMove) {
-            playerTargetCell = playerOldCell;
-            if (player.underlyingState === 'timer-0') {
-                isPlayerDead = true;
-                createParticles(player.x, player.y);
-                playerOldCell.state = 'player';
-                playerOldCell.underlyingState = 'timer-0';
-                draw();
-                can_be_killed = 1;
-                movement_lock = false;
                 isInputActive = false;
+                can_be_killed = 1;
+                draw();
                 return;
             }
-            movement_lock = false;
-            isInputActive = false;
-            can_be_killed = 1;
-            moveEnemies();
-            draw();
-            return;
-        } else {
-            playerTargetCell = grid.find(c => c.x === newX && c.y === newY);
-        }
 
-        const isPit = playerTargetCell.state === 'pit' || playerTargetCell.state === 'timer-0';
-        let enemyThere = playerTargetCell.state.startsWith('enemy-') || playerTargetCell.state.startsWith('killer-enemy-');
-        let isKiller = playerTargetCell.state.startsWith('killer-enemy-');
-        let isFacingPlayer = false;
-        let isFacingAway = false;
-        let isBlocked = false;
-        let willAttackPlayer = false;
+            const dx = slipDir.dx;
+            const dy = slipDir.dy;
+            const newX = player.x + dx;
+            const newY = player.y + dy;
+            const target = grid.find(c => c.x === newX && c.y === newY);
 
-        if (isKiller && enemyThere) {
-            let facing_dx = 0, facing_dy = 0;
-            switch (playerTargetCell.state) {
-                case 'killer-enemy-right': facing_dx = 1; break;
-                case 'killer-enemy-left': facing_dx = -1; break;
-                case 'killer-enemy-up': facing_dy = -1; break;
-                case 'killer-enemy-down': facing_dy = 1; break;
-            }
-            const toPlayer_dx = oldX - newX;
-            const toPlayer_dy = oldY - newY;
-            const sign_to_dx = Math.sign(toPlayer_dx);
-            const sign_to_dy = Math.sign(toPlayer_dy);
-            isFacingPlayer = facing_dx === sign_to_dx && facing_dy === sign_to_dy;
-            isFacingAway = facing_dx === -sign_to_dx && facing_dy === -sign_to_dy;
-            const enemyNextX = newX + facing_dx;
-            const enemyNextY = newY + facing_dy;
-            willAttackPlayer = enemyNextX === oldX && enemyNextY === oldY;
-            const forwardX = newX + facing_dx;
-            const forwardY = newY + facing_dy;
-            if (forwardX < 0 || forwardX >= gridWidth || forwardY < 0 || forwardY >= gridHeight) {
-                isBlocked = true;
-            } else {
-                const forwardCell = grid.find(c => c.x === forwardX && c.y === forwardY);
-                isBlocked = forwardCell.state === 'wall' || forwardCell.state === 'pit';
-            }
-        }
-
-        if (isKiller && isFacingPlayer && willAttackPlayer && jumpDistance === 1) {
-            moveEnemies();
-            isPlayerDead = true;
-            createParticles(oldX, oldY);
-            playerOldCell.state = 'player';
-            draw();
-            can_be_killed = 1;
-            movement_lock = false;
-            isInputActive = false;
-            return;
-        } else if (isKiller && isFacingAway && isBlocked && jumpDistance === 1) {
-            moveEnemies();
-            isPlayerDead = true;
-            createParticles(oldX, oldY);
-            playerOldCell.state = 'player';
-            draw();
-            can_be_killed = 1;
-            movement_lock = false;
-            isInputActive = false;
-            return;
-        } else {
-            result = attemptMove(dx * jumpDistance, dy * jumpDistance);
+            let result = attemptMove(dx, dy);
 
             if (result === 'enemy') {
                 moveEnemies();
-                if (playerTargetCell.state.startsWith('enemy-') || playerTargetCell.state.startsWith('killer-enemy-')) {
-                    playerTargetCell.state = 'player';
+                if (target.state.startsWith('enemy-') || target.state.startsWith('killer-enemy-') || target.state.startsWith('fairy-') || target.state === 'ghost-enemy') {
+                    target.state = 'player';
                     isPlayerDead = true;
-                    createParticles(newX, newY);
+                    isInputActive = false;
+                    movement_lock = false;
+                    slipping = false;
+                    can_be_killed = 1;
+                    createParticles(player.x, player.y);
                     result = false;
                 } else {
-                    if (playerTargetCell.state.startsWith('timer-')) {
-                        playerTargetCell.underlyingState = playerTargetCell.state;
+                    if (target.state.startsWith('timer-') || target.state.startsWith('teleport-')) {
+                        target.underlyingState = target.state;
                     }
-                    playerTargetCell.state = 'player';
-                    result = playerTargetCell.isClaimed ? 'slip' : true;
+                    target.state = 'player';
+                    result = target.isClaimed ? 'slip' : true;
                 }
                 draw();
             } else {
                 if (result === false && !isPlayerDead) {
-                    if (player.underlyingState === 'timer-0') {
-                        isPlayerDead = true;
-                        createParticles(player.x, player.y);
-                        playerOldCell.state = 'player';
-                        playerOldCell.underlyingState = 'timer-0';
-                        draw();
-                        can_be_killed = 1;
-                        movement_lock = false;
-                        isInputActive = false;
-                        return;
-                    }
+                    slipping = false;
+                    movement_lock = false;
+                    can_be_killed = 1;
+                    return;
                 }
                 moveEnemies();
             }
-        }
 
-        can_be_killed = 1;
-
-        hasWon = grid.every(cell => 
-            cell.state === 'wall' || 
-            cell.state === 'pit' || 
-            cell.isClaimed || 
-            cell.state === 'player' || 
-            cell.state.startsWith('timer-')
-        );
-
-        if (result === 'slip') {
-            slipping = true;
-            slipDir = { dx, dy };
-            setTimeout(slipStep, 100);
-        } else {
-            movement_lock = false;
-        }
-        isInputActive = false;
-    }
-
-    function toggleMovementMode() {
-        if (isPlayerDead || slipping || hasWon || !can_be_killed) return;
-        movementMode = movementMode === 'jump1' ? 'jump2' : 'jump1';
-        document.getElementById('toggle-btn').textContent = movementMode === 'jump1' ? 'Jump1' : 'Jump2';
-        draw();
-    }
-
-    function resetLevel() {
-        isPlayerDead = false;
-        hasWon = false;
-        movementMode = 'jump1';
-        document.getElementById('toggle-btn').textContent = 'Jump1';
-        initializeGrid(currentLevel);
-        moveCount = 0;
-        particles = [];
-        gameStateHistory = [];
-        draw();
-        movement_lock = false;
-        slipping = false;
-        can_be_killed = 1;
-    }
-
-    function changeLevel(direction) {
-        isPlayerDead = false;
-        hasWon = false;
-        movementMode = 'jump1';
-        document.getElementById('toggle-btn').textContent = 'Jump1';
-        if (direction === 'next') {
-            selectedLevel = selectedLevel === maxLevel ? 1 : selectedLevel + 1;
-        } else {
-            selectedLevel = selectedLevel === 1 ? maxLevel : selectedLevel - 1;
-        }
-        currentLevel = selectedLevel;
-        particles = [];
-        moveCount = 0;
-        movement_lock = false;
-        slipping = false;
-        can_be_killed = 1;
-        gameStateHistory = [];
-        showTitleScreen();
-    }
-
-    window.addEventListener('resize', resizeCanvas);
-    window.addEventListener('orientationchange', resizeCanvas);
-    window.addEventListener('keydown', (e) => {
-        if (isInputActive || slipping || !can_be_killed || titleScreen.style.display !== 'none') return;
-        isInputActive = true;
-        switch (e.key.toLowerCase()) {
-            case 'arrowup': if (!isPlayerDead && !movement_lock && !hasWon) movePlayer(0, -1); break;
-            case 'arrowdown': if (!isPlayerDead && !movement_lock && !hasWon) movePlayer(0, 1); break;
-            case 'arrowleft': if (!isPlayerDead && !movement_lock && !hasWon) movePlayer(-1, 0); break;
-            case 'arrowright': if (!isPlayerDead && !movement_lock && !hasWon) movePlayer(1, 0); break;
-            case ' ': 
-                if (hasWon) {
-                    proceedToNext();
-                } else if (isPlayerDead) resetLevel();
-                else toggleMovementMode();
-                break;
-            case 'z': undoMove(); break;
-            case 'q': changeLevel('previous'); break;
-            case 'w': changeLevel('next'); break;
-            case 'escape':
-                showTitleScreen();
-                break;
-            case '0':
-                if (!isPlayerDead && !hasWon) {
-                    grid.forEach(cell => {
-                        if (cell.state === 'floor') {
-                            cell.state = 'claimed';
-                            cell.isClaimed = true;
-                        }
-                    });
-                    draw();
-                }
-                break;
-        }
-        isInputActive = false;
-    });
-    window.addEventListener('keyup', (e) => {
-        if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.key)) {
-            movement_lock = false;
-        }
-        isInputActive = false;
-    });
-
-    const buttons = { 'up-btn': [0, -1], 'down-btn': [0, 1], 'left-btn': [-1, 0], 'right-btn': [1, 0], 'undo-btn': 'undo' };
-    Object.keys(buttons).forEach(id => {
-        const btn = document.getElementById(id);
-        const action = buttons[id];
-        function press(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            if (!isInputActive && !isPlayerDead && !movement_lock && !slipping && !hasWon && can_be_killed) {
-                isInputActive = true;
-                if (action === 'undo') {
-                    undoMove();
-                } else {
-                    const [dx, dy] = action;
-                    movePlayer(dx, dy);
-                }
+            if (result === 'slip' && !isPlayerDead) {
+                setTimeout(slipStep, 100);
+            } else {
+                slipping = false;
+                movement_lock = false;
+                can_be_killed = 1;
             }
         }
-        function release(e) {
+
+        function movePlayer(dx, dy) {
+            if (isPlayerDead || movement_lock || hasWon || !can_be_killed) {
+                isInputActive = false;
+                return;
+            }
+
+            saveGameState();
+            moveCount++;
+            cycleTimers();
+            lastPlayerMove = { dx, dy };
+
+            const player = findPlayer();
+            const jumpDistance = (movementMode === 'jump2' || movementMode === 'empowered_slide') ? 2 : 1;
+            const oldX = player.x;
+            const oldY = player.y;
+            const newX = oldX + dx * jumpDistance;
+            const newY = oldY + dy * jumpDistance;
+
+            let validMove = true;
+            if (newX < 0 || newX >= gridWidth || newY < 0 || newY >= gridHeight) validMove = false;
+
+            if (jumpDistance === 2) {
+                const intermediateX = oldX + dx;
+                const intermediateY = oldY + dy;
+                const intermediateCell = grid.find(c => c.x === intermediateX && c.y === intermediateY);
+                if (intermediateCell && (intermediateCell.state === 'wall' || intermediateCell.state === 'tree')) {
+                    const targetCell = grid.find(c => c.x === newX && c.y === newY);
+                    if (!targetCell || (targetCell.state === 'wall' || targetCell.state === 'tree')) {
+                        validMove = false;
+                    }
+                }
+            } else {
+                const targetCell = grid.find(c => c.x === newX && c.y === newY);
+                if (targetCell && (targetCell.state === 'wall' || targetCell.state === 'tree')) validMove = false;
+            }
+
+            const playerOldCell = player;
+            let playerTargetCell;
+            let result;
+
+            if (!validMove) {
+                playerTargetCell = playerOldCell;
+                if (player.underlyingState === 'timer-0') {
+                    isPlayerDead = true;
+                    isInputActive = false;
+                    movement_lock = false;
+                    slipping = false;
+                    can_be_killed = 1;
+                    createParticles(player.x, player.y);
+                    playerOldCell.state = 'player';
+                    playerOldCell.underlyingState = null;
+                    draw();
+                    return;
+                }
+                movement_lock = false;
+                isInputActive = false;
+                can_be_killed = 1;
+                moveEnemies();
+                draw();
+                return;
+            } else {
+                playerTargetCell = grid.find(c => c.x === newX && c.y === newY);
+            }
+
+            if (jumpDistance === 2 && playerTargetCell.state.startsWith('killer-enemy-')) {
+                isPlayerDead = true;
+                isInputActive = false;
+                movement_lock = false;
+                slipping = false;
+                can_be_killed = 1;
+                createParticles(newX, newY);
+                playerOldCell.state = player.underlyingState || (player.isClaimed ? 'claimed' : 'floor');
+                playerOldCell.underlyingState = null;
+                playerTargetCell.state = 'player';
+                moveEnemies();
+                draw();
+                return;
+            }
+
+            const checkX = oldX + dx;
+            const checkY = oldY + dy;
+            const checkCell = grid.find(c => c.x === checkX && c.y === checkY);
+            let enemyThere = checkCell && checkCell.state.startsWith('killer-enemy-');
+            let isKiller = enemyThere;
+            let isFacingPlayer = false;
+            let isFacingAway = false;
+            let isBlocked = false;
+
+            if (isKiller) {
+                let facing_dx = 0, facing_dy = 0;
+                switch (checkCell.state) {
+                    case 'killer-enemy-right': facing_dx = 1; break;
+                    case 'killer-enemy-left': facing_dx = -1; break;
+                    case 'killer-enemy-up': facing_dy = -1; break;
+                    case 'killer-enemy-down': facing_dy = 1; break;
+                }
+                const toPlayer_dx = oldX - checkX;
+                const toPlayer_dy = oldY - checkY;
+                const sign_to_dx = Math.sign(toPlayer_dx);
+                const sign_to_dy = Math.sign(toPlayer_dy);
+                isFacingPlayer = facing_dx === sign_to_dx && facing_dy === sign_to_dy;
+                isFacingAway = facing_dx === -sign_to_dx && facing_dy === -sign_to_dy;
+                const forwardX = checkX + facing_dx;
+                const forwardY = checkY + facing_dy;
+                if (forwardX < 0 || forwardX >= gridWidth || forwardY < 0 || forwardY >= gridHeight) {
+                    isBlocked = true;
+                } else {
+                    const forwardCell = grid.find(c => c.x === forwardX && c.y === forwardY);
+                    isBlocked = forwardCell && (forwardCell.state === 'wall' || forwardCell.state === 'tree' || forwardCell.state === 'pit' || forwardCell.state === 'brick' || forwardCell.state === 'sphere');
+                }
+            }
+
+            if (isKiller && (isFacingPlayer || (isFacingAway && isBlocked))) {
+                moveEnemies();
+                isPlayerDead = true;
+                isInputActive = false;
+                movement_lock = false;
+                slipping = false;
+                can_be_killed = 1;
+                createParticles(oldX, oldY);
+                playerOldCell.state = 'player';
+                draw();
+                return;
+            } else {
+                // Create movement sparks from old position, backward direction
+                createMovementSparks(oldX, oldY, -dx, -dy);
+                result = attemptMove(dx * jumpDistance, dy * jumpDistance);
+
+                if (result === 'enemy') {
+                    moveEnemies();
+                    if (playerTargetCell.state.startsWith('killer-enemy-') || playerTargetCell.state === 'ghost-enemy' || playerTargetCell.state.startsWith('enemy-') || playerTargetCell.state.startsWith('fairy-')) {
+                        playerTargetCell.state = 'player';
+                        isPlayerDead = true;
+                        isInputActive = false;
+                        movement_lock = false;
+                        slipping = false;
+                        can_be_killed = 1;
+                        createParticles(newX, newY);
+                        result = false;
+                    } else {
+                        if (playerTargetCell.state.startsWith('timer-') || playerTargetCell.state.startsWith('teleport-')) {
+                            playerTargetCell.underlyingState = playerTargetCell.state;
+                        }
+                        playerTargetCell.state = 'player';
+                        result = playerTargetCell.isClaimed ? 'slip' : true;
+                    }
+                    draw();
+                } else {
+                    if (result === false && !isPlayerDead) {
+                        if (player.underlyingState === 'timer-0') {
+                            isPlayerDead = true;
+                            isInputActive = false;
+                            movement_lock = false;
+                            slipping = false;
+                            can_be_killed = 1;
+                            createParticles(player.x, player.y);
+                            playerOldCell.state = 'player';
+                            playerOldCell.underlyingState = null;
+                            draw();
+                            return;
+                        }
+                    }
+                    moveEnemies();
+                }
+            }
+
+            can_be_killed = 1;
+
+            if (result === 'slip') {
+                slipping = true;
+                slipDir = { dx, dy };
+                setTimeout(slipStep, 100);
+            } else {
+                movement_lock = false;
+            }
+            isInputActive = false;
+        }
+
+        function toggleMovementMode() {
+            if (isPlayerDead || slipping || hasWon || !can_be_killed) return;
+            if (empowered) {
+                movementMode = movementMode === 'jump1' ? 'empowered_slide' : 'jump1';
+                document.getElementById('toggle-btn').textContent = movementMode === 'jump1' ? 'Jump1' : 'Slide';
+            } else {
+                movementMode = movementMode === 'jump1' ? 'jump2' : 'jump1';
+                document.getElementById('toggle-btn').textContent = movementMode === 'jump1' ? 'Jump1' : 'Jump2';
+            }
+            draw();
+        }
+
+        function resetLevel() {
+            defeatedEnemies = [];
+            isPlayerDead = false;
+            hasWon = false;
+            movementMode = 'jump1';
+            empowered = false;
+            currentPhase = 0;
+            document.getElementById('toggle-btn').textContent = 'Jump1';
+            allFloorsClaimedOnWin = false;
+            fires = [];
+            updateGridDimensions(currentLevel);
+            initializeGrid(currentLevel);
+            moveCount = 0;
+            particles = [];
+            bgParticles = [];
+            gameStateHistory = [];
+            lastPlayerMove = { dx: 0, dy: 0 };
+            draw();
+            movement_lock = false;
+            slipping = false;
+            isInputActive = false;
+            can_be_killed = 1;
+        }
+
+        function changeLevel(direction) {
+            defeatedEnemies = [];
+            isPlayerDead = false;
+            hasWon = false;
+            movementMode = 'jump1';
+            empowered = false;
+            currentPhase = 0;
+            document.getElementById('toggle-btn').textContent = 'Jump1';
+            allFloorsClaimedOnWin = false;
+            if (direction === 'next') {
+                selectedLevel = selectedLevel === maxLevel ? 1 : selectedLevel + 1;
+            } else {
+                selectedLevel = selectedLevel === 1 ? maxLevel : selectedLevel - 1;
+            }
+            currentLevel = selectedLevel;
+            updateGridDimensions(currentLevel);
+            particles = [];
+            bgParticles = [];
+            fires = [];
+            moveCount = 0;
+            movement_lock = false;
+            slipping = false;
+            can_be_killed = 1;
+            gameStateHistory = [];
+            lastPlayerMove = { dx: 0, dy: 0 };
+            showTitleScreen();
+        }
+
+        function clearCutsceneResources() {
+            // Clear cached text lines
+            cachedWrappedLines = [];
+            // Reset text rendering variables
+            fullText = '';
+            currentText = '';
+            currentTextIndex = 0;
+            // Clear image references
+            speakerImage.src = '';
+            speakerLeftImage.src = '';
+            speakerRightImage.src = '';
+            backgroundImage.src = '';
+            lastSpeakerSrc = null;
+            lastSpeakerLeftSrc = null;
+            lastSpeakerRightSrc = null;
+            lastBackgroundSrc = null;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        window.addEventListener('orientationchange', resizeCanvas);
+        window.addEventListener('keydown', async (e) => {
+            if (isInputActive || (slipping && !isPlayerDead && !hasWon) || (!can_be_killed && !isPlayerDead && !hasWon) || titleScreen.style.display !== 'none') return;
+            isInputActive = true;
+            switch (e.key.toLowerCase()) {
+                case 'arrowup': if (!isPlayerDead && !movement_lock && !hasWon) movePlayer(0, -1); break;
+                case 'arrowdown': if (!isPlayerDead && !movement_lock && !hasWon) movePlayer(0, 1); break;
+                case 'arrowleft': if (!isPlayerDead && !movement_lock && !hasWon) movePlayer(-1, 0); break;
+                case 'arrowright': if (!isPlayerDead && !movement_lock && !hasWon) movePlayer(1, 0); break;
+                case ' ':
+                    if (isCutscene) {
+                        resumeAnimation();
+                        await advanceCutscene();
+                    } else if (hasWon) {
+                        await proceedToNext();
+                    } else if (isPlayerDead) {
+                        resetLevel();
+                    } else {
+                        toggleMovementMode();
+                    }
+                    break;
+                case 'z': undoMove(); break;
+                case 'q': changeLevel('previous'); break;
+                case 'w': changeLevel('next'); break;
+                case 'escape':
+                    showTitleScreen();
+                    break;
+                case 'enter':
+                    if (isCutscene) {
+                        resumeAnimation();
+                        await advanceCutscene();
+                    }
+                    break;
+                case '0':
+                    if (!isPlayerDead && !hasWon) {
+                        grid.forEach(cell => {
+                            if (cell.state === 'floor' || cell.state.startsWith('enemy-') || cell.state.startsWith('killer-enemy-') || cell.state.startsWith('fairy-') || cell.state === 'ghost-enemy') {
+                                const cellOriginalState = cell.state;
+                                const isEnemy = cellOriginalState.startsWith('enemy-') || cellOriginalState.startsWith('killer-enemy-') || cellOriginalState.startsWith('fairy-') || cellOriginalState === 'ghost-enemy';
+                                cell.state = 'claimed';
+                                cell.isClaimed = true;
+                                createClaimParticles(cell.x, cell.y); // Particles for cheat claim
+                                if (isEnemy) {
+                                    defeatedEnemies.push({
+                                        x: cell.x,
+                                        y: cell.y,
+                                        state: cellOriginalState,
+                                        progress: 0,
+                                        duration: 12.0
+                                    });
+                                }
+                            }
+                        });
+                        draw();
+                    }
+                    break;
+            }
+            isInputActive = false;
+        });
+        window.addEventListener('keyup', (e) => {
+            if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.key)) {
+                movement_lock = false;
+            }
+            isInputActive = false;
+        });
+
+        const buttons = { 'up-btn': [0, -1], 'down-btn': [0, 1], 'left-btn': [-1, 0], 'right-btn': [1, 0], 'undo-btn': 'undo' };
+        Object.keys(buttons).forEach(id => {
+            const btn = document.getElementById(id);
+            const action = buttons[id];
+            function press(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                if (!isInputActive && !isPlayerDead && !movement_lock && !slipping && !hasWon && can_be_killed) {
+                    isInputActive = true;
+                    if (action === 'undo') {
+                        undoMove();
+                    } else {
+                        const [dx, dy] = action;
+                        movePlayer(dx, dy);
+                    }
+                }
+            }
+            function release(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                isInputActive = false;
+                movement_lock = false;
+            }
+            btn.addEventListener('mousedown', press);
+            btn.addEventListener('mouseup', release);
+            btn.addEventListener('touchstart', press);
+            btn.addEventListener('touchend', release);
+        });
+
+        const toggleBtn = document.getElementById('toggle-btn');
+        toggleBtn.addEventListener('mousedown', e => {
+            e.preventDefault();
+            e.stopPropagation();
+            if (!isInputActive && !isPlayerDead && !slipping && !hasWon && can_be_killed) {
+                isInputActive = true;
+                toggleMovementMode();
+            }
+        });
+        toggleBtn.addEventListener('mouseup', e => {
             e.preventDefault();
             e.stopPropagation();
             isInputActive = false;
-            movement_lock = false;
-        }
-        btn.addEventListener('mousedown', press);
-        btn.addEventListener('mouseup', release);
-        btn.addEventListener('touchstart', press);
-        btn.addEventListener('touchend', release);
-    });
+        });
+        toggleBtn.addEventListener('touchstart', e => {
+            e.preventDefault();
+            e.stopPropagation();
+            if (!isPlayerDead && !slipping && !hasWon && can_be_killed) {
+                isInputActive = true;
+                toggleMovementMode();
+            }
+        });
+        toggleBtn.addEventListener('touchend', e => {
+            e.preventDefault();
+            e.stopPropagation();
+            isInputActive = false;
+        });
 
-    const toggleBtn = document.getElementById('toggle-btn');
-    toggleBtn.addEventListener('mousedown', e => {
-        e.preventDefault();
-        e.stopPropagation();
-        if (!isInputActive && !isPlayerDead && !slipping && !hasWon && can_be_killed) {
-            isInputActive = true;
-            toggleMovementMode();
+        function resetOrMenu() {
+            if (isPlayerDead) {
+                resetLevel();
+            } else {
+                showTitleScreen();
+            }
         }
-    });
-    toggleBtn.addEventListener('mouseup', e => {
-        e.preventDefault();
-        e.stopPropagation();
-        isInputActive = false;
-    });
-    toggleBtn.addEventListener('touchstart', e => {
-        e.preventDefault();
-        e.stopPropagation();
-        if (!isPlayerDead && !slipping && !hasWon && can_be_killed) {
-            isInputActive = true;
-            toggleMovementMode();
-        }
-    });
-    toggleBtn.addEventListener('touchend', e => {
-        e.preventDefault();
-        e.stopPropagation();
-        isInputActive = false;
-    });
 
-    function resetOrMenu() {
-        if (isPlayerDead) {
-            resetLevel();
-        } else {
-            showTitleScreen();
+        function resetPress(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (!isInputActive) {
+                isInputActive = true;
+                resetOrMenu();
+                isInputActive = false;
+            }
         }
-    }
-
-    function resetPress(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        if (!isInputActive) {
-            isInputActive = true;
-            resetOrMenu();
+        function resetRelease(e) {
+            e.preventDefault();
+            e.stopPropagation();
             isInputActive = false;
         }
-    }
-    function resetRelease(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        isInputActive = false;
-    }
-    resetBtn.addEventListener('mousedown', resetPress);
-    resetBtn.addEventListener('mouseup', resetRelease);
-    resetBtn.addEventListener('touchstart', resetPress);
-    resetBtn.addEventListener('touchend', resetRelease);
+        resetBtn.addEventListener('mousedown', resetPress);
+        resetBtn.addEventListener('mouseup', resetRelease);
+        resetBtn.addEventListener('touchstart', resetPress);
+        resetBtn.addEventListener('touchend', resetRelease);
 
-    playBtn.addEventListener('click', e => {
-        e.preventDefault();
-        showScene();
-    });
-    playBtn.addEventListener('touchstart', e => {
-        e.preventDefault();
-        showScene();
-    });
+        playBtn.addEventListener('click', e => {
+            e.preventDefault();
+            showScene();
+        });
+        playBtn.addEventListener('touchstart', e => {
+            e.preventDefault();
+            showScene();
+        });
 
-    nextLevelBtn.addEventListener('click', e => {
-        e.preventDefault();
-        changeLevel('next');
-    });
-    nextLevelBtn.addEventListener('touchstart', e => {
-        e.preventDefault();
-        changeLevel('next');
-    });
+        nextLevelBtn.addEventListener('click', e => {
+            e.preventDefault();
+            changeLevel('next');
+        });
+        nextLevelBtn.addEventListener('touchstart', e => {
+            e.preventDefault();
+            changeLevel('next');
+        });
 
-    prevLevelBtn.addEventListener('click', e => {
-        e.preventDefault();
-        changeLevel('previous');
-    });
-    prevLevelBtn.addEventListener('touchstart', e => {
-        e.preventDefault();
-        changeLevel('previous');
-    });
+        prevLevelBtn.addEventListener('click', e => {
+            e.preventDefault();
+            changeLevel('previous');
+        });
+        prevLevelBtn.addEventListener('touchstart', e => {
+            e.preventDefault();
+            changeLevel('previous');
+        });
 
-    document.body.addEventListener('touchstart', e => {
-        e.preventDefault();
-        if (hasWon && !isInputActive && titleScreen.style.display === 'none') {
-            isInputActive = true;
-            proceedToNext();
-            isInputActive = false;
-        }
-    });
+        document.body.addEventListener('touchstart', e => {
+            e.preventDefault();
+            if (hasWon && !isInputActive && titleScreen.style.display === 'none') {
+                isInputActive = true;
+                const numPhases = isMultiStage ? levels[currentLevel].layouts.length : 1;
+                if (isMultiStage && currentPhase < numPhases - 1) {
+                    defeatedEnemies = [];
+                    isPlayerDead = false;
+                    hasWon = false;
+                    movementMode = 'jump1';
+                    empowered = false;
+                    document.getElementById('toggle-btn').textContent = 'Jump1';
+                    particles = [];
+                    bgParticles = [];
+                    fires = [];
+                    moveCount = 0;
+                    movement_lock = false;
+                    slipping = false;
+                    can_be_killed = 1;
+                    gameStateHistory = [];
+                    lastPlayerMove = { dx: 0, dy: 0 };
+                    allFloorsClaimedOnWin = false;
+                    currentPhase++;
+                    initializeGrid(currentLevel);
+                    draw();
+                } else {
+                    proceedToNext();
+                }
+                isInputActive = false;
+            }
+        });
 
-    cutsceneNextBtn.addEventListener('click', e => {
-        e.preventDefault();
-        proceedToNext();
-    });
-    cutsceneNextBtn.addEventListener('touchstart', e => {
-        e.preventDefault();
-        proceedToNext();
-    });
+        cutsceneNextBtn.addEventListener('click', e => {
+            e.preventDefault();
+            resumeAnimation();
+            advanceCutscene();
+        });
+        cutsceneNextBtn.addEventListener('touchstart', e => {
+            e.preventDefault();
+            resumeAnimation();
+            advanceCutscene();
+        });
 
-    updateLevelSelectDisplay();
-    showTitleScreen();
-</script>
+        updateLevelSelectDisplay();
+        showTitleScreen();
+    </script>
 </body>
+
 </html>
