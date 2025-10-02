@@ -1,0 +1,289 @@
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    overflow: hidden;
+    position: relative;
+    font-family: "MyPC98Font", monospace;
+}
+
+canvas {
+    display: none;
+    background-color: #222;
+}
+
+.controls {
+    position: absolute;
+    bottom: calc(10px + env(safe-area-inset-bottom));
+    right: calc(10px + env(safe-area-inset-right));
+    display: grid;
+    grid-template-columns: repeat(3, minmax(40px, 8vw));
+    grid-template-rows: repeat(2, minmax(40px, 8vw));
+    gap: 5px;
+    z-index: 10;
+    display: none;
+}
+
+.toggle-btn,
+.reset-btn {
+    position: absolute;
+    bottom: calc(10px + env(safe-area-inset-bottom));
+    left: calc(10px + env(safe-area-inset-left));
+    width: minmax(100px, 15vw);
+    height: 8vh;
+    background-color: #555;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(16px, 2.5vw, 18px);
+    touch-action: manipulation;
+    user-select: none;
+    cursor: pointer;
+    z-index: 10;
+    display: none;
+}
+
+.reset-btn {
+    bottom: calc(100px + env(safe-area-inset-bottom));
+}
+
+.toggle-btn:active,
+.reset-btn:active {
+    background-color: #777;
+}
+
+.control-btn {
+    background-color: rgba(85, 85, 85, 0.7);
+    color: #fff;
+    font-family: "MyPC98Font", monospace;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(20px, 3vw, 24px);
+    touch-action: manipulation;
+    user-select: none;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+
+.control-btn:active {
+    background-color: rgba(119, 119, 119, 0.7);
+}
+
+.empty {
+    background: none;
+    border: none;
+}
+
+.title-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    z-index: 20;
+}
+
+.title-text {
+    color: #fff;
+    font-size: clamp(24px, 6vw, 48px);
+    font-family: 'Press Start 2P';
+    margin-top: 5vh;
+    text-align: center;
+}
+
+.level-select {
+    color: #fff;
+    font-size: clamp(18px, 4vw, 32px);
+    font-family: "MyPC98Font", monospace;
+    margin: 5vh 0;
+    text-align: center;
+}
+
+.title-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.title-btn {
+    background-color: #555;
+    color: #fff;
+    font-family: "MyPC98Font", monospace;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: clamp(14px, 2.5vw, 18px);
+    touch-action: manipulation;
+    user-select: none;
+    cursor: pointer;
+    min-width: 80px;
+    text-align: center;
+}
+
+.title-btn:active {
+    background-color: #777;
+}
+
+.cutscene-btn {
+    position: absolute;
+    bottom: calc(10px + env(safe-area-inset-bottom));
+    right: calc(10px + env(safe-area-inset-right));
+    display: none;
+    z-index: 15;
+    min-width: 100px;
+    padding: 12px 24px;
+    font-size: clamp(16px, 3vw, 20px);
+}
+
+@media (max-width: 600px) {
+    .controls {
+        grid-template-columns: repeat(3, minmax(30px, 10vw));
+        grid-template-rows: repeat(2, minmax(30px, 10vw));
+        gap: 3px;
+        right: calc(5px + env(safe-area-inset-right));
+        bottom: calc(5px + env(safe-area-inset-bottom));
+    }
+
+    .toggle-btn,
+    .reset-btn {
+        width: minmax(80px, 18vw);
+        height: 6vh;
+        font-size: clamp(14px, 3vw, 16px);
+        left: calc(5px + env(safe-area-inset-left));
+    }
+
+    .reset-btn {
+        bottom: calc(80px + env(safe-area-inset-bottom));
+    }
+
+    .control-btn {
+        font-size: clamp(16px, 3.5vw, 20px);
+    }
+
+    .title-text {
+        font-size: clamp(20px, 5vw, 36px);
+    }
+
+    .level-select {
+        font-size: clamp(16px, 3.5vw, 24px);
+    }
+
+    .title-btn {
+        font-size: clamp(12px, 2vw, 16px);
+        padding: 8px 15px;
+        min-width: 60px;
+    }
+
+    .cutscene-btn {
+        bottom: calc(5px + env(safe-area-inset-bottom));
+        right: calc(5px + env(safe-area-inset-right));
+        padding: 10px 20px;
+        font-size: clamp(14px, 3.5vw, 18px);
+        min-width: 80px;
+    }
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+    .controls {
+        grid-template-columns: repeat(3, minmax(25px, 7vw));
+        grid-template-rows: repeat(2, minmax(25px, 7vw));
+        gap: 2px;
+    }
+
+    .toggle-btn,
+    .reset-btn {
+        width: minmax(70px, 14vw);
+        height: 6vh;
+        font-size: clamp(12px, 2.5vw, 14px);
+    }
+
+    .reset-btn {
+        bottom: calc(70px + env(safe-area-inset-bottom));
+    }
+
+    .title-text {
+        font-size: clamp(18px, 4vw, 32px);
+        margin-top: 3vh;
+    }
+
+    .level-select {
+        font-size: clamp(14px, 3vw, 20px);
+        margin: 3vh 0;
+    }
+
+    .title-btn {
+        font-size: clamp(10px, 1.8vw, 14px);
+        padding: 6px 12px;
+        min-width: 50px;
+    }
+
+    .cutscene-btn {
+        bottom: calc(5px + env(safe-area-inset-bottom));
+        right: calc(5px + env(safe-area-inset-right));
+        padding: 8px 16px;
+        font-size: clamp(12px, 2.5vw, 16px);
+        min-width: 70px;
+    }
+
+    .press-start-2p-regular {
+        font-family: "Press Start 2P", system-ui;
+        font-weight: 400;
+        font-style: normal;
+
+    }
+
+}
+
+@font-face {
+    font-family: "MyPC98Font";
+    src: url(./PxPlus_IBM_VGA8.ttf) format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+.level-indicator {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    gap: 4px;
+    max-width: 200px;
+}
+
+.level-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #666;
+}
+
+.level-dot.active {
+    background-color: #fff;
+}
+
+.level-number {
+    text-align: center;
+    color: #666;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    margin-top: 5px;
+}
