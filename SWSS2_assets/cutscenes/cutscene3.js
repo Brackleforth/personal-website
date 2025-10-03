@@ -45,7 +45,7 @@ export default {
         },
         {
             text: [
-                "Buu buu desu wa!! This is just like that time Fernand de Morcerf betrayed Edmond Dantès by saying he was a Bonapartist agent.",
+                "Buu buu desu wa!!",
             ],
             name: "Kuyuti",
             speakerleft: "SWSS2_assets/images-speakers/Speaker_None.png",
@@ -54,7 +54,7 @@ export default {
         },
         {
             text: [
-                "Kuyuti, that doesn't make sense. ",
+                "Uh huh. ",
             ],
             name: "Fire Witch, Linda",
             speakerleft: "SWSS2_assets/images-speakers/Speaker_None.png",
