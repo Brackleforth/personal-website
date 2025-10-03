@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SWSS 2: Recrudescence</title>
+    <title>SWSS 2: Recrudescence (v0.41.2)</title>
     <link rel="stylesheet" href="SWSS2_assets/swss2_styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -318,6 +318,10 @@
         }
 
         function getWrappedLines(text, fontSize, maxTextWidth) {
+            // Use cached lines if text matches currentText and fully displayed
+            if (text === currentText && currentTextIndex >= fullText.length && cachedWrappedLines.length > 0) {
+                return cachedWrappedLines;
+            }
             const prevFont = ctx.font;
             ctx.font = `${fontSize}px MyPC98Font, monospace`;
             const lines = text.split('\n');
@@ -341,27 +345,21 @@
                 }
             });
             ctx.font = prevFont;
+            // Cache only when text is fully displayed
+            if (text === currentText && currentTextIndex >= fullText.length) {
+                cachedWrappedLines = wrappedLines;
+            }
             return wrappedLines;
         }
 
         function addNextChar(fontSize, maxTextWidth) {
             const char = fullText[currentTextIndex];
-            const isStartOfWord = currentText === '' || currentText.endsWith(' ') || currentText.endsWith('\n');
-            if (isStartOfWord) {
-                let end = fullText.indexOf(' ', currentTextIndex);
-                if (end === -1) end = fullText.length;
-                const word = fullText.substring(currentTextIndex, end);
-                ctx.font = `${fontSize}px MyPC98Font, monospace`;
-                const tempLines = getWrappedLines(currentText, fontSize, maxTextWidth);
-                const lastLine = tempLines[tempLines.length - 1] || '';
-                const space = (lastLine && !lastLine.endsWith(' ')) ? ' ' : '';
-                const testWidth = ctx.measureText(lastLine + space + word).width;
-                if (testWidth > maxTextWidth) {
-                    currentText += '\n';
-                }
-            }
             currentText += char;
             currentTextIndex++;
+            // Only recompute wrapped lines when necessary
+            if (currentTextIndex >= fullText.length) {
+                cachedWrappedLines = getWrappedLines(currentText, fontSize, maxTextWidth);
+            }
         }
 
         // Track last-loaded sources so we only reload if they change
@@ -505,10 +503,9 @@
             const maxTextWidth = bgWidth - 20;
             const startY = bgY + verticalPadding;
 
-            let wrappedLines = getWrappedLines(currentText, fontSize, maxTextWidth);
-            if (currentTextIndex >= fullText.length) {
-                cachedWrappedLines = wrappedLines; // Cache only when text is fully displayed
-            }
+            let wrappedLines = currentTextIndex >= fullText.length && cachedWrappedLines.length > 0
+                ? cachedWrappedLines
+                : getWrappedLines(currentText, fontSize, maxTextWidth);
 
             ctx.save();
             ctx.rect(bgX + 20, startY - lineHeight / 2, maxTextWidth + 10, lineHeight * (maxLines + 1));
@@ -528,6 +525,10 @@
                 ctx.font = `${fontSize * 0.8}px MyPC98Font, monospace`;
                 ctx.fillText('...', bgX + 20, startY + maxLines * lineHeight + 10);
             }
+
+            const startTime = performance.now();
+            // ... (existing drawCutsceneText code)
+            console.log(`cachedWrappedLines length: ${cachedWrappedLines.length}, render time: ${performance.now() - startTime}ms`);
         }
 
         function draw() {
@@ -927,6 +928,10 @@
 
             if (isCutscene) {
                 const now = timestamp;
+                // Prevent timing drift by resetting lastTypeTime if too much time has passed
+                if (now - lastTypeTime > 1000) {
+                    lastTypeTime = now;
+                }
                 if (now - lastTypeTime > typingSpeed && currentTextIndex < fullText.length) {
                     const maxFontSize = Math.min(virtualWidth, virtualHeight) * 0.05;
                     const minFontSize = Math.min(virtualWidth, virtualHeight) * 0.03;
@@ -1101,18 +1106,18 @@
             const bgWidth = virtualWidth - 2 * bgPadding;
             const maxTextWidth = bgWidth - 40;
             if (currentTextIndex < fullText.length) {
-                cachedWrappedLines = [];
-                while (currentTextIndex < fullText.length) {
-                    addNextChar(fontSize, maxTextWidth);
-                }
+                currentText = fullText; // Fast-forward to full text
+                currentTextIndex = fullText.length;
+                lastTypeTime = performance.now(); // Reset typing timer
+                cachedWrappedLines = getWrappedLines(currentText, fontSize, maxTextWidth); // Compute wrapped lines once
                 draw();
                 cutsceneNextBtn.style.display = 'block';
                 isCutsceneIdle = true; // Set idle after fast-forwarding text
             } else {
                 currentDialogueIndex++;
                 if (currentDialogueIndex < levels[selectedLevel].dialogues.length) {
-                    cachedWrappedLines = [];
-                    currentText = '';
+                    clearCutsceneResources(); // Ensure clean state
+                    lastTypeTime = performance.now(); // Reset typing timer
                     await loadDialogue();
                 } else {
                     await proceedToNext();
@@ -1194,6 +1199,17 @@
             canvas.style.height = `${canvas.height / dpr}px`;
             scale = canvas.width / virtualWidth / dpr;
             ctx.scale(dpr, dpr);
+
+            if (isCutscene) {
+                const maxFontSize = Math.min(virtualWidth, virtualHeight) * 0.05;
+                const minFontSize = Math.min(virtualWidth, virtualHeight) * 0.03;
+                const fontSize = Math.max(minFontSize, Math.min(maxFontSize, statusBarHeight * 1.5));
+                const bgPadding = 50;
+                const bgWidth = virtualWidth - 2 * bgPadding;
+                const maxTextWidth = bgWidth - 40;
+                cachedWrappedLines = getWrappedLines(currentText, fontSize, maxTextWidth); // Recompute text on resize
+                lastTypeTime = performance.now(); // Reset typing timer
+            }
             draw();
         }
 
