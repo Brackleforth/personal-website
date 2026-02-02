@@ -43,51 +43,69 @@ body {font-family: "Calibri", sans-serif}
 <!-- Navbar -->
 <div class="w3-top">
   <div class="w3-bar w3-black w3-card">
-    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+
+    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right"
+       href="javascript:void(0)"
+       onclick="myFunction()"
+       title="Toggle Navigation Menu">
+      <i class="fa fa-bars"></i>
+    </a>
+
     <a href="#" class="w3-bar-item w3-button w3-padding-large">HOME</a>
-	<!--
-    <a href="#links" class="w3-bar-item w3-button w3-padding-large w3-hide-small">LINKS</a>
-    <a href="#blog" class="w3-bar-item w3-button w3-padding-large w3-hide-small">BLOG</a>
-    <a href="#references" class="w3-bar-item w3-button w3-padding-large w3-hide-small">MUSIC THEORY REFERENCES</a>
-	-->
-	  
+
+    <!-- MUSIC THEORY TOOLS -->
     <div class="w3-dropdown-hover w3-hide-small">
-      <button class="w3-padding-large w3-button" title="More">MUSIC THEORY TOOLS <i class="fa fa-caret-down"></i></button>     
+      <button class="w3-padding-large w3-button" title="More">
+        MUSIC THEORY TOOLS <i class="fa fa-caret-down"></i>
+      </button>
       <div class="w3-dropdown-content w3-bar-block w3-card-4">
-        <a href="progressiongenerator2.html" class="w3-bar-item w3-button">Progression Generator 2 Java Program</a>
+        <a href="progressiongenerator2.html" class="w3-bar-item w3-button">
+          Progression Generator 2 Java Program
+        </a>
       </div>
     </div>
-	<div class="w3-dropdown-hover w3-hide-small">
-      <button class="w3-padding-large w3-button" title="More">GAMES MADE BY ME <i class="fa fa-caret-down"></i></button>     
+
+    <!-- GAMES -->
+    <div class="w3-dropdown-hover w3-hide-small">
+      <button class="w3-padding-large w3-button" title="More">
+        GAMES MADE BY ME <i class="fa fa-caret-down"></i>
+      </button>
       <div class="w3-dropdown-content w3-bar-block w3-card-4">
         <a href="swss.html" class="w3-bar-item w3-button">SWSS 1 LARGE (GAME MAKER)</a>
-		<a href="swsssmaller.html" class="w3-bar-item w3-button">SWSS 1 SMALL (GAME MAKER)</a>
-		<a href="gridgame.html" class="w3-bar-item w3-button">SWSS 2 (JAVA)</a>
+        <a href="swsssmaller.html" class="w3-bar-item w3-button">SWSS 1 SMALL (GAME MAKER)</a>
+        <a href="gridgame.html" class="w3-bar-item w3-button">SWSS 2 (JAVA)</a>
       </div>
     </div>
-	<div class="w3-dropdown-content w3-bar-block w3-card-4">
-	  <button class="w3-padding-large w3-button" title="More">MY TECH WRITING COURSE V2 <i class="fa fa-caret-down"></i></button>    
-	  <a href="tech_writing_course_v2.html" class="w3-bar-item w3-button">Course</a>
-	</div>
+
+    <!-- TECH WRITING COURSE (FIXED) -->
+    <div class="w3-dropdown-hover w3-hide-small">
+      <button class="w3-padding-large w3-button" title="More">
+        MY TECH WRITING COURSE V2 <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="w3-dropdown-content w3-bar-block w3-card-4">
+        <a href="tech_writing_course_v2.html" class="w3-bar-item w3-button">Course</a>
+      </div>
+    </div>
+
   </div>
 </div>
 
-<!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
-<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
-	<!--
-  <a href="#links" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">LINKS</a>
-  <a href="#blog" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">BLOG</a>
-	
-  <a href="#references" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">REFERENCES</a>
-	-->
-		<div class="w3-dropdown-hover>
-      <button class="w3-padding-large w3-button" title="More">GAMES MADE BY ME <i class="fa fa-caret-down"></i></button>     
-      <div class="w3-dropdown-content w3-bar-block w3-card-4">
-        <a href="swss.html" class="w3-bar-item w3-button">SWSS 1 LARGE (GAME MAKER)</a>
-		<a href="swsssmaller.html" class="w3-bar-item w3-button">SWSS 1 SMALL (GAME MAKER)</a>
-		<a href="gridgame.html" class="w3-bar-item w3-button">SWSS 2 (JAVA)</a>
-      </div>
-</div>
+<!-- MOBILE NAV -->
+<div id="navDemo"
+     class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top"
+     style="margin-top:46px">
+
+  <div class="w3-dropdown-hover">
+    <button class="w3-padding-large w3-button">
+      GAMES MADE BY ME <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="w3-dropdown-content w3-bar-block w3-card-4">
+      <a href="swss.html" class="w3-bar-item w3-button">SWSS 1 LARGE (GAME MAKER)</a>
+      <a href="swsssmaller.html" class="w3-bar-item w3-button">SWSS 1 SMALL (GAME MAKER)</a>
+      <a href="gridgame.html" class="w3-bar-item w3-button">SWSS 2 (JAVA)</a>
+    </div>
+  </div>
+
 </div>
 
 <!-- Page content -->
@@ -427,6 +445,7 @@ function myFunction() {
 
 </body>
 <html>   
+
 
 
 
