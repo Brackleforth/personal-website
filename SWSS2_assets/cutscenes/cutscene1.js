@@ -10,7 +10,7 @@ export default {
       ],
       name: "Narrator",
       speaker: "SWSS2_assets/images-speakers/Speaker_None.png",
-      background: "SWSS2_assets/images-backgrounds/Sprite-0002.png"
+      background: "SWSS2_assets/images-backgrounds/background_narration.png"
     },
     {
       text: [
@@ -19,7 +19,7 @@ export default {
       //Syllemony-Peregrin-Bus-Syllabus Baronet-But-Buskin Gervassius Psassuchox-chox Melissent Sodiumhydrox-chox von Jesmaine-Pecka-Po-Buskin-Bus-
       name: "Narrator",
       speaker: "SWSS2_assets/images-speakers/Speaker_None.png",
-      background: "SWSS2_assets/images-backgrounds/Sprite-0002.png"
+      background: "SWSS2_assets/images-backgrounds/background_narration.png"
     },
     {
       text: [
@@ -29,7 +29,7 @@ export default {
       ],
       name: "Narrator",
       speaker: "SWSS2_assets/images-speakers/Speaker_None.png",
-      background: "SWSS2_assets/images-backgrounds/Sprite-0002.png"
+      background: "SWSS2_assets/images-backgrounds/background_narration.png"
     },
     {
       text: [
@@ -38,7 +38,7 @@ export default {
       ],
       name: "Narrator",
       speaker: "SWSS2_assets/images-speakers/Speaker_None.png",
-      background: "SWSS2_assets/images-backgrounds/Sprite-0002.png"
+      background: "SWSS2_assets/images-backgrounds/background_narration.png"
     },
     {
       text: [
@@ -46,7 +46,7 @@ export default {
       ],
       name: "Narrator",
       speaker: "SWSS2_assets/images-speakers/Speaker_None.png",
-      background: "SWSS2_assets/images-backgrounds/Sprite-0002.png"
+      background: "SWSS2_assets/images-backgrounds/background_narration.png"
     },
     {
       text: [
@@ -54,7 +54,7 @@ export default {
       ],
       name: "Narrator",
       speaker: "SWSS2_assets/images-speakers/Speaker_None.png",
-      background: "SWSS2_assets/images-backgrounds/Sprite-0002.png"
+      background: "SWSS2_assets/images-backgrounds/background_narration.png"
     },
     {
       text: [
@@ -62,7 +62,7 @@ export default {
       ],
       name: "Narrator",
       speaker: "SWSS2_assets/images-speakers/Speaker_None.png",
-      background: "SWSS2_assets/images-backgrounds/Sprite-0002.png"
+      background: "SWSS2_assets/images-backgrounds/background_narration.png"
     },
     {
       text: [
@@ -71,7 +71,7 @@ export default {
       ],
       name: "Narrator",
       speaker: "SWSS2_assets/images-speakers/Speaker_None.png",
-      background: "SWSS2_assets/images-backgrounds/Sprite-0002.png"
+      background: "SWSS2_assets/images-backgrounds/background_narration.png"
     },
     {
       text: [
@@ -79,7 +79,7 @@ export default {
       ],
       name: "Narrator",
       speaker: "SWSS2_assets/images-speakers/Speaker_None.png",
-      background: "SWSS2_assets/images-backgrounds/Sprite-0002.png"
+      background: "SWSS2_assets/images-backgrounds/background_narration.png"
     },
     {
       text: [
@@ -88,7 +88,7 @@ export default {
       ],
       name: "Narrator",
       speaker: "SWSS2_assets/images-speakers/Speaker_None.png",
-      background: "SWSS2_assets/images-backgrounds/Sprite-0002.png"
+      background: "SWSS2_assets/images-backgrounds/background_narration.png"
     },
     {
       text: [
@@ -97,7 +97,7 @@ export default {
       ],
       name: "Narrator",
       speaker: "SWSS2_assets/images-speakers/Speaker_None.png",
-      background: "SWSS2_assets/images-backgrounds/Sprite-0002.png"
+      background: "SWSS2_assets/images-backgrounds/background_narration.png"
     },
     {
       text: [
@@ -105,16 +105,16 @@ export default {
       ],
       name: "Narrator",
       speaker: "SWSS2_assets/images-speakers/Speaker_None.png",
-      background: "SWSS2_assets/images-backgrounds/Sprite-0002.png"
+      background: "SWSS2_assets/images-backgrounds/background_narration.png"
     },
     {
       text: [
-        "Meanwhile, Yonker slithered through the shadowed valleys, cackling and polishing his lustrous spheres, oblivious",
+        "Meanwhile, Yonker polished his lustrous spheres, oblivious",
         "that his mischief would soon be recompensed with utter rout! ",
       ],
       name: "Narrator",
       speaker: "SWSS2_assets/images-speakers/Speaker_None.png",
-      background: "SWSS2_assets/images-backgrounds/Sprite-0002.png"
+      background: "SWSS2_assets/images-backgrounds/background_narration.png"
     },
     {
       text: [
@@ -122,7 +122,7 @@ export default {
       ],
       name: "Narrator",
       speaker: "SWSS2_assets/images-speakers/Speaker_None.png",
-      background: "SWSS2_assets/images-backgrounds/Sprite-0002.png"
+      background: "SWSS2_assets/images-backgrounds/background_narration.png"
     },
     {
       text: [
@@ -132,14 +132,14 @@ export default {
         "... ",
       ],
       speaker: "SWSS2_assets/images-speakers/Speaker_None.png",
-      background: "SWSS2_assets/images-backgrounds/Sprite-0002.png"
+      background: "SWSS2_assets/images-backgrounds/background_narration.png"
     },
     {
       text: [
         "Chapter 1 : START ",
       ],
       speaker: "SWSS2_assets/images-speakers/Speaker_None.png",
-      background: "SWSS2_assets/images-backgrounds/Sprite-0002.png"
+      background: "SWSS2_assets/images-backgrounds/background_narration.png"
     }
   ]
 };
