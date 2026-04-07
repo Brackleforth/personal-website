@@ -19,54 +19,49 @@ canvas {
     background-color: #222;
 }
 
-/* === CONTROL BUTTON GRID (CAPPED SIZE) === */
 .controls {
     position: absolute;
     bottom: calc(10px + env(safe-area-inset-bottom));
     right: calc(10px + env(safe-area-inset-right));
     display: grid;
-    grid-template-columns: repeat(3, minmax(40px, clamp(40px, 8vw, 80px)));
-    grid-template-rows: repeat(2, minmax(40px, clamp(40px, 8vw, 80px)));
+    grid-template-columns: repeat(3, minmax(40px, 8vw));
+    grid-template-rows: repeat(2, minmax(40px, 8vw));
     gap: 5px;
     z-index: 10;
     display: none;
 }
 
-/* === MENU / JUMP BUTTONS (MATCH CONTROL BUTTONS) === */
 .toggle-btn,
 .reset-btn {
     position: absolute;
-    left: calc(10px + env(safe-area-inset-left));
     bottom: calc(10px + env(safe-area-inset-bottom));
-    width: clamp(40px, 8vw, 80px);
-    height: clamp(40px, 8vw, 80px);
-    background-color: rgba(85, 85, 85, 0.7);
+    left: calc(10px + env(safe-area-inset-left));
+    width: minmax(100px, 15vw);
+    height: 8vh;
+    background-color: #555;
     color: #fff;
     border: 2px solid #fff;
     border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: clamp(14px, 2.5vw, 20px);
-    line-height: 1;
+    font-size: clamp(16px, 2.5vw, 18px);
     touch-action: manipulation;
     user-select: none;
     cursor: pointer;
     z-index: 10;
     display: none;
-    box-sizing: border-box;
 }
 
 .reset-btn {
-    bottom: calc(10px + env(safe-area-inset-bottom) + clamp(40px, 8vw, 80px) + 5px);
+    bottom: calc(100px + env(safe-area-inset-bottom));
 }
 
 .toggle-btn:active,
 .reset-btn:active {
-    background-color: rgba(119, 119, 119, 0.7);
+    background-color: #777;
 }
 
-/* === CONTROL BUTTONS === */
 .control-btn {
     background-color: rgba(85, 85, 85, 0.7);
     color: #fff;
@@ -76,7 +71,7 @@ canvas {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: clamp(14px, 2.5vw, 20px);
+    font-size: clamp(20px, 3vw, 24px);
     touch-action: manipulation;
     user-select: none;
     cursor: pointer;
@@ -93,7 +88,6 @@ canvas {
     border: none;
 }
 
-/* === TITLE SCREEN ELEMENTS === */
 .title-screen {
     position: absolute;
     top: 0;
@@ -160,11 +154,10 @@ canvas {
     font-size: clamp(16px, 3vw, 20px);
 }
 
-/* === RESPONSIVE BEHAVIOR === */
 @media (max-width: 600px) {
     .controls {
-        grid-template-columns: repeat(3, minmax(30px, clamp(30px, 10vw, 60px)));
-        grid-template-rows: repeat(2, minmax(30px, clamp(30px, 10vw, 60px)));
+        grid-template-columns: repeat(3, minmax(30px, 10vw));
+        grid-template-rows: repeat(2, minmax(30px, 10vw));
         gap: 3px;
         right: calc(5px + env(safe-area-inset-right));
         bottom: calc(5px + env(safe-area-inset-bottom));
@@ -172,17 +165,18 @@ canvas {
 
     .toggle-btn,
     .reset-btn {
-        width: clamp(30px, 10vw, 60px);
-        height: clamp(30px, 10vw, 60px);
-        font-size: clamp(12px, 2vw, 16px);
+        width: minmax(80px, 18vw);
+        height: 6vh;
+        font-size: clamp(14px, 3vw, 16px);
+        left: calc(5px + env(safe-area-inset-left));
     }
 
     .reset-btn {
-        bottom: calc(10px + env(safe-area-inset-bottom) + clamp(30px, 10vw, 60px) + 3px);
+        bottom: calc(80px + env(safe-area-inset-bottom));
     }
 
     .control-btn {
-        font-size: clamp(12px, 2vw, 16px);
+        font-size: clamp(16px, 3.5vw, 20px);
     }
 
     .title-text {
@@ -210,20 +204,20 @@ canvas {
 
 @media (orientation: landscape) and (max-height: 500px) {
     .controls {
-        grid-template-columns: repeat(3, minmax(25px, clamp(25px, 7vw, 50px)));
-        grid-template-rows: repeat(2, minmax(25px, clamp(25px, 7vw, 50px)));
+        grid-template-columns: repeat(3, minmax(25px, 7vw));
+        grid-template-rows: repeat(2, minmax(25px, 7vw));
         gap: 2px;
     }
 
     .toggle-btn,
     .reset-btn {
-        width: clamp(25px, 7vw, 50px);
-        height: clamp(25px, 7vw, 50px);
-        font-size: clamp(10px, 1.8vw, 14px);
+        width: minmax(70px, 14vw);
+        height: 6vh;
+        font-size: clamp(12px, 2.5vw, 14px);
     }
 
     .reset-btn {
-        bottom: calc(10px + env(safe-area-inset-bottom) + clamp(25px, 7vw, 50px) + 2px);
+        bottom: calc(70px + env(safe-area-inset-bottom));
     }
 
     .title-text {
@@ -254,10 +248,11 @@ canvas {
         font-family: "Press Start 2P", system-ui;
         font-weight: 400;
         font-style: normal;
+
     }
+
 }
 
-/* === FONT AND MISC === */
 @font-face {
     font-family: "MyPC98Font";
     src: url(./PxPlus_IBM_VGA8.ttf) format("truetype");
@@ -291,38 +286,4 @@ canvas {
     font-family: 'Press Start 2P', monospace;
     font-size: 8px;
     margin-top: 5px;
-}
-
-.level-dot.cutscene-dot {
-    background-color: #ff69b4; /* Pink for cutscenes; adjust as needed */
-}
-.level-dot:not(.cutscene-dot) {
-    background-color: #00ff00; /* Green for levels; adjust as needed */
-}
-.level-dot.active {
-    background-color: #ffff00; /* Yellow for active; overrides above */
-}
-.level-indicator {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-.level-row {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    gap: 4px; /* Adjust spacing between dots */
-    margin-bottom: 8px; /* Space between rows */
-}
-.title-nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    margin: 10px 0;
-}
-.title-nav .control-btn {
-    font-size: 18px;
-    padding: 5px 8px;
-    min-width: 40px;
 }
