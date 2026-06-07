@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bible Commands Database</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <button id="sidebarToggle">
+        ☰ Filters
+    </button>
+
+    <div id="sidebar">
+
+        <h2>Filters</h2>
+
+        <label>Book</label>
+        <select id="bookFilter">
+            <option value="">All</option>
+        </select>
+
+        <label>Testament</label>
+        <select id="testamentFilter">
+            <option value="">All</option>
+            <option>Old Testament</option>
+            <option>New Testament</option>
+        </select>
+
+        <label>Command Giver</label>
+        <select id="giverFilter">
+            <option value="">All</option>
+        </select>
+
+        <label>Command Receiver</label>
+        <select id="receiverFilter">
+            <option value="">All</option>
+        </select>
+
+        <label>Covenant</label>
+        <select id="covenantFilter">
+            <option value="">All</option>
+        </select>
+
+        <label>Applicability</label>
+        <select id="applicableFilter">
+            <option value="">All</option>
+            <option value="true">Applicable Today</option>
+            <option value="false">Not Applicable Today</option>
+        </select>
+
+        <label>Category</label>
+        <select id="categoryFilter">
+            <option value="">All</option>
+        </select>
+
+        <label>Instruction Type</label>
+        <select id="instructionFilter">
+            <option value="">All</option>
+            <option value="do">Thing To Do</option>
+            <option value="dont">Thing Not To Do</option>
+        </select>
+
+        <label>Example Type</label>
+        <select id="exampleFilter">
+            <option value="">All</option>
+            <option value="emulate">Person To Emulate</option>
+            <option value="avoid">Person Not To Emulate</option>
+        </select>
+
+        <label>Command Style</label>
+        <select id="commandTypeFilter">
+            <option value="">All</option>
+            <option value="direct_command">Direct Command</option>
+            <option value="implied_command">Implied Command</option>
+        </select>
+
+        <label>Results Per Page</label>
+<select id="pageSizeFilter">
+<option value="10">10</option>
+<option value="25">25</option>
+<option value="50">50</option>
+<option value="100">100</option>
+<option value="all">All</option>
+</select>
+
+    </div>
+
+    <div id="mainContent">
+
+        <h1>Bible Commands Database</h1>
+<button id="compileBtn">Compile Results</button>
+
+<div id="summary"></div>
+        <div id="results"></div>
+<div id="pagination"></div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
