@@ -172,22 +172,79 @@ function renderPagination() {
 /* ---------------- FILTER LOGIC ---------------- */
 
 function matchesFilters(command) {
-
-    const book = document.getElementById("bookFilter").value;
-    const testament = document.getElementById("testamentFilter").value;
-    const giver = document.getElementById("giverFilter").value;
-    const receiver = document.getElementById("receiverFilter").value;
-    const category = document.getElementById("categoryFilter").value;
+    const book       = document.getElementById("bookFilter").value;
+    const testament  = document.getElementById("testamentFilter").value;
+    const giver      = document.getElementById("giverFilter").value;
+    const receiver   = document.getElementById("receiverFilter").value;
+    const category   = document.getElementById("categoryFilter").value;
+    const covenant   = document.getElementById("covenantFilter").value;
+    const applicable = document.getElementById("applicableFilter").value;
+    const instructionType = document.getElementById("instructionFilter").value;
+    const commandType = document.getElementById("commandTypeFilter").value;
 
     if (book && command.book !== book) return false;
     if (testament && command.testament !== testament) return false;
     if (giver && command.command_giver !== giver) return false;
     if (receiver && command.command_receiver !== receiver) return false;
+    if (covenant && command.covenant !== covenant) return false;
 
-    if (category &&
-        !command.category.includes(category)) return false;
+    if (category && !command.category.includes(category)) return false;
+
+    // Applicable Today
+    if (applicable !== "") {
+        if (String(command.applicable_today) !== applicable) return false;
+    }
+
+    // Instruction Type
+    if (instructionType === "do" && !command.things_to_do) return false;
+    if (instructionType === "dont" && !command.things_not_to_do) return false;
+
+    // Command Style
+    if (commandType && command.command_type !== commandType) return false;
 
     return true;
+}
+
+function buildDropdowns() {
+    // Book filter
+    const books = [...new Set(bibleCommands.map(c => c.book))].sort();
+    const bookSelect = document.getElementById("bookFilter");
+    books.forEach(book => {
+        const opt = document.createElement("option");
+        opt.value = book;
+        opt.textContent = book;
+        bookSelect.appendChild(opt);
+    });
+
+    // Command Giver
+    const givers = [...new Set(bibleCommands.map(c => c.command_giver))].sort();
+    const giverSelect = document.getElementById("giverFilter");
+    givers.forEach(giver => {
+        const opt = document.createElement("option");
+        opt.value = giver;
+        opt.textContent = giver;
+        giverSelect.appendChild(opt);
+    });
+
+    // Command Receiver
+    const receivers = [...new Set(bibleCommands.map(c => c.command_receiver))].sort();
+    const receiverSelect = document.getElementById("receiverFilter");
+    receivers.forEach(receiver => {
+        const opt = document.createElement("option");
+        opt.value = receiver;
+        opt.textContent = receiver;
+        receiverSelect.appendChild(opt);
+    });
+
+    // Category
+    const categories = [...new Set(bibleCommands.flatMap(c => c.category))].sort();
+    const catSelect = document.getElementById("categoryFilter");
+    categories.forEach(cat => {
+        const opt = document.createElement("option");
+        opt.value = cat;
+        opt.textContent = cat;
+        catSelect.appendChild(opt);
+    });
 }
 
 /* ---------------- INIT ---------------- */
