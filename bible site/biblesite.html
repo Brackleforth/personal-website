@@ -80,24 +80,40 @@
         </select>
 
         <label>Results Per Page</label>
-<select id="pageSizeFilter">
-<option value="10">10</option>
-<option value="25">25</option>
-<option value="50">50</option>
-<option value="100">100</option>
-<option value="all">All</option>
-</select>
+        <select id="pageSizeFilter">
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+            <option value="all">All</option>
+        </select>
 
     </div>
 
     <div id="mainContent">
 
         <h1>Bible Commands Database</h1>
-<button id="compileBtn">Compile Results</button>
+        <!-- Display Options -->
+        <div id="displayOptions" style="margin: 15px 0 20px 0; padding: 12px; background: #f9f9f9; border-radius: 8px;">
+            <strong>Show in Results:</strong><br><br>
 
-<div id="summary"></div>
+            <label><input type="checkbox" class="display-toggle" data-field="reference" checked> Reference</label>
+            <label><input type="checkbox" class="display-toggle" data-field="verse_text" checked> Verse Text</label>
+            <label><input type="checkbox" class="display-toggle" data-field="instruction" checked> Instruction</label>
+            <label><input type="checkbox" class="display-toggle" data-field="command_giver" checked> Command
+                Giver</label>
+            <label><input type="checkbox" class="display-toggle" data-field="command_receiver" checked> Command
+                Receiver</label>
+            <label><input type="checkbox" class="display-toggle" data-field="category" checked> Category</label>
+            <label><input type="checkbox" class="display-toggle" data-field="command_type" checked> Command Type</label>
+            <label><input type="checkbox" class="display-toggle" data-field="covenant"> Covenant</label>
+            <label><input type="checkbox" class="display-toggle" data-field="notes"> Notes</label>
+        </div>
+        <button id="compileBtn">Compile Results</button>
+
+        <div id="summary"></div>
         <div id="results"></div>
-<div id="pagination"></div>
+        <div id="pagination"></div>
     </div>
 
     <script src="script.js"></script>

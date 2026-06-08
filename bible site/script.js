@@ -4,6 +4,19 @@ let filteredCommands = [];
 let currentPage = 1;
 let pageSize = 10;
 
+// Display toggles
+let displayConfig = {
+    reference: true,
+    verse_text: true,
+    instruction: true,
+    command_giver: true,
+    command_receiver: true,
+    category: true,
+    command_type: true,
+    covenant: false,
+    notes: false
+};
+
 async function loadData() {
 
     const indexResponse = await fetch("data-index.json");
@@ -52,6 +65,19 @@ function attachEvents() {
             document.getElementById("sidebar")
                 .classList.toggle("hidden");
         });
+
+    // Display toggles
+    document.querySelectorAll('.display-toggle').forEach(checkbox => {
+        checkbox.addEventListener('change', (e) => {
+            const field = e.target.dataset.field;
+            displayConfig[field] = e.target.checked;
+
+            // Auto re-render if results are already shown
+            if (filteredCommands.length > 0) {
+                renderResults();
+            }
+        });
+    });
 }
 
 function applyFilters() {
@@ -102,28 +128,54 @@ function getActiveFilters() {
 /* ---------------- RESULTS ---------------- */
 
 function renderResults() {
-
     const results = document.getElementById("results");
     results.innerHTML = "";
 
     const pageData = getPageData();
 
     pageData.forEach(command => {
-
         const div = document.createElement("div");
         div.className = "command-card";
 
-        div.innerHTML = `
-            <h3>${command.reference}</h3>
+        let html = "";
 
-            <p><strong>Verse:</strong> ${command.verse_text}</p>
-            <p><strong>Instruction:</strong> ${command.instruction}</p>
-            <p><strong>Giver:</strong> ${command.command_giver}</p>
-            <p><strong>Receiver:</strong> ${command.command_receiver}</p>
-            <p><strong>Category:</strong> ${command.category.join(", ")}</p>
-            <p><strong>Type:</strong> ${command.command_type}</p>
-        `;
+        if (displayConfig.reference) {
+            html += `<h3>${command.reference}</h3>`;
+        }
 
+        if (displayConfig.verse_text) {
+            html += `<p><strong>Verse:</strong> ${command.verse_text}</p>`;
+        }
+
+        if (displayConfig.instruction) {
+            html += `<p><strong>Instruction:</strong> ${command.instruction}</p>`;
+        }
+
+        if (displayConfig.command_giver) {
+            html += `<p><strong>Giver:</strong> ${command.command_giver}</p>`;
+        }
+
+        if (displayConfig.command_receiver) {
+            html += `<p><strong>Receiver:</strong> ${command.command_receiver}</p>`;
+        }
+
+        if (displayConfig.category) {
+            html += `<p><strong>Category:</strong> ${command.category.join(", ")}</p>`;
+        }
+
+        if (displayConfig.command_type) {
+            html += `<p><strong>Type:</strong> ${command.command_type}</p>`;
+        }
+
+        if (displayConfig.covenant && command.covenant) {
+            html += `<p><strong>Covenant:</strong> ${command.covenant}</p>`;
+        }
+
+        if (displayConfig.notes && command.notes) {
+            html += `<p><strong>Notes:</strong> ${command.notes}</p>`;
+        }
+
+        div.innerHTML = html || "<p>No fields selected to display.</p>";
         results.appendChild(div);
     });
 }
@@ -172,12 +224,12 @@ function renderPagination() {
 /* ---------------- FILTER LOGIC ---------------- */
 
 function matchesFilters(command) {
-    const book       = document.getElementById("bookFilter").value;
-    const testament  = document.getElementById("testamentFilter").value;
-    const giver      = document.getElementById("giverFilter").value;
-    const receiver   = document.getElementById("receiverFilter").value;
-    const category   = document.getElementById("categoryFilter").value;
-    const covenant   = document.getElementById("covenantFilter").value;
+    const book = document.getElementById("bookFilter").value;
+    const testament = document.getElementById("testamentFilter").value;
+    const giver = document.getElementById("giverFilter").value;
+    const receiver = document.getElementById("receiverFilter").value;
+    const category = document.getElementById("categoryFilter").value;
+    const covenant = document.getElementById("covenantFilter").value;
     const applicable = document.getElementById("applicableFilter").value;
     const instructionType = document.getElementById("instructionFilter").value;
     const commandType = document.getElementById("commandTypeFilter").value;
