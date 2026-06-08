@@ -66,15 +66,19 @@ function attachEvents() {
                 .classList.toggle("hidden");
         });
 
-    // Display toggles
-    document.querySelectorAll('.display-toggle').forEach(checkbox => {
+    // Display toggles - improved version
+    const toggles = document.querySelectorAll('.display-toggle');
+    toggles.forEach(checkbox => {
         checkbox.addEventListener('change', (e) => {
             const field = e.target.dataset.field;
             displayConfig[field] = e.target.checked;
 
-            // Auto re-render if results are already shown
+            console.log(`Display toggle changed: ${field} = ${displayConfig[field]}`); // ← Debug line
+
             if (filteredCommands.length > 0) {
                 renderResults();
+            } else {
+                console.log("No results yet - click Compile Results first");
             }
         });
     });
@@ -131,6 +135,11 @@ function renderResults() {
     const results = document.getElementById("results");
     results.innerHTML = "";
 
+    if (filteredCommands.length === 0) {
+        results.innerHTML = "<p>No results to display. Click 'Compile Results'.</p>";
+        return;
+    }
+
     const pageData = getPageData();
 
     pageData.forEach(command => {
@@ -139,41 +148,15 @@ function renderResults() {
 
         let html = "";
 
-        if (displayConfig.reference) {
-            html += `<h3>${command.reference}</h3>`;
-        }
-
-        if (displayConfig.verse_text) {
-            html += `<p><strong>Verse:</strong> ${command.verse_text}</p>`;
-        }
-
-        if (displayConfig.instruction) {
-            html += `<p><strong>Instruction:</strong> ${command.instruction}</p>`;
-        }
-
-        if (displayConfig.command_giver) {
-            html += `<p><strong>Giver:</strong> ${command.command_giver}</p>`;
-        }
-
-        if (displayConfig.command_receiver) {
-            html += `<p><strong>Receiver:</strong> ${command.command_receiver}</p>`;
-        }
-
-        if (displayConfig.category) {
-            html += `<p><strong>Category:</strong> ${command.category.join(", ")}</p>`;
-        }
-
-        if (displayConfig.command_type) {
-            html += `<p><strong>Type:</strong> ${command.command_type}</p>`;
-        }
-
-        if (displayConfig.covenant && command.covenant) {
-            html += `<p><strong>Covenant:</strong> ${command.covenant}</p>`;
-        }
-
-        if (displayConfig.notes && command.notes) {
-            html += `<p><strong>Notes:</strong> ${command.notes}</p>`;
-        }
+        if (displayConfig.reference) html += `<h3>${command.reference}</h3>`;
+        if (displayConfig.verse_text) html += `<p><strong>Verse:</strong> ${command.verse_text}</p>`;
+        if (displayConfig.instruction) html += `<p><strong>Instruction:</strong> ${command.instruction}</p>`;
+        if (displayConfig.command_giver) html += `<p><strong>Giver:</strong> ${command.command_giver}</p>`;
+        if (displayConfig.command_receiver) html += `<p><strong>Receiver:</strong> ${command.command_receiver}</p>`;
+        if (displayConfig.category) html += `<p><strong>Category:</strong> ${command.category.join(", ")}</p>`;
+        if (displayConfig.command_type) html += `<p><strong>Type:</strong> ${command.command_type}</p>`;
+        if (displayConfig.covenant && command.covenant) html += `<p><strong>Covenant:</strong> ${command.covenant}</p>`;
+        if (displayConfig.notes && command.notes) html += `<p><strong>Notes:</strong> ${command.notes}</p>`;
 
         div.innerHTML = html || "<p>No fields selected to display.</p>";
         results.appendChild(div);
