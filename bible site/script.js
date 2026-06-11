@@ -37,12 +37,23 @@ async function loadData() {
 
 function attachEvents() {
 
-    document.getElementById("compileBtn")
-        .addEventListener("click", () => {
-            currentPage = 1;
-            applyFilters();
-        });
+    // Compile Results Button
+    document.getElementById("compileBtn").addEventListener("click", () => {
+        currentPage = 1;
+        applyFilters();
 
+        // Reset view back to normal results when compiling
+        document.getElementById("sortedTableContainer").style.display = "none";
+        document.getElementById("results").style.display = "block";
+        document.getElementById("pagination").style.display = "block";
+    });
+
+    // New Sort Results Button
+    document.getElementById("sortBtn").addEventListener("click", () => {
+        renderSortedInstructions();
+    });
+
+    // Page Size Filter
     document.getElementById("pageSizeFilter")
         .addEventListener("change", (e) => {
             pageSize = e.target.value === "all"
@@ -53,34 +64,55 @@ function attachEvents() {
             render();
         });
 
+    // All select filters (do not auto-render)
     document.querySelectorAll("select")
         .forEach(select => {
             select.addEventListener("change", () => {
-                // don't auto-render; wait for compile button
+                // User must click "Compile Results" to apply filters
             });
         });
 
+    // Sidebar Toggle
     document.getElementById("sidebarToggle")
         .addEventListener("click", () => {
             document.getElementById("sidebar")
                 .classList.toggle("hidden");
         });
 
-    // Display toggles - improved version
+    // Display toggles (checkboxes)
     const toggles = document.querySelectorAll('.display-toggle');
     toggles.forEach(checkbox => {
         checkbox.addEventListener('change', (e) => {
             const field = e.target.dataset.field;
             displayConfig[field] = e.target.checked;
 
-            console.log(`Display toggle changed: ${field} = ${displayConfig[field]}`); // ← Debug line
+            console.log(`Display toggle changed: ${field} = ${displayConfig[field]}`);
 
-            if (filteredCommands.length > 0) {
-                renderResults();
-            } else {
-                console.log("No results yet - click Compile Results first");
+            // Only update normal results view if it's currently visible
+            if (document.getElementById("results").style.display !== "none") {
+                if (filteredCommands.length > 0) {
+                    renderResults();
+                }
             }
         });
+    });
+
+    // Toggle references in the sorted table (global listener)
+    document.addEventListener("click", (e) => {
+        if (e.target.classList.contains("toggle-ref-btn")) {
+            const index = parseInt(e.target.dataset.index);
+            const refList = document.querySelector(`.ref-list[data-index="${index}"]`);
+
+            if (refList) {
+                if (refList.style.display === "none" || refList.style.display === "") {
+                    refList.style.display = "block";
+                    e.target.textContent = "Hide references";
+                } else {
+                    refList.style.display = "none";
+                    e.target.textContent = `Show ${frequencyData[index].references.length} references`;
+                }
+            }
+        }
     });
 }
 
@@ -281,6 +313,91 @@ function buildDropdowns() {
         catSelect.appendChild(opt);
     });
 }
+
+/* ==================== SORTED FREQUENCY TABLE ==================== */
+
+let frequencyData = []; // Store the processed data for toggling
+
+function renderSortedInstructions() {
+    const container = document.getElementById("sortedTableContainer");
+    const tbody = document.getElementById("frequencyTableBody");
+    tbody.innerHTML = "";
+
+    if (filteredCommands.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="3" style="padding:20px; text-align:center;">No results. Click "Compile Results" first.</td></tr>`;
+        container.style.display = "block";
+        document.getElementById("results").style.display = "none";
+        return;
+    }
+
+    // Group by instruction
+    const map = new Map();
+
+    filteredCommands.forEach(cmd => {
+        const instr = (cmd.instruction || "").trim();
+        if (!instr) return;
+
+        if (!map.has(instr)) {
+            map.set(instr, {
+                instruction: instr,
+                count: 0,
+                references: []
+            });
+        }
+        const entry = map.get(instr);
+        entry.count++;
+        entry.references.push(cmd.reference);
+    });
+
+    // Convert to array and sort by count descending
+    frequencyData = Array.from(map.values())
+        .sort((a, b) => b.count - a.count);
+
+    // Build table rows
+    frequencyData.forEach((item, index) => {
+        const row = document.createElement("tr");
+        row.style.borderBottom = "1px solid #ddd";
+
+        row.innerHTML = `
+            <td style="padding:12px; vertical-align:top;"><strong>${item.instruction}</strong></td>
+            <td style="padding:12px; text-align:center; vertical-align:top; font-weight:bold; background:#f0f0f0;">
+                ${item.count}
+            </td>
+            <td style="padding:12px; vertical-align:top;">
+                <button class="toggle-ref-btn" data-index="${index}" 
+                        style="padding:4px 10px; font-size:0.9em;">
+                    Show ${item.references.length} references
+                </button>
+                <div class="ref-list" data-index="${index}" style="display:none; margin-top:8px; padding:8px; background:#f9f9f9; border-radius:4px;">
+                    ${item.references.map(ref => `<div>${ref}</div>`).join("")}
+                </div>
+            </td>
+        `;
+
+        tbody.appendChild(row);
+    });
+
+    // Show sorted table, hide normal results
+    container.style.display = "block";
+    document.getElementById("results").style.display = "none";
+    document.getElementById("pagination").style.display = "none";
+}
+
+// Toggle references visibility
+document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("toggle-ref-btn")) {
+        const index = e.target.dataset.index;
+        const refList = document.querySelector(`.ref-list[data-index="${index}"]`);
+
+        if (refList.style.display === "none") {
+            refList.style.display = "block";
+            e.target.textContent = "Hide references";
+        } else {
+            refList.style.display = "none";
+            e.target.textContent = `Show ${frequencyData[index].references.length} references`;
+        }
+    }
+});
 
 /* ---------------- INIT ---------------- */
 

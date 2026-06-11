@@ -109,14 +109,34 @@
             <label><input type="checkbox" class="display-toggle" data-field="covenant"> Covenant</label>
             <label><input type="checkbox" class="display-toggle" data-field="notes"> Notes</label>
         </div>
-        <button id="compileBtn">Compile Results</button>
+        <div style="margin-bottom: 15px;">
+            <button id="compileBtn">Compile Results</button>
+            <button id="sortBtn">Sort Results (by Instruction Frequency)</button>
+        </div>
 
         <div id="summary"></div>
-        <div id="results"></div>
-        <div id="pagination"></div>
-    </div>
 
-    <script src="script.js"></script>
+        <!-- Normal Results -->
+        <div id="results"></div>
+
+        <!-- New Sorted Table -->
+        <div id="sortedTableContainer" style="display: none;">
+            <h2>Instructions Sorted by Frequency</h2>
+            <table id="frequencyTable" style="width:100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="background:#333; color:white;">
+                        <th style="padding:10px; text-align:left;">Instruction</th>
+                        <th style="padding:10px; text-align:center; width:80px;">Count</th>
+                        <th style="padding:10px; text-align:left;">References</th>
+                    </tr>
+                </thead>
+                <tbody id="frequencyTableBody"></tbody>
+            </table>
+        </div>
+
+        <div id="pagination"></div>
+
+        <script src="script.js"></script>
 
 </body>
 
