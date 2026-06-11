@@ -17,8 +17,9 @@ let displayConfig = {
     notes: false
 };
 
-async function loadData() {
+let frequencyData = [];   // ← Important for reference toggling
 
+async function loadData() {
     const indexResponse = await fetch("data-index.json");
     const files = await indexResponse.json();
 
@@ -42,62 +43,47 @@ function attachEvents() {
         currentPage = 1;
         applyFilters();
 
-        // Reset view back to normal results when compiling
+        // Reset to normal view
         document.getElementById("sortedTableContainer").style.display = "none";
         document.getElementById("results").style.display = "block";
         document.getElementById("pagination").style.display = "block";
     });
 
-    // New Sort Results Button
+    // Sort Results Button
     document.getElementById("sortBtn").addEventListener("click", () => {
         renderSortedInstructions();
     });
 
     // Page Size Filter
-    document.getElementById("pageSizeFilter")
-        .addEventListener("change", (e) => {
-            pageSize = e.target.value === "all"
-                ? "all"
-                : parseInt(e.target.value);
+    document.getElementById("pageSizeFilter").addEventListener("change", (e) => {
+        pageSize = e.target.value === "all" ? "all" : parseInt(e.target.value);
+        currentPage = 1;
+        render();
+    });
 
-            currentPage = 1;
-            render();
-        });
-
-    // All select filters (do not auto-render)
-    document.querySelectorAll("select")
-        .forEach(select => {
-            select.addEventListener("change", () => {
-                // User must click "Compile Results" to apply filters
-            });
-        });
+    // Filters (no auto-render)
+    document.querySelectorAll("select").forEach(select => {
+        select.addEventListener("change", () => {});
+    });
 
     // Sidebar Toggle
-    document.getElementById("sidebarToggle")
-        .addEventListener("click", () => {
-            document.getElementById("sidebar")
-                .classList.toggle("hidden");
-        });
+    document.getElementById("sidebarToggle").addEventListener("click", () => {
+        document.getElementById("sidebar").classList.toggle("hidden");
+    });
 
-    // Display toggles (checkboxes)
-    const toggles = document.querySelectorAll('.display-toggle');
-    toggles.forEach(checkbox => {
+    // Display toggles
+    document.querySelectorAll('.display-toggle').forEach(checkbox => {
         checkbox.addEventListener('change', (e) => {
             const field = e.target.dataset.field;
             displayConfig[field] = e.target.checked;
 
-            console.log(`Display toggle changed: ${field} = ${displayConfig[field]}`);
-
-            // Only update normal results view if it's currently visible
             if (document.getElementById("results").style.display !== "none") {
-                if (filteredCommands.length > 0) {
-                    renderResults();
-                }
+                if (filteredCommands.length > 0) renderResults();
             }
         });
     });
 
-    // Toggle references in the sorted table (global listener)
+    // Toggle button for references in sorted table
     document.addEventListener("click", (e) => {
         if (e.target.classList.contains("toggle-ref-btn")) {
             const index = parseInt(e.target.dataset.index);
@@ -116,8 +102,9 @@ function attachEvents() {
     });
 }
 
-function applyFilters() {
+/* ====================== CORE FUNCTIONS ====================== */
 
+function applyFilters() {
     filteredCommands = bibleCommands.filter(matchesFilters);
     render();
 }
@@ -129,11 +116,8 @@ function render() {
 }
 
 /* ---------------- SUMMARY ---------------- */
-
 function renderSummary() {
-
     const summary = document.getElementById("summary");
-
     const filters = getActiveFilters();
 
     summary.innerHTML = `
@@ -143,9 +127,7 @@ function renderSummary() {
 }
 
 function getActiveFilters() {
-
     const filters = [];
-
     const book = document.getElementById("bookFilter").value;
     const testament = document.getElementById("testamentFilter").value;
     const giver = document.getElementById("giverFilter").value;
@@ -161,8 +143,7 @@ function getActiveFilters() {
     return filters;
 }
 
-/* ---------------- RESULTS ---------------- */
-
+/* ---------------- NORMAL RESULTS ---------------- */
 function renderResults() {
     const results = document.getElementById("results");
     results.innerHTML = "";
@@ -173,13 +154,11 @@ function renderResults() {
     }
 
     const pageData = getPageData();
-
     pageData.forEach(command => {
         const div = document.createElement("div");
         div.className = "command-card";
 
         let html = "";
-
         if (displayConfig.reference) html += `<h3>${command.reference}</h3>`;
         if (displayConfig.verse_text) html += `<p><strong>Verse:</strong> ${command.verse_text}</p>`;
         if (displayConfig.instruction) html += `<p><strong>Instruction:</strong> ${command.instruction}</p>`;
@@ -196,48 +175,34 @@ function renderResults() {
 }
 
 /* ---------------- PAGINATION ---------------- */
-
 function getPageData() {
-
     if (pageSize === "all") return filteredCommands;
-
     const start = (currentPage - 1) * pageSize;
     const end = start + pageSize;
-
     return filteredCommands.slice(start, end);
 }
 
 function renderPagination() {
-
     const pagination = document.getElementById("pagination");
     pagination.innerHTML = "";
 
     if (pageSize === "all") return;
 
     const totalPages = Math.ceil(filteredCommands.length / pageSize);
-
     for (let i = 1; i <= totalPages; i++) {
-
         const btn = document.createElement("span");
         btn.className = "page-link";
-
-        if (i === currentPage) {
-            btn.classList.add("active");
-        }
-
+        if (i === currentPage) btn.classList.add("active");
         btn.textContent = i;
-
         btn.addEventListener("click", () => {
             currentPage = i;
             render();
         });
-
         pagination.appendChild(btn);
     }
 }
 
 /* ---------------- FILTER LOGIC ---------------- */
-
 function matchesFilters(command) {
     const book = document.getElementById("bookFilter").value;
     const testament = document.getElementById("testamentFilter").value;
@@ -254,69 +219,53 @@ function matchesFilters(command) {
     if (giver && command.command_giver !== giver) return false;
     if (receiver && command.command_receiver !== receiver) return false;
     if (covenant && command.covenant !== covenant) return false;
-
     if (category && !command.category.includes(category)) return false;
 
-    // Applicable Today
     if (applicable !== "") {
         if (String(command.applicable_today) !== applicable) return false;
     }
-
-    // Instruction Type
     if (instructionType === "do" && !command.things_to_do) return false;
     if (instructionType === "dont" && !command.things_not_to_do) return false;
-
-    // Command Style
     if (commandType && command.command_type !== commandType) return false;
 
     return true;
 }
 
 function buildDropdowns() {
-    // Book filter
     const books = [...new Set(bibleCommands.map(c => c.book))].sort();
     const bookSelect = document.getElementById("bookFilter");
     books.forEach(book => {
         const opt = document.createElement("option");
-        opt.value = book;
-        opt.textContent = book;
+        opt.value = book; opt.textContent = book;
         bookSelect.appendChild(opt);
     });
 
-    // Command Giver
     const givers = [...new Set(bibleCommands.map(c => c.command_giver))].sort();
     const giverSelect = document.getElementById("giverFilter");
     givers.forEach(giver => {
         const opt = document.createElement("option");
-        opt.value = giver;
-        opt.textContent = giver;
+        opt.value = giver; opt.textContent = giver;
         giverSelect.appendChild(opt);
     });
 
-    // Command Receiver
     const receivers = [...new Set(bibleCommands.map(c => c.command_receiver))].sort();
     const receiverSelect = document.getElementById("receiverFilter");
     receivers.forEach(receiver => {
         const opt = document.createElement("option");
-        opt.value = receiver;
-        opt.textContent = receiver;
+        opt.value = receiver; opt.textContent = receiver;
         receiverSelect.appendChild(opt);
     });
 
-    // Category
     const categories = [...new Set(bibleCommands.flatMap(c => c.category))].sort();
     const catSelect = document.getElementById("categoryFilter");
     categories.forEach(cat => {
         const opt = document.createElement("option");
-        opt.value = cat;
-        opt.textContent = cat;
+        opt.value = cat; opt.textContent = cat;
         catSelect.appendChild(opt);
     });
 }
 
 /* ==================== SORTED FREQUENCY TABLE ==================== */
-
-let frequencyData = []; // Store the processed data for toggling
 
 function renderSortedInstructions() {
     const container = document.getElementById("sortedTableContainer");
@@ -324,13 +273,15 @@ function renderSortedInstructions() {
     tbody.innerHTML = "";
 
     if (filteredCommands.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="3" style="padding:20px; text-align:center;">No results. Click "Compile Results" first.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="3" style="padding:20px; text-align:center; color:red;">
+            No results. Please click "Compile Results" first.
+        </td></tr>`;
         container.style.display = "block";
         document.getElementById("results").style.display = "none";
+        document.getElementById("pagination").style.display = "none";
         return;
     }
 
-    // Group by instruction
     const map = new Map();
 
     filteredCommands.forEach(cmd => {
@@ -338,22 +289,15 @@ function renderSortedInstructions() {
         if (!instr) return;
 
         if (!map.has(instr)) {
-            map.set(instr, {
-                instruction: instr,
-                count: 0,
-                references: []
-            });
+            map.set(instr, { instruction: instr, count: 0, references: [] });
         }
         const entry = map.get(instr);
         entry.count++;
         entry.references.push(cmd.reference);
     });
 
-    // Convert to array and sort by count descending
-    frequencyData = Array.from(map.values())
-        .sort((a, b) => b.count - a.count);
+    frequencyData = Array.from(map.values()).sort((a, b) => b.count - a.count);
 
-    // Build table rows
     frequencyData.forEach((item, index) => {
         const row = document.createElement("tr");
         row.style.borderBottom = "1px solid #ddd";
@@ -364,41 +308,21 @@ function renderSortedInstructions() {
                 ${item.count}
             </td>
             <td style="padding:12px; vertical-align:top;">
-                <button class="toggle-ref-btn" data-index="${index}" 
-                        style="padding:4px 10px; font-size:0.9em;">
+                <button class="toggle-ref-btn" data-index="${index}" style="padding:5px 10px; font-size:0.9em; cursor:pointer;">
                     Show ${item.references.length} references
                 </button>
-                <div class="ref-list" data-index="${index}" style="display:none; margin-top:8px; padding:8px; background:#f9f9f9; border-radius:4px;">
+                <div class="ref-list" data-index="${index}" style="display:none; margin-top:8px; padding:10px; background:#f9f9f9; border-radius:4px; font-size:0.95em;">
                     ${item.references.map(ref => `<div>${ref}</div>`).join("")}
                 </div>
             </td>
         `;
-
         tbody.appendChild(row);
     });
 
-    // Show sorted table, hide normal results
     container.style.display = "block";
     document.getElementById("results").style.display = "none";
     document.getElementById("pagination").style.display = "none";
 }
 
-// Toggle references visibility
-document.addEventListener("click", (e) => {
-    if (e.target.classList.contains("toggle-ref-btn")) {
-        const index = e.target.dataset.index;
-        const refList = document.querySelector(`.ref-list[data-index="${index}"]`);
-
-        if (refList.style.display === "none") {
-            refList.style.display = "block";
-            e.target.textContent = "Hide references";
-        } else {
-            refList.style.display = "none";
-            e.target.textContent = `Show ${frequencyData[index].references.length} references`;
-        }
-    }
-});
-
 /* ---------------- INIT ---------------- */
-
 loadData();
