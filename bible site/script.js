@@ -1,3 +1,5 @@
+const TOTAL_KJV_VERSES = 31102;
+
 let bibleCommands = [];
 let filteredCommands = [];
 
@@ -56,6 +58,7 @@ async function loadData() {
         }
 
         console.log(`Loaded ${bibleCommands.length} commands`);
+        updateProgress();
 
         bibleCommands = bibleCommands.filter(
             c => c.instruction &&
@@ -71,6 +74,20 @@ async function loadData() {
     } catch (err) {
         console.error("Load error:", err);
     }
+}
+
+function updateProgress() {
+    const loaded = new Set(bibleCommands.map(c => c.id)).size;
+
+    const percent = (loaded / TOTAL_KJV_VERSES) * 100;
+
+    document.getElementById("progressBar").style.width = percent.toFixed(4) + "%";
+
+    document.getElementById("progressText").innerText =
+        `${loaded} / ${TOTAL_KJV_VERSES} verses mapped (${percent.toFixed(4)}%)`;
+
+    document.getElementById("verseCount").innerText =
+        `${loaded.toLocaleString()} verses cataloged`;
 }
 
 function attachEvents() {
@@ -394,6 +411,19 @@ function renderSortedInstructions() {
     document.getElementById("results").style.display = "none";
     document.getElementById("pagination").style.display = "none";
 }
+
+document.getElementById("appView").style.display = "none";
+document.getElementById("homeView").style.display = "block";
+
+document.getElementById("enterAppBtn").addEventListener("click", () => {
+    document.getElementById("homeView").style.display = "none";
+    document.getElementById("appView").style.display = "block";
+});
+
+document.getElementById("homeBtn").addEventListener("click", () => {
+    document.getElementById("appView").style.display = "none";
+    document.getElementById("homeView").style.display = "block";
+});
 
 /* ---------------- INIT ---------------- */
 loadData();
