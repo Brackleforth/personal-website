@@ -57,6 +57,11 @@ async function loadData() {
 
         console.log(`Loaded ${bibleCommands.length} commands`);
 
+        bibleCommands = bibleCommands.filter(
+            c => c.instruction &&
+                String(c.instruction).trim() !== ""
+        );
+
         buildDropdowns();
         attachEvents();
 
@@ -260,6 +265,16 @@ function renderPagination() {
 
 /* ---------------- FILTER LOGIC ---------------- */
 function matchesFilters(command) {
+
+    // Exclude entries with no instruction
+    if (
+        command.instruction === null ||
+        command.instruction === undefined ||
+        String(command.instruction).trim() === ""
+    ) {
+        return false;
+    }
+
     const book = document.getElementById("bookFilter").value;
     const testament = document.getElementById("testamentFilter").value;
     const giver = document.getElementById("giverFilter").value;
