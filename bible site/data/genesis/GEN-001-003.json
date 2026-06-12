@@ -1,0 +1,24 @@
+{
+  "id": "GEN-001-003",
+  "book": "Genesis",
+  "chapter": 1,
+  "verse": 3,
+  "reference": "Genesis 1:3",
+  "verse_text": "And God said, Let there be light: and there was light.",
+  "instruction": "Let there be light.",
+  "command_type": "direct_command",
+  "command_giver": "God",
+  "command_receiver": "Existence",
+  "testament": "Old Testament",
+  "covenant": null,
+  "applicable_today": false,
+  "applicable_to": [],
+  "category": [
+    "Creation"
+  ],
+  "things_to_do": true,
+  "things_not_to_do": false,
+  "person_to_emulate": null,
+  "person_not_to_emulate": null,
+  "notes": "Creation command directed toward existence before mankind was created."
+}
