@@ -77,7 +77,7 @@ async function loadData() {
 }
 
 function updateProgress() {
-    const loaded = new Set(bibleCommands.map(c => c.id)).size;
+    const loaded = new Set(bibleCommands.map(c => `${c.book}|${c.chapter}|${c.verse}`)).size;
 
     const percent = (loaded / TOTAL_KJV_VERSES) * 100;
 

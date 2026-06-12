@@ -83,3 +83,13 @@ body{
     background: #333;
     color: white;
 }
+
+* {
+    box-sizing: border-box;
+}
+
+#homeView,
+#mainContent {
+    margin-left: 340px;
+    padding: 20px;
+}
