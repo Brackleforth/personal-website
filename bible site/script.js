@@ -13,7 +13,8 @@ let displayConfig = {
     command_receiver: true,
     category: true,
     command_type: true,
-    covenant: false,
+    covenant: true,        // ← changed to true by default
+    applicable_to: true,   // ← new
     notes: false
 };
 
@@ -63,7 +64,7 @@ function attachEvents() {
 
     // Filters (no auto-render)
     document.querySelectorAll("select").forEach(select => {
-        select.addEventListener("change", () => {});
+        select.addEventListener("change", () => { });
     });
 
     // Sidebar Toggle
@@ -144,6 +145,7 @@ function getActiveFilters() {
 }
 
 /* ---------------- NORMAL RESULTS ---------------- */
+/* ---------------- RESULTS ---------------- */
 function renderResults() {
     const results = document.getElementById("results");
     results.innerHTML = "";
@@ -154,11 +156,13 @@ function renderResults() {
     }
 
     const pageData = getPageData();
+
     pageData.forEach(command => {
         const div = document.createElement("div");
         div.className = "command-card";
 
         let html = "";
+
         if (displayConfig.reference) html += `<h3>${command.reference}</h3>`;
         if (displayConfig.verse_text) html += `<p><strong>Verse:</strong> ${command.verse_text}</p>`;
         if (displayConfig.instruction) html += `<p><strong>Instruction:</strong> ${command.instruction}</p>`;
@@ -166,8 +170,29 @@ function renderResults() {
         if (displayConfig.command_receiver) html += `<p><strong>Receiver:</strong> ${command.command_receiver}</p>`;
         if (displayConfig.category) html += `<p><strong>Category:</strong> ${command.category.join(", ")}</p>`;
         if (displayConfig.command_type) html += `<p><strong>Type:</strong> ${command.command_type}</p>`;
-        if (displayConfig.covenant && command.covenant) html += `<p><strong>Covenant:</strong> ${command.covenant}</p>`;
-        if (displayConfig.notes && command.notes) html += `<p><strong>Notes:</strong> ${command.notes}</p>`;
+
+        // Covenant
+        if (displayConfig.covenant && command.covenant) {
+            html += `<p><strong>Covenant:</strong> ${command.covenant}</p>`;
+        }
+
+        // Applicability
+        if (displayConfig.applicable_to) {
+            const applicableText = command.applicable_today ? "✅ Yes" : "❌ No";
+            let toWhom = "";
+
+            if (command.applicable_to && command.applicable_to.length > 0) {
+                toWhom = `<br><strong>Applies to:</strong> ${command.applicable_to.join(", ")}`;
+            }
+
+            html += `
+                <p><strong>Applicable Today:</strong> ${applicableText}${toWhom}</p>
+            `;
+        }
+
+        if (displayConfig.notes && command.notes) {
+            html += `<p><strong>Notes:</strong> ${command.notes}</p>`;
+        }
 
         div.innerHTML = html || "<p>No fields selected to display.</p>";
         results.appendChild(div);
