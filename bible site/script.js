@@ -86,8 +86,6 @@ function updateProgress() {
     document.getElementById("progressText").innerText =
         `${loaded} / ${TOTAL_KJV_VERSES} verses mapped (${percent.toFixed(4)}%)`;
 
-    document.getElementById("verseCount").innerText =
-        `${loaded.toLocaleString()} verses cataloged`;
 }
 
 function attachEvents() {
