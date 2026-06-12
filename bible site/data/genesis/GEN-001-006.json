@@ -5,7 +5,7 @@
   "verse": 6,
   "reference": "Genesis 1:6",
   "verse_text": "And God said, Let there be a firmament in the midst of the waters, and let it divide the waters from the waters.",
-  "instruction": "Let there be a firmament in the midst of the waters",
+  "instruction": "Let there be a firmament in the midst of the waters.",
   "command_type": "direct_command",
   "command_giver": "God",
   "command_receiver": "Existence",
