@@ -41,11 +41,6 @@ body{
     z-index:1000;
 }
 
-#mainContent{
-    margin-left:340px;
-    padding:20px;
-}
-
 .command-card{
     border:1px solid #ccc;
     margin-bottom:20px;
@@ -91,5 +86,13 @@ body{
 #homeView,
 #mainContent {
     margin-left: 340px;
+    width: calc(100% - 340px);
     padding: 20px;
+    transition: all 0.3s;
+}
+
+body.sidebar-collapsed #homeView,
+body.sidebar-collapsed #mainContent {
+    margin-left: 0;
+    width: 100%;
 }

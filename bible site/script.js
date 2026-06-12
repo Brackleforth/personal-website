@@ -121,6 +121,7 @@ function attachEvents() {
     // Sidebar Toggle
     document.getElementById("sidebarToggle").addEventListener("click", () => {
         document.getElementById("sidebar").classList.toggle("hidden");
+        document.body.classList.toggle("sidebar-collapsed");
     });
 
     // Display toggles
