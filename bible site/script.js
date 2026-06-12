@@ -21,20 +21,51 @@ let displayConfig = {
 let frequencyData = [];   // ← Important for reference toggling
 
 async function loadData() {
-    const indexResponse = await fetch("data-index.json");
-    const files = await indexResponse.json();
+    try {
+        // Load master index
+        const masterResponse = await fetch("data-index-master.json");
+        const indexFiles = await masterResponse.json();
 
-    for (const file of files) {
-        const response = await fetch(file);
-        const command = await response.json();
-        bibleCommands.push(command);
+        for (const indexFile of indexFiles) {
+
+            // Load book index
+            const indexResponse = await fetch(indexFile);
+            const jsonFiles = await indexResponse.json();
+
+            // Determine folder path
+            const folderPath = indexFile.substring(
+                0,
+                indexFile.lastIndexOf("/") + 1
+            );
+
+            // Load command files
+            for (const jsonFile of jsonFiles) {
+
+                const fullPath = folderPath + jsonFile;
+
+                const response = await fetch(fullPath);
+
+                if (!response.ok) {
+                    console.error("Failed to load:", fullPath);
+                    continue;
+                }
+
+                const command = await response.json();
+                bibleCommands.push(command);
+            }
+        }
+
+        console.log(`Loaded ${bibleCommands.length} commands`);
+
+        buildDropdowns();
+        attachEvents();
+
+        filteredCommands = bibleCommands;
+        render();
+
+    } catch (err) {
+        console.error("Load error:", err);
     }
-
-    buildDropdowns();
-    attachEvents();
-
-    filteredCommands = bibleCommands;
-    render();
 }
 
 function attachEvents() {

@@ -1,0 +1,24 @@
+{
+  "id": "GEN-001-006a",
+  "book": "Genesis",
+  "chapter": 1,
+  "verse": 6,
+  "reference": "Genesis 1:6",
+  "verse_text": "And God said, Let there be a firmament in the midst of the waters, and let it divide the waters from the waters.",
+  "instruction": "Let the firmament divide the waters from the waters.",
+  "command_type": "direct_command",
+  "command_giver": "God",
+  "command_receiver": "Existence",
+  "testament": "Old Testament",
+  "covenant": null,
+  "applicable_today": false,
+  "applicable_to": [],
+  "category": [
+    "Creation"
+  ],
+  "things_to_do": true,
+  "things_not_to_do": false,
+  "person_to_emulate": null,
+  "person_not_to_emulate": null,
+  "notes": "Creation command directed toward existence before mankind was created."
+}

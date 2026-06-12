@@ -1,0 +1,22 @@
+{
+  "id": "GEN-001-005",
+  "book": "Genesis",
+  "chapter": 1,
+  "verse": 5,
+  "reference": "Genesis 1:5",
+  "verse_text": "And God called the light Day, and the darkness he called Night. And the evening and the morning were the first day.",
+  "instruction": null,
+  "command_type": "direct_command",
+  "command_giver": "",
+  "command_receiver": "",
+  "testament": "Old Testament",
+  "covenant": null,
+  "applicable_today": false,
+  "applicable_to": [],
+  "category": [],
+  "things_to_do": false,
+  "things_not_to_do": false,
+  "person_to_emulate": null,
+  "person_not_to_emulate": null,
+  "notes": ""
+}
