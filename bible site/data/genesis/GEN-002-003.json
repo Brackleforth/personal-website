@@ -1,0 +1,26 @@
+{
+  "id": "GEN-002-003",
+  "book": "Genesis",
+  "chapter": 2,
+  "verse": 3,
+  "reference": "Genesis 2:3",
+  "verse_text": "And God blessed the seventh day, and sanctified it: because that in it he had rested from all his work which God created and made.",
+  "instruction": "Acknowledge the seventh day as sanctified by God.",
+  "command_type": "implied_command",
+  "command_giver": "God",
+  "command_receiver": "humanity",
+  "testament": "Old Testament",
+  "covenant": null,
+  "applicable_today": true,
+  "applicable_to": [
+    "humanity"
+  ],
+  "category": [
+    "Sanctification"
+  ],
+  "things_to_do": true,
+  "things_not_to_do": false,
+  "person_to_emulate": null,
+  "person_not_to_emulate": null,
+  "notes": ""
+}

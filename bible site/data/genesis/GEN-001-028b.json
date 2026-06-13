@@ -1,0 +1,26 @@
+{
+  "id": "GEN-001-028b",
+  "book": "Genesis",
+  "chapter": 1,
+  "verse": 28,
+  "reference": "Genesis 1:28",
+  "verse_text": "And God blessed them, and God said unto them, Be fruitful, and multiply, and replenish the earth, and subdue it: and have dominion over the fish of the sea, and over the fowl of the air, and over every living thing that moveth upon the earth.",
+  "instruction": "Replenish the earth.",
+  "command_type": "direct_command",
+  "command_giver": "God",
+  "command_receiver": "humanity",
+  "testament": "Old Testament",
+  "covenant": null,
+  "applicable_today": true,
+  "applicable_to": [
+    "humanity"
+  ],
+  "category": [
+    "Fruitfulness"
+  ],
+  "things_to_do": true,
+  "things_not_to_do": false,
+  "person_to_emulate": null,
+  "person_not_to_emulate": null,
+  "notes": "Original Hebrew meaning of this \"replenish\" refers to population expansion, not stewardship."
+}

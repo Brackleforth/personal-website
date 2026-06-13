@@ -1,0 +1,26 @@
+{
+  "id": "GEN-001-026a",
+  "book": "Genesis",
+  "chapter": 1,
+  "verse": 26,
+  "reference": "Genesis 1:26",
+  "verse_text": "And God said, Let us make man in our image, after our likeness: and let them have dominion over the fish of the sea, and over the fowl of the air, and over the cattle, and over all the earth, and over every creeping thing that creepeth upon the earth.",
+  "instruction": "Let humanity have dominion over the fish of the sea, and over the fowl of the air, and over the cattle, and over all the earth, and over every creeping thing that creepeth upon the earth",
+  "command_type": "direct_command",
+  "command_giver": "God",
+  "command_receiver": "the Trinity",
+  "testament": "Old Testament",
+  "covenant": null,
+  "applicable_today": true,
+  "applicable_to": [
+    "humanity"
+  ],
+  "category": [
+    "Dominion"
+  ],
+  "things_to_do": true,
+  "things_not_to_do": false,
+  "person_to_emulate": null,
+  "person_not_to_emulate": null,
+  "notes": "humanity's dominion of the world is in effect until God destroys it."
+}

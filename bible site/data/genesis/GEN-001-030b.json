@@ -1,0 +1,26 @@
+{
+  "id": "GEN-001-030b",
+  "book": "Genesis",
+  "chapter": 1,
+  "verse": 30,
+  "reference": "Genesis 1:30",
+  "verse_text": "And to every beast of the earth, and to every fowl of the air, and to every thing that creepeth upon the earth, wherein there is life, I have given every green herb for meat: and it was so.",
+  "instruction": "Use for food every green herb.",
+  "command_type": "implied_command",
+  "command_giver": "God",
+  "command_receiver": "every thing that creepeth upon the earth, wherein there is life",
+  "testament": "Old Testament",
+  "covenant": null,
+  "applicable_today": true,
+  "applicable_to": [
+    "humanity"
+  ],
+  "category": [
+    "Food"
+  ],
+  "things_to_do": true,
+  "things_not_to_do": false,
+  "person_to_emulate": null,
+  "person_not_to_emulate": null,
+  "notes": "This implied command was issued before any green herb would be harmful; this was before the fall."
+}

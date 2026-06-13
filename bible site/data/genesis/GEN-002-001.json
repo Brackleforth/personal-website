@@ -1,0 +1,22 @@
+{
+  "id": "GEN-002-001",
+  "book": "Genesis",
+  "chapter": 2,
+  "verse": 1,
+  "reference": "Genesis 2:1",
+  "verse_text": "Thus the heavens and the earth were finished, and all the host of them.",
+  "instruction": "",
+  "command_type": null,
+  "command_giver": "",
+  "command_receiver": "",
+  "testament": "Old Testament",
+  "covenant": null,
+  "applicable_today": false,
+  "applicable_to": [],
+  "category": [],
+  "things_to_do": false,
+  "things_not_to_do": false,
+  "person_to_emulate": null,
+  "person_not_to_emulate": null,
+  "notes": ""
+}

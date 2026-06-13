@@ -8,7 +8,7 @@
   "instruction": "Let the earth bring forth grass, the herb yielding seed, and the fruit tree yielding fruit after his kind, whose seed is in itself, upon the earth.",
   "command_type": "implied_command",
   "command_giver": "God",
-  "command_receiver": "the earth",
+  "command_receiver": "existence",
   "testament": "Old Testament",
   "covenant": null,
   "applicable_today": false,
@@ -20,5 +20,5 @@
   "things_not_to_do": false,
   "person_to_emulate": null,
   "person_not_to_emulate": null,
-  "notes": "Creation command directed toward the earth before mankind was created."
+  "notes": "Creation command directed toward existence before mankind was created."
 }

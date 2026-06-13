@@ -11,10 +11,8 @@
   "command_receiver": "lights in the firmament of the heaven",
   "testament": "Old Testament",
   "covenant": null,
-  "applicable_today": true,
-  "applicable_to": [
-    "lights in the firmament of the heaven"
-  ],
+  "applicable_today": false,
+  "applicable_to": [],
   "category": [
     "Creation"
   ],

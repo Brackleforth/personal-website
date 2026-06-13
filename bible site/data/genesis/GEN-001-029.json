@@ -1,0 +1,26 @@
+{
+  "id": "GEN-001-029",
+  "book": "Genesis",
+  "chapter": 1,
+  "verse": 29,
+  "reference": "Genesis 1:29",
+  "verse_text": "And God said, Behold, I have given you every herb bearing seed, which is upon the face of all the earth, and every tree, in the which is the fruit of a tree yielding seed; to you it shall be for meat.",
+  "instruction": "Use for food every herb and fruit that bear seeds.",
+  "command_type": "implied_command",
+  "command_giver": "God",
+  "command_receiver": "humanity",
+  "testament": "Old Testament",
+  "covenant": null,
+  "applicable_today": true,
+  "applicable_to": [
+    "humanity"
+  ],
+  "category": [
+    "Food"
+  ],
+  "things_to_do": true,
+  "things_not_to_do": false,
+  "person_to_emulate": null,
+  "person_not_to_emulate": null,
+  "notes": "This implied command was issued before any herb or fruit would be harmful; this was before the fall."
+}

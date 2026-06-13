@@ -8,7 +8,7 @@
   "instruction": "Let there be lights in the firmament of the heaven to divide the day from the night.",
   "command_type": "direct_command",
   "command_giver": "God",
-  "command_receiver": "Existence",
+  "command_receiver": "existence",
   "testament": "Old Testament",
   "covenant": null,
   "applicable_today": false,

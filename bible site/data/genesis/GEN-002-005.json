@@ -1,0 +1,22 @@
+{
+  "id": "GEN-002-005",
+  "book": "Genesis",
+  "chapter": 2,
+  "verse": 5,
+  "reference": "Genesis 2:5",
+  "verse_text": "And every plant of the field before it was in the earth, and every herb of the field before it grew: for the Lord God had not caused it to rain upon the earth, and there was not a man to till the ground.",
+  "instruction": "",
+  "command_type": null,
+  "command_giver": "",
+  "command_receiver": "",
+  "testament": "Old Testament",
+  "covenant": null,
+  "applicable_today": false,
+  "applicable_to": [],
+  "category": [],
+  "things_to_do": false,
+  "things_not_to_do": false,
+  "person_to_emulate": null,
+  "person_not_to_emulate": null,
+  "notes": ""
+}
