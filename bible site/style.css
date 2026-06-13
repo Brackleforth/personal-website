@@ -3,24 +3,21 @@ body{
     font-family:Arial, sans-serif;
 }
 
-#sidebar{
-    width:300px;
-    height:100vh;
-    overflow-y:auto;
-
-    position:fixed;
-    left:0;
-    top:0;
-
-    background:#f5f5f5;
-
-    padding:20px;
-
-    transition:0.3s;
+#sidebar {
+    width: 300px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: #f5f5f5;
+    padding: 20px;
+    transition: 0.3s;
+    z-index: 900;
+    overflow-y: auto;
 }
 
-#sidebar.hidden{
-    left:-320px;
+#sidebar.hidden {
+    left: -320px;
 }
 
 #sidebar label{
@@ -34,11 +31,10 @@ body{
     padding:5px;
 }
 
-#sidebarToggle{
-    position:fixed;
-    top:10px;
-    left:10px;
-    z-index:1000;
+#sidebarToggle {
+    padding: 10px 14px;
+    font-size: 16px;
+    cursor: pointer;
 }
 
 .command-card{
@@ -87,7 +83,7 @@ body{
 #mainContent {
     margin-left: 340px;
     width: calc(100% - 340px);
-    padding: 20px;
+    padding: 80px 20px 20px 20px;
     transition: all 0.3s;
 }
 
@@ -95,4 +91,28 @@ body.sidebar-collapsed #homeView,
 body.sidebar-collapsed #mainContent {
     margin-left: 0;
     width: 100%;
+}
+
+#topButtons {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+#homeBtn {
+    padding: 10px 18px;
+    font-size: 16px;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+#homeBtn:hover {
+    background: #555;
 }
