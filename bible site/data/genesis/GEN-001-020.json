@@ -1,0 +1,24 @@
+{
+  "id": "GEN-001-020",
+  "book": "Genesis",
+  "chapter": 1,
+  "verse": 20,
+  "reference": "Genesis 1:20",
+  "verse_text": "And God said, Let the waters bring forth abundantly the moving creature that hath life, and fowl that may fly above the earth in the open firmament of heaven.",
+  "instruction": "Let the waters bring forth abundantly the moving creature that hath life, and fowl that may fly above the earth in the open firmament of heaven.",
+  "command_type": "direct_command",
+  "command_giver": "God",
+  "command_receiver": "the waters",
+  "testament": "Old Testament",
+  "covenant": null,
+  "applicable_today": false,
+  "applicable_to": [],
+  "category": [
+    "Creation"
+  ],
+  "things_to_do": true,
+  "things_not_to_do": false,
+  "person_to_emulate": null,
+  "person_not_to_emulate": null,
+  "notes": "Creation command directed toward the waters before mankind was created."
+}

@@ -1,0 +1,26 @@
+{
+  "id": "GEN-001-014b",
+  "book": "Genesis",
+  "chapter": 1,
+  "verse": 14,
+  "reference": "Genesis 1:14",
+  "verse_text": "And God said, Let there be lights in the firmament of the heaven to divide the day from the night; and let them be for signs, and for seasons, and for days, and years:",
+  "instruction": "Use the lights in the firmament of the heaven for distinguishing signs, seasons, days, and years.",
+  "command_type": "implied_command",
+  "command_giver": "God",
+  "command_receiver": "Humanity",
+  "testament": "Old Testament",
+  "covenant": null,
+  "applicable_today": true,
+  "applicable_to": [
+    "Humanity"
+  ],
+  "category": [
+    "Timekeeping"
+  ],
+  "things_to_do": true,
+  "things_not_to_do": false,
+  "person_to_emulate": null,
+  "person_not_to_emulate": null,
+  "notes": "The command for humanity is implied because humans do not exist yet."
+}

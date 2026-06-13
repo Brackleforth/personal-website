@@ -1,0 +1,26 @@
+{
+  "id": "GEN-001-015",
+  "book": "Genesis",
+  "chapter": 1,
+  "verse": 15,
+  "reference": "Genesis 1:15",
+  "verse_text": "And let them be for lights in the firmament of the heaven to give light upon the earth: and it was so.",
+  "instruction": "Let the lights in the firmament of the heaven be for lights upon the earth.",
+  "command_type": "implied_command",
+  "command_giver": "God",
+  "command_receiver": "Existence",
+  "testament": "Old Testament",
+  "covenant": null,
+  "applicable_today": true,
+  "applicable_to": [
+    "lights in the firmament of the heaven"
+  ],
+  "category": [
+    "Creation"
+  ],
+  "things_to_do": true,
+  "things_not_to_do": false,
+  "person_to_emulate": null,
+  "person_not_to_emulate": null,
+  "notes": "Creation command directed toward existence before mankind was created."
+}

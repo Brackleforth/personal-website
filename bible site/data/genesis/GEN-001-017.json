@@ -1,0 +1,26 @@
+{
+  "id": "GEN-001-017",
+  "book": "Genesis",
+  "chapter": 1,
+  "verse": 17,
+  "reference": "Genesis 1:17",
+  "verse_text": "And God set them in the firmament of the heaven to give light upon the earth,",
+  "instruction": "Give light upon the earth.",
+  "command_type": "implied_command",
+  "command_giver": "God",
+  "command_receiver": "lights in the firmament of the heaven",
+  "testament": "Old Testament",
+  "covenant": null,
+  "applicable_today": true,
+  "applicable_to": [
+    "lights in the firmament of the heaven"
+  ],
+  "category": [
+    "Creation"
+  ],
+  "things_to_do": true,
+  "things_not_to_do": false,
+  "person_to_emulate": null,
+  "person_not_to_emulate": null,
+  "notes": "While this order is maintained to this day, I chose not to personify the lights in the firmament of the heaven."
+}

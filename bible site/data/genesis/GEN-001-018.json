@@ -1,0 +1,24 @@
+{
+  "id": "GEN-001-018",
+  "book": "Genesis",
+  "chapter": 1,
+  "verse": 18,
+  "reference": "Genesis 1:18",
+  "verse_text": "And to rule over the day and over the night, and to divide the light from the darkness: and God saw that it was good.",
+  "instruction": "Rule over the day and over the night.",
+  "command_type": "implied_command",
+  "command_giver": "God",
+  "command_receiver": "lights in the firmament of the heaven",
+  "testament": "Old Testament",
+  "covenant": null,
+  "applicable_today": false,
+  "applicable_to": [],
+  "category": [
+    "Creation"
+  ],
+  "things_to_do": true,
+  "things_not_to_do": false,
+  "person_to_emulate": null,
+  "person_not_to_emulate": null,
+  "notes": "While this order is maintained to this day, I chose not to personify the lights in the firmament of the heaven."
+}

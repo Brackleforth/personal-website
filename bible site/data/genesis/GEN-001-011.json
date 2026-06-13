@@ -1,0 +1,24 @@
+{
+  "id": "GEN-001-011",
+  "book": "Genesis",
+  "chapter": 1,
+  "verse": 11,
+  "reference": "Genesis 1:11",
+  "verse_text": "And God said, Let the earth bring forth grass, the herb yielding seed, and the fruit tree yielding fruit after his kind, whose seed is in itself, upon the earth: and it was so.",
+  "instruction": "Let the earth bring forth grass, the herb yielding seed, and the fruit tree yielding fruit after his kind, whose seed is in itself, upon the earth.",
+  "command_type": "implied_command",
+  "command_giver": "God",
+  "command_receiver": "the earth",
+  "testament": "Old Testament",
+  "covenant": null,
+  "applicable_today": false,
+  "applicable_to": [],
+  "category": [
+    "Creation"
+  ],
+  "things_to_do": true,
+  "things_not_to_do": false,
+  "person_to_emulate": null,
+  "person_not_to_emulate": null,
+  "notes": "Creation command directed toward the earth before mankind was created."
+}

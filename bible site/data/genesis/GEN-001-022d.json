@@ -1,0 +1,24 @@
+{
+  "id": "GEN-001-022d",
+  "book": "Genesis",
+  "chapter": 1,
+  "verse": 22,
+  "reference": "Genesis 1:22",
+  "verse_text": "And God blessed them, saying, Be fruitful, and multiply, and fill the waters in the seas, and let fowl multiply in the earth.",
+  "instruction": "Multiply.",
+  "command_type": "direct_command",
+  "command_giver": "God",
+  "command_receiver": "every living creature that moveth",
+  "testament": "Old Testament",
+  "covenant": null,
+  "applicable_today": false,
+  "applicable_to": [],
+  "category": [
+    "Fruitfulness"
+  ],
+  "things_to_do": true,
+  "things_not_to_do": false,
+  "person_to_emulate": null,
+  "person_not_to_emulate": null,
+  "notes": "While this order is maintained to this day, I chose not to personify every living creature that moveth."
+}
