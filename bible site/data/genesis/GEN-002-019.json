@@ -1,0 +1,24 @@
+{
+  "id": "GEN-002-019",
+  "book": "Genesis",
+  "chapter": 2,
+  "verse": 19,
+  "reference": "Genesis 2:19",
+  "verse_text": "And out of the ground the Lord God formed every beast of the field, and every fowl of the air; and brought them unto Adam to see what he would call them: and whatsoever Adam called every living creature, that was the name thereof.",
+  "instruction": "Name every beast of the field and every fowl of the air.",
+  "command_type": "implied_command",
+  "command_giver": "God",
+  "command_receiver": "Adam",
+  "testament": "Old Testament",
+  "covenant": "Edenic",
+  "applicable_today": false,
+  "applicable_to": [],
+  "category": [
+    "Naming"
+  ],
+  "things_to_do": true,
+  "things_not_to_do": false,
+  "person_to_emulate": null,
+  "person_not_to_emulate": null,
+  "notes": ""
+}

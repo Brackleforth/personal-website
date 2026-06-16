@@ -1,0 +1,26 @@
+{
+  "id": "GEN-002-024c",
+  "book": "Genesis",
+  "chapter": 2,
+  "verse": 24,
+  "reference": "Genesis 2:24",
+  "verse_text": "Therefore shall a man leave his father and his mother, and shall cleave unto his wife: and they shall be one flesh.",
+  "instruction": "Be one flesh with your husband.",
+  "command_type": "implied_command",
+  "command_giver": "Author of Genesis",
+  "command_receiver": "Wives",
+  "testament": "Old Testament",
+  "covenant": null,
+  "applicable_today": true,
+  "applicable_to": [
+    "Wives"
+  ],
+  "category": [
+    "Companionship"
+  ],
+  "things_to_do": true,
+  "things_not_to_do": false,
+  "person_to_emulate": null,
+  "person_not_to_emulate": null,
+  "notes": "Paul would later say that to be unmarried is also a valid lifestyle in 1 Corinthians. So this verse is applicable today as a an established order of things, but implied and nonbinding as a command."
+}

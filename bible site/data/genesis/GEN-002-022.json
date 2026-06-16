@@ -1,0 +1,24 @@
+{
+  "id": "GEN-002-022",
+  "book": "Genesis",
+  "chapter": 2,
+  "verse": 22,
+  "reference": "Genesis 2:22",
+  "verse_text": "And the rib, which the Lord God had taken from man, made he a woman, and brought her unto the man.",
+  "instruction": "Be near Adam.",
+  "command_type": "implied_command",
+  "command_giver": "God",
+  "command_receiver": "Eve",
+  "testament": "Old Testament",
+  "covenant": "Edenic",
+  "applicable_today": false,
+  "applicable_to": [],
+  "category": [
+    "Companionship"
+  ],
+  "things_to_do": true,
+  "things_not_to_do": false,
+  "person_to_emulate": null,
+  "person_not_to_emulate": null,
+  "notes": ""
+}

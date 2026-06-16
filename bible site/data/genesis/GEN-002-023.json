@@ -1,0 +1,24 @@
+{
+  "id": "GEN-002-023",
+  "book": "Genesis",
+  "chapter": 2,
+  "verse": 23,
+  "reference": "Genesis 2:23",
+  "verse_text": "And Adam said, This is now bone of my bones, and flesh of my flesh: she shall be called Woman, because she was taken out of Man.",
+  "instruction": "Be called Woman.",
+  "command_type": "direct_command",
+  "command_giver": "Adam",
+  "command_receiver": "Eve",
+  "testament": "Old Testament",
+  "covenant": "Edenic",
+  "applicable_today": false,
+  "applicable_to": [],
+  "category": [
+    "Naming"
+  ],
+  "things_to_do": true,
+  "things_not_to_do": false,
+  "person_to_emulate": null,
+  "person_not_to_emulate": null,
+  "notes": "The command uses indirect language. Nevertheless, it is a direct command anyway, not implied."
+}

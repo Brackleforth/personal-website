@@ -1,0 +1,24 @@
+{
+  "id": "GEN-002-016",
+  "book": "Genesis",
+  "chapter": 2,
+  "verse": 16,
+  "reference": "Genesis 2:16",
+  "verse_text": "And the Lord God commanded the man, saying, Of every tree of the garden thou mayest freely eat:",
+  "instruction": "Eat from every tree of the garden of Eden.",
+  "command_type": "direct_command",
+  "command_giver": "God",
+  "command_receiver": "Adam",
+  "testament": "Old Testament",
+  "covenant": "Edenic",
+  "applicable_today": false,
+  "applicable_to": [],
+  "category": [
+    "Food"
+  ],
+  "things_to_do": true,
+  "things_not_to_do": false,
+  "person_to_emulate": null,
+  "person_not_to_emulate": null,
+  "notes": ""
+}

@@ -8,17 +8,17 @@
   "instruction": "Rule the day.",
   "command_type": "implied_command",
   "command_giver": "God",
-  "command_receiver": "Greater Light",
+  "command_receiver": "greater light",
   "testament": "Old Testament",
   "covenant": null,
   "applicable_today": false,
   "applicable_to": [],
   "category": [
-    "Creation"
+    "Dominion"
   ],
   "things_to_do": true,
   "things_not_to_do": false,
   "person_to_emulate": null,
   "person_not_to_emulate": null,
-  "notes": "While this order is maintained to this day, I chose not to personify the Greater Light."
+  "notes": "While this order is maintained to this day, I chose not to personify the greater light."
 }
