@@ -1,5 +1,5 @@
 {
-  "id": "GEN-002-020",
+  "id": "GEN-002-020b",
   "book": "Genesis",
   "chapter": 2,
   "verse": 20,
@@ -8,7 +8,7 @@
   "instruction": "Be named what Adam names you.",
   "command_type": "direct_command",
   "command_giver": "God",
-  "command_receiver": "all cattle",
+  "command_receiver": "every beast of the field",
   "testament": "Old Testament",
   "covenant": "Edenic",
   "applicable_today": false,
