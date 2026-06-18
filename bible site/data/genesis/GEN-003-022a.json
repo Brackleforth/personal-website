@@ -1,0 +1,26 @@
+{
+  "id": "GEN-003-022a",
+  "book": "Genesis",
+  "chapter": 3,
+  "verse": 22,
+  "reference": "Genesis 3:22",
+  "verse_text": "And the Lord God said, Behold, the man is become as one of us, to know good and evil: and now, lest he put forth his hand, and take also of the tree of life, and eat, and live for ever:",
+  "instruction": "Do not seek to live forever outside of God's providence.",
+  "command_type": "direct_command",
+  "command_giver": "God",
+  "command_receiver": "humanity",
+  "testament": "Old Testament",
+  "covenant": "Adamic",
+  "applicable_today": true,
+  "applicable_to": [
+    "humanity"
+  ],
+  "category": [
+    "Mortality"
+  ],
+  "things_to_do": false,
+  "things_not_to_do": true,
+  "person_to_emulate": null,
+  "person_not_to_emulate": null,
+  "notes": "verse goes with Genesis 3:23"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "GEN-003-014",
+  "book": "Genesis",
+  "chapter": 3,
+  "verse": 14,
+  "reference": "Genesis 3:14",
+  "verse_text": "And the Lord God said unto the serpent, Because thou hast done this, thou art cursed above all cattle, and above every beast of the field; upon thy belly shalt thou go, and dust shalt thou eat all the days of thy life:",
+  "instruction": "Be cursed above all cattle and above every beast of the field.",
+  "command_type": "direct_command",
+  "command_giver": "God",
+  "command_receiver": "the serpent, Satan",
+  "testament": "Old Testament",
+  "covenant": "Adamic",
+  "applicable_today": true,
+  "applicable_to": [
+    "the serpent",
+    "Satan"
+  ],
+  "category": [
+    "Punishment"
+  ],
+  "things_to_do": true,
+  "things_not_to_do": false,
+  "person_to_emulate": null,
+  "person_not_to_emulate": null,
+  "notes": "Curse still in effect. The serpent is understood to be Satan."
+}

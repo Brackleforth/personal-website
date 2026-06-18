@@ -1,0 +1,26 @@
+{
+  "id": "GEN-003-019c",
+  "book": "Genesis",
+  "chapter": 3,
+  "verse": 19,
+  "reference": "Genesis 3:19",
+  "verse_text": "In the sweat of thy face shalt thou eat bread, till thou return unto the ground; for out of it wast thou taken: for dust thou art, and unto dust shalt thou return.",
+  "instruction": "Return to dust.",
+  "command_type": "direct_command",
+  "command_giver": "God",
+  "command_receiver": "humanity",
+  "testament": "Old Testament",
+  "covenant": "Adamic",
+  "applicable_today": true,
+  "applicable_to": [
+    "humanity"
+  ],
+  "category": [
+    "Death"
+  ],
+  "things_to_do": true,
+  "things_not_to_do": false,
+  "person_to_emulate": null,
+  "person_not_to_emulate": null,
+  "notes": ""
+}

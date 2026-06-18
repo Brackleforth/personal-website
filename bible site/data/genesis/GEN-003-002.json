@@ -1,0 +1,22 @@
+{
+  "id": "GEN-003-002",
+  "book": "Genesis",
+  "chapter": 3,
+  "verse": 2,
+  "reference": "Genesis 3:2",
+  "verse_text": "And the woman said unto the serpent, We may eat of the fruit of the trees of the garden:",
+  "instruction": "",
+  "command_type": null,
+  "command_giver": "",
+  "command_receiver": "",
+  "testament": "Old Testament",
+  "covenant": null,
+  "applicable_today": false,
+  "applicable_to": [],
+  "category": [],
+  "things_to_do": false,
+  "things_not_to_do": false,
+  "person_to_emulate": null,
+  "person_not_to_emulate": null,
+  "notes": ""
+}

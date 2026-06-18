@@ -1,0 +1,25 @@
+{
+  "id": "GEN-003-023",
+  "book": "Genesis",
+  "chapter": 3,
+  "verse": 23,
+  "reference": "Genesis 3:23",
+  "verse_text": "Therefore the Lord God sent him forth from the garden of Eden, to till the ground from whence he was taken.",
+  "instruction": "Leave the garden of Eden.",
+  "command_type": "direct_command",
+  "command_giver": "God",
+  "command_receiver": "Adam",
+  "testament": "Old Testament",
+  "covenant": "Adamic",
+  "applicable_today": false,
+  "applicable_to": [],
+  "category": [
+    "Stewardship",
+    "Punishment"
+  ],
+  "things_to_do": true,
+  "things_not_to_do": false,
+  "person_to_emulate": null,
+  "person_not_to_emulate": null,
+  "notes": ""
+}

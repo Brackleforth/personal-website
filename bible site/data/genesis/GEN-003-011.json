@@ -1,0 +1,24 @@
+{
+  "id": "GEN-003-011",
+  "book": "Genesis",
+  "chapter": 3,
+  "verse": 11,
+  "reference": "Genesis 3:11",
+  "verse_text": "And he said, Who told thee that thou wast naked? Hast thou eaten of the tree, whereof I commanded thee that thou shouldest not eat?",
+  "instruction": "Do not eat from the tree of the knowledge of good and evil.",
+  "command_type": "direct_command",
+  "command_giver": "God",
+  "command_receiver": "Adam",
+  "testament": "Old Testament",
+  "covenant": "Edenic",
+  "applicable_today": false,
+  "applicable_to": [],
+  "category": [
+    "Food"
+  ],
+  "things_to_do": false,
+  "things_not_to_do": true,
+  "person_to_emulate": null,
+  "person_not_to_emulate": null,
+  "notes": "Repeat"
+}

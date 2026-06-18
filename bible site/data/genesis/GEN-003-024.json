@@ -1,0 +1,25 @@
+{
+  "id": "GEN-003-024",
+  "book": "Genesis",
+  "chapter": 3,
+  "verse": 24,
+  "reference": "Genesis 3:24",
+  "verse_text": "So he drove out the man; and he placed at the east of the garden of Eden Cherubims, and a flaming sword which turned every way, to keep the way of the tree of life.",
+  "instruction": "Leave the garden of Eden.",
+  "command_type": "direct_command",
+  "command_giver": "God",
+  "command_receiver": "Adam",
+  "testament": "Old Testament",
+  "covenant": "Adamic",
+  "applicable_today": false,
+  "applicable_to": [],
+  "category": [
+    "Stewardship",
+    "Punishment"
+  ],
+  "things_to_do": true,
+  "things_not_to_do": false,
+  "person_to_emulate": null,
+  "person_not_to_emulate": null,
+  "notes": ""
+}

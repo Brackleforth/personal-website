@@ -1,0 +1,24 @@
+{
+  "id": "GEN-003-017",
+  "book": "Genesis",
+  "chapter": 3,
+  "verse": 17,
+  "reference": "Genesis 3:17",
+  "verse_text": "And unto Adam he said, Because thou hast hearkened unto the voice of thy wife, and hast eaten of the tree, of which I commanded thee, saying, Thou shalt not eat of it: cursed is the ground for thy sake; in sorrow shalt thou eat of it all the days of thy life;",
+  "instruction": "Do not eat from the tree of knowledge of good and evil.",
+  "command_type": "direct_command",
+  "command_giver": "God",
+  "command_receiver": "Adam",
+  "testament": "Old Testament",
+  "covenant": "Adamic",
+  "applicable_today": false,
+  "applicable_to": [],
+  "category": [
+    "Food"
+  ],
+  "things_to_do": false,
+  "things_not_to_do": true,
+  "person_to_emulate": null,
+  "person_not_to_emulate": null,
+  "notes": "Repeat"
+}

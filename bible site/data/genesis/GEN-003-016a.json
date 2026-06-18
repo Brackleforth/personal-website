@@ -1,0 +1,24 @@
+{
+  "id": "GEN-003-016a",
+  "book": "Genesis",
+  "chapter": 3,
+  "verse": 16,
+  "reference": "Genesis 3:16",
+  "verse_text": "Unto the woman he said, I will greatly multiply thy sorrow and thy conception; in sorrow thou shalt bring forth children; and thy desire shall be to thy husband, and he shall rule over thee.",
+  "instruction": "Desire your husband.",
+  "command_type": "direct_command",
+  "command_giver": "God",
+  "command_receiver": "Eve",
+  "testament": "Old Testament",
+  "covenant": "Adamic",
+  "applicable_today": false,
+  "applicable_to": [],
+  "category": [
+    "Childbirth"
+  ],
+  "things_to_do": true,
+  "things_not_to_do": false,
+  "person_to_emulate": null,
+  "person_not_to_emulate": null,
+  "notes": "This may refer to a desire to dominate the husband."
+}

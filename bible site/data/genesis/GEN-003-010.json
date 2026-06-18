@@ -1,0 +1,22 @@
+{
+  "id": "GEN-003-010",
+  "book": "Genesis",
+  "chapter": 3,
+  "verse": 10,
+  "reference": "Genesis 3:10",
+  "verse_text": "And he said, I heard thy voice in the garden, and I was afraid, because I was naked; and I hid myself.",
+  "instruction": "",
+  "command_type": null,
+  "command_giver": "",
+  "command_receiver": "",
+  "testament": "Old Testament",
+  "covenant": null,
+  "applicable_today": false,
+  "applicable_to": [],
+  "category": [],
+  "things_to_do": false,
+  "things_not_to_do": false,
+  "person_to_emulate": null,
+  "person_not_to_emulate": null,
+  "notes": ""
+}

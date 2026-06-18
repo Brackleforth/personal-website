@@ -1,0 +1,26 @@
+{
+  "id": "GEN-003-020",
+  "book": "Genesis",
+  "chapter": 3,
+  "verse": 20,
+  "reference": "Genesis 3:20",
+  "verse_text": "And Adam called his wife's name Eve; because she was the mother of all living.",
+  "instruction": "Be named Eve.",
+  "command_type": "implied_command",
+  "command_giver": "Adam",
+  "command_receiver": "Eve",
+  "testament": "Old Testament",
+  "covenant": "Adamic",
+  "applicable_today": true,
+  "applicable_to": [
+    "Eve"
+  ],
+  "category": [
+    "Naming"
+  ],
+  "things_to_do": true,
+  "things_not_to_do": false,
+  "person_to_emulate": null,
+  "person_not_to_emulate": null,
+  "notes": "I don't 100% know whether she still goes by the same name."
+}

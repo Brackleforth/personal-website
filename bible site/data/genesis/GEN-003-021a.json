@@ -1,0 +1,22 @@
+{
+  "id": "GEN-003-021a",
+  "book": "Genesis",
+  "chapter": 3,
+  "verse": 21,
+  "reference": "Genesis 3:21",
+  "verse_text": "Unto Adam also and to his wife did the Lord God make coats of skins, and clothed them.",
+  "instruction": "Wear clothes.",
+  "command_type": "implied_command",
+  "command_giver": "God",
+  "command_receiver": "Eve",
+  "testament": "Old Testament",
+  "covenant": "Adamic",
+  "applicable_today": false,
+  "applicable_to": [],
+  "category": ["Clothing"],
+  "things_to_do": true,
+  "things_not_to_do": false,
+  "person_to_emulate": null,
+  "person_not_to_emulate": null,
+  "notes": ""
+}

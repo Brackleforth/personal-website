@@ -1,0 +1,24 @@
+{
+  "id": "GEN-003-018",
+  "book": "Genesis",
+  "chapter": 3,
+  "verse": 18,
+  "reference": "Genesis 3:18",
+  "verse_text": "Thorns also and thistles shall it bring forth to thee; and thou shalt eat the herb of the field;",
+  "instruction": "Bring forth thorns and thistles to Adam.",
+  "command_type": "implied_command",
+  "command_giver": "God",
+  "command_receiver": "the ground",
+  "testament": "Old Testament",
+  "covenant": "Adamic",
+  "applicable_today": false,
+  "applicable_to": [],
+  "category": [
+    "Punishment"
+  ],
+  "things_to_do": true,
+  "things_not_to_do": false,
+  "person_to_emulate": null,
+  "person_not_to_emulate": null,
+  "notes": ""
+}

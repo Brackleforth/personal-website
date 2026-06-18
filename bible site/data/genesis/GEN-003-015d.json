@@ -1,0 +1,26 @@
+{
+  "id": "GEN-003-015d",
+  "book": "Genesis",
+  "chapter": 3,
+  "verse": 15,
+  "reference": "Genesis 3:15",
+  "verse_text": "And I will put enmity between thee and the woman, and between thy seed and her seed; it shall bruise thy head, and thou shalt bruise his heel.",
+  "instruction": "Have enmity with serpents, the followers of Satan.",
+  "command_type": "implied_command",
+  "command_giver": "God",
+  "command_receiver": "Jesus",
+  "testament": "Old Testament",
+  "covenant": "Adamic",
+  "applicable_today": true,
+  "applicable_to": [
+    "Jesus"
+  ],
+  "category": [
+    "Enmity"
+  ],
+  "things_to_do": true,
+  "things_not_to_do": false,
+  "person_to_emulate": null,
+  "person_not_to_emulate": null,
+  "notes": "Jesus is understood to be the seed of Eve in this verse."
+}

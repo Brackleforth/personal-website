@@ -1,0 +1,24 @@
+{
+  "id": "GEN-003-019",
+  "book": "Genesis",
+  "chapter": 3,
+  "verse": 19,
+  "reference": "Genesis 3:19",
+  "verse_text": "In the sweat of thy face shalt thou eat bread, till thou return unto the ground; for out of it wast thou taken: for dust thou art, and unto dust shalt thou return.",
+  "instruction": "Eat bread while working hard and sweating until you die and return to the ground.",
+  "command_type": "direct_command",
+  "command_giver": "God",
+  "command_receiver": "Adam",
+  "testament": "Old Testament",
+  "covenant": "Adamic",
+  "applicable_today": false,
+  "applicable_to": [],
+  "category": [
+    "Lifestyle"
+  ],
+  "things_to_do": false,
+  "things_not_to_do": false,
+  "person_to_emulate": null,
+  "person_not_to_emulate": null,
+  "notes": ""
+}
