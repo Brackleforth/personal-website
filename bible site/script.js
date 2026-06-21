@@ -245,11 +245,11 @@ async function loadData() {
 
         bibleCommands = bibleCommands.filter(
             c => c.instruction &&
-                 String(c.instruction).trim() !== ""
+                String(c.instruction).trim() !== ""
         );
 
         buildDropdowns();
-        buildBookButtons(); 
+        buildBookButtons();
         attachEvents();
 
         filteredCommands = bibleCommands;
@@ -311,7 +311,7 @@ function updateProgress() {
     const percent = (loaded / TOTAL_KJV_VERSES) * 100;
 
     document.getElementById("progressBar").style.width = percent.toFixed(2) + "%";
-    document.getElementById("progressText").innerText = 
+    document.getElementById("progressText").innerText =
         `${loaded} / ${TOTAL_KJV_VERSES} verses mapped (${percent.toFixed(2)}%)`;
 }
 
@@ -381,6 +381,21 @@ function attachEvents() {
             }
         }
     });
+
+    // Big Browse Buttons
+    document.getElementById("browseAllBtn").addEventListener("click", () => {
+        openFilteredView("book", "");           // empty = All Books
+    });
+
+    document.getElementById("browseOTBtn").addEventListener("click", () => {
+        openFilteredView("testament", "Old Testament");
+    });
+
+    document.getElementById("browseNTBtn").addEventListener("click", () => {
+        openFilteredView("testament", "New Testament");
+    });
+
+
 }
 
 /* ====================== CORE FUNCTIONS ====================== */
@@ -509,13 +524,8 @@ function renderPagination() {
 
 /* ---------------- FILTER LOGIC ---------------- */
 function matchesFilters(command) {
-
     // Exclude entries with no instruction
-    if (
-        command.instruction === null ||
-        command.instruction === undefined ||
-        String(command.instruction).trim() === ""
-    ) {
+    if (!command.instruction || String(command.instruction).trim() === "") {
         return false;
     }
 
@@ -529,7 +539,17 @@ function matchesFilters(command) {
     const instructionType = document.getElementById("instructionFilter").value;
     const commandType = document.getElementById("commandTypeFilter").value;
 
-    if (book && command.book !== book) return false;
+    // Book / Testament Special Handling
+    if (book === "__OT__") {
+        if (command.testament !== "Old Testament") return false;
+    } 
+    else if (book === "__NT__") {
+        if (command.testament !== "New Testament") return false;
+    } 
+    else if (book && command.book !== book) {
+        return false;
+    }
+
     if (testament && command.testament !== testament) return false;
     if (giver && command.command_giver !== giver) return false;
     if (receiver && command.command_receiver !== receiver) return false;
@@ -550,12 +570,25 @@ function buildDropdowns() {
     // Books
     const books = [...new Set(bibleCommands.map(c => c.book))].sort();
     const bookSelect = document.getElementById("bookFilter");
+    // Special options
+    const allOt = document.createElement("option");
+    allOt.value = "__OT__";
+    allOt.textContent = "— All Old Testament —";
+    bookSelect.appendChild(allOt);
+
+    const allNt = document.createElement("option");
+    allNt.value = "__NT__";
+    allNt.textContent = "— All New Testament —";
+    bookSelect.appendChild(allNt);
+
     books.forEach(book => {
         const opt = document.createElement("option");
         opt.value = book;
         opt.textContent = book;
         bookSelect.appendChild(opt);
     });
+
+
 
     // Command Givers
     const givers = [...new Set(bibleCommands.map(c => c.command_giver))].sort();
@@ -655,6 +688,26 @@ function renderSortedInstructions() {
     container.style.display = "block";
     document.getElementById("results").style.display = "none";
     document.getElementById("pagination").style.display = "none";
+}
+
+function openFilteredView(filterType, value) {
+    document.getElementById("homeView").style.display = "none";
+    document.getElementById("appView").style.display = "block";
+
+    resetAllFilters();
+
+    if (filterType === "book") {
+        document.getElementById("bookFilter").value = value;
+    } else if (filterType === "testament") {
+        document.getElementById("testamentFilter").value = value;
+    }
+
+    document.getElementById("sortedTableContainer").style.display = "none";
+    document.getElementById("results").style.display = "block";
+    document.getElementById("pagination").style.display = "block";
+
+    currentPage = 1;
+    applyFilters();
 }
 
 document.getElementById("appView").style.display = "none";

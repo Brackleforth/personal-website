@@ -13,9 +13,9 @@
 <body>
 
     <div id="topButtons">
-    <button id="sidebarToggle">☰ Filters</button>
-    <button id="homeBtn">Home</button>
-</div>
+        <button id="sidebarToggle">☰ Filters</button>
+        <button id="homeBtn">Home</button>
+    </div>
 
     <div id="sidebar">
 
@@ -93,7 +93,7 @@
     </div>
     <div id="homeView">
         <h1>Bible Commands Database</h1>
-        
+
         <div style="margin:20px 0;">
             <div style="width:100%; background:#ddd; border-radius:8px; overflow:hidden;">
                 <div id="progressBar" style="width:0%; height:30px; background:green;"></div>
@@ -101,8 +101,17 @@
             <p id="progressText" style="font-size:2em; font-weight:bold; text-align:center;"></p>
         </div>
 
-        <div id="bookSelector" style="display:grid; grid-template-columns:1fr 1fr; gap:30px; max-width:1200px; margin:40px auto;">
-            
+        <!-- Main Action Buttons -->
+        <div style="text-align:center; margin:30px 0 20px 0;">
+            <button id="browseAllBtn" class="book-progress-btn"
+                style="display:inline-block; min-width:280px; font-size:1.25em; padding:16px 24px;">
+                <strong>Browse All Books</strong>
+            </button>
+        </div>
+
+        <div id="bookSelector"
+            style="display:grid; grid-template-columns:1fr 1fr; gap:30px; max-width:1200px; margin:0 auto;">
+
             <!-- Old Testament -->
             <div>
                 <h2 style="text-align:center; color:#d32f2f;">Old Testament</h2>
@@ -116,10 +125,21 @@
             </div>
         </div>
 
-        <button id="enterAppBtn" style="margin-top:30px;">Browse All Books</button>
+        <!-- Bottom Big Buttons -->
+        <div
+            style="text-align:center; margin:40px 0 20px 0; display:flex; justify-content:center; gap:20px; flex-wrap:wrap;">
+            <button id="browseOTBtn" class="book-progress-btn"
+                style="min-width:260px; font-size:1.1em; padding:14px 20px;">
+                <strong>Browse All Old Testament</strong>
+            </button>
+            <button id="browseNTBtn" class="book-progress-btn"
+                style="min-width:260px; font-size:1.1em; padding:14px 20px;">
+                <strong>Browse All New Testament</strong>
+            </button>
+        </div>
     </div>
     <div id="appView" style="display:none;">
-        
+
         <div id="mainContent">
 
             <h1>Bible Commands Database</h1>
