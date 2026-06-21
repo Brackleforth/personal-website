@@ -263,17 +263,45 @@ async function loadData() {
 }
 
 function openBook(bookName) {
-    // Switch to app view
     document.getElementById("homeView").style.display = "none";
     document.getElementById("appView").style.display = "block";
 
-    // Pre-select the book
-    const bookFilter = document.getElementById("bookFilter");
-    bookFilter.value = bookName;
+    resetAllFilters();
 
-    // Apply filters and show results
+    document.getElementById("bookFilter").value = bookName;
+
+    // Reset any active sorted view
+    document.getElementById("sortedTableContainer").style.display = "none";
+    document.getElementById("results").style.display = "block";
+    document.getElementById("pagination").style.display = "block";
+
     currentPage = 1;
     applyFilters();
+}
+
+// Helper function to reset all filters
+function resetAllFilters() {
+    const filters = [
+        "bookFilter",
+        "testamentFilter",
+        "giverFilter",
+        "receiverFilter",
+        "covenantFilter",
+        "applicableFilter",
+        "categoryFilter",
+        "instructionFilter",
+        "exampleFilter",
+        "commandTypeFilter"
+    ];
+
+    filters.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = "";
+    });
+
+    // Also reset page size to default
+    const pageSizeSelect = document.getElementById("pageSizeFilter");
+    if (pageSizeSelect) pageSizeSelect.value = "10";
 }
 
 function updateProgress() {
@@ -519,36 +547,54 @@ function matchesFilters(command) {
 }
 
 function buildDropdowns() {
+    // Books
     const books = [...new Set(bibleCommands.map(c => c.book))].sort();
     const bookSelect = document.getElementById("bookFilter");
     books.forEach(book => {
         const opt = document.createElement("option");
-        opt.value = book; opt.textContent = book;
+        opt.value = book;
+        opt.textContent = book;
         bookSelect.appendChild(opt);
     });
 
+    // Command Givers
     const givers = [...new Set(bibleCommands.map(c => c.command_giver))].sort();
     const giverSelect = document.getElementById("giverFilter");
     givers.forEach(giver => {
         const opt = document.createElement("option");
-        opt.value = giver; opt.textContent = giver;
+        opt.value = giver;
+        opt.textContent = giver;
         giverSelect.appendChild(opt);
     });
 
+    // Command Receivers
     const receivers = [...new Set(bibleCommands.map(c => c.command_receiver))].sort();
     const receiverSelect = document.getElementById("receiverFilter");
     receivers.forEach(receiver => {
         const opt = document.createElement("option");
-        opt.value = receiver; opt.textContent = receiver;
+        opt.value = receiver;
+        opt.textContent = receiver;
         receiverSelect.appendChild(opt);
     });
 
-    const categories = [...new Set(bibleCommands.flatMap(c => c.category))].sort();
+    // Categories
+    const categories = [...new Set(bibleCommands.flatMap(c => c.category || []))].sort();
     const catSelect = document.getElementById("categoryFilter");
     categories.forEach(cat => {
         const opt = document.createElement("option");
-        opt.value = cat; opt.textContent = cat;
+        opt.value = cat;
+        opt.textContent = cat;
         catSelect.appendChild(opt);
+    });
+
+    // ←←← ADD THIS: Covenants
+    const covenants = [...new Set(bibleCommands.map(c => c.covenant).filter(Boolean))].sort();
+    const covenantSelect = document.getElementById("covenantFilter");
+    covenants.forEach(cov => {
+        const opt = document.createElement("option");
+        opt.value = cov;
+        opt.textContent = cov;
+        covenantSelect.appendChild(opt);
     });
 }
 
