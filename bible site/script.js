@@ -1,4 +1,72 @@
 const TOTAL_KJV_VERSES = 31102;
+const BOOK_FILES = [
+    "Genesis",
+    "Exodus",
+    "Leviticus",
+    "Numbers",
+    "Deuteronomy",
+    "Joshua",
+    "Judges",
+    "Ruth",
+    "1 Samuel",
+    "2 Samuel",
+    "1 Kings",
+    "2 Kings",
+    "1 Chronicles",
+    "2 Chronicles",
+    "Ezra",
+    "Nehemiah",
+    "Esther",
+    "Job",
+    "Psalms",
+    "Proverbs",
+    "Ecclesiastes",
+    "Song of Solomon",
+    "Isaiah",
+    "Jeremiah",
+    "Lamentations",
+    "Ezekiel",
+    "Daniel",
+    "Hosea",
+    "Joel",
+    "Amos",
+    "Obadiah",
+    "Jonah",
+    "Micah",
+    "Nahum",
+    "Habakkuk",
+    "Zephaniah",
+    "Haggai",
+    "Zechariah",
+    "Malachi",
+    "Matthew",
+    "Mark",
+    "Luke",
+    "John",
+    "Acts",
+    "Romans",
+    "1 Corinthians",
+    "2 Corinthians",
+    "Galatians",
+    "Ephesians",
+    "Philippians",
+    "Colossians",
+    "1 Thessalonians",
+    "2 Thessalonians",
+    "1 Timothy",
+    "2 Timothy",
+    "Titus",
+    "Philemon",
+    "Hebrews",
+    "James",
+    "1 Peter",
+    "2 Peter",
+    "1 John",
+    "2 John",
+    "3 John",
+    "Jude",
+    "Revelation"
+];
 
 let bibleCommands = [];
 let filteredCommands = [];
@@ -24,54 +92,41 @@ let frequencyData = [];   // ← Important for reference toggling
 
 async function loadData() {
     try {
-        // Load master index
-        const masterResponse = await fetch("data-index-master.json");
-        const indexFiles = await masterResponse.json();
 
-        for (const indexFile of indexFiles) {
+        const promises = BOOK_FILES.map(async (book) => {
 
-            // Load book index
-            const indexResponse = await fetch(indexFile);
-            const jsonFiles = await indexResponse.json();
+            const response = await fetch(`data/books/${book}.json`);
 
-            // Determine folder path
-            const folderPath = indexFile.substring(
-                0,
-                indexFile.lastIndexOf("/") + 1
-            );
-
-            // Load command files
-            for (const jsonFile of jsonFiles) {
-
-                const fullPath = folderPath + jsonFile;
-
-                const response = await fetch(fullPath);
-
-                if (!response.ok) {
-                    console.error("Failed to load:", fullPath);
-                    continue;
-                }
-
-                const command = await response.json();
-                bibleCommands.push(command);
+            if (!response.ok) {
+                throw new Error(`Failed to load data/books/${book}.json`);
             }
-        }
+
+            return await response.json();
+
+        });
+
+        const books = await Promise.all(promises);
+
+        bibleCommands = books.flat();
 
         console.log(`Loaded ${bibleCommands.length} commands`);
+
         updateProgress();
 
         bibleCommands = bibleCommands.filter(
             c => c.instruction &&
-                String(c.instruction).trim() !== ""
+                 String(c.instruction).trim() !== ""
         );
 
         buildDropdowns();
         attachEvents();
 
         filteredCommands = bibleCommands;
+
         render();
 
-    } catch (err) {
+    }
+    catch (err) {
         console.error("Load error:", err);
     }
 }
