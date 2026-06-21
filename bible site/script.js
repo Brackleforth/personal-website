@@ -68,6 +68,21 @@ const BOOK_FILES = [
     "Revelation"
 ];
 
+const OLD_TESTAMENT = [
+    "Genesis", "Exodus", "Leviticus", "Numbers", "Deuteronomy", "Joshua", "Judges", "Ruth",
+    "1 Samuel", "2 Samuel", "1 Kings", "2 Kings", "1 Chronicles", "2 Chronicles", "Ezra",
+    "Nehemiah", "Esther", "Job", "Psalms", "Proverbs", "Ecclesiastes", "Song of Solomon",
+    "Isaiah", "Jeremiah", "Lamentations", "Ezekiel", "Daniel", "Hosea", "Joel", "Amos",
+    "Obadiah", "Jonah", "Micah", "Nahum", "Habakkuk", "Zephaniah", "Haggai", "Zechariah", "Malachi"
+];
+
+const NEW_TESTAMENT = [
+    "Matthew", "Mark", "Luke", "John", "Acts", "Romans", "1 Corinthians", "2 Corinthians",
+    "Galatians", "Ephesians", "Philippians", "Colossians", "1 Thessalonians", "2 Thessalonians",
+    "1 Timothy", "2 Timothy", "Titus", "Philemon", "Hebrews", "James", "1 Peter", "2 Peter",
+    "1 John", "2 John", "3 John", "Jude", "Revelation"
+];
+
 let bibleCommands = [];
 let filteredCommands = [];
 
@@ -89,6 +104,46 @@ let displayConfig = {
 };
 
 let frequencyData = [];   // ← Important for reference toggling
+
+async function buildBookButtons() {
+    const otContainer = document.getElementById("otBooks");
+    const ntContainer = document.getElementById("ntBooks");
+
+    otContainer.innerHTML = "";
+    ntContainer.innerHTML = "";
+
+    // Count commands per book
+    const bookCount = {};
+    bibleCommands.forEach(cmd => {
+        if (cmd.book) {
+            bookCount[cmd.book] = (bookCount[cmd.book] || 0) + 1;
+        }
+    });
+
+    const createButtons = (books, container) => {
+        books.forEach(book => {
+            const count = bookCount[book] || 0;
+            const percentage = TOTAL_KJV_VERSES > 0 ? 
+                Math.round((count / TOTAL_KJV_VERSES) * 100) : 0;   // rough %
+
+            const btn = document.createElement("button");
+            btn.className = "book-progress-btn";
+            btn.innerHTML = `
+                <strong>${book}</strong><br>
+                <small>${count} commands • ${percentage}%</small>
+            `;
+
+            btn.addEventListener("click", () => {
+                openBook(book);
+            });
+
+            container.appendChild(btn);
+        });
+    };
+
+    createButtons(OLD_TESTAMENT, otContainer);
+    createButtons(NEW_TESTAMENT, ntContainer);
+}
 
 async function loadData() {
     try {
@@ -119,6 +174,7 @@ async function loadData() {
         );
 
         buildDropdowns();
+        buildBookButtons(); 
         attachEvents();
 
         filteredCommands = bibleCommands;
@@ -129,6 +185,20 @@ async function loadData() {
     catch (err) {
         console.error("Load error:", err);
     }
+}
+
+function openBook(bookName) {
+    // Switch to app view
+    document.getElementById("homeView").style.display = "none";
+    document.getElementById("appView").style.display = "block";
+
+    // Pre-select the book
+    const bookFilter = document.getElementById("bookFilter");
+    bookFilter.value = bookName;
+
+    // Apply filters and show results
+    currentPage = 1;
+    applyFilters();
 }
 
 function updateProgress() {

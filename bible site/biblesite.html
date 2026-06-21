@@ -92,20 +92,31 @@
 
     </div>
     <div id="homeView">
-        <h1>Bible Commands Progress</h1>
-
+        <h1>Bible Commands Database</h1>
+        
         <div style="margin:20px 0;">
             <div style="width:100%; background:#ddd; border-radius:8px; overflow:hidden;">
                 <div id="progressBar" style="width:0%; height:30px; background:green;"></div>
             </div>
-
-            <p id="progressText" style="font-size:2em;
-          font-weight:bold;
-          text-align:center;"></p>
-            
+            <p id="progressText" style="font-size:2em; font-weight:bold; text-align:center;"></p>
         </div>
 
-        <button id="enterAppBtn">Enter Bible Commands Database v2</button>
+        <div id="bookSelector" style="display:grid; grid-template-columns:1fr 1fr; gap:30px; max-width:1200px; margin:40px auto;">
+            
+            <!-- Old Testament -->
+            <div>
+                <h2 style="text-align:center; color:#d32f2f;">Old Testament</h2>
+                <div id="otBooks" style="display:flex; flex-direction:column; gap:8px;"></div>
+            </div>
+
+            <!-- New Testament -->
+            <div>
+                <h2 style="text-align:center; color:#1976d2;">New Testament</h2>
+                <div id="ntBooks" style="display:flex; flex-direction:column; gap:8px;"></div>
+            </div>
+        </div>
+
+        <button id="enterAppBtn" style="margin-top:30px;">Browse All Books</button>
     </div>
     <div id="appView" style="display:none;">
         
