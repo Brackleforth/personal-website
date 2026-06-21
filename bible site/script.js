@@ -68,6 +68,77 @@ const BOOK_FILES = [
     "Revelation"
 ];
 
+// KJV Verse counts per book (standard)
+const BOOK_VERSE_COUNTS = {
+    "Genesis": 1533,
+    "Exodus": 1213,
+    "Leviticus": 859,
+    "Numbers": 1288,
+    "Deuteronomy": 959,
+    "Joshua": 658,
+    "Judges": 618,
+    "Ruth": 85,
+    "1 Samuel": 810,
+    "2 Samuel": 695,
+    "1 Kings": 816,
+    "2 Kings": 719,
+    "1 Chronicles": 942,
+    "2 Chronicles": 822,
+    "Ezra": 280,
+    "Nehemiah": 406,
+    "Esther": 167,
+    "Job": 1070,
+    "Psalms": 2461,
+    "Proverbs": 915,
+    "Ecclesiastes": 222,
+    "Song of Solomon": 117,
+    "Isaiah": 1292,
+    "Jeremiah": 1364,
+    "Lamentations": 154,
+    "Ezekiel": 1273,
+    "Daniel": 357,
+    "Hosea": 197,
+    "Joel": 73,
+    "Amos": 146,
+    "Obadiah": 21,
+    "Jonah": 48,
+    "Micah": 105,
+    "Nahum": 47,
+    "Habakkuk": 56,
+    "Zephaniah": 53,
+    "Haggai": 38,
+    "Zechariah": 211,
+    "Malachi": 55,
+
+    "Matthew": 1071,
+    "Mark": 678,
+    "Luke": 1151,
+    "John": 879,
+    "Acts": 1007,
+    "Romans": 433,
+    "1 Corinthians": 437,
+    "2 Corinthians": 257,
+    "Galatians": 149,
+    "Ephesians": 155,
+    "Philippians": 104,
+    "Colossians": 95,
+    "1 Thessalonians": 89,
+    "2 Thessalonians": 47,
+    "1 Timothy": 113,
+    "2 Timothy": 83,
+    "Titus": 46,
+    "Philemon": 25,
+    "Hebrews": 303,
+    "James": 108,
+    "1 Peter": 105,
+    "2 Peter": 61,
+    "1 John": 105,
+    "2 John": 13,
+    "3 John": 14,
+    "Jude": 25,
+    "Revelation": 404
+};
+
 const OLD_TESTAMENT = [
     "Genesis", "Exodus", "Leviticus", "Numbers", "Deuteronomy", "Joshua", "Judges", "Ruth",
     "1 Samuel", "2 Samuel", "1 Kings", "2 Kings", "1 Chronicles", "2 Chronicles", "Ezra",
@@ -112,26 +183,30 @@ async function buildBookButtons() {
     otContainer.innerHTML = "";
     ntContainer.innerHTML = "";
 
-    // Count commands per book
-    const bookCount = {};
+    // Count how many verses have been mapped per book
+    const bookMapped = {};
     bibleCommands.forEach(cmd => {
-        if (cmd.book) {
-            bookCount[cmd.book] = (bookCount[cmd.book] || 0) + 1;
+        if (cmd.book && cmd.reference) {   // assuming every command has a reference
+            bookMapped[cmd.book] = (bookMapped[cmd.book] || 0) + 1;
         }
     });
 
     const createButtons = (books, container) => {
         books.forEach(book => {
-            const count = bookCount[book] || 0;
-            const percentage = TOTAL_KJV_VERSES > 0 ? 
-                Math.round((count / TOTAL_KJV_VERSES) * 100) : 0;   // rough %
+            const mapped = bookMapped[book] || 0;
+            const total = BOOK_VERSE_COUNTS[book] || 1;
+            const percentage = Math.round((mapped / total) * 100);
 
             const btn = document.createElement("button");
             btn.className = "book-progress-btn";
             btn.innerHTML = `
                 <strong>${book}</strong><br>
-                <small>${count} commands • ${percentage}%</small>
+                <small>${mapped} / ${total} verses • ${percentage}%</small>
             `;
+
+            // Visual progress indicator
+            if (percentage > 80) btn.style.borderColor = "#4caf50";
+            else if (percentage > 40) btn.style.borderColor = "#ff9800";
 
             btn.addEventListener("click", () => {
                 openBook(book);
@@ -202,15 +277,14 @@ function openBook(bookName) {
 }
 
 function updateProgress() {
-    const loaded = new Set(bibleCommands.map(c => `${c.book}|${c.chapter}|${c.verse}`)).size;
+    const uniqueVerses = new Set(bibleCommands.map(c => `${c.book}|${c.chapter}|${c.verse}`));
+    const loaded = uniqueVerses.size;
 
     const percent = (loaded / TOTAL_KJV_VERSES) * 100;
 
-    document.getElementById("progressBar").style.width = percent.toFixed(4) + "%";
-
-    document.getElementById("progressText").innerText =
-        `${loaded} / ${TOTAL_KJV_VERSES} verses mapped (${percent.toFixed(4)}%)`;
-
+    document.getElementById("progressBar").style.width = percent.toFixed(2) + "%";
+    document.getElementById("progressText").innerText = 
+        `${loaded} / ${TOTAL_KJV_VERSES} verses mapped (${percent.toFixed(2)}%)`;
 }
 
 function attachEvents() {
