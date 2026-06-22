@@ -220,57 +220,13 @@ async function buildBookButtons() {
     createButtons(NEW_TESTAMENT, ntContainer);
 }
 
-async function loadData() {
-    try {
-
-        const promises = BOOK_FILES.map(async (book) => {
-
-            const response = await fetch(`data/books/${book}.json`);
-
-            if (!response.ok) {
-                throw new Error(`Failed to load data/books/${book}.json`);
-            }
-
-            return await response.json();
-
-        });
-
-        const books = await Promise.all(promises);
-
-        bibleCommands = books.flat();
-
-        console.log(`Loaded ${bibleCommands.length} commands`);
-
-        updateProgress();
-
-        bibleCommands = bibleCommands.filter(
-            c => c.instruction &&
-                String(c.instruction).trim() !== ""
-        );
-
-        buildDropdowns();
-        buildBookButtons();
-        attachEvents();
-
-        filteredCommands = bibleCommands;
-
-        render();
-
-    }
-    catch (err) {
-        console.error("Load error:", err);
-    }
-}
-
 function openBook(bookName) {
     document.getElementById("homeView").style.display = "none";
     document.getElementById("appView").style.display = "block";
 
     resetAllFilters();
-
     document.getElementById("bookFilter").value = bookName;
 
-    // Reset any active sorted view
     document.getElementById("sortedTableContainer").style.display = "none";
     document.getElementById("results").style.display = "block";
     document.getElementById("pagination").style.display = "block";
@@ -279,29 +235,76 @@ function openBook(bookName) {
     applyFilters();
 }
 
-// Helper function to reset all filters
 function resetAllFilters() {
-    const filters = [
-        "bookFilter",
-        "testamentFilter",
-        "giverFilter",
-        "receiverFilter",
-        "covenantFilter",
-        "applicableFilter",
-        "categoryFilter",
-        "instructionFilter",
-        "exampleFilter",
-        "commandTypeFilter"
+    const filterIds = [
+        "bookFilter", "testamentFilter", "giverFilter", "receiverFilter",
+        "covenantFilter", "applicableFilter", "categoryFilter",
+        "instructionFilter", "exampleFilter", "commandTypeFilter"
     ];
 
-    filters.forEach(id => {
+    filterIds.forEach(id => {
         const el = document.getElementById(id);
         if (el) el.value = "";
     });
 
-    // Also reset page size to default
     const pageSizeSelect = document.getElementById("pageSizeFilter");
     if (pageSizeSelect) pageSizeSelect.value = "10";
+}
+
+function openFilteredView(filterType, value) {
+    document.getElementById("homeView").style.display = "none";
+    document.getElementById("appView").style.display = "block";
+
+    resetAllFilters();
+
+    if (filterType === "book") {
+        document.getElementById("bookFilter").value = value;
+    } else if (filterType === "testament") {
+        document.getElementById("testamentFilter").value = value;
+    }
+
+    document.getElementById("sortedTableContainer").style.display = "none";
+    document.getElementById("results").style.display = "block";
+    document.getElementById("pagination").style.display = "block";
+
+    currentPage = 1;
+    applyFilters();
+}
+
+async function loadData() {
+    try {
+        const promises = BOOK_FILES.map(async (book) => {
+            const response = await fetch(`data/books/${book}.json`);
+            
+            if (!response.ok) {
+                console.warn(`Missing or empty file: ${book}.json`);
+                return [];   // Don't crash
+            }
+            return await response.json();
+        });
+
+        const books = await Promise.all(promises);
+        bibleCommands = books.flat();
+
+        console.log(`Loaded ${bibleCommands.length} commands`);
+
+        updateProgress();
+
+        bibleCommands = bibleCommands.filter(
+            c => c.instruction && String(c.instruction).trim() !== ""
+        );
+
+        buildDropdowns();
+        buildBookButtons();     // This should now run
+        attachEvents();
+
+        filteredCommands = bibleCommands;
+        render();
+
+    } catch (err) {
+        console.error("Load error:", err);
+        alert("Error loading data. Check console (F12) for details.");
+    }
 }
 
 function updateProgress() {
@@ -690,33 +693,8 @@ function renderSortedInstructions() {
     document.getElementById("pagination").style.display = "none";
 }
 
-function openFilteredView(filterType, value) {
-    document.getElementById("homeView").style.display = "none";
-    document.getElementById("appView").style.display = "block";
-
-    resetAllFilters();
-
-    if (filterType === "book") {
-        document.getElementById("bookFilter").value = value;
-    } else if (filterType === "testament") {
-        document.getElementById("testamentFilter").value = value;
-    }
-
-    document.getElementById("sortedTableContainer").style.display = "none";
-    document.getElementById("results").style.display = "block";
-    document.getElementById("pagination").style.display = "block";
-
-    currentPage = 1;
-    applyFilters();
-}
-
 document.getElementById("appView").style.display = "none";
 document.getElementById("homeView").style.display = "block";
-
-document.getElementById("enterAppBtn").addEventListener("click", () => {
-    document.getElementById("homeView").style.display = "none";
-    document.getElementById("appView").style.display = "block";
-});
 
 document.getElementById("homeBtn").addEventListener("click", () => {
     document.getElementById("appView").style.display = "none";
