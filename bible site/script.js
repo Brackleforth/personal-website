@@ -176,24 +176,30 @@ let displayConfig = {
 
 let frequencyData = [];   // ← Important for reference toggling
 
-async function buildBookButtons() {
+function buildBookButtons() {
     const otContainer = document.getElementById("otBooks");
     const ntContainer = document.getElementById("ntBooks");
 
     otContainer.innerHTML = "";
     ntContainer.innerHTML = "";
 
-    // Count how many verses have been mapped per book
-    const bookMapped = {};
+    // Count unique verses per book
+    const bookVerseSets = {};
+
     bibleCommands.forEach(cmd => {
-        if (cmd.book && cmd.reference) {   // assuming every command has a reference
-            bookMapped[cmd.book] = (bookMapped[cmd.book] || 0) + 1;
+        if (cmd.book && cmd.chapter != null && cmd.verse != null) {
+            const key = `${cmd.chapter}|${cmd.verse}`;
+            
+            if (!bookVerseSets[cmd.book]) {
+                bookVerseSets[cmd.book] = new Set();
+            }
+            bookVerseSets[cmd.book].add(key);
         }
     });
 
     const createButtons = (books, container) => {
         books.forEach(book => {
-            const mapped = bookMapped[book] || 0;
+            const mapped = (bookVerseSets[book] || new Set()).size;
             const total = BOOK_VERSE_COUNTS[book] || 1;
             const percentage = Math.round((mapped / total) * 100);
 
@@ -204,13 +210,11 @@ async function buildBookButtons() {
                 <small>${mapped} / ${total} verses • ${percentage}%</small>
             `;
 
-            // Visual progress indicator
+            // Color coding
             if (percentage > 80) btn.style.borderColor = "#4caf50";
             else if (percentage > 40) btn.style.borderColor = "#ff9800";
 
-            btn.addEventListener("click", () => {
-                openBook(book);
-            });
+            btn.addEventListener("click", () => openBook(book));
 
             container.appendChild(btn);
         });
@@ -308,14 +312,18 @@ async function loadData() {
 }
 
 function updateProgress() {
-    const uniqueVerses = new Set(bibleCommands.map(c => `${c.book}|${c.chapter}|${c.verse}`));
-    const loaded = uniqueVerses.size;
+    const uniqueVerses = new Set(
+        bibleCommands.map(c => `${c.book}|${c.chapter}|${c.verse}`)
+    );
 
+    const loaded = uniqueVerses.size;
     const percent = (loaded / TOTAL_KJV_VERSES) * 100;
 
     document.getElementById("progressBar").style.width = percent.toFixed(2) + "%";
-    document.getElementById("progressText").innerText =
-        `${loaded} / ${TOTAL_KJV_VERSES} verses mapped (${percent.toFixed(2)}%)`;
+    document.getElementById("progressText").innerHTML = `
+        ${loaded} / ${TOTAL_KJV_VERSES} verses mapped 
+        <span style="font-size:0.75em; color:#555;">(${percent.toFixed(1)}%)</span>
+    `;
 }
 
 function attachEvents() {
