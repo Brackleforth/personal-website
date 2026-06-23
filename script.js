@@ -183,7 +183,6 @@ function buildBookButtons() {
     otContainer.innerHTML = "";
     ntContainer.innerHTML = "";
 
-    // Count unique verses per book
     const bookVerseSets = {};
 
     bibleCommands.forEach(cmd => {
@@ -194,9 +193,25 @@ function buildBookButtons() {
                 bookVerseSets[cmd.book] = new Set();
             }
             bookVerseSets[cmd.book].add(key);
+        } else {
+            console.warn("Bad entry - missing book/chapter/verse:", cmd.id);
         }
     });
 
+    // === DEBUG LOGS ===
+    console.log("=== BOOK VERSE COUNTS ===");
+    let totalMapped = 0;
+    
+    Object.keys(bookVerseSets).sort().forEach(book => {
+        const count = bookVerseSets[book].size;
+        totalMapped += count;
+        console.log(`${book}: ${count} unique verses`);
+    });
+    
+    console.log(`Total unique verses across all books: ${totalMapped}`);
+    console.log(`Total commands loaded: ${bibleCommands.length}`);
+
+    // Build the buttons
     const createButtons = (books, container) => {
         books.forEach(book => {
             const mapped = (bookVerseSets[book] || new Set()).size;
@@ -210,12 +225,10 @@ function buildBookButtons() {
                 <small>${mapped} / ${total} verses • ${percentage}%</small>
             `;
 
-            // Color coding
             if (percentage > 80) btn.style.borderColor = "#4caf50";
             else if (percentage > 40) btn.style.borderColor = "#ff9800";
 
             btn.addEventListener("click", () => openBook(book));
-
             container.appendChild(btn);
         });
     };
