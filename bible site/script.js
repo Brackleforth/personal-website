@@ -68,92 +68,6 @@ const BOOK_FILES = [
     "Revelation"
 ];
 
-// KJV Verse counts per book (standard)
-const BOOK_VERSE_COUNTS = {
-    "Genesis": 1533,
-    "Exodus": 1213,
-    "Leviticus": 859,
-    "Numbers": 1288,
-    "Deuteronomy": 959,
-    "Joshua": 658,
-    "Judges": 618,
-    "Ruth": 85,
-    "1 Samuel": 810,
-    "2 Samuel": 695,
-    "1 Kings": 816,
-    "2 Kings": 719,
-    "1 Chronicles": 942,
-    "2 Chronicles": 822,
-    "Ezra": 280,
-    "Nehemiah": 406,
-    "Esther": 167,
-    "Job": 1070,
-    "Psalms": 2461,
-    "Proverbs": 915,
-    "Ecclesiastes": 222,
-    "Song of Solomon": 117,
-    "Isaiah": 1292,
-    "Jeremiah": 1364,
-    "Lamentations": 154,
-    "Ezekiel": 1273,
-    "Daniel": 357,
-    "Hosea": 197,
-    "Joel": 73,
-    "Amos": 146,
-    "Obadiah": 21,
-    "Jonah": 48,
-    "Micah": 105,
-    "Nahum": 47,
-    "Habakkuk": 56,
-    "Zephaniah": 53,
-    "Haggai": 38,
-    "Zechariah": 211,
-    "Malachi": 55,
-
-    "Matthew": 1071,
-    "Mark": 678,
-    "Luke": 1151,
-    "John": 879,
-    "Acts": 1007,
-    "Romans": 433,
-    "1 Corinthians": 437,
-    "2 Corinthians": 257,
-    "Galatians": 149,
-    "Ephesians": 155,
-    "Philippians": 104,
-    "Colossians": 95,
-    "1 Thessalonians": 89,
-    "2 Thessalonians": 47,
-    "1 Timothy": 113,
-    "2 Timothy": 83,
-    "Titus": 46,
-    "Philemon": 25,
-    "Hebrews": 303,
-    "James": 108,
-    "1 Peter": 105,
-    "2 Peter": 61,
-    "1 John": 105,
-    "2 John": 13,
-    "3 John": 14,
-    "Jude": 25,
-    "Revelation": 404
-};
-
-const OLD_TESTAMENT = [
-    "Genesis", "Exodus", "Leviticus", "Numbers", "Deuteronomy", "Joshua", "Judges", "Ruth",
-    "1 Samuel", "2 Samuel", "1 Kings", "2 Kings", "1 Chronicles", "2 Chronicles", "Ezra",
-    "Nehemiah", "Esther", "Job", "Psalms", "Proverbs", "Ecclesiastes", "Song of Solomon",
-    "Isaiah", "Jeremiah", "Lamentations", "Ezekiel", "Daniel", "Hosea", "Joel", "Amos",
-    "Obadiah", "Jonah", "Micah", "Nahum", "Habakkuk", "Zephaniah", "Haggai", "Zechariah", "Malachi"
-];
-
-const NEW_TESTAMENT = [
-    "Matthew", "Mark", "Luke", "John", "Acts", "Romans", "1 Corinthians", "2 Corinthians",
-    "Galatians", "Ephesians", "Philippians", "Colossians", "1 Thessalonians", "2 Thessalonians",
-    "1 Timothy", "2 Timothy", "Titus", "Philemon", "Hebrews", "James", "1 Peter", "2 Peter",
-    "1 John", "2 John", "3 John", "Jude", "Revelation"
-];
-
 let bibleCommands = [];
 let filteredCommands = [];
 
@@ -176,118 +90,23 @@ let displayConfig = {
 
 let frequencyData = [];   // ← Important for reference toggling
 
-function buildBookButtons() {
-    const otContainer = document.getElementById("otBooks");
-    const ntContainer = document.getElementById("ntBooks");
-
-    otContainer.innerHTML = "";
-    ntContainer.innerHTML = "";
-
-    // Count unique verses per book
-    const bookVerseSets = {};
-
-    bibleCommands.forEach(cmd => {
-        if (cmd.book && cmd.chapter != null && cmd.verse != null) {
-            const key = `${cmd.chapter}|${cmd.verse}`;
-            
-            if (!bookVerseSets[cmd.book]) {
-                bookVerseSets[cmd.book] = new Set();
-            }
-            bookVerseSets[cmd.book].add(key);
-        }
-    });
-
-    const createButtons = (books, container) => {
-        books.forEach(book => {
-            const mapped = (bookVerseSets[book] || new Set()).size;
-            const total = BOOK_VERSE_COUNTS[book] || 1;
-            const percentage = Math.round((mapped / total) * 100);
-
-            const btn = document.createElement("button");
-            btn.className = "book-progress-btn";
-            btn.innerHTML = `
-                <strong>${book}</strong><br>
-                <small>${mapped} / ${total} verses • ${percentage}%</small>
-            `;
-
-            // Color coding
-            if (percentage > 80) btn.style.borderColor = "#4caf50";
-            else if (percentage > 40) btn.style.borderColor = "#ff9800";
-
-            btn.addEventListener("click", () => openBook(book));
-
-            container.appendChild(btn);
-        });
-    };
-
-    createButtons(OLD_TESTAMENT, otContainer);
-    createButtons(NEW_TESTAMENT, ntContainer);
-}
-
-function openBook(bookName) {
-    document.getElementById("homeView").style.display = "none";
-    document.getElementById("appView").style.display = "block";
-
-    resetAllFilters();
-    document.getElementById("bookFilter").value = bookName;
-
-    document.getElementById("sortedTableContainer").style.display = "none";
-    document.getElementById("results").style.display = "block";
-    document.getElementById("pagination").style.display = "block";
-
-    currentPage = 1;
-    applyFilters();
-}
-
-function resetAllFilters() {
-    const filterIds = [
-        "bookFilter", "testamentFilter", "giverFilter", "receiverFilter",
-        "covenantFilter", "applicableFilter", "categoryFilter",
-        "instructionFilter", "exampleFilter", "commandTypeFilter"
-    ];
-
-    filterIds.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.value = "";
-    });
-
-    const pageSizeSelect = document.getElementById("pageSizeFilter");
-    if (pageSizeSelect) pageSizeSelect.value = "10";
-}
-
-function openFilteredView(filterType, value) {
-    document.getElementById("homeView").style.display = "none";
-    document.getElementById("appView").style.display = "block";
-
-    resetAllFilters();
-
-    if (filterType === "book") {
-        document.getElementById("bookFilter").value = value;
-    } else if (filterType === "testament") {
-        document.getElementById("testamentFilter").value = value;
-    }
-
-    document.getElementById("sortedTableContainer").style.display = "none";
-    document.getElementById("results").style.display = "block";
-    document.getElementById("pagination").style.display = "block";
-
-    currentPage = 1;
-    applyFilters();
-}
-
 async function loadData() {
     try {
+
         const promises = BOOK_FILES.map(async (book) => {
+
             const response = await fetch(`data/books/${book}.json`);
-            
+
             if (!response.ok) {
-                console.warn(`Missing or empty file: ${book}.json`);
-                return [];   // Don't crash
+                throw new Error(`Failed to load data/books/${book}.json`);
             }
+
             return await response.json();
+
         });
 
         const books = await Promise.all(promises);
+
         bibleCommands = books.flat();
 
         console.log(`Loaded ${bibleCommands.length} commands`);
@@ -295,35 +114,33 @@ async function loadData() {
         updateProgress();
 
         bibleCommands = bibleCommands.filter(
-            c => c.instruction && String(c.instruction).trim() !== ""
+            c => c.instruction &&
+                 String(c.instruction).trim() !== ""
         );
 
         buildDropdowns();
-        buildBookButtons();     // This should now run
         attachEvents();
 
         filteredCommands = bibleCommands;
+
         render();
 
-    } catch (err) {
+    }
+    catch (err) {
         console.error("Load error:", err);
-        alert("Error loading data. Check console (F12) for details.");
     }
 }
 
 function updateProgress() {
-    const uniqueVerses = new Set(
-        bibleCommands.map(c => `${c.book}|${c.chapter}|${c.verse}`)
-    );
+    const loaded = new Set(bibleCommands.map(c => `${c.book}|${c.chapter}|${c.verse}`)).size;
 
-    const loaded = uniqueVerses.size;
     const percent = (loaded / TOTAL_KJV_VERSES) * 100;
 
-    document.getElementById("progressBar").style.width = percent.toFixed(2) + "%";
-    document.getElementById("progressText").innerHTML = `
-        ${loaded} / ${TOTAL_KJV_VERSES} verses mapped 
-        <span style="font-size:0.75em; color:#555;">(${percent.toFixed(1)}%)</span>
-    `;
+    document.getElementById("progressBar").style.width = percent.toFixed(4) + "%";
+
+    document.getElementById("progressText").innerText =
+        `${loaded} / ${TOTAL_KJV_VERSES} verses mapped (${percent.toFixed(4)}%)`;
+
 }
 
 function attachEvents() {
@@ -392,21 +209,6 @@ function attachEvents() {
             }
         }
     });
-
-    // Big Browse Buttons
-    document.getElementById("browseAllBtn").addEventListener("click", () => {
-        openFilteredView("book", "");           // empty = All Books
-    });
-
-    document.getElementById("browseOTBtn").addEventListener("click", () => {
-        openFilteredView("testament", "Old Testament");
-    });
-
-    document.getElementById("browseNTBtn").addEventListener("click", () => {
-        openFilteredView("testament", "New Testament");
-    });
-
-
 }
 
 /* ====================== CORE FUNCTIONS ====================== */
@@ -535,8 +337,13 @@ function renderPagination() {
 
 /* ---------------- FILTER LOGIC ---------------- */
 function matchesFilters(command) {
+
     // Exclude entries with no instruction
-    if (!command.instruction || String(command.instruction).trim() === "") {
+    if (
+        command.instruction === null ||
+        command.instruction === undefined ||
+        String(command.instruction).trim() === ""
+    ) {
         return false;
     }
 
@@ -550,17 +357,7 @@ function matchesFilters(command) {
     const instructionType = document.getElementById("instructionFilter").value;
     const commandType = document.getElementById("commandTypeFilter").value;
 
-    // Book / Testament Special Handling
-    if (book === "__OT__") {
-        if (command.testament !== "Old Testament") return false;
-    } 
-    else if (book === "__NT__") {
-        if (command.testament !== "New Testament") return false;
-    } 
-    else if (book && command.book !== book) {
-        return false;
-    }
-
+    if (book && command.book !== book) return false;
     if (testament && command.testament !== testament) return false;
     if (giver && command.command_giver !== giver) return false;
     if (receiver && command.command_receiver !== receiver) return false;
@@ -578,67 +375,36 @@ function matchesFilters(command) {
 }
 
 function buildDropdowns() {
-    // Books
     const books = [...new Set(bibleCommands.map(c => c.book))].sort();
     const bookSelect = document.getElementById("bookFilter");
-    // Special options
-    const allOt = document.createElement("option");
-    allOt.value = "__OT__";
-    allOt.textContent = "— All Old Testament —";
-    bookSelect.appendChild(allOt);
-
-    const allNt = document.createElement("option");
-    allNt.value = "__NT__";
-    allNt.textContent = "— All New Testament —";
-    bookSelect.appendChild(allNt);
-
     books.forEach(book => {
         const opt = document.createElement("option");
-        opt.value = book;
-        opt.textContent = book;
+        opt.value = book; opt.textContent = book;
         bookSelect.appendChild(opt);
     });
 
-
-
-    // Command Givers
     const givers = [...new Set(bibleCommands.map(c => c.command_giver))].sort();
     const giverSelect = document.getElementById("giverFilter");
     givers.forEach(giver => {
         const opt = document.createElement("option");
-        opt.value = giver;
-        opt.textContent = giver;
+        opt.value = giver; opt.textContent = giver;
         giverSelect.appendChild(opt);
     });
 
-    // Command Receivers
     const receivers = [...new Set(bibleCommands.map(c => c.command_receiver))].sort();
     const receiverSelect = document.getElementById("receiverFilter");
     receivers.forEach(receiver => {
         const opt = document.createElement("option");
-        opt.value = receiver;
-        opt.textContent = receiver;
+        opt.value = receiver; opt.textContent = receiver;
         receiverSelect.appendChild(opt);
     });
 
-    // Categories
-    const categories = [...new Set(bibleCommands.flatMap(c => c.category || []))].sort();
+    const categories = [...new Set(bibleCommands.flatMap(c => c.category))].sort();
     const catSelect = document.getElementById("categoryFilter");
     categories.forEach(cat => {
         const opt = document.createElement("option");
-        opt.value = cat;
-        opt.textContent = cat;
+        opt.value = cat; opt.textContent = cat;
         catSelect.appendChild(opt);
-    });
-
-    // ←←← ADD THIS: Covenants
-    const covenants = [...new Set(bibleCommands.map(c => c.covenant).filter(Boolean))].sort();
-    const covenantSelect = document.getElementById("covenantFilter");
-    covenants.forEach(cov => {
-        const opt = document.createElement("option");
-        opt.value = cov;
-        opt.textContent = cov;
-        covenantSelect.appendChild(opt);
     });
 }
 
@@ -703,6 +469,11 @@ function renderSortedInstructions() {
 
 document.getElementById("appView").style.display = "none";
 document.getElementById("homeView").style.display = "block";
+
+document.getElementById("enterAppBtn").addEventListener("click", () => {
+    document.getElementById("homeView").style.display = "none";
+    document.getElementById("appView").style.display = "block";
+});
 
 document.getElementById("homeBtn").addEventListener("click", () => {
     document.getElementById("appView").style.display = "none";
