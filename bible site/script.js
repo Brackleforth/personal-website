@@ -207,7 +207,7 @@ function buildBookButtons() {
         sequentialProgress[book] = {
             mapped,
             total,
-            percentage: Math.round((mapped / total) * 100)
+            percentage: ((mapped / total) * 100).toFixed(4)
         };
     });
 
@@ -337,7 +337,7 @@ function updateProgress() {
     document.getElementById("progressBar").style.width = percent.toFixed(2) + "%";
     document.getElementById("progressText").innerHTML = `
         ${mappedVerseCount} / ${TOTAL_KJV_VERSES} verses mapped
-        <span style="font-size:0.75em; color:#555;">(${percent.toFixed(1)}%)</span>
+        <span style="font-size:0.75em; color:#555;">(${percent.toFixed(4)}%)</span>
     `;
 }
 
