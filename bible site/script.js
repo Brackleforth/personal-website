@@ -183,42 +183,58 @@ function buildBookButtons() {
     otContainer.innerHTML = "";
     ntContainer.innerHTML = "";
 
-    // Count unique verses per book
-    const bookVerseSets = {};
+    // Total mapped verses (same calculation as updateProgress)
+    const uniqueVerses = new Set(
+        bibleCommands.map(c => `${c.book}|${c.chapter}|${c.verse}`)
+    );
 
-    bibleCommands.forEach(cmd => {
-        if (cmd.book && cmd.chapter != null && cmd.verse != null) {
-            const key = `${cmd.chapter}|${cmd.verse}`;
-            
-            if (!bookVerseSets[cmd.book]) {
-                bookVerseSets[cmd.book] = new Set();
-            }
-            bookVerseSets[cmd.book].add(key);
+    let remaining = uniqueVerses.size;
+
+    // Calculate sequential progress for every book
+    const sequentialProgress = {};
+
+    BOOK_FILES.forEach(book => {
+        const total = BOOK_VERSE_COUNTS[book];
+
+        let mapped;
+
+        if (remaining >= total) {
+            mapped = total;
+            remaining -= total;
+        } else {
+            mapped = Math.max(remaining, 0);
+            remaining = 0;
         }
+
+        sequentialProgress[book] = {
+            mapped,
+            total,
+            percentage: Math.round((mapped / total) * 100)
+        };
     });
 
-    const createButtons = (books, container) => {
+    function createButtons(books, container) {
         books.forEach(book => {
-            const mapped = (bookVerseSets[book] || new Set()).size;
-            const total = BOOK_VERSE_COUNTS[book] || 1;
-            const percentage = Math.round((mapped / total) * 100);
+            const progress = sequentialProgress[book];
 
             const btn = document.createElement("button");
             btn.className = "book-progress-btn";
+
             btn.innerHTML = `
                 <strong>${book}</strong><br>
-                <small>${mapped} / ${total} verses • ${percentage}%</small>
+                <small>${progress.mapped} / ${progress.total} verses • ${progress.percentage}%</small>
             `;
 
-            // Color coding
-            if (percentage > 80) btn.style.borderColor = "#4caf50";
-            else if (percentage > 40) btn.style.borderColor = "#ff9800";
+            if (progress.percentage === 100)
+                btn.style.borderColor = "#4caf50";
+            else if (progress.percentage > 0)
+                btn.style.borderColor = "#ff9800";
 
             btn.addEventListener("click", () => openBook(book));
 
             container.appendChild(btn);
         });
-    };
+    }
 
     createButtons(OLD_TESTAMENT, otContainer);
     createButtons(NEW_TESTAMENT, ntContainer);
