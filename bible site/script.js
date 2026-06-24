@@ -176,6 +176,8 @@ let displayConfig = {
 
 let frequencyData = [];   // ← Important for reference toggling
 
+let mappedVerseCount = 0;
+
 function buildBookButtons() {
     const otContainer = document.getElementById("otBooks");
     const ntContainer = document.getElementById("ntBooks");
@@ -183,12 +185,8 @@ function buildBookButtons() {
     otContainer.innerHTML = "";
     ntContainer.innerHTML = "";
 
-    // Total mapped verses (same calculation as updateProgress)
-    const uniqueVerses = new Set(
-        bibleCommands.map(c => `${c.book}|${c.chapter}|${c.verse}`)
-    );
-
-    let remaining = uniqueVerses.size;
+    // Use the same count that the overall progress bar uses
+    let remaining = mappedVerseCount;
 
     // Calculate sequential progress for every book
     const sequentialProgress = {};
@@ -332,12 +330,13 @@ function updateProgress() {
         bibleCommands.map(c => `${c.book}|${c.chapter}|${c.verse}`)
     );
 
-    const loaded = uniqueVerses.size;
-    const percent = (loaded / TOTAL_KJV_VERSES) * 100;
+    mappedVerseCount = uniqueVerses.size;
+
+    const percent = (mappedVerseCount / TOTAL_KJV_VERSES) * 100;
 
     document.getElementById("progressBar").style.width = percent.toFixed(2) + "%";
     document.getElementById("progressText").innerHTML = `
-        ${loaded} / ${TOTAL_KJV_VERSES} verses mapped 
+        ${mappedVerseCount} / ${TOTAL_KJV_VERSES} verses mapped
         <span style="font-size:0.75em; color:#555;">(${percent.toFixed(1)}%)</span>
     `;
 }
