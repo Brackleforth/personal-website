@@ -18,78 +18,101 @@
     </div>
 
     <div id="sidebar">
+        <h1 style="margin-top: 80px;">Filters</h1>
 
-        <h1 style="margin-top: 80px;">Filters</h2>
+        <div class="filter-list">
+            <div class="filter-item" data-filter="book">
+                <span class="filter-label">Book</span>
+                <button class="filter-btn" id="btn-book">
+                    <span class="current-value">All</span>
+                    <span class="arrow">▼</span>
+                </button>
+            </div>
 
-        <label>Book</label>
-        <select id="bookFilter">
-            <option value="">All</option>
-        </select>
+            <div class="filter-item" data-filter="testament">
+                <span class="filter-label">Testament</span>
+                <button class="filter-btn" id="btn-testament">
+                    <span class="current-value">All</span>
+                    <span class="arrow">▼</span>
+                </button>
+            </div>
 
-        <label>Testament</label>
-        <select id="testamentFilter">
-            <option value="">All</option>
-            <option>Old Testament</option>
-            <option>New Testament</option>
-        </select>
+            <div class="filter-item" data-filter="giver">
+                <span class="filter-label">Command Giver</span>
+                <button class="filter-btn" id="btn-giver">
+                    <span class="current-value">All</span>
+                    <span class="arrow">▼</span>
+                </button>
+            </div>
 
-        <label>Command Giver</label>
-        <select id="giverFilter">
-            <option value="">All</option>
-        </select>
+            <div class="filter-item" data-filter="receiver">
+                <span class="filter-label">Command Receiver</span>
+                <button class="filter-btn" id="btn-receiver">
+                    <span class="current-value">All</span>
+                    <span class="arrow">▼</span>
+                </button>
+            </div>
 
-        <label>Command Receiver</label>
-        <select id="receiverFilter">
-            <option value="">All</option>
-        </select>
+            <div class="filter-item" data-filter="covenant">
+                <span class="filter-label">Covenant</span>
+                <button class="filter-btn" id="btn-covenant">
+                    <span class="current-value">All</span>
+                    <span class="arrow">▼</span>
+                </button>
+            </div>
 
-        <label>Covenant</label>
-        <select id="covenantFilter">
-            <option value="">All</option>
-        </select>
+            <div class="filter-item" data-filter="applicable">
+                <span class="filter-label">Applicability</span>
+                <button class="filter-btn" id="btn-applicable">
+                    <span class="current-value">All</span>
+                    <span class="arrow">▼</span>
+                </button>
+            </div>
 
-        <label>Applicability</label>
-        <select id="applicableFilter">
-            <option value="">All</option>
-            <option value="true">Applicable Today</option>
-            <option value="false">Not Applicable Today</option>
-        </select>
+            <div class="filter-item" data-filter="category">
+                <span class="filter-label">Category</span>
+                <button class="filter-btn" id="btn-category">
+                    <span class="current-value">All</span>
+                    <span class="arrow">▼</span>
+                </button>
+            </div>
 
-        <label>Category</label>
-        <select id="categoryFilter">
-            <option value="">All</option>
-        </select>
+            <div class="filter-item" data-filter="instructionType">
+                <span class="filter-label">Instruction Type</span>
+                <button class="filter-btn" id="btn-instructionType">
+                    <span class="current-value">All</span>
+                    <span class="arrow">▼</span>
+                </button>
+            </div>
 
-        <label>Instruction Type</label>
-        <select id="instructionFilter">
-            <option value="">All</option>
-            <option value="do">Thing To Do</option>
-            <option value="dont">Thing Not To Do</option>
-        </select>
+            <div class="filter-item" data-filter="exampleType">
+                <span class="filter-label">Example Type</span>
+                <button class="filter-btn" id="btn-exampleType">
+                    <span class="current-value">All</span>
+                    <span class="arrow">▼</span>
+                </button>
+            </div>
 
-        <label>Example Type</label>
-        <select id="exampleFilter">
-            <option value="">All</option>
-            <option value="emulate">Person To Emulate</option>
-            <option value="avoid">Person Not To Emulate</option>
-        </select>
+            <div class="filter-item" data-filter="commandStyle">
+                <span class="filter-label">Command Style</span>
+                <button class="filter-btn" id="btn-commandStyle">
+                    <span class="current-value">All</span>
+                    <span class="arrow">▼</span>
+                </button>
+            </div>
 
-        <label>Command Style</label>
-        <select id="commandTypeFilter">
-            <option value="">All</option>
-            <option value="direct_command">Direct Command</option>
-            <option value="implied_command">Implied Command</option>
-        </select>
-
-        <label>Results Per Page</label>
-        <select id="pageSizeFilter">
-            <option value="10">10</option>
-            <option value="25">25</option>
-            <option value="50">50</option>
-            <option value="100">100</option>
-            <option value="all">All</option>
-        </select>
-
+            <!-- Results per page stays simple -->
+            <div class="filter-item">
+                <span class="filter-label">Results Per Page</span>
+                <select id="pageSizeFilter" style="width:100%; padding:8px;">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="all">All</option>
+                </select>
+            </div>
+        </div>
     </div>
     <div id="homeView">
         <h1>Bible Commands Database</h1>

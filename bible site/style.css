@@ -143,3 +143,108 @@ body.sidebar-collapsed #mainContent {
 .book-progress-btn strong {
     font-size: 1.15em;
 }
+
+.filter-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.filter-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.filter-label {
+    font-weight: bold;
+    font-size: 0.95em;
+    color: #444;
+}
+
+.filter-btn {
+    width: 100%;
+    padding: 10px 12px;
+    text-align: left;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1em;
+    transition: all 0.2s;
+}
+
+.filter-btn:hover {
+    border-color: #1976d2;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.current-value {
+    color: #1976d2;
+    font-weight: 500;
+}
+
+.arrow {
+    font-size: 0.8em;
+    color: #666;
+}
+
+/* Filter Panel */
+#filterPanel {
+    position: fixed;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    z-index: 10000;
+    width: 280px;
+    max-height: 420px;
+    display: none;
+    flex-direction: column;
+}
+
+#filterPanel .panel-header {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    font-weight: bold;
+}
+
+#filterPanel input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    font-size: 1em;
+}
+
+#filterPanel input:focus {
+    outline: none;
+}
+
+#filterPanel .options {
+    overflow-y: auto;
+    flex: 1;
+}
+
+.filter-option {
+    padding: 10px 14px;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.filter-option:hover {
+    background: #f0f7ff;
+}
+
+.filter-option.active {
+    background: #e3f2fd;
+    font-weight: 500;
+}
+
+.filter-option.all {
+    font-style: italic;
+    color: #555;
+}

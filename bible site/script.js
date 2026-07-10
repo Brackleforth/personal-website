@@ -243,7 +243,8 @@ function openBook(bookName) {
     document.getElementById("appView").style.display = "block";
 
     resetAllFilters();
-    document.getElementById("bookFilter").value = bookName;
+    activeFilters.book = bookName;           // ← Updated
+    updateFilterButton("book");
 
     document.getElementById("sortedTableContainer").style.display = "none";
     document.getElementById("results").style.display = "block";
@@ -254,19 +255,8 @@ function openBook(bookName) {
 }
 
 function resetAllFilters() {
-    const filterIds = [
-        "bookFilter", "testamentFilter", "giverFilter", "receiverFilter",
-        "covenantFilter", "applicableFilter", "categoryFilter",
-        "instructionFilter", "exampleFilter", "commandTypeFilter"
-    ];
-
-    filterIds.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.value = "";
-    });
-
-    const pageSizeSelect = document.getElementById("pageSizeFilter");
-    if (pageSizeSelect) pageSizeSelect.value = "10";
+    Object.keys(activeFilters).forEach(key => activeFilters[key] = "");
+    document.querySelectorAll(".current-value").forEach(el => el.textContent = "All");
 }
 
 function openFilteredView(filterType, value) {
@@ -276,9 +266,11 @@ function openFilteredView(filterType, value) {
     resetAllFilters();
 
     if (filterType === "book") {
-        document.getElementById("bookFilter").value = value;
+        activeFilters.book = value;
+        updateFilterButton("book");
     } else if (filterType === "testament") {
-        document.getElementById("testamentFilter").value = value;
+        activeFilters.testament = value;
+        updateFilterButton("testament");
     }
 
     document.getElementById("sortedTableContainer").style.display = "none";
@@ -293,10 +285,9 @@ async function loadData() {
     try {
         const promises = BOOK_FILES.map(async (book) => {
             const response = await fetch(`data/books/${book}.json`);
-            
             if (!response.ok) {
-                console.warn(`Missing or empty file: ${book}.json`);
-                return [];   // Don't crash
+                console.warn(`Missing file: ${book}.json`);
+                return [];
             }
             return await response.json();
         });
@@ -312,8 +303,9 @@ async function loadData() {
             c => c.instruction && String(c.instruction).trim() !== ""
         );
 
-        buildDropdowns();
-        buildBookButtons();     // This should now run
+        // NEW: Build everything
+        buildBookButtons();
+        attachFilterButtons();     // ← Important
         attachEvents();
 
         filteredCommands = bibleCommands;
@@ -321,7 +313,7 @@ async function loadData() {
 
     } catch (err) {
         console.error("Load error:", err);
-        alert("Error loading data. Check console (F12) for details.");
+        alert("Error loading data. Check console.");
     }
 }
 
@@ -343,32 +335,23 @@ function updateProgress() {
 
 function attachEvents() {
 
-    // Compile Results Button
+    // Compile Results
     document.getElementById("compileBtn").addEventListener("click", () => {
         currentPage = 1;
         applyFilters();
-
-        // Reset to normal view
         document.getElementById("sortedTableContainer").style.display = "none";
         document.getElementById("results").style.display = "block";
         document.getElementById("pagination").style.display = "block";
     });
 
-    // Sort Results Button
-    document.getElementById("sortBtn").addEventListener("click", () => {
-        renderSortedInstructions();
-    });
+    // Sort Results
+    document.getElementById("sortBtn").addEventListener("click", renderSortedInstructions);
 
-    // Page Size Filter
+    // Page Size
     document.getElementById("pageSizeFilter").addEventListener("change", (e) => {
         pageSize = e.target.value === "all" ? "all" : parseInt(e.target.value);
         currentPage = 1;
         render();
-    });
-
-    // Filters (no auto-render)
-    document.querySelectorAll("select").forEach(select => {
-        select.addEventListener("change", () => { });
     });
 
     // Sidebar Toggle
@@ -383,34 +366,21 @@ function attachEvents() {
         checkbox.addEventListener('change', (e) => {
             const field = e.target.dataset.field;
             displayConfig[field] = e.target.checked;
-
-            if (document.getElementById("results").style.display !== "none") {
-                if (filteredCommands.length > 0) renderResults();
-            }
+            if (filteredCommands.length > 0) renderResults();
         });
     });
 
-    // Toggle button for references in sorted table
+    // Click outside to close filter panel
     document.addEventListener("click", (e) => {
-        if (e.target.classList.contains("toggle-ref-btn")) {
-            const index = parseInt(e.target.dataset.index);
-            const refList = document.querySelector(`.ref-list[data-index="${index}"]`);
-
-            if (refList) {
-                if (refList.style.display === "none" || refList.style.display === "") {
-                    refList.style.display = "block";
-                    e.target.textContent = "Hide references";
-                } else {
-                    refList.style.display = "none";
-                    e.target.textContent = `Show ${frequencyData[index].references.length} references`;
-                }
-            }
+        const panel = document.getElementById("filterPanel");
+        if (panel && !e.target.closest("#filterPanel") && !e.target.closest(".filter-btn")) {
+            panel.style.display = "none";
         }
     });
 
     // Big Browse Buttons
     document.getElementById("browseAllBtn").addEventListener("click", () => {
-        openFilteredView("book", "");           // empty = All Books
+        openFilteredView("book", "");
     });
 
     document.getElementById("browseOTBtn").addEventListener("click", () => {
@@ -420,8 +390,6 @@ function attachEvents() {
     document.getElementById("browseNTBtn").addEventListener("click", () => {
         openFilteredView("testament", "New Testament");
     });
-
-
 }
 
 /* ====================== CORE FUNCTIONS ====================== */
@@ -450,17 +418,13 @@ function renderSummary() {
 
 function getActiveFilters() {
     const filters = [];
-    const book = document.getElementById("bookFilter").value;
-    const testament = document.getElementById("testamentFilter").value;
-    const giver = document.getElementById("giverFilter").value;
-    const receiver = document.getElementById("receiverFilter").value;
-    const category = document.getElementById("categoryFilter").value;
 
-    if (book) filters.push("Book: " + book);
-    if (testament) filters.push("Testament: " + testament);
-    if (giver) filters.push("Giver: " + giver);
-    if (receiver) filters.push("Receiver: " + receiver);
-    if (category) filters.push("Category: " + category);
+    if (activeFilters.book) filters.push("Book: " + activeFilters.book);
+    if (activeFilters.testament) filters.push("Testament: " + activeFilters.testament);
+    if (activeFilters.giver) filters.push("Giver: " + activeFilters.giver);
+    if (activeFilters.receiver) filters.push("Receiver: " + activeFilters.receiver);
+    if (activeFilters.category) filters.push("Category: " + activeFilters.category);
+    if (activeFilters.covenant) filters.push("Covenant: " + activeFilters.covenant);
 
     return filters;
 }
@@ -550,110 +514,152 @@ function renderPagination() {
 
 /* ---------------- FILTER LOGIC ---------------- */
 function matchesFilters(command) {
-    // Exclude entries with no instruction
-    if (!command.instruction || String(command.instruction).trim() === "") {
-        return false;
+    if (!command.instruction || String(command.instruction).trim() === "") return false;
+
+    if (activeFilters.book && command.book !== activeFilters.book) return false;
+    if (activeFilters.testament && command.testament !== activeFilters.testament) return false;
+    if (activeFilters.giver && command.command_giver !== activeFilters.giver) return false;
+    if (activeFilters.receiver && command.command_receiver !== activeFilters.receiver) return false;
+    if (activeFilters.covenant && command.covenant !== activeFilters.covenant) return false;
+    if (activeFilters.category && !command.category.includes(activeFilters.category)) return false;
+
+    if (activeFilters.applicable) {
+        const isApplicable = command.applicable_today ? "Applicable Today" : "Not Applicable Today";
+        if (isApplicable !== activeFilters.applicable) return false;
     }
 
-    const book = document.getElementById("bookFilter").value;
-    const testament = document.getElementById("testamentFilter").value;
-    const giver = document.getElementById("giverFilter").value;
-    const receiver = document.getElementById("receiverFilter").value;
-    const category = document.getElementById("categoryFilter").value;
-    const covenant = document.getElementById("covenantFilter").value;
-    const applicable = document.getElementById("applicableFilter").value;
-    const instructionType = document.getElementById("instructionFilter").value;
-    const commandType = document.getElementById("commandTypeFilter").value;
-
-    // Book / Testament Special Handling
-    if (book === "__OT__") {
-        if (command.testament !== "Old Testament") return false;
-    } 
-    else if (book === "__NT__") {
-        if (command.testament !== "New Testament") return false;
-    } 
-    else if (book && command.book !== book) {
-        return false;
+    // Instruction Type
+    if (activeFilters.instructionType) {
+        if (activeFilters.instructionType === "Thing To Do" && !command.things_to_do) return false;
+        if (activeFilters.instructionType === "Thing Not To Do" && !command.things_not_to_do) return false;
     }
 
-    if (testament && command.testament !== testament) return false;
-    if (giver && command.command_giver !== giver) return false;
-    if (receiver && command.command_receiver !== receiver) return false;
-    if (covenant && command.covenant !== covenant) return false;
-    if (category && !command.category.includes(category)) return false;
+    // Command Style
+    if (activeFilters.commandStyle && command.command_type !== activeFilters.commandStyle) return false;
 
-    if (applicable !== "") {
-        if (String(command.applicable_today) !== applicable) return false;
+    // Example Type (if you have the field)
+    if (activeFilters.exampleType) {
+        // Add your logic here based on your data structure
     }
-    if (instructionType === "do" && !command.things_to_do) return false;
-    if (instructionType === "dont" && !command.things_not_to_do) return false;
-    if (commandType && command.command_type !== commandType) return false;
 
     return true;
 }
 
-function buildDropdowns() {
-    // Books
-    const books = [...new Set(bibleCommands.map(c => c.book))].sort();
-    const bookSelect = document.getElementById("bookFilter");
-    // Special options
-    const allOt = document.createElement("option");
-    allOt.value = "__OT__";
-    allOt.textContent = "— All Old Testament —";
-    bookSelect.appendChild(allOt);
+// Active filters state
+let activeFilters = {
+    book: "",
+    testament: "",
+    giver: "",
+    receiver: "",
+    covenant: "",
+    applicable: "",
+    category: "",
+    instructionType: "",
+    exampleType: "",
+    commandStyle: ""
+};
 
-    const allNt = document.createElement("option");
-    allNt.value = "__NT__";
-    allNt.textContent = "— All New Testament —";
-    bookSelect.appendChild(allNt);
+// Reusable filter panel
+let currentFilterKey = null;
 
-    books.forEach(book => {
-        const opt = document.createElement("option");
-        opt.value = book;
-        opt.textContent = book;
-        bookSelect.appendChild(opt);
+function createFilterPanel() {
+    let panel = document.getElementById("filterPanel");
+    if (!panel) {
+        panel = document.createElement("div");
+        panel.id = "filterPanel";
+        panel.innerHTML = `
+            <div class="panel-header" id="panelTitle"></div>
+            <input type="text" id="filterSearch" placeholder="Search..." autocomplete="off">
+            <div class="options" id="filterOptions"></div>
+        `;
+        document.body.appendChild(panel);
+    }
+    return panel;
+}
+
+function showFilterPanel(filterKey, label, options) {
+    currentFilterKey = filterKey;
+    const panel = createFilterPanel();
+    const titleEl = document.getElementById("panelTitle");
+    const searchInput = document.getElementById("filterSearch");
+    const optionsContainer = document.getElementById("filterOptions");
+
+    titleEl.textContent = label;
+    searchInput.value = "";
+    optionsContainer.innerHTML = "";
+
+    // "All" option
+    const allOption = document.createElement("div");
+    allOption.className = `filter-option all ${!activeFilters[filterKey] ? 'active' : ''}`;
+    allOption.textContent = "All";
+    allOption.onclick = () => selectFilterOption("");
+    optionsContainer.appendChild(allOption);
+
+    options.forEach(opt => {
+        const div = document.createElement("div");
+        div.className = `filter-option ${activeFilters[filterKey] === opt ? 'active' : ''}`;
+        div.textContent = opt;
+        div.onclick = () => selectFilterOption(opt);
+        optionsContainer.appendChild(div);
     });
 
+    // Position panel to the right of the button
+    const btn = document.getElementById(`btn-${filterKey}`);
+    const rect = btn.getBoundingClientRect();
+    panel.style.top = `${rect.top}px`;
+    panel.style.left = `${rect.right + 8}px`;
+    panel.style.display = "flex";
 
+    // Auto-filter on type
+    searchInput.focus();
+    searchInput.oninput = () => {
+        const term = searchInput.value.toLowerCase().trim();
+        Array.from(optionsContainer.children).forEach(el => {
+            if (el.textContent === "All") return;
+            el.style.display = el.textContent.toLowerCase().includes(term) ? "" : "none";
+        });
+    };
+}
 
-    // Command Givers
-    const givers = [...new Set(bibleCommands.map(c => c.command_giver))].sort();
-    const giverSelect = document.getElementById("giverFilter");
-    givers.forEach(giver => {
-        const opt = document.createElement("option");
-        opt.value = giver;
-        opt.textContent = giver;
-        giverSelect.appendChild(opt);
-    });
+function selectFilterOption(value) {
+    if (currentFilterKey) {
+        activeFilters[currentFilterKey] = value;
+        updateFilterButton(currentFilterKey);
+        applyFilters();
+    }
+    document.getElementById("filterPanel").style.display = "none";
+}
 
-    // Command Receivers
-    const receivers = [...new Set(bibleCommands.map(c => c.command_receiver))].sort();
-    const receiverSelect = document.getElementById("receiverFilter");
-    receivers.forEach(receiver => {
-        const opt = document.createElement("option");
-        opt.value = receiver;
-        opt.textContent = receiver;
-        receiverSelect.appendChild(opt);
-    });
+function updateFilterButton(key) {
+    const btn = document.getElementById(`btn-${key}`);
+    if (!btn) return;
+    const span = btn.querySelector(".current-value");
+    const value = activeFilters[key];
+    span.textContent = value ? value : "All";
+}
 
-    // Categories
-    const categories = [...new Set(bibleCommands.flatMap(c => c.category || []))].sort();
-    const catSelect = document.getElementById("categoryFilter");
-    categories.forEach(cat => {
-        const opt = document.createElement("option");
-        opt.value = cat;
-        opt.textContent = cat;
-        catSelect.appendChild(opt);
-    });
+// Attach click listeners
+function attachFilterButtons() {
+    const filters = [
+        {key: "book", label: "Book", getOptions: () => [...new Set(bibleCommands.map(c => c.book))].sort()},
+        {key: "testament", label: "Testament", getOptions: () => ["Old Testament", "New Testament"]},
+        {key: "giver", label: "Command Giver", getOptions: () => [...new Set(bibleCommands.map(c => c.command_giver))].sort()},
+        {key: "receiver", label: "Command Receiver", getOptions: () => [...new Set(bibleCommands.map(c => c.command_receiver))].sort()},
+        {key: "covenant", label: "Covenant", getOptions: () => [...new Set(bibleCommands.map(c => c.covenant).filter(Boolean))].sort()},
+        {key: "applicable", label: "Applicability", getOptions: () => ["Applicable Today", "Not Applicable Today"]},
+        {key: "category", label: "Category", getOptions: () => [...new Set(bibleCommands.flatMap(c => c.category || []))].sort()},
+        {key: "instructionType", label: "Instruction Type", getOptions: () => ["Thing To Do", "Thing Not To Do"]},
+        {key: "exampleType", label: "Example Type", getOptions: () => ["Person To Emulate", "Person Not To Emulate"]},
+        {key: "commandStyle", label: "Command Style", getOptions: () => ["Direct Command", "Implied Command"]}
+    ];
 
-    // ←←← ADD THIS: Covenants
-    const covenants = [...new Set(bibleCommands.map(c => c.covenant).filter(Boolean))].sort();
-    const covenantSelect = document.getElementById("covenantFilter");
-    covenants.forEach(cov => {
-        const opt = document.createElement("option");
-        opt.value = cov;
-        opt.textContent = cov;
-        covenantSelect.appendChild(opt);
+    filters.forEach(f => {
+        const btn = document.getElementById(`btn-${f.key}`);
+        if (btn) {
+            btn.addEventListener("click", () => {
+                showFilterPanel(f.key, f.label, f.getOptions());
+            });
+        }
     });
 }
 
