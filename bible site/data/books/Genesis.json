@@ -27451,5 +27451,5214 @@
     "person_to_emulate": "Hagar, wife of Abram",
     "person_not_to_emulate": null,
     "notes": ""
+  },
+  {
+    "id": "GEN-016-015",
+    "book": "Genesis",
+    "chapter": 16,
+    "verse": 15,
+    "reference": "Genesis 16:15",
+    "verse_text": "And Hagar bare Abram a son: and Abram called his son's name, which Hagar bare, Ishmael.",
+    "instruction": "Be named Ishmael.",
+    "command_type": "direct_command",
+    "command_giver": "Abram",
+    "command_receiver": "Ishmael",
+    "testament": "Old Testament",
+    "covenant": null,
+    "applicable_today": true,
+    "applicable_to": [
+      "Ishmael"
+    ],
+    "category": [
+      "Naming"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-016-015a",
+    "book": "Genesis",
+    "chapter": 16,
+    "verse": 15,
+    "reference": "Genesis 16:15",
+    "verse_text": "And Hagar bare Abram a son: and Abram called his son's name, which Hagar bare, Ishmael.",
+    "instruction": "Do what God says.",
+    "command_type": "implied_command",
+    "command_giver": "Author of Genesis",
+    "command_receiver": "humanity",
+    "testament": "Old Testament",
+    "covenant": null,
+    "applicable_today": true,
+    "applicable_to": [
+      "humanity"
+    ],
+    "category": [],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": "Hagar, wife of Abram",
+    "person_not_to_emulate": null,
+    "notes": "This entry is for Hagar returning home to Abram."
+  },
+  {
+    "id": "GEN-016-015b",
+    "book": "Genesis",
+    "chapter": 16,
+    "verse": 15,
+    "reference": "Genesis 16:15",
+    "verse_text": "And Hagar bare Abram a son: and Abram called his son's name, which Hagar bare, Ishmael.",
+    "instruction": "Do what God says.",
+    "command_type": "implied_command",
+    "command_giver": "Author of Genesis",
+    "command_receiver": "humanity",
+    "testament": "Old Testament",
+    "covenant": null,
+    "applicable_today": true,
+    "applicable_to": [
+      "humanity"
+    ],
+    "category": [],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": "Hagar, wife of Abram",
+    "person_not_to_emulate": null,
+    "notes": "This entry is for Hagar naming Ishmael."
+  },
+  {
+    "id": "GEN-016-015c",
+    "book": "Genesis",
+    "chapter": 16,
+    "verse": 15,
+    "reference": "Genesis 16:15",
+    "verse_text": "And Hagar bare Abram a son: and Abram called his son's name, which Hagar bare, Ishmael.",
+    "instruction": "Do what God says.",
+    "command_type": "implied_command",
+    "command_giver": "Author of Genesis",
+    "command_receiver": "humanity",
+    "testament": "Old Testament",
+    "covenant": null,
+    "applicable_today": true,
+    "applicable_to": [
+      "humanity"
+    ],
+    "category": [],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": "Abram",
+    "person_not_to_emulate": null,
+    "notes": "This entry is for Abram naming Ishmael."
+  },
+  {
+    "id": "GEN-016-016",
+    "book": "Genesis",
+    "chapter": 16,
+    "verse": 16,
+    "reference": "Genesis 16:16",
+    "verse_text": "And Abram was fourscore and six years old, when Hagar bare Ishmael to Abram.",
+    "instruction": null,
+    "command_type": null,
+    "command_giver": "",
+    "command_receiver": "",
+    "testament": "Old Testament",
+    "covenant": null,
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [],
+    "things_to_do": false,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-001",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 1,
+    "reference": "Genesis 17:1",
+    "verse_text": "And when Abram was ninety years old and nine, the Lord appeared to Abram, and said unto him, I am the Almighty God; walk before me, and be thou perfect.",
+    "instruction": "Walk before me.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "Abram",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-001a",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 1,
+    "reference": "Genesis 17:1",
+    "verse_text": "And when Abram was ninety years old and nine, the Lord appeared to Abram, and said unto him, I am the Almighty God; walk before me, and be thou perfect.",
+    "instruction": "Be perfect.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "Abram",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-002",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 2,
+    "reference": "Genesis 17:2",
+    "verse_text": "And I will make my covenant between me and thee, and will multiply thee exceedingly.",
+    "instruction": "Prepare to enter Abrahamic covenant.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "Abram",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "Again?"
+  },
+  {
+    "id": "GEN-017-002a",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 2,
+    "reference": "Genesis 17:2",
+    "verse_text": "And I will make my covenant between me and thee, and will multiply thee exceedingly.",
+    "instruction": "Be multiplied exceedingly.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "Abram",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant",
+      "Fruitfulness"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "Again?"
+  },
+  {
+    "id": "GEN-017-002b",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 2,
+    "reference": "Genesis 17:2",
+    "verse_text": "And I will make my covenant between me and thee, and will multiply thee exceedingly.",
+    "instruction": "Multiply.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "Abram",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant",
+      "Fruitfulness"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "Again?"
+  },
+  {
+    "id": "GEN-017-002c",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 2,
+    "reference": "Genesis 17:2",
+    "verse_text": "And I will make my covenant between me and thee, and will multiply thee exceedingly.",
+    "instruction": "Make Abrahamic covenant.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-003",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 3,
+    "reference": "Genesis 17:3",
+    "verse_text": "And Abram fell on his face: and God talked with him, saying,",
+    "instruction": null,
+    "command_type": null,
+    "command_giver": "",
+    "command_receiver": "",
+    "testament": "Old Testament",
+    "covenant": null,
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [],
+    "things_to_do": false,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-004",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 4,
+    "reference": "Genesis 17:4",
+    "verse_text": "As for me, behold, my covenant is with thee, and thou shalt be a father of many nations.",
+    "instruction": "Prepare to enter Abramhamic covenant.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "Abram",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "Again?"
+  },
+  {
+    "id": "GEN-017-004a",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 4,
+    "reference": "Genesis 17:4",
+    "verse_text": "As for me, behold, my covenant is with thee, and thou shalt be a father of many nations.",
+    "instruction": "Be a father of many nations.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "Abram",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "Abraham"
+    ],
+    "category": [
+      "Covenant",
+      "Fruitfulness"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "Again?"
+  },
+  {
+    "id": "GEN-017-005",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 5,
+    "reference": "Genesis 17:5",
+    "verse_text": "Neither shall thy name any more be called Abram, but thy name shall be Abraham; for a father of many nations have I made thee.",
+    "instruction": "Be named Abraham",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "Abraham",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "Abraham"
+    ],
+    "category": [
+      "Naming"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-005a",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 5,
+    "reference": "Genesis 17:5",
+    "verse_text": "Neither shall thy name any more be called Abram, but thy name shall be Abraham; for a father of many nations have I made thee.",
+    "instruction": "Be a father of many nations.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "Abraham",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "Abraham"
+    ],
+    "category": [
+      "Naming"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-005b",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 5,
+    "reference": "Genesis 17:5",
+    "verse_text": "Neither shall thy name any more be called Abram, but thy name shall be Abraham; for a father of many nations have I made thee.",
+    "instruction": "Do not be named Abram.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "Abraham",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "Abraham"
+    ],
+    "category": [
+      "Naming"
+    ],
+    "things_to_do": false,
+    "things_not_to_do": true,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-006",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 6,
+    "reference": "Genesis 17:6",
+    "verse_text": "And I will make thee exceeding fruitful, and I will make nations of thee, and kings shall come out of thee.",
+    "instruction": "Be made exceedingly fruitful.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "Abraham",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant",
+      "Fruitfulness"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-006a",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 6,
+    "reference": "Genesis 17:6",
+    "verse_text": "And I will make thee exceeding fruitful, and I will make nations of thee, and kings shall come out of thee.",
+    "instruction": "Be fruitful.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "Abraham",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant",
+      "Fruitfulness"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-006b",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 6,
+    "reference": "Genesis 17:6",
+    "verse_text": "And I will make thee exceeding fruitful, and I will make nations of thee, and kings shall come out of thee.",
+    "instruction": "Make Abraham exceedingly fruitful.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant",
+      "Fruitfulness"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-006c",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 6,
+    "reference": "Genesis 17:6",
+    "verse_text": "And I will make thee exceeding fruitful, and I will make nations of thee, and kings shall come out of thee.",
+    "instruction": "Make nations of Abraham.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "people of Israel"
+    ],
+    "category": [
+      "Covenant",
+      "Fruitfulness"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "This entry is for people of Israel."
+  },
+  {
+    "id": "GEN-017-006d",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 6,
+    "reference": "Genesis 17:6",
+    "verse_text": "And I will make thee exceeding fruitful, and I will make nations of thee, and kings shall come out of thee.",
+    "instruction": "Make nations of Abraham.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "people of various Arab nations"
+    ],
+    "category": [
+      "Covenant",
+      "Fruitfulness"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "This entry is for people of various Arab nations decended from Ishmaelite tribes\n\n. Modern day examples include Saudi Arabia, Jordan, Iraq, Syria, Lebanon, and others."
+  },
+  {
+    "id": "GEN-017-006e",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 6,
+    "reference": "Genesis 17:6",
+    "verse_text": "And I will make thee exceeding fruitful, and I will make nations of thee, and kings shall come out of thee.",
+    "instruction": "Make nations of Abraham.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Ashurites"
+    ],
+    "category": [
+      "Covenant",
+      "Fruitfulness"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "See Genesis 25:3"
+  },
+  {
+    "id": "GEN-017-006f",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 6,
+    "reference": "Genesis 17:6",
+    "verse_text": "And I will make thee exceeding fruitful, and I will make nations of thee, and kings shall come out of thee.",
+    "instruction": "Make nations of Abraham.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Letushites"
+    ],
+    "category": [
+      "Covenant",
+      "Fruitfulness"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "See Genesis 25:3"
+  },
+  {
+    "id": "GEN-017-006g",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 6,
+    "reference": "Genesis 17:6",
+    "verse_text": "And I will make thee exceeding fruitful, and I will make nations of thee, and kings shall come out of thee.",
+    "instruction": "Make nations of Abraham.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Leummites"
+    ],
+    "category": [
+      "Covenant",
+      "Fruitfulness"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "See Genesis 25:3"
+  },
+  {
+    "id": "GEN-017-006h",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 6,
+    "reference": "Genesis 17:6",
+    "verse_text": "And I will make thee exceeding fruitful, and I will make nations of thee, and kings shall come out of thee.",
+    "instruction": "Make nations of Abraham.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Edomites"
+    ],
+    "category": [
+      "Covenant",
+      "Fruitfulness"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-006i",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 6,
+    "reference": "Genesis 17:6",
+    "verse_text": "And I will make thee exceeding fruitful, and I will make nations of thee, and kings shall come out of thee.",
+    "instruction": "Make nations of Abraham.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Amalekites"
+    ],
+    "category": [
+      "Covenant",
+      "Fruitfulness"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-006j",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 6,
+    "reference": "Genesis 17:6",
+    "verse_text": "And I will make thee exceeding fruitful, and I will make nations of thee, and kings shall come out of thee.",
+    "instruction": "Make nations of Abraham.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Ishmaelites"
+    ],
+    "category": [
+      "Covenant",
+      "Fruitfulness"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-006k",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 6,
+    "reference": "Genesis 17:6",
+    "verse_text": "And I will make thee exceeding fruitful, and I will make nations of thee, and kings shall come out of thee.",
+    "instruction": "Make nations of Abraham.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Midianites"
+    ],
+    "category": [
+      "Covenant",
+      "Fruitfulness"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-006l",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 6,
+    "reference": "Genesis 17:6",
+    "verse_text": "And I will make thee exceeding fruitful, and I will make nations of thee, and kings shall come out of thee.",
+    "instruction": "Make nations of Abraham.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Shebans"
+    ],
+    "category": [
+      "Covenant",
+      "Fruitfulness"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-006m",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 6,
+    "reference": "Genesis 17:6",
+    "verse_text": "And I will make thee exceeding fruitful, and I will make nations of thee, and kings shall come out of thee.",
+    "instruction": "Make nations of Abraham.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Dedanites"
+    ],
+    "category": [
+      "Covenant",
+      "Fruitfulness"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-006n",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 6,
+    "reference": "Genesis 17:6",
+    "verse_text": "And I will make thee exceeding fruitful, and I will make nations of thee, and kings shall come out of thee.",
+    "instruction": "Make nations of Abraham.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Zimranites"
+    ],
+    "category": [
+      "Covenant",
+      "Fruitfulness"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-006o",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 6,
+    "reference": "Genesis 17:6",
+    "verse_text": "And I will make thee exceeding fruitful, and I will make nations of thee, and kings shall come out of thee.",
+    "instruction": "Make nations of Abraham.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Medanites"
+    ],
+    "category": [
+      "Covenant",
+      "Fruitfulness"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-006p",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 6,
+    "reference": "Genesis 17:6",
+    "verse_text": "And I will make thee exceeding fruitful, and I will make nations of thee, and kings shall come out of thee.",
+    "instruction": "Make kings come out of Abraham.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-006q",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 6,
+    "reference": "Genesis 17:6",
+    "verse_text": "And I will make thee exceeding fruitful, and I will make nations of thee, and kings shall come out of thee.",
+    "instruction": "Make the wives of Abraham fruitful.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant",
+      "Fruitfulness"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-006r",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 6,
+    "reference": "Genesis 17:6",
+    "verse_text": "And I will make thee exceeding fruitful, and I will make nations of thee, and kings shall come out of thee.",
+    "instruction": "Be fruitful.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "Sarai, wife of Abraham",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant",
+      "Fruitfulness"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-006s",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 6,
+    "reference": "Genesis 17:6",
+    "verse_text": "And I will make thee exceeding fruitful, and I will make nations of thee, and kings shall come out of thee.",
+    "instruction": "Be made fruitful.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "Sarai, wife of Abraham",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant",
+      "Fruitfulness"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-006t",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 6,
+    "reference": "Genesis 17:6",
+    "verse_text": "And I will make thee exceeding fruitful, and I will make nations of thee, and kings shall come out of thee.",
+    "instruction": "Be fruitful.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "Hagar, wife of Abraham",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant",
+      "Fruitfulness"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-006u",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 6,
+    "reference": "Genesis 17:6",
+    "verse_text": "And I will make thee exceeding fruitful, and I will make nations of thee, and kings shall come out of thee.",
+    "instruction": "Be made fruitful.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "Hagar, wife of Abraham",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant",
+      "Fruitfulness"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-006v",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 6,
+    "reference": "Genesis 17:6",
+    "verse_text": "And I will make thee exceeding fruitful, and I will make nations of thee, and kings shall come out of thee.",
+    "instruction": "Be fruitful.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "Keturah, wife of Abraham",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant",
+      "Fruitfulness"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-006w",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 6,
+    "reference": "Genesis 17:6",
+    "verse_text": "And I will make thee exceeding fruitful, and I will make nations of thee, and kings shall come out of thee.",
+    "instruction": "Be made fruitful.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "Keturah, wife of Abraham",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant",
+      "Fruitfulness"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-007",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 7,
+    "reference": "Genesis 17:7",
+    "verse_text": "And I will establish my covenant between me and thee and thy seed after thee in their generations for an everlasting covenant, to be a God unto thee, and to thy seed after thee.",
+    "instruction": "Prepare to enter Abramhamic covenant.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "Abraham",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-007a",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 7,
+    "reference": "Genesis 17:7",
+    "verse_text": "And I will establish my covenant between me and thee and thy seed after thee in their generations for an everlasting covenant, to be a God unto thee, and to thy seed after thee.",
+    "instruction": "Accept God as your God.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "Abraham",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "Abraham"
+    ],
+    "category": [
+      "Covenant",
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-007b",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 7,
+    "reference": "Genesis 17:7",
+    "verse_text": "And I will establish my covenant between me and thee and thy seed after thee in their generations for an everlasting covenant, to be a God unto thee, and to thy seed after thee.",
+    "instruction": "Accept God as your God.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "humanity",
+    "testament": "Old Testament",
+    "covenant": null,
+    "applicable_today": true,
+    "applicable_to": [
+      "humanity"
+    ],
+    "category": [
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "Speculation on my part that it applies to everyone who isn't in the Abrahamic covenant too, but... I'm super duper sure..."
+  },
+  {
+    "id": "GEN-017-007c",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 7,
+    "reference": "Genesis 17:7",
+    "verse_text": "And I will establish my covenant between me and thee and thy seed after thee in their generations for an everlasting covenant, to be a God unto thee, and to thy seed after thee.",
+    "instruction": "Accept God as your God.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "people of Israel",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "people of Israel"
+    ],
+    "category": [
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "Abraham's seed."
+  },
+  {
+    "id": "GEN-017-007d",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 7,
+    "reference": "Genesis 17:7",
+    "verse_text": "And I will establish my covenant between me and thee and thy seed after thee in their generations for an everlasting covenant, to be a God unto thee, and to thy seed after thee.",
+    "instruction": "Accept God as your God.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "people of various Arab nations",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "people of various Arab nations"
+    ],
+    "category": [
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "Abraham's seed."
+  },
+  {
+    "id": "GEN-017-007e",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 7,
+    "reference": "Genesis 17:7",
+    "verse_text": "And I will establish my covenant between me and thee and thy seed after thee in their generations for an everlasting covenant, to be a God unto thee, and to thy seed after thee.",
+    "instruction": "Accept God as your God.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "the Ashurites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Ashurites"
+    ],
+    "category": [
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "Abraham's seed."
+  },
+  {
+    "id": "GEN-017-007f",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 7,
+    "reference": "Genesis 17:7",
+    "verse_text": "And I will establish my covenant between me and thee and thy seed after thee in their generations for an everlasting covenant, to be a God unto thee, and to thy seed after thee.",
+    "instruction": "Accept God as your God.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "the Letushites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Letushites"
+    ],
+    "category": [
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "Abraham's seed."
+  },
+  {
+    "id": "GEN-017-007g",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 7,
+    "reference": "Genesis 17:7",
+    "verse_text": "And I will establish my covenant between me and thee and thy seed after thee in their generations for an everlasting covenant, to be a God unto thee, and to thy seed after thee.",
+    "instruction": "Accept God as your God.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "the Leummites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Leummites"
+    ],
+    "category": [
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "Abraham's seed."
+  },
+  {
+    "id": "GEN-017-007h",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 7,
+    "reference": "Genesis 17:7",
+    "verse_text": "And I will establish my covenant between me and thee and thy seed after thee in their generations for an everlasting covenant, to be a God unto thee, and to thy seed after thee.",
+    "instruction": "Accept God as your God.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "the Edomites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Edomites"
+    ],
+    "category": [
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "Abraham's seed."
+  },
+  {
+    "id": "GEN-017-007i",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 7,
+    "reference": "Genesis 17:7",
+    "verse_text": "And I will establish my covenant between me and thee and thy seed after thee in their generations for an everlasting covenant, to be a God unto thee, and to thy seed after thee.",
+    "instruction": "Accept God as your God.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "the Amalekites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Amalekites"
+    ],
+    "category": [
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "Abraham's seed."
+  },
+  {
+    "id": "GEN-017-007j",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 7,
+    "reference": "Genesis 17:7",
+    "verse_text": "And I will establish my covenant between me and thee and thy seed after thee in their generations for an everlasting covenant, to be a God unto thee, and to thy seed after thee.",
+    "instruction": "Accept God as your God.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "the Ishmaelites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Ishmaelites"
+    ],
+    "category": [
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "Abraham's seed."
+  },
+  {
+    "id": "GEN-017-007k",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 7,
+    "reference": "Genesis 17:7",
+    "verse_text": "And I will establish my covenant between me and thee and thy seed after thee in their generations for an everlasting covenant, to be a God unto thee, and to thy seed after thee.",
+    "instruction": "Accept God as your God.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "the Midianites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Midianites"
+    ],
+    "category": [
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "Abraham's seed."
+  },
+  {
+    "id": "GEN-017-007l",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 7,
+    "reference": "Genesis 17:7",
+    "verse_text": "And I will establish my covenant between me and thee and thy seed after thee in their generations for an everlasting covenant, to be a God unto thee, and to thy seed after thee.",
+    "instruction": "Accept God as your God.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "the Shebans",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Shebans"
+    ],
+    "category": [
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "Abraham's seed."
+  },
+  {
+    "id": "GEN-017-007m",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 7,
+    "reference": "Genesis 17:7",
+    "verse_text": "And I will establish my covenant between me and thee and thy seed after thee in their generations for an everlasting covenant, to be a God unto thee, and to thy seed after thee.",
+    "instruction": "Accept God as your God.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "the Dedanites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Dedanites"
+    ],
+    "category": [
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "Abraham's seed."
+  },
+  {
+    "id": "GEN-017-007n",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 7,
+    "reference": "Genesis 17:7",
+    "verse_text": "And I will establish my covenant between me and thee and thy seed after thee in their generations for an everlasting covenant, to be a God unto thee, and to thy seed after thee.",
+    "instruction": "Accept God as your God.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "the Zimranites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Zimranites"
+    ],
+    "category": [
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "Abraham's seed."
+  },
+  {
+    "id": "GEN-017-007o",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 7,
+    "reference": "Genesis 17:7",
+    "verse_text": "And I will establish my covenant between me and thee and thy seed after thee in their generations for an everlasting covenant, to be a God unto thee, and to thy seed after thee.",
+    "instruction": "Accept God as your God.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "the Medanites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Medanites"
+    ],
+    "category": [
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "Abraham's seed."
+  },
+  {
+    "id": "GEN-017-007p",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 7,
+    "reference": "Genesis 17:7",
+    "verse_text": "And I will establish my covenant between me and thee and thy seed after thee in their generations for an everlasting covenant, to be a God unto thee, and to thy seed after thee.",
+    "instruction": "Be born into Abrahamic covenant.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "people of Israel",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "people of Israel"
+    ],
+    "category": [
+      "Covenant",
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "Abraham's seed."
+  },
+  {
+    "id": "GEN-017-007q",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 7,
+    "reference": "Genesis 17:7",
+    "verse_text": "And I will establish my covenant between me and thee and thy seed after thee in their generations for an everlasting covenant, to be a God unto thee, and to thy seed after thee.",
+    "instruction": "Be born into Abrahamic covenant.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "people of various Arab nations",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "people of various Arab nations"
+    ],
+    "category": [
+      "Covenant",
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "Abraham's seed."
+  },
+  {
+    "id": "GEN-017-007r",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 7,
+    "reference": "Genesis 17:7",
+    "verse_text": "And I will establish my covenant between me and thee and thy seed after thee in their generations for an everlasting covenant, to be a God unto thee, and to thy seed after thee.",
+    "instruction": "Be born into Abrahamic covenant.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "the Ashurites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Ashurites"
+    ],
+    "category": [
+      "Covenant",
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "Abraham's seed."
+  },
+  {
+    "id": "GEN-017-007s",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 7,
+    "reference": "Genesis 17:7",
+    "verse_text": "And I will establish my covenant between me and thee and thy seed after thee in their generations for an everlasting covenant, to be a God unto thee, and to thy seed after thee.",
+    "instruction": "Be born into Abrahamic covenant.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "the Letushites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Letushites"
+    ],
+    "category": [
+      "Covenant",
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "Abraham's seed."
+  },
+  {
+    "id": "GEN-017-007t",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 7,
+    "reference": "Genesis 17:7",
+    "verse_text": "And I will establish my covenant between me and thee and thy seed after thee in their generations for an everlasting covenant, to be a God unto thee, and to thy seed after thee.",
+    "instruction": "Be born into Abrahamic covenant.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "the Leummites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Leummites"
+    ],
+    "category": [
+      "Covenant",
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "Abraham's seed."
+  },
+  {
+    "id": "GEN-017-007u",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 7,
+    "reference": "Genesis 17:7",
+    "verse_text": "And I will establish my covenant between me and thee and thy seed after thee in their generations for an everlasting covenant, to be a God unto thee, and to thy seed after thee.",
+    "instruction": "Be born into Abrahamic covenant.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "the Edomites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Edomites"
+    ],
+    "category": [
+      "Covenant",
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "Abraham's seed."
+  },
+  {
+    "id": "GEN-017-007v",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 7,
+    "reference": "Genesis 17:7",
+    "verse_text": "And I will establish my covenant between me and thee and thy seed after thee in their generations for an everlasting covenant, to be a God unto thee, and to thy seed after thee.",
+    "instruction": "Be born into Abrahamic covenant.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "the Amalekites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Amalekites"
+    ],
+    "category": [
+      "Covenant",
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "Abraham's seed."
+  },
+  {
+    "id": "GEN-017-007w",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 7,
+    "reference": "Genesis 17:7",
+    "verse_text": "And I will establish my covenant between me and thee and thy seed after thee in their generations for an everlasting covenant, to be a God unto thee, and to thy seed after thee.",
+    "instruction": "Be born into Abrahamic covenant.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "the Ishmaelites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Ishmaelites"
+    ],
+    "category": [
+      "Covenant",
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "Abraham's seed."
+  },
+  {
+    "id": "GEN-017-007x",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 7,
+    "reference": "Genesis 17:7",
+    "verse_text": "And I will establish my covenant between me and thee and thy seed after thee in their generations for an everlasting covenant, to be a God unto thee, and to thy seed after thee.",
+    "instruction": "Be born into Abrahamic covenant.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "the Midianites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Midianites"
+    ],
+    "category": [
+      "Covenant",
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "Abraham's seed."
+  },
+  {
+    "id": "GEN-017-007y",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 7,
+    "reference": "Genesis 17:7",
+    "verse_text": "And I will establish my covenant between me and thee and thy seed after thee in their generations for an everlasting covenant, to be a God unto thee, and to thy seed after thee.",
+    "instruction": "Be born into Abrahamic covenant.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "the Shebans",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Shebans"
+    ],
+    "category": [
+      "Covenant",
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "Abraham's seed."
+  },
+  {
+    "id": "GEN-017-007z",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 7,
+    "reference": "Genesis 17:7",
+    "verse_text": "And I will establish my covenant between me and thee and thy seed after thee in their generations for an everlasting covenant, to be a God unto thee, and to thy seed after thee.",
+    "instruction": "Be born into Abrahamic covenant.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "the Dedanites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Dedanites"
+    ],
+    "category": [
+      "Covenant",
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "Abraham's seed."
+  },
+  {
+    "id": "GEN-017-007aa",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 7,
+    "reference": "Genesis 17:7",
+    "verse_text": "And I will establish my covenant between me and thee and thy seed after thee in their generations for an everlasting covenant, to be a God unto thee, and to thy seed after thee.",
+    "instruction": "Be born into Abrahamic covenant.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "the Zimranites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Zimranites"
+    ],
+    "category": [
+      "Covenant",
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "Abraham's seed."
+  },
+  {
+    "id": "GEN-017-007ab",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 7,
+    "reference": "Genesis 17:7",
+    "verse_text": "And I will establish my covenant between me and thee and thy seed after thee in their generations for an everlasting covenant, to be a God unto thee, and to thy seed after thee.",
+    "instruction": "Be born into Abrahamic covenant.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "the Medanites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Medanites"
+    ],
+    "category": [
+      "Covenant",
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "Abraham's seed."
+  },
+  {
+    "id": "GEN-017-008",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Be given the land wherein thou art a stranger.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "Abraham",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008a",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Be given the land wherein Abraham was a stranger.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "people of Israel",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "people of Israel"
+    ],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008b",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Be given the land wherein Abraham was a stranger.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "people of various Arab nations",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "people of various Arab nations"
+    ],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008c",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Be given the land wherein Abraham was a stranger.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Ashurites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Ashurites"
+    ],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008d",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Be given the land wherein Abraham was a stranger.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Letushites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Letushites"
+    ],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008e",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Be given the land wherein Abraham was a stranger.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Leummites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Leummites"
+    ],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008f",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Be given the land wherein Abraham was a stranger.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Edomites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Edomites"
+    ],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008g",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Be given the land wherein Abraham was a stranger.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Amalekites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Amalekites"
+    ],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008h",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Be given the land wherein Abraham was a stranger.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Ishmaelites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Ishmaelites"
+    ],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008i",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Be given the land wherein Abraham was a stranger.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Midianites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Midianites"
+    ],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008j",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Be given the land wherein Abraham was a stranger.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Shebans",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Shebans"
+    ],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008k",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Be given the land wherein Abraham was a stranger.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Dedanites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Dedanites"
+    ],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008l",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Be given the land wherein Abraham was a stranger.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Zimranites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Zimranites"
+    ],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008m",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Be given the land wherein Abraham was a stranger.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Medanites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Medanites"
+    ],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008n",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Be given the land of Canaan.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "Abraham",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008o",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Be given the land of Canaan.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "people of Israel",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "people of Israel"
+    ],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008p",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Be given the land of Canaan.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "people of various Arab nations",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "people of various Arab nations"
+    ],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008q",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Be given the land of Canaan.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Ashurites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Ashurites"
+    ],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008r",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Be given the land of Canaan.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Letushites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Letushites"
+    ],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008s",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Be given the land of Canaan.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Leummites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Leummites"
+    ],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008t",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Be given the land of Canaan.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Edomites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Edomites"
+    ],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008u",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Be given the land of Canaan.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Amalekites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Amalekites"
+    ],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008v",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Be given the land of Canaan.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Ishmaelites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Ishmaelites"
+    ],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008w",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Be given the land of Canaan.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Midianites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Midianites"
+    ],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008x",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Be given the land of Canaan.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Shebans",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Shebans"
+    ],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008y",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Be given the land of Canaan.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Dedanites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Dedanites"
+    ],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008z",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Be given the land of Canaan.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Zimranites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Zimranites"
+    ],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008aa",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Be given the land of Canaan.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Medanites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Medanites"
+    ],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008ab",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Possess the land of Canaan.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "Abraham",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008ac",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Possess the land of Canaan forever.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "people of Israel",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "people of Israel"
+    ],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008ad",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Possess the land of Canaan forever.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "people of various Arab nations",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "people of various Arab nations"
+    ],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008ae",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Possess the land of Canaan forever.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Ashurites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Ashurites"
+    ],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008af",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Possess the land of Canaan forever.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Letushites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Letushites"
+    ],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008ag",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Possess the land of Canaan forever.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Leummites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Leummites"
+    ],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008ah",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Possess the land of Canaan forever.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Edomites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Edomites"
+    ],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008ai",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Possess the land of Canaan forever.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Amalekites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Amalekites"
+    ],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008aj",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Possess the land of Canaan forever.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Ishmaelites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Ishmaelites"
+    ],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008ak",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Possess the land of Canaan forever.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Midianites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Midianites"
+    ],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008al",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Possess the land of Canaan forever.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Shebans",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Shebans"
+    ],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008am",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Possess the land of Canaan forever.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Dedanites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Dedanites"
+    ],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008an",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Possess the land of Canaan forever.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Zimranites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Zimranites"
+    ],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008ao",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Possess the land of Canaan forever.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Medanites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Medanites"
+    ],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008ap",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Accept God as your God.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "Abraham",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "Abraham"
+    ],
+    "category": [
+      "Covenant",
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008aq",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Accept God as your God.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "people of Israel",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "people of Israel"
+    ],
+    "category": [
+      "Covenant",
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008ar",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Accept God as your God.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "people of various Arab nations",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "people of various Arab nations"
+    ],
+    "category": [
+      "Covenant",
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008as",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Accept God as your God.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Ashurites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Ashurites"
+    ],
+    "category": [
+      "Covenant",
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008at",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Accept God as your God.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Letushites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Letushites"
+    ],
+    "category": [
+      "Covenant",
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008au",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Accept God as your God.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Leummites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Leummites"
+    ],
+    "category": [
+      "Covenant",
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008av",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Accept God as your God.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Edomites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Edomites"
+    ],
+    "category": [
+      "Covenant",
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008aw",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Accept God as your God.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Amalekites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Amalekites"
+    ],
+    "category": [
+      "Covenant",
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008ax",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Accept God as your God.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Ishmaelites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Ishmaelites"
+    ],
+    "category": [
+      "Covenant",
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008ay",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Accept God as your God.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Midianites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Midianites"
+    ],
+    "category": [
+      "Covenant",
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008az",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Accept God as your God.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Shebans",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Shebans"
+    ],
+    "category": [
+      "Covenant",
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008ba",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Accept God as your God.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Dedanites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Dedanites"
+    ],
+    "category": [
+      "Covenant",
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008bb",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Accept God as your God.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Zimranites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Zimranites"
+    ],
+    "category": [
+      "Covenant",
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008bc",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Accept God as your God.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Medanites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Medanites"
+    ],
+    "category": [
+      "Covenant",
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008bd",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Be the God of Abraham's seed.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "people of Israel"
+    ],
+    "category": [
+      "Covenant",
+      "Godhood"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008be",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Be the God of Abraham's seed.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "people of various Arab nations"
+    ],
+    "category": [
+      "Covenant",
+      "Godhood"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008bf",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Be the God of Abraham's seed.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Ashurites"
+    ],
+    "category": [
+      "Covenant",
+      "Godhood"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008bg",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Be the God of Abraham's seed.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Letushites"
+    ],
+    "category": [
+      "Covenant",
+      "Godhood"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008bh",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Be the God of Abraham's seed.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Leummites"
+    ],
+    "category": [
+      "Covenant",
+      "Godhood"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008bi",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Be the God of Abraham's seed.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Edomites"
+    ],
+    "category": [
+      "Covenant",
+      "Godhood"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008bj",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Be the God of Abraham's seed.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Amalekites"
+    ],
+    "category": [
+      "Covenant",
+      "Godhood"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008bk",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Be the God of Abraham's seed.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Ishmaelites"
+    ],
+    "category": [
+      "Covenant",
+      "Godhood"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008bl",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Be the God of Abraham's seed.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Midianites"
+    ],
+    "category": [
+      "Covenant",
+      "Godhood"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008bm",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Be the God of Abraham's seed.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Shebans"
+    ],
+    "category": [
+      "Covenant",
+      "Godhood"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008bn",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Be the God of Abraham's seed.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Dedanites"
+    ],
+    "category": [
+      "Covenant",
+      "Godhood"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008bo",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Be the God of Abraham's seed.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Zimranites"
+    ],
+    "category": [
+      "Covenant",
+      "Godhood"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008bp",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Be the God of Abraham's seed.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "the Medanites"
+    ],
+    "category": [
+      "Covenant",
+      "Godhood"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008bq",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Be the God of Abraham's seed.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "God"
+    ],
+    "category": [
+      "Covenant",
+      "Godhood"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-008br",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 8,
+    "reference": "Genesis 17:8",
+    "verse_text": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.",
+    "instruction": "Give the land of Canaan to Abraham and his seed for an everlasting possession.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "God"
+    ],
+    "category": [
+      "Covenant",
+      "Dominion"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "This entry is for God telling himself to give, so it isn't duplicated for each party like the other commands in this verse."
+  },
+  {
+    "id": "GEN-017-009",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 9,
+    "reference": "Genesis 17:9",
+    "verse_text": "And God said unto Abraham, Thou shalt keep my covenant therefore, thou, and thy seed after thee in their generations.",
+    "instruction": "Keep God's covenant.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "Abraham",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-009a",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 9,
+    "reference": "Genesis 17:9",
+    "verse_text": "And God said unto Abraham, Thou shalt keep my covenant therefore, thou, and thy seed after thee in their generations.",
+    "instruction": "Keep God's covenant.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "people of Israel",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "people of Israel"
+    ],
+    "category": [
+      "Covenant"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-009b",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 9,
+    "reference": "Genesis 17:9",
+    "verse_text": "And God said unto Abraham, Thou shalt keep my covenant therefore, thou, and thy seed after thee in their generations.",
+    "instruction": "Keep God's covenant.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "people of various Arab nations",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "people of various Arab nations"
+    ],
+    "category": [
+      "Covenant"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-009c",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 9,
+    "reference": "Genesis 17:9",
+    "verse_text": "And God said unto Abraham, Thou shalt keep my covenant therefore, thou, and thy seed after thee in their generations.",
+    "instruction": "Keep God's covenant.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Ashurites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "It says \"in their generations\" so it no longer applies to these specific people. It does apply for people of various Arab nations who are alive today."
+  },
+  {
+    "id": "GEN-017-009d",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 9,
+    "reference": "Genesis 17:9",
+    "verse_text": "And God said unto Abraham, Thou shalt keep my covenant therefore, thou, and thy seed after thee in their generations.",
+    "instruction": "Keep God's covenant.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Letushites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "It says \"in their generations\" so it no longer applies to these specific people. It does apply for people of various Arab nations who are alive today."
+  },
+  {
+    "id": "GEN-017-009e",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 9,
+    "reference": "Genesis 17:9",
+    "verse_text": "And God said unto Abraham, Thou shalt keep my covenant therefore, thou, and thy seed after thee in their generations.",
+    "instruction": "Keep God's covenant.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Leummites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "It says \"in their generations\" so it no longer applies to these specific people. It does apply for people of various Arab nations who are alive today."
+  },
+  {
+    "id": "GEN-017-009f",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 9,
+    "reference": "Genesis 17:9",
+    "verse_text": "And God said unto Abraham, Thou shalt keep my covenant therefore, thou, and thy seed after thee in their generations.",
+    "instruction": "Keep God's covenant.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Edomites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "It says \"in their generations\" so it no longer applies to these specific people. It does apply for people of various Arab nations who are alive today."
+  },
+  {
+    "id": "GEN-017-009g",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 9,
+    "reference": "Genesis 17:9",
+    "verse_text": "And God said unto Abraham, Thou shalt keep my covenant therefore, thou, and thy seed after thee in their generations.",
+    "instruction": "Keep God's covenant.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Amalekites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "It says \"in their generations\" so it no longer applies to these specific people. It does apply for people of various Arab nations who are alive today."
+  },
+  {
+    "id": "GEN-017-009h",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 9,
+    "reference": "Genesis 17:9",
+    "verse_text": "And God said unto Abraham, Thou shalt keep my covenant therefore, thou, and thy seed after thee in their generations.",
+    "instruction": "Keep God's covenant.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Ishmaelites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "It says \"in their generations\" so it no longer applies to these specific people. It does apply for people of various Arab nations who are alive today."
+  },
+  {
+    "id": "GEN-017-009i",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 9,
+    "reference": "Genesis 17:9",
+    "verse_text": "And God said unto Abraham, Thou shalt keep my covenant therefore, thou, and thy seed after thee in their generations.",
+    "instruction": "Keep God's covenant.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Midianites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "It says \"in their generations\" so it no longer applies to these specific people. It does apply for people of various Arab nations who are alive today."
+  },
+  {
+    "id": "GEN-017-009j",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 9,
+    "reference": "Genesis 17:9",
+    "verse_text": "And God said unto Abraham, Thou shalt keep my covenant therefore, thou, and thy seed after thee in their generations.",
+    "instruction": "Keep God's covenant.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Shebans",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "It says \"in their generations\" so it no longer applies to these specific people. It does apply for people of various Arab nations who are alive today."
+  },
+  {
+    "id": "GEN-017-009k",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 9,
+    "reference": "Genesis 17:9",
+    "verse_text": "And God said unto Abraham, Thou shalt keep my covenant therefore, thou, and thy seed after thee in their generations.",
+    "instruction": "Keep God's covenant.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Dedanites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "It says \"in their generations\" so it no longer applies to these specific people. It does apply for people of various Arab nations who are alive today."
+  },
+  {
+    "id": "GEN-017-009l",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 9,
+    "reference": "Genesis 17:9",
+    "verse_text": "And God said unto Abraham, Thou shalt keep my covenant therefore, thou, and thy seed after thee in their generations.",
+    "instruction": "Keep God's covenant.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Zimranites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "It says \"in their generations\" so it no longer applies to these specific people. It does apply for people of various Arab nations who are alive today."
+  },
+  {
+    "id": "GEN-017-009m",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 9,
+    "reference": "Genesis 17:9",
+    "verse_text": "And God said unto Abraham, Thou shalt keep my covenant therefore, thou, and thy seed after thee in their generations.",
+    "instruction": "Keep God's covenant.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Medanites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "It says \"in their generations\" so it no longer applies to these specific people. It does apply for people of various Arab nations who are alive today."
+  },
+  {
+    "id": "GEN-017-010",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 10,
+    "reference": "Genesis 17:10",
+    "verse_text": "This is my covenant, which ye shall keep, between me and you and thy seed after thee; Every man child among you shall be circumcised.",
+    "instruction": "Keep God's covenant.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "Abraham",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-010a",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 10,
+    "reference": "Genesis 17:10",
+    "verse_text": "This is my covenant, which ye shall keep, between me and you and thy seed after thee; Every man child among you shall be circumcised.",
+    "instruction": "Keep God's covenant.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "people of Israel",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "people of Israel"
+    ],
+    "category": [
+      "Covenant"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-010b",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 10,
+    "reference": "Genesis 17:10",
+    "verse_text": "This is my covenant, which ye shall keep, between me and you and thy seed after thee; Every man child among you shall be circumcised.",
+    "instruction": "Keep God's covenant.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "people of various Arab nations",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "people of various Arab nations"
+    ],
+    "category": [
+      "Covenant"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-010c",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 10,
+    "reference": "Genesis 17:10",
+    "verse_text": "This is my covenant, which ye shall keep, between me and you and thy seed after thee; Every man child among you shall be circumcised.",
+    "instruction": "Keep God's covenant.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Ashurites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "It says \"in their generations\" so it no longer applies to these specific people. It does apply for people of various Arab nations who are alive today."
+  },
+  {
+    "id": "GEN-017-010d",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 10,
+    "reference": "Genesis 17:10",
+    "verse_text": "This is my covenant, which ye shall keep, between me and you and thy seed after thee; Every man child among you shall be circumcised.",
+    "instruction": "Keep God's covenant.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Letushites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "It says \"in their generations\" so it no longer applies to these specific people. It does apply for people of various Arab nations who are alive today."
+  },
+  {
+    "id": "GEN-017-010e",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 10,
+    "reference": "Genesis 17:10",
+    "verse_text": "This is my covenant, which ye shall keep, between me and you and thy seed after thee; Every man child among you shall be circumcised.",
+    "instruction": "Keep God's covenant.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Leummites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "It says \"in their generations\" so it no longer applies to these specific people. It does apply for people of various Arab nations who are alive today."
+  },
+  {
+    "id": "GEN-017-010f",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 10,
+    "reference": "Genesis 17:10",
+    "verse_text": "This is my covenant, which ye shall keep, between me and you and thy seed after thee; Every man child among you shall be circumcised.",
+    "instruction": "Keep God's covenant.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Edomites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "It says \"in their generations\" so it no longer applies to these specific people. It does apply for people of various Arab nations who are alive today."
+  },
+  {
+    "id": "GEN-017-010g",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 10,
+    "reference": "Genesis 17:10",
+    "verse_text": "This is my covenant, which ye shall keep, between me and you and thy seed after thee; Every man child among you shall be circumcised.",
+    "instruction": "Keep God's covenant.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Amalekites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "It says \"in their generations\" so it no longer applies to these specific people. It does apply for people of various Arab nations who are alive today."
+  },
+  {
+    "id": "GEN-017-010h",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 10,
+    "reference": "Genesis 17:10",
+    "verse_text": "This is my covenant, which ye shall keep, between me and you and thy seed after thee; Every man child among you shall be circumcised.",
+    "instruction": "Keep God's covenant.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Ishmaelites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "It says \"in their generations\" so it no longer applies to these specific people. It does apply for people of various Arab nations who are alive today."
+  },
+  {
+    "id": "GEN-017-010i",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 10,
+    "reference": "Genesis 17:10",
+    "verse_text": "This is my covenant, which ye shall keep, between me and you and thy seed after thee; Every man child among you shall be circumcised.",
+    "instruction": "Keep God's covenant.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Midianites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "It says \"in their generations\" so it no longer applies to these specific people. It does apply for people of various Arab nations who are alive today."
+  },
+  {
+    "id": "GEN-017-010j",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 10,
+    "reference": "Genesis 17:10",
+    "verse_text": "This is my covenant, which ye shall keep, between me and you and thy seed after thee; Every man child among you shall be circumcised.",
+    "instruction": "Keep God's covenant.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Shebans",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "It says \"in their generations\" so it no longer applies to these specific people. It does apply for people of various Arab nations who are alive today."
+  },
+  {
+    "id": "GEN-017-010k",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 10,
+    "reference": "Genesis 17:10",
+    "verse_text": "This is my covenant, which ye shall keep, between me and you and thy seed after thee; Every man child among you shall be circumcised.",
+    "instruction": "Keep God's covenant.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Dedanites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "It says \"in their generations\" so it no longer applies to these specific people. It does apply for people of various Arab nations who are alive today."
+  },
+  {
+    "id": "GEN-017-010l",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 10,
+    "reference": "Genesis 17:10",
+    "verse_text": "This is my covenant, which ye shall keep, between me and you and thy seed after thee; Every man child among you shall be circumcised.",
+    "instruction": "Keep God's covenant.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Zimranites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "It says \"in their generations\" so it no longer applies to these specific people. It does apply for people of various Arab nations who are alive today."
+  },
+  {
+    "id": "GEN-017-010m",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 10,
+    "reference": "Genesis 17:10",
+    "verse_text": "This is my covenant, which ye shall keep, between me and you and thy seed after thee; Every man child among you shall be circumcised.",
+    "instruction": "Keep God's covenant.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "the Medanites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "It says \"in their generations\" so it no longer applies to these specific people. It does apply for people of various Arab nations who are alive today."
+  },
+  {
+    "id": "GEN-017-010n",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 10,
+    "reference": "Genesis 17:10",
+    "verse_text": "This is my covenant, which ye shall keep, between me and you and thy seed after thee; Every man child among you shall be circumcised.",
+    "instruction": "Be circumsized.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "Abraham",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant",
+      "Circumcision"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-010o",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 10,
+    "reference": "Genesis 17:10",
+    "verse_text": "This is my covenant, which ye shall keep, between me and you and thy seed after thee; Every man child among you shall be circumcised.",
+    "instruction": "Be circumsized.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "every man child among the people of Israel",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "every man child among the people of Israel"
+    ],
+    "category": [
+      "Covenant",
+      "Circumcision"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-010p",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 10,
+    "reference": "Genesis 17:10",
+    "verse_text": "This is my covenant, which ye shall keep, between me and you and thy seed after thee; Every man child among you shall be circumcised.",
+    "instruction": "Be circumsized.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "every man child among the people of various Arab nations",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "people of various Arab nations"
+    ],
+    "category": [
+      "Covenant",
+      "Circumcision"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-010q",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 10,
+    "reference": "Genesis 17:10",
+    "verse_text": "This is my covenant, which ye shall keep, between me and you and thy seed after thee; Every man child among you shall be circumcised.",
+    "instruction": "Be circumsized.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "every man child among the Ashurites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant",
+      "Circumcision"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "It says \"in their generations\" so it no longer applies to these specific people. It does apply for people of various Arab nations who are alive today."
+  },
+  {
+    "id": "GEN-017-010r",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 10,
+    "reference": "Genesis 17:10",
+    "verse_text": "This is my covenant, which ye shall keep, between me and you and thy seed after thee; Every man child among you shall be circumcised.",
+    "instruction": "Be circumsized.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "every man child among the Letushites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant",
+      "Circumcision"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "It says \"in their generations\" so it no longer applies to these specific people. It does apply for people of various Arab nations who are alive today."
+  },
+  {
+    "id": "GEN-017-010s",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 10,
+    "reference": "Genesis 17:10",
+    "verse_text": "This is my covenant, which ye shall keep, between me and you and thy seed after thee; Every man child among you shall be circumcised.",
+    "instruction": "Be circumsized.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "every man child among the Leummites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant",
+      "Circumcision"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "It says \"in their generations\" so it no longer applies to these specific people. It does apply for people of various Arab nations who are alive today."
+  },
+  {
+    "id": "GEN-017-010t",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 10,
+    "reference": "Genesis 17:10",
+    "verse_text": "This is my covenant, which ye shall keep, between me and you and thy seed after thee; Every man child among you shall be circumcised.",
+    "instruction": "Be circumsized.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "every man child among the Edomites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant",
+      "Circumcision"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "It says \"in their generations\" so it no longer applies to these specific people. It does apply for people of various Arab nations who are alive today."
+  },
+  {
+    "id": "GEN-017-010u",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 10,
+    "reference": "Genesis 17:10",
+    "verse_text": "This is my covenant, which ye shall keep, between me and you and thy seed after thee; Every man child among you shall be circumcised.",
+    "instruction": "Be circumsized.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "every man child among the Amalekites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant",
+      "Circumcision"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "It says \"in their generations\" so it no longer applies to these specific people. It does apply for people of various Arab nations who are alive today."
+  },
+  {
+    "id": "GEN-017-010v",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 10,
+    "reference": "Genesis 17:10",
+    "verse_text": "This is my covenant, which ye shall keep, between me and you and thy seed after thee; Every man child among you shall be circumcised.",
+    "instruction": "Be circumsized.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "every man child among the Ishmaelites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant",
+      "Circumcision"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "It says \"in their generations\" so it no longer applies to these specific people. It does apply for people of various Arab nations who are alive today."
+  },
+  {
+    "id": "GEN-017-010w",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 10,
+    "reference": "Genesis 17:10",
+    "verse_text": "This is my covenant, which ye shall keep, between me and you and thy seed after thee; Every man child among you shall be circumcised.",
+    "instruction": "Be circumsized.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "every man child among the Midianites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant",
+      "Circumcision"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "It says \"in their generations\" so it no longer applies to these specific people. It does apply for people of various Arab nations who are alive today."
+  },
+  {
+    "id": "GEN-017-010x",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 10,
+    "reference": "Genesis 17:10",
+    "verse_text": "This is my covenant, which ye shall keep, between me and you and thy seed after thee; Every man child among you shall be circumcised.",
+    "instruction": "Be circumsized.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "every man child among the Shebans",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant",
+      "Circumcision"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "It says \"in their generations\" so it no longer applies to these specific people. It does apply for people of various Arab nations who are alive today."
+  },
+  {
+    "id": "GEN-017-010y",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 10,
+    "reference": "Genesis 17:10",
+    "verse_text": "This is my covenant, which ye shall keep, between me and you and thy seed after thee; Every man child among you shall be circumcised.",
+    "instruction": "Be circumsized.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "every man child among the Dedanites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant",
+      "Circumcision"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "It says \"in their generations\" so it no longer applies to these specific people. It does apply for people of various Arab nations who are alive today."
+  },
+  {
+    "id": "GEN-017-010z",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 10,
+    "reference": "Genesis 17:10",
+    "verse_text": "This is my covenant, which ye shall keep, between me and you and thy seed after thee; Every man child among you shall be circumcised.",
+    "instruction": "Be circumsized.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "every man child among the Zimranites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant",
+      "Circumcision"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "It says \"in their generations\" so it no longer applies to these specific people. It does apply for people of various Arab nations who are alive today."
+  },
+  {
+    "id": "GEN-017-010aa",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 10,
+    "reference": "Genesis 17:10",
+    "verse_text": "This is my covenant, which ye shall keep, between me and you and thy seed after thee; Every man child among you shall be circumcised.",
+    "instruction": "Be circumsized.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "every man child among the Medanites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant",
+      "Circumcision"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "It says \"in their generations\" so it no longer applies to these specific people. It does apply for people of various Arab nations who are alive today."
+  },
+  {
+    "id": "GEN-017-010ab",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 10,
+    "reference": "Genesis 17:10",
+    "verse_text": "This is my covenant, which ye shall keep, between me and you and thy seed after thee; Every man child among you shall be circumcised.",
+    "instruction": "Be circumsized.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "every man child among Abraham",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant",
+      "Circumcision"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-011",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 11,
+    "reference": "Genesis 17:11",
+    "verse_text": "And ye shall circumcise the flesh of your foreskin; and it shall be a token of the covenant betwixt me and you.",
+    "instruction": "Circumcise the flesh of your foreskin.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "Abraham",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant",
+      "Circumcision"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "He had to do it to himself..."
+  },
+  {
+    "id": "GEN-017-011a",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 11,
+    "reference": "Genesis 17:11",
+    "verse_text": "And ye shall circumcise the flesh of your foreskin; and it shall be a token of the covenant betwixt me and you.",
+    "instruction": "Be circumcised.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "Abraham",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant",
+      "Circumcision"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-012",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 12,
+    "reference": "Genesis 17:12",
+    "verse_text": "And he that is eight days old shall be circumcised among you, every man child in your generations, he that is born in the house, or bought with money of any stranger, which is not of thy seed.",
+    "instruction": "Be circumcised at eight days old.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "every man child among Abraham",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant",
+      "Circumcision"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-012a",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 12,
+    "reference": "Genesis 17:12",
+    "verse_text": "And he that is eight days old shall be circumcised among you, every man child in your generations, he that is born in the house, or bought with money of any stranger, which is not of thy seed.",
+    "instruction": "Be circumcised at eight days old.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "every man child among Abraham's seed who was bought with money of any stranger who was not of Abraham's seed",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "every man child among Abraham's seed who was bought with money of any stranger who was not of Abraham's seed"
+    ],
+    "category": [
+      "Covenant",
+      "Circumcision"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-012b",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 12,
+    "reference": "Genesis 17:12",
+    "verse_text": "And he that is eight days old shall be circumcised among you, every man child in your generations, he that is born in the house, or bought with money of any stranger, which is not of thy seed.",
+    "instruction": "Be circumcised at eight days old.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "every man child among the people of Israel",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "every man child among the people of Israel"
+    ],
+    "category": [
+      "Covenant",
+      "Circumcision"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-012c",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 12,
+    "reference": "Genesis 17:12",
+    "verse_text": "And he that is eight days old shall be circumcised among you, every man child in your generations, he that is born in the house, or bought with money of any stranger, which is not of thy seed.",
+    "instruction": "Be circumcised at eight days old.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "every man child among the people of various Arab nations",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "every man child among the people of various Arab nations"
+    ],
+    "category": [
+      "Covenant",
+      "Circumcision"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-012d",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 12,
+    "reference": "Genesis 17:12",
+    "verse_text": "And he that is eight days old shall be circumcised among you, every man child in your generations, he that is born in the house, or bought with money of any stranger, which is not of thy seed.",
+    "instruction": "Be circumcised at eight days old.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "every man child among the Ashurites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant",
+      "Circumcision"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-012e",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 12,
+    "reference": "Genesis 17:12",
+    "verse_text": "And he that is eight days old shall be circumcised among you, every man child in your generations, he that is born in the house, or bought with money of any stranger, which is not of thy seed.",
+    "instruction": "Be circumcised at eight days old.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "every man child among the Letushites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant",
+      "Circumcision"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-012f",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 12,
+    "reference": "Genesis 17:12",
+    "verse_text": "And he that is eight days old shall be circumcised among you, every man child in your generations, he that is born in the house, or bought with money of any stranger, which is not of thy seed.",
+    "instruction": "Be circumcised at eight days old.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "every man child among the Leummites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant",
+      "Circumcision"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-012g",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 12,
+    "reference": "Genesis 17:12",
+    "verse_text": "And he that is eight days old shall be circumcised among you, every man child in your generations, he that is born in the house, or bought with money of any stranger, which is not of thy seed.",
+    "instruction": "Be circumcised at eight days old.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "every man child among the Edomites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant",
+      "Circumcision"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-012h",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 12,
+    "reference": "Genesis 17:12",
+    "verse_text": "And he that is eight days old shall be circumcised among you, every man child in your generations, he that is born in the house, or bought with money of any stranger, which is not of thy seed.",
+    "instruction": "Be circumcised at eight days old.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "every man child among the Amalekites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant",
+      "Circumcision"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-012i",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 12,
+    "reference": "Genesis 17:12",
+    "verse_text": "And he that is eight days old shall be circumcised among you, every man child in your generations, he that is born in the house, or bought with money of any stranger, which is not of thy seed.",
+    "instruction": "Be circumcised at eight days old.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "every man child among the Ishmaelites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant",
+      "Circumcision"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-012j",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 12,
+    "reference": "Genesis 17:12",
+    "verse_text": "And he that is eight days old shall be circumcised among you, every man child in your generations, he that is born in the house, or bought with money of any stranger, which is not of thy seed.",
+    "instruction": "Be circumcised at eight days old.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "every man child among the Midianites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant",
+      "Circumcision"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-012k",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 12,
+    "reference": "Genesis 17:12",
+    "verse_text": "And he that is eight days old shall be circumcised among you, every man child in your generations, he that is born in the house, or bought with money of any stranger, which is not of thy seed.",
+    "instruction": "Be circumcised at eight days old.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "every man child among the Shebans",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant",
+      "Circumcision"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-012l",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 12,
+    "reference": "Genesis 17:12",
+    "verse_text": "And he that is eight days old shall be circumcised among you, every man child in your generations, he that is born in the house, or bought with money of any stranger, which is not of thy seed.",
+    "instruction": "Be circumcised at eight days old.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "every man child among the Dedanites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant",
+      "Circumcision"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-012m",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 12,
+    "reference": "Genesis 17:12",
+    "verse_text": "And he that is eight days old shall be circumcised among you, every man child in your generations, he that is born in the house, or bought with money of any stranger, which is not of thy seed.",
+    "instruction": "Be circumcised at eight days old.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "every man child among the Zimranites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant",
+      "Circumcision"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-012n",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 12,
+    "reference": "Genesis 17:12",
+    "verse_text": "And he that is eight days old shall be circumcised among you, every man child in your generations, he that is born in the house, or bought with money of any stranger, which is not of thy seed.",
+    "instruction": "Be circumcised at eight days old.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "every man child among the Medanites",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Covenant",
+      "Circumcision"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
   }
 ]
