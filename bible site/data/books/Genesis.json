@@ -38154,5 +38154,1105 @@
     "person_to_emulate": null,
     "person_not_to_emulate": null,
     "notes": ""
+  },
+  {
+    "id": "GEN-017-015",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 15,
+    "reference": "Genesis 17:15",
+    "verse_text": "And God said unto Abraham, As for Sarai thy wife, thou shalt not call her name Sarai, but Sarah shall her name be.",
+    "instruction": "Do not call Sarai her name Sarai.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "Abraham",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "Sarai",
+      "wife of Abraham"
+    ],
+    "category": [
+      "Naming"
+    ],
+    "things_to_do": false,
+    "things_not_to_do": true,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-015a",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 15,
+    "reference": "Genesis 17:15",
+    "verse_text": "And God said unto Abraham, As for Sarai thy wife, thou shalt not call her name Sarai, but Sarah shall her name be.",
+    "instruction": "Be named Sarah.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "Sarai, wife of Abraham",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "Sarai",
+      "wife of Abraham"
+    ],
+    "category": [
+      "Naming"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-016",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 16,
+    "reference": "Genesis 17:16",
+    "verse_text": "And I will bless her, and give thee a son also of her: yea, I will bless her, and she shall be a mother of nations; kings of people shall be of her.",
+    "instruction": "Bless Sarah.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Blessings"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "First in verse."
+  },
+  {
+    "id": "GEN-017-016a",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 16,
+    "reference": "Genesis 17:16",
+    "verse_text": "And I will bless her, and give thee a son also of her: yea, I will bless her, and she shall be a mother of nations; kings of people shall be of her.",
+    "instruction": "Bless Sarah.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "Sarah",
+      "wife of Abraham"
+    ],
+    "category": [
+      "Blessings"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": "Second in verse."
+  },
+  {
+    "id": "GEN-017-016b",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 16,
+    "reference": "Genesis 17:16",
+    "verse_text": "And I will bless her, and give thee a son also of her: yea, I will bless her, and she shall be a mother of nations; kings of people shall be of her.",
+    "instruction": "Give Abraham a son of Sarah.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "Isaac"
+    ],
+    "category": [
+      "Children",
+      "Supernatural"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-016c",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 16,
+    "reference": "Genesis 17:16",
+    "verse_text": "And I will bless her, and give thee a son also of her: yea, I will bless her, and she shall be a mother of nations; kings of people shall be of her.",
+    "instruction": "Be born.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "Isaac",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "Isaac"
+    ],
+    "category": [
+      "Children",
+      "Supernatural",
+      "Birth"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-016d",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 16,
+    "reference": "Genesis 17:16",
+    "verse_text": "And I will bless her, and give thee a son also of her: yea, I will bless her, and she shall be a mother of nations; kings of people shall be of her.",
+    "instruction": "Bear a son.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "Sarah, wife of Abraham",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "Isaac"
+    ],
+    "category": [
+      "Children",
+      "Supernatural",
+      "Birth"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-016e",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 16,
+    "reference": "Genesis 17:16",
+    "verse_text": "And I will bless her, and give thee a son also of her: yea, I will bless her, and she shall be a mother of nations; kings of people shall be of her.",
+    "instruction": "Be a mother of nations.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "Sarah, wife of Abraham",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "Sarah",
+      "wife of Abraham"
+    ],
+    "category": [
+      "Children",
+      "Supernatural",
+      "Birth"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-017",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 17,
+    "reference": "Genesis 17:17",
+    "verse_text": "Then Abraham fell upon his face, and laughed, and said in his heart, Shall a child be born unto him that is an hundred years old? and shall Sarah, that is ninety years old, bear?",
+    "instruction": "Do what God says.",
+    "command_type": "implied_command",
+    "command_giver": "Author of Genesis",
+    "command_receiver": "humanity",
+    "testament": "Old Testament",
+    "covenant": null,
+    "applicable_today": true,
+    "applicable_to": [
+      "humanity"
+    ],
+    "category": [
+      "Faith",
+      "Action"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": "Abraham",
+    "person_not_to_emulate": null,
+    "notes": "Abraham's example. He already called her by the name Sarai in his head."
+  },
+  {
+    "id": "GEN-017-018",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 18,
+    "reference": "Genesis 17:18",
+    "verse_text": "And Abraham said unto God, O that Ishmael might live before thee!",
+    "instruction": "Live before God.",
+    "command_type": "direct_command",
+    "command_giver": "Abraham",
+    "command_receiver": "Ishmael",
+    "testament": "Old Testament",
+    "covenant": null,
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Faith"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-019",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 19,
+    "reference": "Genesis 17:19",
+    "verse_text": "And God said, Sarah thy wife shall bear thee a son indeed; and thou shalt call his name Isaac: and I will establish my covenant with him for an everlasting covenant, and with his seed after him.",
+    "instruction": "Bear a son.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "Sarah, wife of Abraham",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "Isaac"
+    ],
+    "category": [
+      "Children",
+      "Birth",
+      "Supernatural"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-019a",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 19,
+    "reference": "Genesis 17:19",
+    "verse_text": "And God said, Sarah thy wife shall bear thee a son indeed; and thou shalt call his name Isaac: and I will establish my covenant with him for an everlasting covenant, and with his seed after him.",
+    "instruction": "Call his name Isaac.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "Abraham",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "Isaac"
+    ],
+    "category": [
+      "Naming"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-019b",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 19,
+    "reference": "Genesis 17:19",
+    "verse_text": "And God said, Sarah thy wife shall bear thee a son indeed; and thou shalt call his name Isaac: and I will establish my covenant with him for an everlasting covenant, and with his seed after him.",
+    "instruction": "Establish a covenant with Isaac for an everlasting covenant and with his seed after him.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "Isaac"
+    ],
+    "category": [
+      "Covenant"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-019c",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 19,
+    "reference": "Genesis 17:19",
+    "verse_text": "And God said, Sarah thy wife shall bear thee a son indeed; and thou shalt call his name Isaac: and I will establish my covenant with him for an everlasting covenant, and with his seed after him.",
+    "instruction": "Be born into Abrahamic covenant.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "Isaac",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "Isaac"
+    ],
+    "category": [
+      "Covenant"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-019d",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 19,
+    "reference": "Genesis 17:19",
+    "verse_text": "And God said, Sarah thy wife shall bear thee a son indeed; and thou shalt call his name Isaac: and I will establish my covenant with him for an everlasting covenant, and with his seed after him.",
+    "instruction": "Be named Isaac.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "Isaac",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "Isaac"
+    ],
+    "category": [
+      "Naming"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-019e",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 19,
+    "reference": "Genesis 17:19",
+    "verse_text": "And God said, Sarah thy wife shall bear thee a son indeed; and thou shalt call his name Isaac: and I will establish my covenant with him for an everlasting covenant, and with his seed after him.",
+    "instruction": "Be born into Abrahamic covenant through Isaac.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "people of Israel",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "people of Israel"
+    ],
+    "category": [
+      "Covenant"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-020",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 20,
+    "reference": "Genesis 17:20",
+    "verse_text": "And as for Ishmael, I have heard thee: Behold, I have blessed him, and will make him fruitful, and will multiply him exceedingly; twelve princes shall he beget, and I will make him a great nation.",
+    "instruction": "Be blessed.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "Ishmael",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "Ishmael"
+    ],
+    "category": [
+      "Blessings"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-020a",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 20,
+    "reference": "Genesis 17:20",
+    "verse_text": "And as for Ishmael, I have heard thee: Behold, I have blessed him, and will make him fruitful, and will multiply him exceedingly; twelve princes shall he beget, and I will make him a great nation.",
+    "instruction": "Be fruitful.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "Ishmael",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "Ishmael"
+    ],
+    "category": [
+      "Fruitfulness"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-020b",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 20,
+    "reference": "Genesis 17:20",
+    "verse_text": "And as for Ishmael, I have heard thee: Behold, I have blessed him, and will make him fruitful, and will multiply him exceedingly; twelve princes shall he beget, and I will make him a great nation.",
+    "instruction": "Multiply.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "Ishmael",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "Ishmael"
+    ],
+    "category": [
+      "Fruitfulness"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-020c",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 20,
+    "reference": "Genesis 17:20",
+    "verse_text": "And as for Ishmael, I have heard thee: Behold, I have blessed him, and will make him fruitful, and will multiply him exceedingly; twelve princes shall he beget, and I will make him a great nation.",
+    "instruction": "Make Ishmael fruitful.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "Ishmael"
+    ],
+    "category": [
+      "Fruitfulness"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-020d",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 20,
+    "reference": "Genesis 17:20",
+    "verse_text": "And as for Ishmael, I have heard thee: Behold, I have blessed him, and will make him fruitful, and will multiply him exceedingly; twelve princes shall he beget, and I will make him a great nation.",
+    "instruction": "Make Ishmael multiply.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "Ishmael"
+    ],
+    "category": [
+      "Fruitfulness"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-020e",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 20,
+    "reference": "Genesis 17:20",
+    "verse_text": "And as for Ishmael, I have heard thee: Behold, I have blessed him, and will make him fruitful, and will multiply him exceedingly; twelve princes shall he beget, and I will make him a great nation.",
+    "instruction": "Make Ishmael beget twelve princes.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "Ishmael"
+    ],
+    "category": [
+      "Fruitfulness",
+      "Children",
+      "Royalty",
+      "Prophecy"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-020f",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 20,
+    "reference": "Genesis 17:20",
+    "verse_text": "And as for Ishmael, I have heard thee: Behold, I have blessed him, and will make him fruitful, and will multiply him exceedingly; twelve princes shall he beget, and I will make him a great nation.",
+    "instruction": "Make Ishmael a great nation.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "Ishmael"
+    ],
+    "category": [
+      "Fruitfulness",
+      "Nation",
+      "Prophecy"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-020g",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 20,
+    "reference": "Genesis 17:20",
+    "verse_text": "And as for Ishmael, I have heard thee: Behold, I have blessed him, and will make him fruitful, and will multiply him exceedingly; twelve princes shall he beget, and I will make him a great nation.",
+    "instruction": "Beget twelve princes.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "Ishmael",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Fruitfulness",
+      "Children",
+      "Royalty",
+      "Prophecy"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-020h",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 20,
+    "reference": "Genesis 17:20",
+    "verse_text": "And as for Ishmael, I have heard thee: Behold, I have blessed him, and will make him fruitful, and will multiply him exceedingly; twelve princes shall he beget, and I will make him a great nation.",
+    "instruction": "Become a prince.",
+    "command_type": "direct_command",
+    "command_giver": "God",
+    "command_receiver": "Nebajoth, son of Ishmael",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Royalty",
+      "Prophecy"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-020i",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 20,
+    "reference": "Genesis 17:20",
+    "verse_text": "And as for Ishmael, I have heard thee: Behold, I have blessed him, and will make him fruitful, and will multiply him exceedingly; twelve princes shall he beget, and I will make him a great nation.",
+    "instruction": "Be fruitful.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "wife of Ishmael",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "Ishmael"
+    ],
+    "category": [
+      "Fruitfulness"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-020j",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 20,
+    "reference": "Genesis 17:20",
+    "verse_text": "And as for Ishmael, I have heard thee: Behold, I have blessed him, and will make him fruitful, and will multiply him exceedingly; twelve princes shall he beget, and I will make him a great nation.",
+    "instruction": "Multiply.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "wife of Ishmael",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "Ishmael"
+    ],
+    "category": [
+      "Fruitfulness"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-020k",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 20,
+    "reference": "Genesis 17:20",
+    "verse_text": "And as for Ishmael, I have heard thee: Behold, I have blessed him, and will make him fruitful, and will multiply him exceedingly; twelve princes shall he beget, and I will make him a great nation.",
+    "instruction": "Make Ishmael's wife fruitful.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "Ishmael"
+    ],
+    "category": [
+      "Fruitfulness"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-020l",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 20,
+    "reference": "Genesis 17:20",
+    "verse_text": "And as for Ishmael, I have heard thee: Behold, I have blessed him, and will make him fruitful, and will multiply him exceedingly; twelve princes shall he beget, and I will make him a great nation.",
+    "instruction": "Make Ishmael's wife multiply.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "Ishmael"
+    ],
+    "category": [
+      "Fruitfulness"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-020m",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 20,
+    "reference": "Genesis 17:20",
+    "verse_text": "And as for Ishmael, I have heard thee: Behold, I have blessed him, and will make him fruitful, and will multiply him exceedingly; twelve princes shall he beget, and I will make him a great nation.",
+    "instruction": "Make Ishmael's wife beget twelve princes.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "God",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": true,
+    "applicable_to": [
+      "Ishmael"
+    ],
+    "category": [
+      "Fruitfulness",
+      "Children",
+      "Royalty",
+      "Prophecy"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-020n",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 20,
+    "reference": "Genesis 17:20",
+    "verse_text": "And as for Ishmael, I have heard thee: Behold, I have blessed him, and will make him fruitful, and will multiply him exceedingly; twelve princes shall he beget, and I will make him a great nation.",
+    "instruction": "Become a prince.",
+    "command_type": "direct_command",
+    "command_giver": "God ",
+    "command_receiver": "Kedar, son of Ishmael",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Royalty",
+      "Prophecy"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-020o",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 20,
+    "reference": "Genesis 17:20",
+    "verse_text": "And as for Ishmael, I have heard thee: Behold, I have blessed him, and will make him fruitful, and will multiply him exceedingly; twelve princes shall he beget, and I will make him a great nation.",
+    "instruction": "Beget twelve princes.",
+    "command_type": "implied_command",
+    "command_giver": "God",
+    "command_receiver": "Ishmael's wife",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Fruitfulness",
+      "Children",
+      "Royalty",
+      "Prophecy"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-020p",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 20,
+    "reference": "Genesis 17:20",
+    "verse_text": "And as for Ishmael, I have heard thee: Behold, I have blessed him, and will make him fruitful, and will multiply him exceedingly; twelve princes shall he beget, and I will make him a great nation.",
+    "instruction": "Become a prince.",
+    "command_type": "direct_command",
+    "command_giver": "God ",
+    "command_receiver": "Adbeel, son of Ishmael",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Royalty",
+      "Prophecy"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-020q",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 20,
+    "reference": "Genesis 17:20",
+    "verse_text": "And as for Ishmael, I have heard thee: Behold, I have blessed him, and will make him fruitful, and will multiply him exceedingly; twelve princes shall he beget, and I will make him a great nation.",
+    "instruction": "Become a prince.",
+    "command_type": "direct_command",
+    "command_giver": "God ",
+    "command_receiver": "Mibsam, son of Ishmael",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Royalty",
+      "Prophecy"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-020r",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 20,
+    "reference": "Genesis 17:20",
+    "verse_text": "And as for Ishmael, I have heard thee: Behold, I have blessed him, and will make him fruitful, and will multiply him exceedingly; twelve princes shall he beget, and I will make him a great nation.",
+    "instruction": "Become a prince.",
+    "command_type": "direct_command",
+    "command_giver": "God ",
+    "command_receiver": "Mishma, son of Ishmael",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Royalty",
+      "Prophecy"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-020s",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 20,
+    "reference": "Genesis 17:20",
+    "verse_text": "And as for Ishmael, I have heard thee: Behold, I have blessed him, and will make him fruitful, and will multiply him exceedingly; twelve princes shall he beget, and I will make him a great nation.",
+    "instruction": "Become a prince.",
+    "command_type": "direct_command",
+    "command_giver": "God ",
+    "command_receiver": "Dumah, son of Ishmael",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Royalty",
+      "Prophecy"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-020t",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 20,
+    "reference": "Genesis 17:20",
+    "verse_text": "And as for Ishmael, I have heard thee: Behold, I have blessed him, and will make him fruitful, and will multiply him exceedingly; twelve princes shall he beget, and I will make him a great nation.",
+    "instruction": "Become a prince.",
+    "command_type": "direct_command",
+    "command_giver": "God ",
+    "command_receiver": "Massa, son of Ishmael",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Royalty",
+      "Prophecy"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-020u",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 20,
+    "reference": "Genesis 17:20",
+    "verse_text": "And as for Ishmael, I have heard thee: Behold, I have blessed him, and will make him fruitful, and will multiply him exceedingly; twelve princes shall he beget, and I will make him a great nation.",
+    "instruction": "Become a prince.",
+    "command_type": "direct_command",
+    "command_giver": "God ",
+    "command_receiver": "Hadar/Hadad, son of Ishmael",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Royalty",
+      "Prophecy"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-020v",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 20,
+    "reference": "Genesis 17:20",
+    "verse_text": "And as for Ishmael, I have heard thee: Behold, I have blessed him, and will make him fruitful, and will multiply him exceedingly; twelve princes shall he beget, and I will make him a great nation.",
+    "instruction": "Become a prince.",
+    "command_type": "direct_command",
+    "command_giver": "God ",
+    "command_receiver": "Tema, son of Ishmael",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Royalty",
+      "Prophecy"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-020w",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 20,
+    "reference": "Genesis 17:20",
+    "verse_text": "And as for Ishmael, I have heard thee: Behold, I have blessed him, and will make him fruitful, and will multiply him exceedingly; twelve princes shall he beget, and I will make him a great nation.",
+    "instruction": "Become a prince.",
+    "command_type": "direct_command",
+    "command_giver": "God ",
+    "command_receiver": "Jetur, son of Ishmael",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Royalty",
+      "Prophecy"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-020x",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 20,
+    "reference": "Genesis 17:20",
+    "verse_text": "And as for Ishmael, I have heard thee: Behold, I have blessed him, and will make him fruitful, and will multiply him exceedingly; twelve princes shall he beget, and I will make him a great nation.",
+    "instruction": "Become a prince.",
+    "command_type": "direct_command",
+    "command_giver": "God ",
+    "command_receiver": "Naphish, son of Ishmael",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Royalty",
+      "Prophecy"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
+  },
+  {
+    "id": "GEN-017-020y",
+    "book": "Genesis",
+    "chapter": 17,
+    "verse": 20,
+    "reference": "Genesis 17:20",
+    "verse_text": "And as for Ishmael, I have heard thee: Behold, I have blessed him, and will make him fruitful, and will multiply him exceedingly; twelve princes shall he beget, and I will make him a great nation.",
+    "instruction": "Become a prince.",
+    "command_type": "direct_command",
+    "command_giver": "God ",
+    "command_receiver": "Kedemah, son of Ishmael",
+    "testament": "Old Testament",
+    "covenant": "Abrahamic",
+    "applicable_today": false,
+    "applicable_to": [],
+    "category": [
+      "Royalty",
+      "Prophecy"
+    ],
+    "things_to_do": true,
+    "things_not_to_do": false,
+    "person_to_emulate": null,
+    "person_not_to_emulate": null,
+    "notes": ""
   }
 ]
