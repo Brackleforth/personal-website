@@ -257,6 +257,7 @@ function openBook(bookName) {
 function resetAllFilters() {
     Object.keys(activeFilters).forEach(key => activeFilters[key] = "");
     document.querySelectorAll(".current-value").forEach(el => el.textContent = "All");
+    highlightActiveOption();
 }
 
 function openFilteredView(filterType, value) {
@@ -359,6 +360,7 @@ function attachEvents() {
         const sidebar = document.getElementById("sidebar");
         sidebar.classList.toggle("hidden");
         document.body.classList.toggle("sidebar-collapsed");
+        if (sidebar.classList.contains("hidden")) closeFilterPanel();
     });
 
     // Display toggles
@@ -370,12 +372,9 @@ function attachEvents() {
         });
     });
 
-    // Click outside to close filter panel
-    document.addEventListener("click", (e) => {
-        const panel = document.getElementById("filterPanel");
-        if (panel && !e.target.closest("#filterPanel") && !e.target.closest(".filter-btn")) {
-            panel.style.display = "none";
-        }
+    // Esc closes the filter list
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeFilterPanel();
     });
 
     // Big Browse Buttons
@@ -397,6 +396,10 @@ function attachEvents() {
 function applyFilters() {
     filteredCommands = bibleCommands.filter(matchesFilters);
     render();
+    // If the frequency table is on screen, refresh it instead of leaving stale rows
+    if (document.getElementById("sortedTableContainer").style.display === "block") {
+        renderSortedInstructions();
+    }
 }
 
 function render() {
@@ -559,7 +562,7 @@ let activeFilters = {
     commandStyle: ""
 };
 
-// Reusable filter panel
+// Secondary filter sidebar (slides out to the right of the main filters sidebar)
 let currentFilterKey = null;
 
 function createFilterPanel() {
@@ -568,11 +571,15 @@ function createFilterPanel() {
         panel = document.createElement("div");
         panel.id = "filterPanel";
         panel.innerHTML = `
-            <div class="panel-header" id="panelTitle"></div>
+            <div class="panel-header">
+                <span id="panelTitle"></span>
+                <button id="panelClose" type="button" aria-label="Close">✕</button>
+            </div>
             <input type="text" id="filterSearch" placeholder="Search..." autocomplete="off">
             <div class="options" id="filterOptions"></div>
         `;
         document.body.appendChild(panel);
+        panel.querySelector("#panelClose").addEventListener("click", closeFilterPanel);
     }
     return panel;
 }
@@ -590,44 +597,73 @@ function showFilterPanel(filterKey, label, options) {
 
     // "All" option
     const allOption = document.createElement("div");
-    allOption.className = `filter-option all ${!activeFilters[filterKey] ? 'active' : ''}`;
+    allOption.className = "filter-option all";
     allOption.textContent = "All";
     allOption.onclick = () => selectFilterOption("");
     optionsContainer.appendChild(allOption);
 
     options.forEach(opt => {
         const div = document.createElement("div");
-        div.className = `filter-option ${activeFilters[filterKey] === opt ? 'active' : ''}`;
+        div.className = "filter-option";
         div.textContent = opt;
         div.onclick = () => selectFilterOption(opt);
         optionsContainer.appendChild(div);
     });
 
-    // Position panel to the right of the button
+    highlightActiveOption();
+
+    // Highlight the sidebar button whose list is open
+    document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("open"));
     const btn = document.getElementById(`btn-${filterKey}`);
-    const rect = btn.getBoundingClientRect();
-    panel.style.top = `${rect.top}px`;
-    panel.style.left = `${rect.right + 8}px`;
-    panel.style.display = "flex";
+    if (btn) btn.classList.add("open");
+
+    panel.classList.add("open");
+    document.body.classList.add("filter-panel-open");
+    optionsContainer.scrollTop = 0;
 
     // Auto-filter on type
     searchInput.focus();
     searchInput.oninput = () => {
         const term = searchInput.value.toLowerCase().trim();
         Array.from(optionsContainer.children).forEach(el => {
-            if (el.textContent === "All") return;
+            if (el.classList.contains("all")) return;
             el.style.display = el.textContent.toLowerCase().includes(term) ? "" : "none";
         });
     };
 }
 
+function highlightActiveOption() {
+    const container = document.getElementById("filterOptions");
+    if (!container || !currentFilterKey) return;
+    const current = activeFilters[currentFilterKey] || "";
+    Array.from(container.children).forEach(el => {
+        const isAll = el.classList.contains("all");
+        el.classList.toggle("active", isAll ? current === "" : el.textContent === current);
+    });
+}
+
+function closeFilterPanel() {
+    const panel = document.getElementById("filterPanel");
+    if (panel) panel.classList.remove("open");
+    document.body.classList.remove("filter-panel-open");
+    document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("open"));
+    currentFilterKey = null;
+}
+
+// Leave the splash screen and show the results view
+function showAppView() {
+    document.getElementById("homeView").style.display = "none";
+    document.getElementById("appView").style.display = "block";
+}
+
 function selectFilterOption(value) {
-    if (currentFilterKey) {
-        activeFilters[currentFilterKey] = value;
-        updateFilterButton(currentFilterKey);
-        applyFilters();
-    }
-    document.getElementById("filterPanel").style.display = "none";
+    if (!currentFilterKey) return;
+    activeFilters[currentFilterKey] = value;
+    updateFilterButton(currentFilterKey);
+    highlightActiveOption();
+    currentPage = 1;
+    showAppView();          // works from the splash screen too
+    applyFilters();
 }
 
 function updateFilterButton(key) {
@@ -657,7 +693,8 @@ function attachFilterButtons() {
         const btn = document.getElementById(`btn-${f.key}`);
         if (btn) {
             btn.addEventListener("click", () => {
-                showFilterPanel(f.key, f.label, f.getOptions());
+                if (currentFilterKey === f.key) closeFilterPanel();
+                else showFilterPanel(f.key, f.label, f.getOptions());
             });
         }
     });
@@ -721,6 +758,18 @@ function renderSortedInstructions() {
     document.getElementById("results").style.display = "none";
     document.getElementById("pagination").style.display = "none";
 }
+
+// Show / hide the reference list in a frequency-table row.
+// One delegated listener covers every row, including ones rebuilt later.
+document.getElementById("frequencyTableBody").addEventListener("click", (e) => {
+    const btn = e.target.closest(".toggle-ref-btn");
+    if (!btn) return;
+    const list = btn.parentElement.querySelector(".ref-list");
+    const count = frequencyData[btn.dataset.index].references.length;
+    const opening = list.style.display === "none";
+    list.style.display = opening ? "block" : "none";
+    btn.textContent = opening ? `Hide ${count} references` : `Show ${count} references`;
+});
 
 document.getElementById("appView").style.display = "none";
 document.getElementById("homeView").style.display = "block";
