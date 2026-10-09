@@ -718,6 +718,11 @@ function attachFilterButtons() {
 
 /* ==================== SORTED FREQUENCY TABLE ==================== */
 
+// "Show 5 references" / "Hide 1 reference" - n is the number of distinct verses
+function refButtonLabel(isOpen, n) {
+    return `${isOpen ? "Hide" : "Show"} ${n} ${n === 1 ? "reference" : "references"}`;
+}
+
 function renderSortedInstructions() {
     const container = document.getElementById("sortedTableContainer");
     const tbody = document.getElementById("frequencyTableBody");
@@ -738,14 +743,21 @@ function renderSortedInstructions() {
         if (!instr) return;
 
         if (!map.has(instr)) {
-            map.set(instr, { instruction: instr, count: 0, references: [] });
+            map.set(instr, { instruction: instr, count: 0, references: new Map() });
         }
         const entry = map.get(instr);
         entry.count++;
-        entry.references.push(cmd.reference);
+        // One entry per verse; repeats of the same verse are tallied, not listed again
+        entry.references.set(cmd.reference, (entry.references.get(cmd.reference) || 0) + 1);
     });
 
-    frequencyData = Array.from(map.values()).sort((a, b) => b.count - a.count);
+    frequencyData = Array.from(map.values())
+        .map(item => ({
+            ...item,
+            // [{ref: "Genesis 14:2", n: 12}, ...] in canonical (first-seen) order
+            references: Array.from(item.references, ([ref, n]) => ({ ref, n }))
+        }))
+        .sort((a, b) => b.count - a.count);
 
     frequencyData.forEach((item, index) => {
         const row = document.createElement("tr");
@@ -758,10 +770,10 @@ function renderSortedInstructions() {
             </td>
             <td style="padding:12px; vertical-align:top;">
                 <button class="toggle-ref-btn" data-index="${index}" style="padding:5px 10px; font-size:0.9em; cursor:pointer;">
-                    Show ${item.references.length} references
+                    ${refButtonLabel(false, item.references.length)}
                 </button>
                 <div class="ref-list" data-index="${index}" style="display:none; margin-top:8px; padding:10px; background:#f9f9f9; border-radius:4px; font-size:0.95em;">
-                    ${item.references.map(ref => `<div>${ref}</div>`).join("")}
+                    ${item.references.map(r => `<div>${r.ref}${r.n > 1 ? ` (x${r.n})` : ""}</div>`).join("")}
                 </div>
             </td>
         `;
@@ -780,7 +792,7 @@ document.getElementById("frequencyTableBody").addEventListener("click", (e) => {
     const count = frequencyData[btn.dataset.index].references.length;
     const opening = list.style.display === "none";
     list.style.display = opening ? "block" : "none";
-    btn.textContent = opening ? `Hide ${count} references` : `Show ${count} references`;
+    btn.textContent = refButtonLabel(opening, count);
 });
 
 document.getElementById("appView").style.display = "none";
