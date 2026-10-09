@@ -674,16 +674,21 @@ function updateFilterButton(key) {
     span.textContent = value ? value : "All";
 }
 
+// Case-insensitive alphabetical order (plain .sort() puts every capital before every lowercase)
+function sortAlpha(list) {
+    return list.sort((a, b) => a.localeCompare(b, undefined, { sensitivity: "base", numeric: true }));
+}
+
 // Attach click listeners
 function attachFilterButtons() {
     const filters = [
-        {key: "book", label: "Book", getOptions: () => [...new Set(bibleCommands.map(c => c.book))].sort()},
+        {key: "book", label: "Book", getOptions: () => sortAlpha([...new Set(bibleCommands.map(c => c.book))])},
         {key: "testament", label: "Testament", getOptions: () => ["Old Testament", "New Testament"]},
-        {key: "giver", label: "Command Giver", getOptions: () => [...new Set(bibleCommands.map(c => c.command_giver))].sort()},
-        {key: "receiver", label: "Command Receiver", getOptions: () => [...new Set(bibleCommands.map(c => c.command_receiver))].sort()},
-        {key: "covenant", label: "Covenant", getOptions: () => [...new Set(bibleCommands.map(c => c.covenant).filter(Boolean))].sort()},
+        {key: "giver", label: "Command Giver", getOptions: () => sortAlpha([...new Set(bibleCommands.map(c => c.command_giver))])},
+        {key: "receiver", label: "Command Receiver", getOptions: () => sortAlpha([...new Set(bibleCommands.map(c => c.command_receiver))])},
+        {key: "covenant", label: "Covenant", getOptions: () => sortAlpha([...new Set(bibleCommands.map(c => c.covenant).filter(Boolean))])},
         {key: "applicable", label: "Applicability", getOptions: () => ["Applicable Today", "Not Applicable Today"]},
-        {key: "category", label: "Category", getOptions: () => [...new Set(bibleCommands.flatMap(c => c.category || []))].sort()},
+        {key: "category", label: "Category", getOptions: () => sortAlpha([...new Set(bibleCommands.flatMap(c => c.category || []))])},
         {key: "instructionType", label: "Instruction Type", getOptions: () => ["Thing To Do", "Thing Not To Do"]},
         {key: "exampleType", label: "Example Type", getOptions: () => ["Person To Emulate", "Person Not To Emulate"]},
         {key: "commandStyle", label: "Command Style", getOptions: () => ["Direct Command", "Implied Command"]}
