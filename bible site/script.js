@@ -246,9 +246,7 @@ function openBook(bookName) {
     activeFilters.book = bookName;           // ← Updated
     updateFilterButton("book");
 
-    document.getElementById("sortedTableContainer").style.display = "none";
-    document.getElementById("results").style.display = "block";
-    document.getElementById("pagination").style.display = "block";
+    setSortedView(false);
 
     currentPage = 1;
     applyFilters();
@@ -274,9 +272,7 @@ function openFilteredView(filterType, value) {
         updateFilterButton("testament");
     }
 
-    document.getElementById("sortedTableContainer").style.display = "none";
-    document.getElementById("results").style.display = "block";
-    document.getElementById("pagination").style.display = "block";
+    setSortedView(false);
 
     currentPage = 1;
     applyFilters();
@@ -336,17 +332,11 @@ function updateProgress() {
 
 function attachEvents() {
 
-    // Compile Results
-    document.getElementById("compileBtn").addEventListener("click", () => {
-        currentPage = 1;
-        applyFilters();
-        document.getElementById("sortedTableContainer").style.display = "none";
-        document.getElementById("results").style.display = "block";
-        document.getElementById("pagination").style.display = "block";
+    // Sort Results - toggles between the frequency table and the normal results list
+    document.getElementById("sortBtn").addEventListener("click", () => {
+        if (isSortedViewActive()) setSortedView(false);
+        else renderSortedInstructions();
     });
-
-    // Sort Results
-    document.getElementById("sortBtn").addEventListener("click", renderSortedInstructions);
 
     // Page Size
     document.getElementById("pageSizeFilter").addEventListener("change", (e) => {
@@ -393,11 +383,26 @@ function attachEvents() {
 
 /* ====================== CORE FUNCTIONS ====================== */
 
+// One place that decides which view is showing: normal results list or the frequency table
+const SORT_BTN_LABEL = "Sort Results (by Instruction Frequency)";
+const SORT_BTN_BACK_LABEL = "← Back to Results";
+
+function isSortedViewActive() {
+    return document.getElementById("sortedTableContainer").style.display === "block";
+}
+
+function setSortedView(showSorted) {
+    document.getElementById("sortedTableContainer").style.display = showSorted ? "block" : "none";
+    document.getElementById("results").style.display = showSorted ? "none" : "block";
+    document.getElementById("pagination").style.display = showSorted ? "none" : "block";
+    document.getElementById("sortBtn").textContent = showSorted ? SORT_BTN_BACK_LABEL : SORT_BTN_LABEL;
+}
+
 function applyFilters() {
     filteredCommands = bibleCommands.filter(matchesFilters);
     render();
     // If the frequency table is on screen, refresh it instead of leaving stale rows
-    if (document.getElementById("sortedTableContainer").style.display === "block") {
+    if (isSortedViewActive()) {
         renderSortedInstructions();
     }
 }
@@ -420,16 +425,22 @@ function renderSummary() {
 }
 
 function getActiveFilters() {
-    const filters = [];
-
-    if (activeFilters.book) filters.push("Book: " + activeFilters.book);
-    if (activeFilters.testament) filters.push("Testament: " + activeFilters.testament);
-    if (activeFilters.giver) filters.push("Giver: " + activeFilters.giver);
-    if (activeFilters.receiver) filters.push("Receiver: " + activeFilters.receiver);
-    if (activeFilters.category) filters.push("Category: " + activeFilters.category);
-    if (activeFilters.covenant) filters.push("Covenant: " + activeFilters.covenant);
-
-    return filters;
+    // Same order and labels as the filters sidebar
+    const labels = [
+        ["book", "Book"],
+        ["testament", "Testament"],
+        ["giver", "Giver"],
+        ["receiver", "Receiver"],
+        ["covenant", "Covenant"],
+        ["applicable", "Applicability"],
+        ["category", "Category"],
+        ["instructionType", "Instruction Type"],
+        ["exampleType", "Example Type"],
+        ["commandStyle", "Command Style"]
+    ];
+    return labels
+        .filter(([key]) => activeFilters[key])
+        .map(([key, label]) => `${label}: ${activeFilters[key]}`);
 }
 
 /* ---------------- NORMAL RESULTS ---------------- */
@@ -439,7 +450,7 @@ function renderResults() {
     results.innerHTML = "";
 
     if (filteredCommands.length === 0) {
-        results.innerHTML = "<p>No results to display. Click 'Compile Results'.</p>";
+        results.innerHTML = "<p>No results match the current filters.</p>";
         return;
     }
 
@@ -714,11 +725,9 @@ function renderSortedInstructions() {
 
     if (filteredCommands.length === 0) {
         tbody.innerHTML = `<tr><td colspan="3" style="padding:20px; text-align:center; color:red;">
-            No results. Please click "Compile Results" first.
+            No results match the current filters.
         </td></tr>`;
-        container.style.display = "block";
-        document.getElementById("results").style.display = "none";
-        document.getElementById("pagination").style.display = "none";
+        setSortedView(true);
         return;
     }
 
@@ -759,9 +768,7 @@ function renderSortedInstructions() {
         tbody.appendChild(row);
     });
 
-    container.style.display = "block";
-    document.getElementById("results").style.display = "none";
-    document.getElementById("pagination").style.display = "none";
+    setSortedView(true);
 }
 
 // Show / hide the reference list in a frequency-table row.
