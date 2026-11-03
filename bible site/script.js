@@ -154,6 +154,18 @@ const NEW_TESTAMENT = [
     "1 John", "2 John", "3 John", "Jude", "Revelation"
 ];
 
+// The JSON creator uses kjv.json's book names ("Psalm", "Song Of Solomon") in the records
+// and saves files with underscores ("1_Samuel.json"). These map the site's names to those.
+const DATA_BOOK_NAMES = { "Psalms": "Psalm", "Song of Solomon": "Song Of Solomon" };
+
+function dataBookName(book) {
+    return DATA_BOOK_NAMES[book] || book;
+}
+
+function bookFileName(book) {
+    return dataBookName(book).replace(/ /g, "_").replace(/\//g, "_") + ".json";
+}
+
 let bibleCommands = [];
 let filteredCommands = [];
 
@@ -223,9 +235,10 @@ function buildBookButtons() {
                 <small>${progress.mapped} / ${progress.total} verses • ${progress.percentage}%</small>
             `;
 
-            if (progress.percentage === 100)
+            // percentage is a string from toFixed(), so compare as a number
+            if (parseFloat(progress.percentage) === 100)
                 btn.style.borderColor = "#4caf50";
-            else if (progress.percentage > 0)
+            else if (parseFloat(progress.percentage) > 0)
                 btn.style.borderColor = "#ff9800";
 
             btn.addEventListener("click", () => openBook(book));
@@ -243,7 +256,7 @@ function openBook(bookName) {
     document.getElementById("appView").style.display = "block";
 
     resetAllFilters();
-    activeFilters.book = bookName;           // ← Updated
+    activeFilters.book = dataBookName(bookName);
     updateFilterButton("book");
 
     setSortedView(false);
@@ -281,9 +294,9 @@ function openFilteredView(filterType, value) {
 async function loadData() {
     try {
         const promises = BOOK_FILES.map(async (book) => {
-            const response = await fetch(`data/books/${book}.json`);
+            const response = await fetch(`data/books/${bookFileName(book)}`);
             if (!response.ok) {
-                console.warn(`Missing file: ${book}.json`);
+                console.warn(`Missing file: ${bookFileName(book)}`);
                 return [];
             }
             return await response.json();
@@ -433,6 +446,7 @@ function getActiveFilters() {
         ["receiver", "Receiver"],
         ["covenant", "Covenant"],
         ["applicable", "Applicability"],
+        ["binding", "Binding Today"],
         ["category", "Category"],
         ["instructionType", "Instruction Type"],
         ["exampleType", "Example Type"],
@@ -484,8 +498,13 @@ function renderResults() {
                 toWhom = `<br><strong>Applies to:</strong> ${command.applicable_to.join(", ")}`;
             }
 
+            let bindingText = "";
+            if (command.applicable_today) {
+                bindingText = `<br><strong>Binding Today:</strong> ${bindingLabel(command)}`;
+            }
+
             html += `
-                <p><strong>Applicable Today:</strong> ${applicableText}${toWhom}</p>
+                <p><strong>Applicable Today:</strong> ${applicableText}${bindingText}${toWhom}</p>
             `;
         }
 
@@ -542,6 +561,8 @@ function matchesFilters(command) {
         if (isApplicable !== activeFilters.applicable) return false;
     }
 
+    if (activeFilters.binding && bindingStatus(command) !== activeFilters.binding) return false;
+
     // Instruction Type
     if (activeFilters.instructionType) {
         if (activeFilters.instructionType === "Thing To Do" && !command.things_to_do) return false;
@@ -559,6 +580,26 @@ function matchesFilters(command) {
     return true;
 }
 
+// binding_today is true / false / null (null = applicable today but not reviewed yet)
+const BINDING_YES = "Binding Today";
+const BINDING_NO = "Not Binding Today";
+const BINDING_UNREVIEWED = "Not Yet Reviewed";
+
+function bindingStatus(command) {
+    if (command.binding_today === true) return BINDING_YES;
+    if (command.applicable_today && (command.binding_today === null || command.binding_today === undefined)) {
+        return BINDING_UNREVIEWED;
+    }
+    return BINDING_NO;
+}
+
+function bindingLabel(command) {
+    const s = bindingStatus(command);
+    if (s === BINDING_YES) return "✅ Yes";
+    if (s === BINDING_NO) return "❌ No";
+    return "❔ Not yet reviewed";
+}
+
 // Active filters state
 let activeFilters = {
     book: "",
@@ -567,6 +608,7 @@ let activeFilters = {
     receiver: "",
     covenant: "",
     applicable: "",
+    binding: "",
     category: "",
     instructionType: "",
     exampleType: "",
@@ -699,6 +741,7 @@ function attachFilterButtons() {
         {key: "receiver", label: "Command Receiver", getOptions: () => sortAlpha([...new Set(bibleCommands.map(c => c.command_receiver))])},
         {key: "covenant", label: "Covenant", getOptions: () => sortAlpha([...new Set(bibleCommands.map(c => c.covenant).filter(Boolean))])},
         {key: "applicable", label: "Applicability", getOptions: () => ["Applicable Today", "Not Applicable Today"]},
+        {key: "binding", label: "Binding Today", getOptions: () => [BINDING_YES, BINDING_NO, BINDING_UNREVIEWED]},
         {key: "category", label: "Category", getOptions: () => sortAlpha([...new Set(bibleCommands.flatMap(c => c.category || []))])},
         {key: "instructionType", label: "Instruction Type", getOptions: () => ["Thing To Do", "Thing Not To Do"]},
         {key: "exampleType", label: "Example Type", getOptions: () => ["Person To Emulate", "Person Not To Emulate"]},
