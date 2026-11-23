@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Carlito:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=2026-11-22b">
+    <link rel="stylesheet" href="style.css?v=2026-11-22c">
 </head>
 
 <body>
@@ -24,6 +24,7 @@
     <div id="topButtons">
         <button id="sidebarToggle" type="button">☰ FILTERS</button>
         <button id="homeBtn" type="button">HOME</button>
+        <a class="top-btn" href="read.html">READ</a>
     </div>
 
     <aside id="sidebar" aria-label="Filters">
@@ -150,7 +151,10 @@
                 <div class="progress">
                     <div id="progressBar" class="progress-fill"></div>
                 </div>
-                <button id="browseAllBtn" class="action-btn" type="button">BROWSE ALL BOOKS</button>
+                <div class="reader-steps reader-steps-center">
+                    <button id="browseAllBtn" class="action-btn" type="button">BROWSE ALL BOOKS</button>
+                    <a class="action-btn action-link" href="read.html">READ THE BIBLE</a>
+                </div>
             </section>
 
             <section class="box" aria-label="Books">
@@ -222,7 +226,7 @@
         </main>
     </div>
 
-    <script src="script.js?v=2026-11-22b"></script>
+    <script src="script.js?v=2026-11-22c"></script>
 </body>
 
 </html>
