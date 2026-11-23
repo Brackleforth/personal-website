@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Read the Bible (KJV) - Bible Commands Database</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Carlito:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=2026-11-22c">
+</head>
+
+<body class="reader-page">
+
+    <div id="topButtons">
+        <a class="top-btn" href="biblesite.html">← DATABASE</a>
+    </div>
+
+    <main class="page">
+        <header class="title-box title-box-small">
+            <h1>THE HOLY BIBLE</h1>
+            <p>King James Version</p>
+        </header>
+
+        <nav class="box reader-nav" aria-label="Choose a chapter">
+            <div class="reader-pickers">
+                <label class="picker">
+                    <span class="filter-label">Book</span>
+                    <select id="bookSelect"></select>
+                </label>
+                <label class="picker picker-chapter">
+                    <span class="filter-label">Chapter</span>
+                    <select id="chapterSelect"></select>
+                </label>
+            </div>
+            <div class="reader-steps">
+                <button type="button" class="action-btn step-btn" id="prevBtn">← PREVIOUS</button>
+                <button type="button" class="action-btn step-btn" id="nextBtn">NEXT →</button>
+            </div>
+        </nav>
+
+        <article class="box reader-text" aria-live="polite">
+            <h2 id="chapterTitle">Loading…</h2>
+            <div id="verses"></div>
+        </article>
+
+        <div class="reader-steps reader-steps-bottom">
+            <button type="button" class="action-btn step-btn" id="prevBtnBottom">← PREVIOUS</button>
+            <button type="button" class="action-btn step-btn" id="nextBtnBottom">NEXT →</button>
+        </div>
+    </main>
+
+    <script src="read.js?v=2026-11-22c"></script>
+</body>
+
+</html>

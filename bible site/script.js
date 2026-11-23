@@ -477,7 +477,7 @@ function renderResults() {
 
         let html = "";
 
-        if (displayConfig.reference) html += `<h3>${command.reference}</h3>`;
+        if (displayConfig.reference) html += `<h3><a href="${readerLink(command.book, command.chapter, command.verse)}">${command.reference}</a></h3>`;
         if (displayConfig.verse_text) html += `<p><strong>Verse:</strong> ${command.verse_text}</p>`;
         if (displayConfig.instruction) html += `<p><strong>Instruction:</strong> ${command.instruction}</p>`;
         if (displayConfig.command_giver) html += `<p><strong>Giver:</strong> ${command.command_giver}</p>`;
@@ -763,6 +763,19 @@ function attachFilterButtons() {
 /* ==================== SORTED FREQUENCY TABLE ==================== */
 
 // "Show 5 references" / "Hide 1 reference" - n is the number of distinct verses
+// Links into the reading mode (read.html)
+function readerLink(book, chapter, verse) {
+    const params = new URLSearchParams({ book: book, chapter: chapter });
+    if (verse) params.set("verse", verse);
+    return "read.html?" + params.toString() + (verse ? "#v" + verse : "");
+}
+
+// "Genesis 14:2" or "Song Of Solomon 2:4" -> read.html link
+function referenceLink(ref) {
+    const m = /^(.+?)\s+(\d+):(\d+)/.exec(ref || "");
+    return m ? readerLink(m[1], m[2], m[3]) : "read.html";
+}
+
 function refButtonLabel(isOpen, n) {
     return `${isOpen ? "Hide" : "Show"} ${n} ${n === 1 ? "reference" : "references"}`;
 }
@@ -817,7 +830,7 @@ function renderSortedInstructions() {
                     ${refButtonLabel(false, item.references.length)}
                 </button>
                 <div class="ref-list" data-index="${index}" style="display:none; margin-top:8px; padding:10px; background:#f9f9f9; border-radius:4px; font-size:0.95em;">
-                    ${item.references.map(r => `<div>${r.ref}${r.n > 1 ? ` (x${r.n})` : ""}</div>`).join("")}
+                    ${item.references.map(r => `<div><a href="${referenceLink(r.ref)}">${r.ref}</a>${r.n > 1 ? ` (x${r.n})` : ""}</div>`).join("")}
                 </div>
             </td>
         `;
