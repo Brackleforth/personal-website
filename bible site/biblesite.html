@@ -7,23 +7,37 @@
 
     <title>Bible Commands Database</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Carlito:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <script>
+        // On phones, start with the filters closed so the page is readable
+        if (window.matchMedia("(max-width: 800px)").matches) {
+            document.body.classList.add("sidebar-collapsed");
+        }
+    </script>
 
     <div id="topButtons">
-        <button id="sidebarToggle">☰ Filters</button>
-        <button id="homeBtn">Home</button>
+        <button id="sidebarToggle" type="button">☰ FILTERS</button>
+        <button id="homeBtn" type="button">HOME</button>
     </div>
 
-    <div id="sidebar">
-        <h1 style="margin-top: 80px;">Filters</h1>
+    <aside id="sidebar" aria-label="Filters">
+        <script>
+            if (document.body.classList.contains("sidebar-collapsed")) {
+                document.getElementById("sidebar").classList.add("hidden");
+            }
+        </script>
+        <h2 class="sidebar-title">FILTERS</h2>
 
         <div class="filter-list">
             <div class="filter-item" data-filter="book">
                 <span class="filter-label">Book</span>
-                <button class="filter-btn" id="btn-book">
+                <button class="filter-btn" id="btn-book" type="button">
                     <span class="current-value">All</span>
                     <span class="arrow">▼</span>
                 </button>
@@ -31,7 +45,7 @@
 
             <div class="filter-item" data-filter="testament">
                 <span class="filter-label">Testament</span>
-                <button class="filter-btn" id="btn-testament">
+                <button class="filter-btn" id="btn-testament" type="button">
                     <span class="current-value">All</span>
                     <span class="arrow">▼</span>
                 </button>
@@ -39,7 +53,7 @@
 
             <div class="filter-item" data-filter="giver">
                 <span class="filter-label">Command Giver</span>
-                <button class="filter-btn" id="btn-giver">
+                <button class="filter-btn" id="btn-giver" type="button">
                     <span class="current-value">All</span>
                     <span class="arrow">▼</span>
                 </button>
@@ -47,7 +61,7 @@
 
             <div class="filter-item" data-filter="receiver">
                 <span class="filter-label">Command Receiver</span>
-                <button class="filter-btn" id="btn-receiver">
+                <button class="filter-btn" id="btn-receiver" type="button">
                     <span class="current-value">All</span>
                     <span class="arrow">▼</span>
                 </button>
@@ -55,7 +69,7 @@
 
             <div class="filter-item" data-filter="covenant">
                 <span class="filter-label">Covenant</span>
-                <button class="filter-btn" id="btn-covenant">
+                <button class="filter-btn" id="btn-covenant" type="button">
                     <span class="current-value">All</span>
                     <span class="arrow">▼</span>
                 </button>
@@ -63,7 +77,7 @@
 
             <div class="filter-item" data-filter="applicable">
                 <span class="filter-label">Applicability</span>
-                <button class="filter-btn" id="btn-applicable">
+                <button class="filter-btn" id="btn-applicable" type="button">
                     <span class="current-value">All</span>
                     <span class="arrow">▼</span>
                 </button>
@@ -71,7 +85,7 @@
 
             <div class="filter-item" data-filter="binding">
                 <span class="filter-label">Binding Today</span>
-                <button class="filter-btn" id="btn-binding">
+                <button class="filter-btn" id="btn-binding" type="button">
                     <span class="current-value">All</span>
                     <span class="arrow">▼</span>
                 </button>
@@ -79,7 +93,7 @@
 
             <div class="filter-item" data-filter="category">
                 <span class="filter-label">Category</span>
-                <button class="filter-btn" id="btn-category">
+                <button class="filter-btn" id="btn-category" type="button">
                     <span class="current-value">All</span>
                     <span class="arrow">▼</span>
                 </button>
@@ -87,7 +101,7 @@
 
             <div class="filter-item" data-filter="instructionType">
                 <span class="filter-label">Instruction Type</span>
-                <button class="filter-btn" id="btn-instructionType">
+                <button class="filter-btn" id="btn-instructionType" type="button">
                     <span class="current-value">All</span>
                     <span class="arrow">▼</span>
                 </button>
@@ -95,7 +109,7 @@
 
             <div class="filter-item" data-filter="exampleType">
                 <span class="filter-label">Example Type</span>
-                <button class="filter-btn" id="btn-exampleType">
+                <button class="filter-btn" id="btn-exampleType" type="button">
                     <span class="current-value">All</span>
                     <span class="arrow">▼</span>
                 </button>
@@ -103,16 +117,15 @@
 
             <div class="filter-item" data-filter="commandStyle">
                 <span class="filter-label">Command Style</span>
-                <button class="filter-btn" id="btn-commandStyle">
+                <button class="filter-btn" id="btn-commandStyle" type="button">
                     <span class="current-value">All</span>
                     <span class="arrow">▼</span>
                 </button>
             </div>
 
-            <!-- Results per page stays simple -->
             <div class="filter-item">
-                <span class="filter-label">Results Per Page</span>
-                <select id="pageSizeFilter" style="width:100%; padding:8px;">
+                <label class="filter-label" for="pageSizeFilter">Results Per Page</label>
+                <select id="pageSizeFilter">
                     <option value="10">10</option>
                     <option value="25">25</option>
                     <option value="50">50</option>
@@ -121,112 +134,94 @@
                 </select>
             </div>
         </div>
-    </div>
-    <div id="homeView">
-        <h1>Bible Commands Database</h1>
+    </aside>
 
-        <div style="margin:20px 0;">
-            <div style="width:100%; background:#ddd; border-radius:8px; overflow:hidden;">
-                <div id="progressBar" style="width:0%; height:30px; background:green;"></div>
-            </div>
-            <p id="progressText" style="font-size:2em; font-weight:bold; text-align:center;"></p>
+    <main id="homeView" class="content">
+        <div class="page">
+            <header class="title-box">
+                <h1>BIBLE COMMANDS DATABASE</h1>
+                <p>Every command in the Bible (KJV), mapped verse by verse.</p>
+                <a href="../index.html">← brackleforth.com</a>
+            </header>
+
+            <section class="box" aria-labelledby="progress-title">
+                <h2 id="progress-title">PROGRESS</h2>
+                <p id="progressText" class="stat" aria-live="polite">Loading…</p>
+                <div class="progress">
+                    <div id="progressBar" class="progress-fill"></div>
+                </div>
+                <button id="browseAllBtn" class="action-btn" type="button">BROWSE ALL BOOKS</button>
+            </section>
+
+            <section class="box" aria-label="Books">
+                <div id="bookSelector">
+                    <div class="testament">
+                        <h2>OLD TESTAMENT</h2>
+                        <button id="browseOTBtn" class="action-btn" type="button">BROWSE OLD TESTAMENT</button>
+                        <div id="otBooks" class="book-list"></div>
+                    </div>
+
+                    <div class="testament">
+                        <h2>NEW TESTAMENT</h2>
+                        <button id="browseNTBtn" class="action-btn" type="button">BROWSE NEW TESTAMENT</button>
+                        <div id="ntBooks" class="book-list"></div>
+                    </div>
+                </div>
+            </section>
         </div>
+    </main>
 
-        <div style="text-align:center; margin:30px 0 20px 0;">
-            <button id="browseAllBtn" class="book-progress-btn"
-                style="display:inline-block; min-width:280px; font-size:1.25em; padding:16px 24px;">
-                <strong>Browse All Books</strong>
-            </button>
-        </div>
-        <!--
-        <div
-            style="text-align:center; margin:40px 0 20px 0; display:flex; justify-content:center; gap:20px; flex-wrap:wrap;">
-            <button id="browseOTBtn" class="book-progress-btn"
-                style="min-width:260px; font-size:1.1em; padding:14px 20px;">
-                <strong>Browse All Old Testament</strong>
-            </button>
-            <button id="browseNTBtn" class="book-progress-btn"
-                style="min-width:260px; font-size:1.1em; padding:14px 20px;">
-                <strong>Browse All New Testament</strong>
-            </button>
-        </div>
--->
-        <div id="bookSelector"
-            style="display:grid; grid-template-columns:1fr 1fr; gap:30px; max-width:1200px; margin:0 auto;">
-
-            <div>
-                <h2 style="text-align:center; color:#d32f2f;">Old Testament</h2>
-                <button id="browseOTBtn" class="book-progress-btn"
-                    style="min-width:260px; font-size:1.1em; padding:14px 20px;">
-                    <strong>Browse All Old Testament</strong>
-                </button>
-                <div id="otBooks" style="display:flex; flex-direction:column; gap:8px;"></div>
-            </div>
-
-            <div>
-                <h2 style="text-align:center; color:#1976d2;">New Testament</h2>
-                <button id="browseNTBtn" class="book-progress-btn"
-                    style="min-width:260px; font-size:1.1em; padding:14px 20px;">
-                    <strong>Browse All New Testament</strong>
-                </button>
-                <div id="ntBooks" style="display:flex; flex-direction:column; gap:8px;"></div>
-            </div>
-        </div>
-
-
-    </div>
     <div id="appView" style="display:none;">
+        <main id="mainContent" class="content">
+            <div class="page">
+                <header class="title-box title-box-small">
+                    <h1>BIBLE COMMANDS DATABASE</h1>
+                </header>
 
-        <div id="mainContent">
+                <section class="box" id="displayOptions" aria-labelledby="show-title">
+                    <h2 id="show-title">SHOW IN RESULTS</h2>
+                    <div class="checkbox-grid">
+                        <label><input type="checkbox" class="display-toggle" data-field="reference" checked> Reference</label>
+                        <label><input type="checkbox" class="display-toggle" data-field="verse_text" checked> Verse Text</label>
+                        <label><input type="checkbox" class="display-toggle" data-field="instruction" checked> Instruction</label>
+                        <label><input type="checkbox" class="display-toggle" data-field="command_giver" checked> Command Giver</label>
+                        <label><input type="checkbox" class="display-toggle" data-field="command_receiver" checked> Command Receiver</label>
+                        <label><input type="checkbox" class="display-toggle" data-field="category" checked> Category</label>
+                        <label><input type="checkbox" class="display-toggle" data-field="command_type" checked> Command Type</label>
+                        <label><input type="checkbox" class="display-toggle" data-field="covenant" checked> Covenant</label>
+                        <label><input type="checkbox" class="display-toggle" data-field="applicable_to" checked> Applicability To</label>
+                        <label><input type="checkbox" class="display-toggle" data-field="notes"> Notes</label>
+                    </div>
+                    <button id="sortBtn" class="action-btn action-btn-wide" type="button">Sort Results (by Instruction Frequency)</button>
+                </section>
 
-            <h1>Bible Commands Database</h1>
-            <!-- Display Options -->
-            <div id="displayOptions"
-                style="margin: 15px 0 20px 0; padding: 12px; background: #f9f9f9; border-radius: 8px;">
-                <strong>Show in Results:</strong><br><br>
+                <div id="summary"></div>
 
-                <label><input type="checkbox" class="display-toggle" data-field="reference" checked> Reference</label>
-                <label><input type="checkbox" class="display-toggle" data-field="verse_text" checked> Verse Text</label>
-                <label><input type="checkbox" class="display-toggle" data-field="instruction" checked>
-                    Instruction</label>
-                <label><input type="checkbox" class="display-toggle" data-field="command_giver" checked> Command
-                    Giver</label>
-                <label><input type="checkbox" class="display-toggle" data-field="command_receiver" checked> Command
-                    Receiver</label>
-                <label><input type="checkbox" class="display-toggle" data-field="category" checked> Category</label>
-                <label><input type="checkbox" class="display-toggle" data-field="command_type" checked> Command
-                    Type</label>
-                <label><input type="checkbox" class="display-toggle" data-field="covenant" checked> Covenant</label>
-                <label><input type="checkbox" class="display-toggle" data-field="applicable_to" checked> Applicability
-                    To</label>
-                <label><input type="checkbox" class="display-toggle" data-field="notes"> Notes</label>
+                <!-- Normal Results -->
+                <div id="results"></div>
+
+                <!-- Sorted Table -->
+                <section id="sortedTableContainer" class="box" style="display: none;">
+                    <h2>INSTRUCTIONS SORTED BY FREQUENCY</h2>
+                    <div class="table-scroll">
+                        <table id="frequencyTable">
+                            <thead>
+                                <tr>
+                                    <th>Instruction</th>
+                                    <th class="count-col">Count</th>
+                                    <th>References</th>
+                                </tr>
+                            </thead>
+                            <tbody id="frequencyTableBody"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <nav id="pagination" aria-label="Pages"></nav>
             </div>
-            <div style="margin-bottom: 15px;">
-                <button id="sortBtn">Sort Results (by Instruction Frequency)</button>
-            </div>
-
-            <div id="summary"></div>
-
-            <!-- Normal Results -->
-            <div id="results"></div>
-
-            <!-- New Sorted Table -->
-            <div id="sortedTableContainer" style="display: none;">
-                <h2>Instructions Sorted by Frequency</h2>
-                <table id="frequencyTable" style="width:100%; border-collapse: collapse;">
-                    <thead>
-                        <tr style="background:#333; color:white;">
-                            <th style="padding:10px; text-align:left;">Instruction</th>
-                            <th style="padding:10px; text-align:center; width:80px;">Count</th>
-                            <th style="padding:10px; text-align:left;">References</th>
-                        </tr>
-                    </thead>
-                    <tbody id="frequencyTableBody"></tbody>
-                </table>
-            </div>
-            <div id="pagination"></div>
-        </div>
+        </main>
     </div>
+
     <script src="script.js"></script>
 </body>
 

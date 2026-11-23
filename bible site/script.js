@@ -338,8 +338,9 @@ function updateProgress() {
 
     document.getElementById("progressBar").style.width = percent.toFixed(2) + "%";
     document.getElementById("progressText").innerHTML = `
-        ${mappedVerseCount} / ${TOTAL_KJV_VERSES} verses mapped
-        <span style="font-size:0.75em; color:#555;">(${percent.toFixed(4)}%)</span>
+        <span class="stat-number">${mappedVerseCount.toLocaleString("en-US")}</span>
+        of ${TOTAL_KJV_VERSES.toLocaleString("en-US")} verses mapped
+        <span class="stat-percent">(${percent.toFixed(2)}%)</span>
     `;
 }
 
