@@ -563,13 +563,6 @@ body.filter-panel-open:not(.sidebar-collapsed) .content {
     color: #FFFFFF;
 }
 
-/* With the filters open on a PC, the top buttons sit over the sidebar */
-@media (min-width: 801px) {
-    body:not(.sidebar-collapsed) .page {
-        padding-top: 32px;
-    }
-}
-
 /* ---------- Phones and small windows ---------- */
 @media (max-width: 800px) {
     .content,
