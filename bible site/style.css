@@ -1,153 +1,104 @@
-body{
-    margin:0;
-    font-family:Arial, sans-serif;
-}
+/* Bible Commands Database - styled to match brackleforth.com */
 
-#sidebar {
-    width: 300px;
-    height: 100vh;
-    position: fixed;
-    left: 0;
-    top: 0;
-    background: #f5f5f5;
-    padding: 20px;
-    transition: 0.3s;
-    z-index: 900;
-    overflow-y: auto;
-}
-
-#sidebar.hidden {
-    left: -320px;
-}
-
-#sidebar label{
-    display:block;
-    margin-top:15px;
-    font-weight:bold;
-}
-
-#sidebar select{
-    width:100%;
-    padding:5px;
-}
-
-#sidebarToggle {
-    padding: 10px 14px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.command-card{
-    border:1px solid #ccc;
-    margin-bottom:20px;
-    padding:15px;
-    border-radius:8px;
-}
-
-.command-card h3{
-    margin-top:0;
-}
-
-#summary {
-    margin: 10px 0 20px 0;
-    padding: 10px;
-    background: #eef;
-    border-radius: 6px;
-}
-
-#pagination {
-    margin-top: 20px;
-    text-align: center;
-}
-
-.page-link {
-    display: inline-block;
-    margin: 3px;
-    padding: 6px 10px;
-    border: 1px solid #ccc;
-    cursor: pointer;
-    border-radius: 4px;
-    background: white;
-}
-
-.page-link.active {
-    background: #333;
-    color: white;
+:root {
+    --page-bg: #ADD8E6;
+    --box-bg: #F1F1F1;
+    --title-bg: #6B6B6B;
+    --text: #111111;
+    --muted: #444444;
+    --line: #BDBDBD;
+    --link: #0057B8;
+    --link-hover: #003A7A;
+    --bar-track: #CFCFCF;
+    --bar-fill: #2E7D32;
+    --sidebar-w: 300px;
 }
 
 * {
     box-sizing: border-box;
 }
 
-#homeView,
-#mainContent {
-    margin-left: 340px;
-    width: calc(100% - 340px);
-    padding: 80px 20px 20px 20px;
-    transition: all 0.3s;
+body {
+    margin: 0;
+    background: var(--page-bg);
+    color: var(--text);
+    font-family: Calibri, Carlito, sans-serif;
+    font-size: 17px;
+    line-height: 1.4;
 }
 
-body.sidebar-collapsed #homeView,
-body.sidebar-collapsed #mainContent {
-    margin-left: 0;
-    width: 100%;
+a { color: var(--link); }
+a:hover { color: var(--link-hover); }
+
+button { font-family: inherit; }
+
+button:focus-visible,
+a:focus-visible,
+select:focus-visible,
+input:focus-visible {
+    outline: 3px solid #000000;
+    outline-offset: 2px;
 }
 
+/* ---------- Top buttons ---------- */
 #topButtons {
     position: fixed;
-    top: 10px;
-    left: 10px;
+    top: 12px;
+    left: 12px;
     z-index: 1000;
     display: flex;
-    align-items: center;
-    gap: 12px;
+    gap: 8px;
 }
 
+#sidebarToggle,
 #homeBtn {
-    /*padding: 10px 18px;
-    font-size: 16px;
-    background: #333;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    */
-    padding: 10px 14px;
-    font-size: 16px;
+    min-height: 44px;
+    padding: 10px 16px;
+    background: #000000;
+    color: #FFFFFF;
+    border: 2px solid #000000;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    font-size: 14px;
     cursor: pointer;
 }
 
-/*
+#sidebarToggle:hover,
 #homeBtn:hover {
-    background: #555;
-}
-*/
-
-.book-progress-btn {
-    padding: 14px 16px;
-    font-size: 1.1em;
-    text-align: left;
-    background: #f8f9fa;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s;
+    background: #333333;
 }
 
-.book-progress-btn:hover {
-    background: #e3f2fd;
-    border-color: #1976d2;
-    transform: translateX(4px);
+/* ---------- Filters sidebar ---------- */
+#sidebar {
+    width: var(--sidebar-w);
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: var(--box-bg);
+    border-right: 2px solid #000000;
+    padding: 76px 20px 24px;
+    transition: left 0.3s;
+    z-index: 900;
+    overflow-y: auto;
 }
 
-.book-progress-btn strong {
-    font-size: 1.15em;
+#sidebar.hidden {
+    left: calc(-1 * var(--sidebar-w) - 20px);
+}
+
+.sidebar-title {
+    margin: 0 0 16px;
+    font-size: 22px;
+    letter-spacing: 0.14em;
+    padding-bottom: 6px;
+    border-bottom: 2px solid #000000;
 }
 
 .filter-list {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 14px;
 }
 
 .filter-item {
@@ -157,52 +108,67 @@ body.sidebar-collapsed #mainContent {
 }
 
 .filter-label {
-    font-weight: bold;
-    font-size: 0.95em;
-    color: #444;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
 }
 
 .filter-btn {
     width: 100%;
+    min-height: 44px;
     padding: 10px 12px;
     text-align: left;
-    background: white;
-    border: 1px solid #ccc;
-    border-radius: 6px;
+    background: #FFFFFF;
+    border: 1px solid var(--line);
     cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 1em;
-    transition: all 0.2s;
+    font-size: 16px;
+    color: var(--text);
 }
 
-.filter-btn:hover {
-    border-color: #1976d2;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+.filter-btn:hover,
+.filter-btn.open {
+    border-color: #000000;
+}
+
+.filter-btn.open {
+    background: #E3F2FD;
 }
 
 .current-value {
-    color: #1976d2;
-    font-weight: 500;
+    color: var(--link);
+    font-weight: 700;
 }
 
 .arrow {
-    font-size: 0.8em;
-    color: #666;
+    font-size: 12px;
+    color: var(--muted);
 }
 
-/* Filter Panel - secondary sidebar, sits just right of #sidebar (300px wide) */
+#pageSizeFilter {
+    width: 100%;
+    min-height: 44px;
+    padding: 8px;
+    font-family: inherit;
+    font-size: 16px;
+    background: #FFFFFF;
+    border: 1px solid var(--line);
+}
+
+/* ---------- Secondary filter list (built by script.js) ---------- */
 #filterPanel {
     position: fixed;
     top: 0;
-    left: 300px;
+    left: var(--sidebar-w);
     width: 280px;
     height: 100vh;
-    background: #fafafa;
-    border-right: 1px solid #ddd;
-    box-shadow: 4px 0 12px rgba(0,0,0,0.08);
-    z-index: 899;               /* just under #sidebar so it slides out from behind it */
+    background: #FFFFFF;
+    border-right: 2px solid #000000;
+    z-index: 899;
     display: flex;
     flex-direction: column;
     transform: translateX(-100%);
@@ -219,38 +185,41 @@ body.sidebar-collapsed #mainContent {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 16px 12px 20px;
-    border-bottom: 1px solid #eee;
-    font-weight: bold;
-    font-size: 1.5em;           /* matches the "Filters" heading */
+    padding: 76px 12px 10px 20px;
+    border-bottom: 2px solid #000000;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
 }
 
 #panelClose {
+    min-width: 44px;
+    min-height: 44px;
     border: none;
     background: transparent;
-    font-size: 0.7em;
-    color: #666;
+    font-size: 18px;
+    color: var(--muted);
     cursor: pointer;
-    padding: 6px 8px;
-    border-radius: 4px;
 }
 
 #panelClose:hover {
-    background: #e0e0e0;
+    background: var(--box-bg);
 }
 
 #filterPanel input {
     width: 100%;
     padding: 12px 20px;
     border: none;
-    border-bottom: 1px solid #ddd;
-    font-size: 1em;
-    background: white;
+    border-bottom: 1px solid var(--line);
+    font-family: inherit;
+    font-size: 16px;
+    background: #FFFFFF;
 }
 
 #filterPanel input:focus {
     outline: none;
-    background: #f0f7ff;
+    background: #E3F2FD;
 }
 
 #filterPanel .options {
@@ -258,35 +227,379 @@ body.sidebar-collapsed #mainContent {
     flex: 1;
 }
 
-/* Content makes room when the filter list is open */
-body.filter-panel-open:not(.sidebar-collapsed) #homeView,
-body.filter-panel-open:not(.sidebar-collapsed) #mainContent {
-    margin-left: 620px;
-    width: calc(100% - 620px);
-}
-
-/* Sidebar button whose list is currently open */
-.filter-btn.open {
-    border-color: #1976d2;
-    background: #e3f2fd;
-}
-
 .filter-option {
     padding: 10px 20px;
     cursor: pointer;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid #EEEEEE;
 }
 
 .filter-option:hover {
-    background: #f0f7ff;
+    background: var(--box-bg);
 }
 
 .filter-option.active {
-    background: #e3f2fd;
-    font-weight: 500;
+    background: #E3F2FD;
+    font-weight: 700;
 }
 
 .filter-option.all {
     font-style: italic;
-    color: #555;
+    color: var(--muted);
+}
+
+/* ---------- Main content area ---------- */
+.content {
+    display: block;
+    margin-left: var(--sidebar-w);
+    transition: margin-left 0.3s;
+}
+
+body.sidebar-collapsed .content {
+    margin-left: 0;
+}
+
+body.filter-panel-open:not(.sidebar-collapsed) .content {
+    margin-left: calc(var(--sidebar-w) + 280px);
+}
+
+.page {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 76px 16px 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.title-box {
+    background: var(--title-bg);
+    padding: 36px 24px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.title-box h1 {
+    margin: 0;
+    font-size: 38px;
+    letter-spacing: 0.14em;
+    color: #000000;
+}
+
+.title-box p {
+    margin: 0;
+    font-size: 19px;
+    font-weight: 700;
+    color: #FFFFFF;
+}
+
+.title-box a {
+    color: #FFFFFF;
+    font-size: 15px;
+    padding: 6px 0;
+}
+
+.title-box a:hover { color: #E3F2FD; }
+
+.title-box-small {
+    padding: 24px;
+}
+
+.title-box-small h1 {
+    font-size: 28px;
+}
+
+.box {
+    background: var(--box-bg);
+    padding: 32px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.box > h2,
+.testament h2 {
+    margin: 0;
+    text-align: center;
+    font-size: 26px;
+    letter-spacing: 0.14em;
+}
+
+/* ---------- Progress ---------- */
+.stat {
+    margin: 0;
+    text-align: center;
+    font-size: 18px;
+}
+
+.stat-number {
+    font-size: 44px;
+    font-weight: 700;
+    line-height: 1;
+    margin-right: 6px;
+}
+
+.stat-percent {
+    font-size: 15px;
+    color: var(--muted);
+    margin-left: 4px;
+}
+
+.progress {
+    height: 32px;
+    background: var(--bar-track);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0;
+    min-width: 4px;
+    background: var(--bar-fill);
+    transition: width 0.6s ease;
+}
+
+/* ---------- Buttons ---------- */
+.action-btn {
+    align-self: center;
+    width: 260px;
+    max-width: 100%;
+    min-height: 44px;
+    padding: 10px 16px;
+    background: #000000;
+    color: #FFFFFF;
+    border: 2px solid #000000;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.action-btn:hover {
+    background: #333333;
+}
+
+.action-btn-wide {
+    width: auto;
+    letter-spacing: 0.02em;
+}
+
+/* ---------- Book lists ---------- */
+#bookSelector {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px;
+}
+
+.testament {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.testament h2 {
+    font-size: 20px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid #000000;
+}
+
+.book-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.book-progress-btn {
+    width: 100%;
+    padding: 12px 16px;
+    text-align: left;
+    background: #FFFFFF;
+    border: 2px solid #DDDDDD;
+    cursor: pointer;
+    font-size: 16px;
+    color: var(--text);
+    transition: border-color 0.2s, transform 0.2s;
+}
+
+.book-progress-btn:hover {
+    border-color: #000000 !important;
+    transform: translateX(4px);
+}
+
+.book-progress-btn strong {
+    font-size: 18px;
+}
+
+.book-progress-btn small {
+    font-size: 14px;
+    color: var(--muted);
+}
+
+/* ---------- Results ---------- */
+.checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 4px 16px;
+}
+
+.checkbox-grid label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 36px;
+    cursor: pointer;
+}
+
+.checkbox-grid input {
+    width: 18px;
+    height: 18px;
+    accent-color: #000000;
+}
+
+#summary {
+    background: #E3F2FD;
+    padding: 14px 16px;
+}
+
+#summary:empty {
+    display: none;
+}
+
+.command-card + .command-card {
+    margin-top: 16px;
+}
+
+.command-card {
+    background: #FFFFFF;
+    border-top: 4px solid #000000;
+    padding: 18px 20px;
+}
+
+.command-card h3 {
+    margin: 0 0 10px;
+    font-size: 22px;
+    letter-spacing: 0.04em;
+}
+
+.command-card p {
+    margin: 0 0 8px;
+}
+
+.command-card p:last-child {
+    margin-bottom: 0;
+}
+
+/* ---------- Frequency table ---------- */
+.table-scroll {
+    overflow-x: auto;
+}
+
+#frequencyTable {
+    width: 100%;
+    border-collapse: collapse;
+    background: #FFFFFF;
+}
+
+#frequencyTable th {
+    background: #000000;
+    color: #FFFFFF;
+    padding: 10px 12px;
+    text-align: left;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+#frequencyTable th.count-col {
+    text-align: center;
+    width: 80px;
+}
+
+.toggle-ref-btn {
+    min-height: 36px;
+    white-space: nowrap;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    font-size: 14px;
+}
+
+.toggle-ref-btn:hover {
+    background: var(--box-bg);
+}
+
+/* ---------- Pagination ---------- */
+#pagination {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+}
+
+#pagination:empty {
+    display: none;
+}
+
+.page-link {
+    min-width: 40px;
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 10px;
+    border: 1px solid #000000;
+    background: #FFFFFF;
+    cursor: pointer;
+}
+
+.page-link:hover {
+    background: var(--box-bg);
+}
+
+.page-link.active {
+    background: #000000;
+    color: #FFFFFF;
+}
+
+/* With the filters open on a PC, the top buttons sit over the sidebar */
+@media (min-width: 801px) {
+    body:not(.sidebar-collapsed) .page {
+        padding-top: 32px;
+    }
+}
+
+/* ---------- Phones and small windows ---------- */
+@media (max-width: 800px) {
+    .content,
+    body.filter-panel-open:not(.sidebar-collapsed) .content {
+        margin-left: 0;
+    }
+
+    #sidebar {
+        box-shadow: 4px 0 16px rgba(0, 0, 0, 0.25);
+    }
+
+    #filterPanel {
+        left: 0;
+        width: 100%;
+        z-index: 950;
+    }
+
+    #bookSelector {
+        grid-template-columns: 1fr;
+    }
+
+    .title-box h1 {
+        font-size: 26px;
+    }
+
+    .title-box-small h1 {
+        font-size: 22px;
+    }
+
+    .box {
+        padding: 24px 16px;
+    }
 }
